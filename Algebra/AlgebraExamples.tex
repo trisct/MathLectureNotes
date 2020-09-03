@@ -1,0 +1,287 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{geometry,layout,amssymb,amsthm,amsmath,mathrsfs,graphicx,centernot,textcomp,galois,extarrows,ulem}
+\usepackage[all]{xy}
+
+\newtheorem{prop}{Prop}[section]
+\newtheorem{theom}{Theorem}[section]
+\newtheorem{eg}{Example}[section]
+\newtheorem{nt}{Note}[section]
+\newtheorem{coro}{Corollary}[section]
+
+\theoremstyle{definition}
+\newtheorem{pf}{Proof}[section]
+\newtheorem{dfn}{Def}[section]
+
+\newcommand{\bs}{\backslash}
+\newcommand{\udots}{\mathinner{\mskip 1mu\raise 1pt\vbox{\kern 7pt\hbox{.}}
+\mskip 2mu\raise 4pt\hbox{.}\mskip 2mu\raise 7pt\hbox{.}\mskip 1mu}}
+\newcommand{\geqs}{\geqslant}
+\newcommand{\leqs}{\leqslant}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\rsa}{\sigma(f;\pi,\xi)}
+\newcommand{\wlg}{{\rm w.l.o.g.}}
+\newcommand{\spn}{{\rm span}}
+\newcommand{\rank}{{\rm rank}}
+\newcommand{\nul}{{\rm null}}
+\newcommand{\img}{{\rm im}}
+\newcommand{\ud}{{\rm d}}
+\newcommand{\dx}{\ud x}
+\newcommand{\dy}{\ud y}
+\newcommand{\dz}{\ud z}
+\newcommand{\x}{\times}                     %乘号
+\newcommand{\ox}{\otimes}
+\newcommand{\op}{\oplus}
+\newcommand{\unito}{\rightrightarrows}
+\newcommand{\lbint}{\int\!\!\!\int}      %二重积分号
+\newcommand{\bint}{\int\!\!\!\!\int}      %二重积分号
+\newcommand{\tint}{\int\!\!\!\!\int\!\!\!\!\int}      %三重积分号
+\newcommand{\apr}{\approx}
+\newcommand{\prdn}{\prod\limits_{n=1}^\infty}
+\newcommand{\sumn}{\sum\limits_{n=1}^\infty}
+\newcommand{\sump}{\sum\limits_{n=0}^\infty}
+\newcommand{\limn}{\lim\limits_{n\to\infty}}
+\newcommand{\limx}{\lim\limits_{x\to+\infty}}
+\newcommand{\operp}{\stackrel{\perp}{\oplus}}
+\newcommand{\const}{{\rm const}}
+\newcommand{\codim}{{\rm codim}}
+\newcommand{\ann}{{\rm ann}}
+\newcommand{\tr}{{\rm tr}}
+\newcommand{\sym}{{\rm Sym}}
+\newcommand{\Sp}{{\rm Sp}}              %symplectic
+\newcommand{\id}{{\rm id}}
+\newcommand{\mor}{{\rm Mor}}
+\newcommand{\Hom}{{\rm Hom}}
+\newcommand{\Aut}{{\rm Aut}}
+\newcommand{\End}{{\rm End}}
+\newcommand{\re}{{\rm Re}}
+\newcommand{\diag}{{\rm diag}}
+\newcommand{\grad}{{\rm grad\,}}
+\newcommand{\dive}{{\rm div\,}}
+\newcommand{\rot}{{\rm rot\,}}
+\newcommand{\curl}{{\rm curl\,}}
+\newcommand{\rad}{{\rm rad}}
+\newcommand{\ord}{{\rm ord}}
+\newcommand{\varn}{\varnothing}
+\newcommand{\vare}{\varepsilon}
+\newcommand{\vphi}{\varphi}
+\newcommand{\diam}{{\rm diam}}
+\newcommand{\vect}{{\rm Vect}}
+\newcommand{\isom}{\stackrel{\cong}{\longrightarrow}}
+\newcommand{\st}{{\rm\quad s.t.\quad}}
+\newcommand{\lapla}{\Delta}
+\newcommand{\divd}{\big|}
+\makeatletter
+\newcommand{\lambdabar}{{\mathchoice
+  {\smash@bar\textfont\displaystyle{0.25}{1.2}\lambda}
+  {\smash@bar\textfont\textstyle{0.25}{1.2}\lambda}
+  {\smash@bar\scriptfont\scriptstyle{0.25}{1.2}\lambda}
+  {\smash@bar\scriptscriptfont\scriptscriptstyle{0.25}{1.2}\lambda}}}
+\newcommand{\smash@bar}[4]{%
+  \smash{\rlap{\raisebox{-#3\fontdimen5#10}{$\m@th#2\mkern#4mu\mathchar'26$}}}}
+\makeatother
+
+
+\newcommand{\rsb}[3]{\sigma(#1;#2,#3)}      %Riemann sum with arguments
+\newcommand{\derv}[2]{\frac{\ud#1}{\ud#2}}
+\newcommand{\parf}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\secpf}[3]{\frac{\partial^2 #1}{\partial #2\partial #3}}
+\newcommand{\comb}[2]{\binom{#1}{#2}}       %组合数
+\newcommand{\norm}[1]{\lVert #1\rVert}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\brk}[1]{\big(#1\big)}
+\newcommand{\Brk}[1]{\left(#1\right)}
+\newcommand{\bkt}[1]{\langle#1\rangle}
+\newcommand{\dbk}[1]{\langle\!\langle#1\rangle\!\rangle}
+\newcommand{\inprod}[1]{\langle#1\rangle}
+\newcommand{\itr}[1]{#1^\circ}           %内部,interior
+\newcommand{\cmp}[1]{#1^c}               %补集,complement
+\newcommand{\cnts}[3]{#1#3\cdots#3#2}
+\newcommand{\inds}[3]{#1_{1}#3\cdots#3#1_{#2}}
+\newcommand{\dindx}[4]{#1{#2}#4\cdots#4#1{#3}}
+\newcommand{\dinds}[4]{#1_{#2}#4\cdots#4#1_{#3}}
+\newcommand{\vct}[1]{\overrightarrow{#1}}
+\newcommand{\simlr}[2]{#2^{-1}#1#2}     %相似
+\newcommand{\congt}[2]{\ts{#2}#1#2}     %相合
+\newcommand{\ccong}[2]{\cts{#2}#1#2}    %共轭相合
+\newcommand{\rcong}[2]{\ts{#2}#1\orl{#2}}    %右共轭相合
+\newcommand{\ts}[1]{#1^{\rm T}}
+\newcommand{\cts}[1]{\orl{#1}^{\rm T}}   %共轭转置
+\newcommand{\wt}[1]{\widetilde{#1}}
+\newcommand{\bss}[2]{\inds{#1}{#2}{,}}
+\newcommand{\boun}[1]{\partial{#1}}
+\newcommand{\unitob}[1]{\mathop{\rightrightarrows}\limits_{#1}}
+\newcommand{\limb}[1]{\lim\limits_{#1}}
+\newcommand{\limp}[2]{\lim\limits_{#1\to#2}}
+
+\newcommand{\mth}[1]{\begin{displaymath}#1\end{displaymath}}
+\newcommand{\mtha}[1]{\begin{eqnarray*}#1\end{eqnarray*}}
+\newcommand{\arr}[1]{\begin{array}#1\end{array}}
+\newcommand{\prf}[1]{\begin{pf}#1\end{pf}}
+\newcommand{\sprf}[1]{\begin{pf}\cb{#1}\end{pf}}
+\newcommand{\df}[1]{\begin{dfn}#1\end{dfn}}
+\newcommand{\ntg}[1]{\begin{nt}\cg{#1}\end{nt}}
+\newcommand{\mat}[1]{\left(\arr{#1}\right)}
+\newcommand{\itm}[1]{\begin{itemize}#1\end{itemize}}
+\newcommand{\enu}[1]{\begin{enumerate}#1\end{enumerate}}
+\newcommand{\desc}[1]{\begin{description}#1\end{description}}
+\newcommand{\tmth}[1]{\begin{displaymath}\ttt{#1}\end{displaymath}}
+\newcommand{\thm}[1]{\begin{theom}#1\end{theom}}
+\newcommand{\cor}[1]{\begin{coro}#1\end{coro}}
+\newcommand{\eqn}[1]{\begin{equation}#1\end{equation}}
+\newcommand{\eqna}[1]{\begin{eqnarray}#1\end{eqnarray}}
+
+
+\newcommand{\clr}[1]{\textcolor{red}{#1}}   %红色
+\newcommand{\cb}[1]{\textcolor{blue}{#1}}   %蓝色
+\newcommand{\cg}[1]{\textcolor{magenta}{#1}}%紫色
+\newcommand{\hlg}[1]{\cg{\udl{#1}}}
+\newcommand{\hlb}[1]{\cb{\udl{#1}}}
+\newcommand{\hlr}[1]{\clr{\udl{#1}}}
+
+\newcommand{\nm}[1]{{\rm#1}}                %竖体
+\newcommand{\ttt}{\textrm}
+\newcommand{\ns}[1]{\mathbb{#1}}
+\newcommand{\mcl}[1]{\mathcal{#1}}
+\newcommand{\flr}[1]{\mathscr{#1}}
+\newcommand{\got}[1]{\mathfrak{#1}}
+\newcommand{\orl}[1]{\overline{#1}}
+\newcommand{\udl}[1]{\underline{#1}}
+\newcommand{\uudl}[1]{\uuline{#1}}
+\newcommand{\wudl}[1]{\uwave{#1}}
+
+%%%%%%%%%%%%%PHYSICS CONSTANTS
+\newcommand{\cstk}{\frac{1}{4\pi\vare_0}}
+\newcommand{\cstm}{\frac{\mu_0}{4\pi}}
+
+\title{Examples in Algebra}
+\author{TRISCT}
+\date{}
+
+\begin{document}
+\tableofcontents
+\begin{section}{Examples in Algebra}
+\begin{subsection}{Examples of Groups}
+\begin{subsubsection}{$\ZZ/m\ZZ$}
+    The additive group
+    \mth{\ZZ/m\ZZ=\{\orl{0},\orl{1},\cdots,\orl{m-1}\}}
+    \mth{\orl{a}+\orl{b}=\orl{a+b}}
+    has the following properties
+    \enu{
+        \item $\ZZ/m\ZZ$ is cyclic.
+        \item $\orl{a},\,(a,m)=1$ is a generator. In particular, $\ZZ/m\ZZ=\bkt{\orl{1}}$.
+        \item Any subgroup of $\ZZ/m\ZZ$ is of the form $\bkt{\orl{d}}=\orl{d}\orl{\ZZ}\,(d\divd n).$
+        \item $\Aut(\ZZ/m\ZZ)\cong(\ZZ/m\ZZ)^*$
+        \item It can be decomposed using CRT.
+    }
+\end{subsubsection}
+\begin{subsubsection}{$(\ZZ/m\ZZ)^*$}
+    The multiplicative group
+    \mth{(\ZZ/m\ZZ)^*=\{\orl{a}:(a,m)=1\}}
+    \mth{\orl{a}\orl{b}=\orl{ab}}
+    has the following properties
+    \enu{
+        \item $(\ZZ/p\ZZ)^*$ has order $\vphi(m)$.
+        \item If $m=p$ is a prime number, then $(\ZZ/p\ZZ)^*$ is a cyclic group of order $p-1$.
+    }
+\end{subsubsection}
+\begin{subsubsection}{Klein four-group}
+    The group
+    \mth{V=\{a,b:a^2=b^2=(ab)^2=1\}}
+    has the following properties
+    \enu{
+        \item Each element is the inverse of itself.
+        \item The product of two different nonidentity elements is the third.
+    }
+\end{subsubsection}
+\begin{subsubsection}{Symmetric group $S_n$}
+The group $S_n$ of all permutations of $n$ objects has the following properties
+\enu{
+    \item $S_n$ has order $n$.
+    \item $S_n$ is not abelian when $n\geqs3$.
+    \item $Z(S_n)=\{(1)\}$ for $n\geqs3$.
+    \item The alternating group $A_n$ is a normal subgroup of $S_n$
+    \item $S_n,\,A_n$ are unsolvable for $n\geqs5$.
+    \item The coset decomposition of $S_n$ with respect to $S_{n-1}=\{\sigma\in S_n:\sigma(n)=n\}$ is
+    \item Any $\sigma\in S_n$ is a product of some nonintersecting cyclic permutations.
+}
+The cases $n=3,4$ are as follows:
+\desc{
+    \item[$S_3$]The group $S_3=\{(1),(12),(13),(23),(123),(132)\}$ is a nonabelian group of order $6$. It is isomorphic to $D_6$ (See below for its presentation). The lattice of its subgroups is:
+        \mth{\xymatrix{
+        6& &	S_3&	&	\\
+    	3& \uuline{\bkt{(123)}}\ar@{-}[ur]&	&	&	\\
+	    2& &	\bkt{(12)}\ar@{-}[uu]&	\bkt{(13)}\ar@{-}[uul]&	\bkt{(12)}\ar@{-}[uull]\\
+    	1& &	\{(1)\}\ar@{-}[uul]\ar@{-}[u]\ar@{-}[ur]\ar@{-}[urr]&	&	
+        }}
+    \item[$S_4$]The group $S_4$ is a nonabelian group of order $24$.
+        \mtha{S_4&=&\{(1),(12),(13),(23),(123),(132),\\
+        &=&(34),(12)(34),(143),(243),(1243),(4321),\\
+        &=&(24),(13)(24),(234),(142),(1342),(1423),\\
+        &=&(14),(14)(23),(134),(124),(1234),(1324)\}}
+        It is isomorphic to the symmetry group of a regular tetrahedron.
+    }
+\end{subsubsection}
+\begin{subsubsection}{Alternating group $A_n$}
+The group $A_n$ of all even permutations of $n$ objects has the following properties
+\enu{
+    \item $A_n$ is generated by all $3$-cycles.
+    \item For $n\geqs5$, all $3$-cycles are conjugate in $A_n$.
+    \item For $n\geqs5$, $A_n$ is a simple group.
+    \item For $n\geqs5$, $A_n$ is unsolvable.
+}
+\end{subsubsection}
+\begin{subsubsection}{Dihedral group $D_{2n}$}
+The group $D_{2n}$ of all symmetries of a $n$-sided regular polygon has the following properties
+\enu{
+    \item $D_{2n}$ is of order $2n$. Its elements are $n$ rotations and $n$ reflections.
+    \item $D_{2n}$ has the group presentation
+        \mth{D_{2n}=\{\rho,\vphi:\rho^n=1,\vphi^2=1,\rho\vphi=\vphi\rho^{n-1}\}}
+    \item The center of $D_{2n}$ is
+        \mth{Z(D_{2n})=\left\{\arr{{lll}\{1\}&,&n\ttt{ is odd}\\\{1,r=\rho^{n/2}\}&,&n\ttt{ is even}}\right.}
+}
+The case $n=4$ is as follows:
+\desc{
+    \item[$D_8$]The group $D_8$ of all symmetries of a square is a nonabelian group of order $8$. The lattice of its subgroups is:
+        \mth{\xymatrix{
+	    8&	&	&	D_8&	&	\\
+	    4&	\uudl{\bkt{\rho}}\ar@{-}[urr]&	&	\udl{\bkt{\vphi,\rho^2}}\ar@{-}[u]&	&	\udl{\bkt{\vphi\rho,\rho^2}}\ar@{-}[ull]\\
+	    2&	\wudl{\bkt{\rho^2}}\ar@{-}[u]\ar@{-}[urr]\ar@{-}[urrrr]&	\bkt{\vphi}\ar@{-}[ur]&\bkt{\vphi\rho}\ar@{-}[urr]&\bkt{\vphi\rho^2}\ar@{-}[ul]&\bkt{\vphi\rho^3}\ar@{-}[u]\\
+    	1&	&	&	\{1\}\ar@{-}[ull]\ar@{-}[ul]\ar@{-}[u]\ar@{-}[ur]\ar@{-}[urr]&	&	
+        }}
+    }
+\end{subsubsection}
+\begin{subsubsection}{Quaternion group $Q_8$}
+The quaternion group $Q_8=\{1,-1,i,-i,j,-j,k,-k\}$ is a nonabelian group of order $8$. It has the group presentation
+\mth{Q_8=\bkt{-1,i,j,k:(-1)^2=1,i^2=j^2=k^2=ijk=-1}}
+The lattice of its subgroups is:
+\mth{\xymatrix{
+	8&	&	Q_8&	\\
+	4&	\udl{\{1,-1,i,-i\}}\ar@{-}[ur]&	\udl{\{1,-1,j,-j\}}\ar@{-}[u]&	\udl{\{1,-1,k,-k\}}\ar@{-}[ul]\\
+	2&	&	\uudl{\wudl{\{1,-1\}}}\ar@{-}[u]\ar@{-}[ul]\ar@{-}[ur]&	\\
+	1&	&	\{1\}\ar@{-}[u]&	
+    }}
+\end{subsubsection}
+\begin{subsubsection}{General linear group (over a field/ring) $GL_n$}
+The general linear group of degree $n$ over a field $F$ or a ring $R$ is the set of $n\x n$ invertible matrices with entries from $F$ or $R$, associated with matrix multiplication. It is denoted $GL_n(F)$ or $GL_n(R)$.
+\end{subsubsection}
+\begin{subsubsection}{Special linear group $SL_n$}
+The special linear group $SL_n(F)$ of degree $n$ over a field $F$ is the subgroup of $GL_n(F)$ in which each matrix has determinant $1$.
+\end{subsubsection}
+\begin{subsubsection}{Orthogonal group $O_n$}
+The orthogonal group $O_n$ is a subgroup of $GL_n$ in which each matrix is an orthogonal matrix.
+\end{subsubsection}
+\begin{subsubsection}{Special orthogonal group $SO_n$}
+The special orthogonal group $SO_n$ is a subgroup of $O_n$ of index $2$ in which each matrix is an orthogonal matrix with determinant $1$. It is also called the rotation group.
+\end{subsubsection}
+\begin{subsubsection}{Unitary group $U_n$}
+The unitary group $U_n$ of degree $n$ is a subgroup of $GL_n(\CC)$ in which each matrix is a unitary matrix.
+\end{subsubsection}
+\begin{subsubsection}{Special unitary group $SU_n$}
+The special unitary group $SU_n$ of degree $n$ is a subgroup of $U_n$ in which each matrix is a unitary matrix with determinant $1$.
+\end{subsubsection}
+\end{subsection}
+\end{section}
+\end{document}

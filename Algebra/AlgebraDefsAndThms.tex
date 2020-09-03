@@ -1,0 +1,1348 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{geometry,xcolor,layout,amssymb,amsthm,amsmath,mathrsfs,graphicx,centernot,textcomp,galois,extarrows}
+\usepackage[all]{xy}
+
+\newtheorem{prop}{Prop}[section]
+\newtheorem{theom}{Theorem}[section]
+\newtheorem{eg}{Example}[section]
+\newtheorem{nt}{Note}[section]
+\newtheorem{coro}{Corollary}[section]
+
+\theoremstyle{definition}
+\newtheorem{pf}{Proof}[section]
+\newtheorem{dfn}{Def}[section]
+
+\newcommand{\bs}{\backslash}
+\newcommand{\udots}{\mathinner{\mskip 1mu\raise 1pt\vbox{\kern 7pt\hbox{.}}
+\mskip 2mu\raise 4pt\hbox{.}\mskip 2mu\raise 7pt\hbox{.}\mskip 1mu}}
+\newcommand{\geqs}{\geqslant}
+\newcommand{\leqs}{\leqslant}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\rsa}{\sigma(f;\pi,\xi)}
+\newcommand{\wlg}{{\rm w.l.o.g.}}
+\newcommand{\spn}{{\rm span}}
+\newcommand{\rank}{{\rm rank}}
+\newcommand{\nul}{{\rm null}}
+\newcommand{\img}{{\rm im}}
+\newcommand{\ud}{{\rm d}}
+\newcommand{\dx}{\ud x}
+\newcommand{\dy}{\ud y}
+\newcommand{\dz}{\ud z}
+\newcommand{\x}{\times}                     %乘号
+\newcommand{\ox}{\otimes}
+\newcommand{\op}{\oplus}
+\newcommand{\p}{\prime}
+\newcommand{\unito}{\rightrightarrows}
+\newcommand{\lbint}{\int\!\!\!\int}      %二重积分号
+\newcommand{\bint}{\int\!\!\!\!\int}      %二重积分号
+\newcommand{\tint}{\int\!\!\!\!\int\!\!\!\!\int}      %三重积分号
+\newcommand{\apr}{\approx}
+\newcommand{\operp}{\stackrel{\perp}{\oplus}}
+\newcommand{\const}{{\rm const}}
+\newcommand{\codim}{{\rm codim}}
+\newcommand{\ann}{{\rm ann}}
+\newcommand{\chr}{{\rm \,char\,}}
+\newcommand{\tr}{{\rm tr}}
+\newcommand{\sym}{{\rm Sym}}
+\newcommand{\centr}{{\rm Centr}}
+\newcommand{\Sp}{{\rm Sp}}              %symplectic
+\newcommand{\id}{{\rm id}}
+\newcommand{\mor}{{\rm Mor}}
+\newcommand{\Perm}{{\rm Perm}}
+\newcommand{\Hom}{{\rm Hom}}
+\newcommand{\Aut}{{\rm Aut}}
+\newcommand{\Inn}{{\rm Inn}}
+\newcommand{\End}{{\rm End}}
+\newcommand{\re}{{\rm Re}}
+\newcommand{\diag}{{\rm diag}}
+\newcommand{\grad}{{\rm grad\,}}
+\newcommand{\dive}{{\rm div\,}}
+\newcommand{\rot}{{\rm rot\,}}
+\newcommand{\rad}{{\rm rad}}
+\newcommand{\ord}{{\rm ord}}
+\newcommand{\irr}{{\rm Irr}}
+\newcommand{\cl}{{\rm cl}}
+\newcommand{\Cl}{{\rm Cl}}
+\newcommand{\fix}{{\rm fix}}
+\newcommand{\into}{\hookrightarrow}
+\newcommand{\varn}{\varnothing}
+\newcommand{\vare}{\varepsilon}
+\newcommand{\vphi}{\varphi}
+\newcommand{\diam}{{\rm diam}}
+\newcommand{\vect}{{\rm Vect}}
+\newcommand{\isom}{\stackrel{\cong}{\longrightarrow}}
+\newcommand{\dfas}{\triangleq}
+\newcommand{\st}{{\rm\quad s.t.\quad}}
+\newcommand{\lapla}{\Delta}
+\newcommand{\divd}{\big|}
+\makeatletter
+\newcommand{\lambdabar}{{\mathchoice
+  {\smash@bar\textfont\displaystyle{0.25}{1.2}\lambda}
+  {\smash@bar\textfont\textstyle{0.25}{1.2}\lambda}
+  {\smash@bar\scriptfont\scriptstyle{0.25}{1.2}\lambda}
+  {\smash@bar\scriptscriptfont\scriptscriptstyle{0.25}{1.2}\lambda}}}
+\newcommand{\smash@bar}[4]{%
+  \smash{\rlap{\raisebox{-#3\fontdimen5#10}{$\m@th#2\mkern#4mu\mathchar'26$}}}}
+\makeatother
+
+
+\newcommand{\rsb}[3]{\sigma(#1;#2,#3)}      %Riemann sum with arguments
+\newcommand{\derv}[2]{\frac{\ud#1}{\ud#2}}
+\newcommand{\parf}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\secpf}[3]{\frac{\partial^2 #1}{\partial #2\partial #3}}
+\newcommand{\comb}[2]{\binom{#1}{#2}}       %组合数
+\newcommand{\norm}[1]{\lVert #1\rVert}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\brk}[1]{\big(#1\big)}
+\newcommand{\Brk}[1]{\left(#1\right)}
+\newcommand{\bkt}[1]{\langle#1\rangle}
+\newcommand{\dbk}[1]{\langle\!\langle#1\rangle\!\rangle}
+\newcommand{\inprod}[1]{\langle#1\rangle}
+\newcommand{\itr}[1]{#1^\circ}           %内部,interior
+\newcommand{\cmp}[1]{#1^c}               %补集,complement
+\newcommand{\cnts}[3]{#1#3\cdots#3#2}
+\newcommand{\inds}[3]{#1_{1}#3\cdots#3#1_{#2}}
+\newcommand{\dindx}[4]{#1{#2}#4\cdots#4#1{#3}}
+\newcommand{\dinds}[4]{#1_{#2}#4\cdots#4#1_{#3}}
+\newcommand{\vct}[1]{\overrightarrow{#1}}
+\newcommand{\simlr}[2]{#2^{-1}#1#2}     %相似
+\newcommand{\congt}[2]{\ts{#2}#1#2}     %相合
+\newcommand{\ccong}[2]{\cts{#2}#1#2}    %共轭相合
+\newcommand{\rcong}[2]{\ts{#2}#1\orl{#2}}    %右共轭相合
+\newcommand{\ts}[1]{#1^{\rm T}}
+\newcommand{\cts}[1]{\orl{#1}^{\rm T}}   %共轭转置
+\newcommand{\wt}[1]{\widetilde{#1}}
+\newcommand{\bss}[2]{\inds{#1}{#2}{,}}
+\newcommand{\boun}[1]{\partial{#1}}
+\newcommand{\unitob}[1]{\mathop{\rightrightarrows}\limits_{#1}}
+
+\newcommand{\mth}[1]{\begin{displaymath}#1\end{displaymath}}
+\newcommand{\mtha}[1]{\begin{eqnarray*}#1\end{eqnarray*}}
+\newcommand{\arr}[1]{\begin{array}#1\end{array}}
+\newcommand{\prf}[1]{\begin{pf}#1\end{pf}}
+\newcommand{\sprf}[1]{\begin{pf}\cb{#1}\end{pf}}
+\newcommand{\df}[1]{\begin{dfn}#1\end{dfn}}
+\newcommand{\ntg}[1]{\begin{nt}\cg{#1}\end{nt}}
+\newcommand{\mat}[1]{\left(\arr{#1}\right)}
+\newcommand{\itm}[1]{\begin{itemize}#1\end{itemize}}
+\newcommand{\enu}[1]{\begin{enumerate}#1\end{enumerate}}
+\newcommand{\desc}[1]{\begin{description}#1\end{description}}
+\newcommand{\tmth}[1]{\begin{displaymath}\ttt{#1}\end{displaymath}}
+\newcommand{\thm}[1]{\begin{theom}#1\end{theom}}
+\newcommand{\cor}[1]{\begin{coro}#1\end{coro}}
+\newcommand{\eqn}[1]{\begin{equation}#1\end{equation}}
+\newcommand{\eqna}[1]{\begin{eqnarray}#1\end{eqnarray}}
+
+
+\newcommand{\clr}[1]{\textcolor{red}{#1}}   %红色
+\newcommand{\cb}[1]{\textcolor{blue}{#1}}   %蓝色
+\newcommand{\cg}[1]{\textcolor{magenta}{#1}}%紫色
+\newcommand{\hlg}[1]{\cg{\udl{#1}}}
+\newcommand{\hlb}[1]{\cb{\udl{#1}}}
+\newcommand{\hlr}[1]{\clr{\udl{#1}}}
+
+\newcommand{\tf}{\textbf}
+
+\newcommand{\nm}[1]{{\rm#1}}                %竖体
+\newcommand{\ttt}{\textrm}
+\newcommand{\ns}[1]{\mathbb{#1}}
+\newcommand{\mcl}[1]{\mathcal{#1}}
+\newcommand{\flr}[1]{\mathscr{#1}}
+\newcommand{\got}[1]{\mathfrak{#1}}
+\newcommand{\orl}[1]{\overline{#1}}
+\newcommand{\udl}[1]{\underline{#1}}
+\newcommand{\uudl}[1]{\uuline{#1}}
+\newcommand{\wudl}[1]{\uwave{#1}}
+
+%%%%%%%%%%%%%PHYSICS CONSTANTS
+\newcommand{\cstk}{\frac{1}{4\pi\vare_0}}
+\newcommand{\cstm}{\frac{\mu_0}{4\pi}}
+
+\title{Definitions and Theorems in Algebra}
+\author{TRISCT}
+\date{}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\begin{section}{Groups}
+\begin{subsection}{Groups and Elements}
+\begin{description}
+\item[Basic properties of groups]A group $G$ has the following basic properties.
+    \enu{
+        \item Uniqueness of the identity.
+        \item Uniqueness of inverses.
+        \item Possibility of left and right division.
+        \item Left and right cancellation laws.
+    }
+\item[Translation by group element]Let $G$ be a finite group, then
+    \mth{\forall a\in G,\,aG=G}
+\item[Order of an element]Let $G$ be a group and $a,b,x\in G$, then
+    \enu{
+        \item $\ord(a)\mid n=\abs{G}$ if $G$ is finite.
+        \item $\ord(x)=\ord(a^{-1}xa)$, that is, order is an invariant under conjugation.
+        \item $\ord(ab)=\ord(ba)$
+        \item $\ord(a)=st\implies\ord(a^s)=t$
+        \item $\ord(a^k)=\frac{\ord(a)}{(k,\ord(a))}$
+        \item $ab=ba\implies\ord(ab)\divd[\ord(a),\ord(b)]$
+        \item $ab=ba\land(\ord(a),\ord(b))=1\implies\ord(ab)=\ord(a)\cdot\ord(b)$
+        \item A group of even order must contain an element of order $2$.
+    }
+\item[Commutativity of elements]\quad
+    \enu{
+        \item $ab=ba\iff b^{-1}ab=a\iff a^{-1}b^{-1}ab=1$.
+        \item $\forall a\in G,\,a^2=1\implies G$ is abelian.
+    }
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Homomorphisms}
+\begin{description}
+\item[Basic properties of group homomorphism]Let $\vphi:G\to G'$ be a group homomorphism, then
+    \enu{
+        \item $\vphi(1)=1$
+        \item $\vphi(a^{-1})=(\vphi(a))^{-1}$
+        \item $\vphi(a^k)=\vphi(a)^k$
+        \item $\ord(\vphi(a))\mid\ord(a)$
+        \item $\ker\vphi<G$
+        \item $\img\vphi<G'$
+        \item $H'<G'\implies \vphi^{-1}(H')<G$
+        \item $\vphi$ is injective $\iff\ker\vphi=\{1\}$.
+    }
+\item[Basic properties of group isomorphism]Let $\vphi:G\to G'$ be a group isomorphism, then
+    \enu{
+        \item $\vphi$ maps generators to generators.
+    }
+\item[Automorphisms]\quad
+    \enu{
+        \item $G=Z_m\implies\Aut(G)\cong(\ZZ/m\ZZ)^*$
+        \item $G=Z_{p^n},\,p$ is prime and odd $\implies\Aut(G)\cong(\ZZ/p^n\ZZ)^*\cong Z_{\vphi(p^n)}$
+        \item $G=Z_{2^n},\,n\geqs3\implies\Aut(G)\cong(\ZZ/2^n\ZZ)^*\cong Z_2\x Z_{2^{n-2}}$
+    }
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Subgroups}
+\begin{description}
+\item[Product of subsets]$S,T,U<G,\,h\in G$. The following hold
+    \enu{
+        \item $(ST)U=S(TU)=STU$
+        \item $T\subset U\implies ST\subset SU$
+        \item $T\supset U\implies ST\supset SU$
+        \item $h(T\cap U)=(hT)\cap(hU)$
+    }
+\item[Subgroup]The following are equivalent.
+    \enu{
+        \item $H<G$
+        \item $H$ satisfies the group axioms.
+        \item $H$ is closed under multiplication and taking inverses.
+        \item $H$ is closed under division.
+        \item $G$ is finite and $H$ is closed under multiplication.
+    }
+\item[Properties of cosets]$H<G$, then:
+    \enu{
+        \item $HH=H$
+        \item $h\in H\implies hH=H$
+        \item $a'\in aH\iff a'H=aH$
+        \item $b\notin aH\implies aH\cap bH=\varn$
+        \item $aH\neq bH\implies aH\cap bH=\varn$
+        \item $\#H=\#(aH)$
+    }
+\item[Coset decomposition]\[H<G\implies G=\bigcup_{a_i\in G} a_iH,\qquad a_iH\cap a_jH=\varn\]
+\item[Lagrange's theorem]$H<G$ and $\abs{G}<\infty$, then:
+    \enu{
+        \item $\abs{H}\divd\abs{G}$
+        \item $\abs{G/H}=(G:H)$
+        \item $\ord(a)\divd\abs{G}$
+        \item $G>H>K\implies(G:K)=(G:H)(H:K)$
+        \item $p=\abs{G}\ttt{ is prime}\implies G=Z_p$
+    }
+\item[Twice decomposition]$H,K<G$,then
+    \[(G:H)=m,\,(G:K)=n\ttt{ are finite}\implies[m,n]\leqs(G:H\cap K)\leqs mn\]
+    As a corollary,
+    \mth{(G:H)\ttt{ and }(G:K)\ttt{ are coprime}\implies(G:H\cap K)=(G:H)(G:K)}
+\item[Normal subgroup]The following are equivalent.
+    \enu{
+        \item $H\lhd G$
+        \item $xH=Hx$
+        \item $xH\subset Hx$
+        \item $xH\supset Hx$
+        \item $\forall x\in G,h\in H,\exists h'\in H,xh=h'x$
+        \item $\forall\sigma\in\Inn(G),\,\sigma H=H$
+        \item $xHx^{-1}=H$
+        \item $xHx^{-1}\subset H$
+        \item $\forall x\in G,h\in H,\exists h'\in H,xhx^{-1}=h'$
+        \item $(aH)(bH)=(ab)H$ holds regardless of the choice of representatives.
+        \item $H=\ker\vphi$ for some homomorphism $\vphi$.
+    }
+\item[Sufficient conditions for a subgroup to be normal]\quad
+    \enu{
+        \item $H<G,\,(G:H)$ is the minimum prime factor of $\abs{G}\implies H\lhd G$.
+        \item $Z(G)\lhd G$
+        \item $\vphi\in\Hom(G,G'),\,H'\lhd G'\implies \vphi^{-1}(H')\lhd G$
+    }
+\item[Characteristic subgroup]The following are true:
+    \enu{
+        \item $H\chr G\implies H\lhd G$
+        \item $H<G$ is the only one of its order $\implies H\chr G$.
+        \item $K\chr H\land H\lhd G\implies K\lhd G$.
+    }
+\item[Sylow subgroup]Let group $G$ be such that $\abs{G}=p^nm$ ($p$ is prime, $p\centernot\divd m,\,n\geqs1$), then any subgroup of order $p^n$ is called a \udl{Sylow $p$-subgroup} of $G$. See the section on Sylow subgroups for more.
+    \ntg{In other words, the subgroups of order of primary factors.}
+\item[Cardinality of a product of subsets]\[H,\,K<G\implies\abs{HK}=\frac{\abs{H}\cdot\abs{K}}{H\cap K}\]
+\ntg{$hk=hj\cdot j^{-1}k=h_1k_1$}
+\item[Equivalent condition for a product to be a group]$H,\,K<G$, then
+    \mth{HK\ttt{ is a group}\iff HK=KH}
+\item[Sufficient condition for a product to be a group]$H,\,K<G$, then
+    \mth{H\subset N_G(K)\implies HK\ttt{ is a group}}
+    \mth{K\lhd G\implies HK\ttt{ is a group}}
+\item[Direct product (of normal subgroups)]Let $H,\,K\lhd G$ and $H\cap K=\{1\}$, then the following is an isomorphism
+    \mtha{H\x_{\rm ext}K&\isom&HK\\
+        (h,k)&\mapsto&hk}
+    and $HK$ is called the \udl{internal direct product} $HK=H\x_{\rm in}K$. The elements of $H$ and $K$ are mutually commutable.
+    \ntg{Mutual commutativity of elements of $H$ and $K$ comes from the fact that $H\cap K=\{1\}$.}
+\item[Semidirect product]If $H\lhd G,\,K<G\,(K\centernot\lhd G)$ and $H\cap K=\{1\}$, then $HK$ is a group and is called the \udl{semidirect product}.
+\item[Direct sum (of additive groups)]Let $A$ be an additive group and $B,C$ subgroups of it. The following are equivalent conditions for $B+C$ to be an internal direct sum.
+    \enu{
+        \item $x\in B+C$ has a unique expression $x=b+c,\,b\in B,\,c\in C$.
+        \item $0\in B+C$ has a unique expression $0=0+0$.
+        \item $B\cap C=\{0\}$
+        \item $B\oplus_{\rm ext}C\cong B+C$ under the mapping $(b,c)\mapsto b+c$.
+    }
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Quotient Groups}
+\begin{description}
+\item[Sufficient condition for a quotient group to be commutative]$H\lhd G$, then
+    \mth{G/H\ttt{ is abelian}\iff H\subset G^c}
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Isomorphism Theorems}
+\begin{description}
+\item[Exact sequence]For an exact sequence $0\to G'\xrightarrow{f}G\xrightarrow{g}G''\to 0$, there exists a commutative diagram
+    \[\xymatrix{
+	   0\ar[r]&	G'\ar[r]^f\ar[d]&G\ar[r]^g\ar[d]^\id&G''\ar[r]\ar[d]^{\rm FIT}&0\\
+	   0\ar[r]&	\ker g\ar[r]^j&G\ar[r]^{\rm can}&\frac{G}{\ker g}\ar[r]&0}\]
+    where the rows are exact and the columns are isomorphisms.
+\item[Fundamental homomorphism theorem]\quad
+    \enu{
+        \item If $f\in\Hom(G,G')$, then \[\exists\,!\,f_*:\frac{G}{\ker f}\to G',\,f=f_*\comp\vphi\]where $f_*$ is injective and $\vphi:G\to \frac{G}{\ker f}$ is the canonical map.
+        \item If $f\in\Hom(G,G')$, then \[\exists\,!\,f_*:\frac{G}{\ker f}\to G'\]where $f_*$ is injective and $\vphi:G\to \frac{G}{\ker f}$ is the canonical map, such that the following diagram commutes
+            \[\xymatrix{
+                G\ar[d]_\vphi\ar[r]^f&G'\\
+                \frac{G}{\ker f}\ar[ur]_{f_*}&}\]
+
+        \item If $f\in\Hom(G,G'),\,\ker f\supset H<G,\,\ker f\supset N=\mathop\bigcap\limits_{\substack{K\lhd G\\H\subset K}}{K}$, then \[\exists\,!\,f_*:\frac{G}{N}\to G',\,f=f_*\comp\vphi\]where $f_*$ is injective and $\vphi:G\to \frac{G}{N}$ is the canonical map.
+        \item If $f\in\Hom(G,G'),\,\ker f\supset H<G,\,\ker f\supset N=\mathop\bigcap\limits_{\substack{K\lhd G\\H\subset K}}{K}$, then \[\exists\,!\,f_*:\frac{G}{N}\to G'\]where $f_*$ is injective and $\vphi:G\to \frac{G}{\ker f}$ is the canonical map, such that the following diagram commutes
+            \[\xymatrix{
+                G\ar[d]_\vphi\ar[r]^f&G'\\
+                \frac{G}{N}\ar[ur]_{f_*}&}\]
+        \item The canonical projection $\vphi$ is universal among homomorphisms on $G$ that map $N$ to the identity element.
+        \item Each homomorphism that maps $N$ to identity can be factored through the canonical map $\vphi$.
+    }
+\item[First isomorphism theorem]For $f\in\Hom(G,G')$, there exists a commutative diagram
+    \[\xymatrix{
+	G\ar[r]^f\ar[d]_\vphi&G'\\
+	\frac{G}{\ker f}\ar[r]^\lambda&\img f\ar[u]_j}\]
+    where $\vphi:a\mapsto\bar a$ is the canonical map, $\lambda:\bar a\mapsto f(a)$ is the canonical isomorphism, and $j:b\mapsto b$ is the inclusion.
+\item[Second isomorphism theorem]If $N,H<G,\,H\subset N_G(K)$, then
+    \mth{\arr{{ccccc}\psi&:&\frac{HN}{N}&\isom&\frac{H}{N\cap H}\\
+        &&\orl{hn}=\orl{h}&\mapsto&\orl{h}}}
+\item[Third isomorphism theorem]If $K<H<G,\,K\lhd G,\,H\lhd G$, then the following mapping is an isomorphism
+    \mth{\arr{{ccccc}\tau&:&\frac{G/K}{H/K}&\isom&\frac{G}{H}\\
+        &&\orl{gK}&\mapsto&\orl{g}}}
+\item[Fourth isomorphism theorem]If $\vphi:G\to G'$ is a surjective homomorphism, then the following hold.
+    \enu{
+        \item The preimage $H=\vphi^{-1}(H')$ of each normal subgroup $H'$ of $G'$ is a normal subgroup of $G$.
+        \item The correspondence between normal subgroups of $G'$ and normal subgroups of $G$ containing $H$ is a one-to-one correspondence.
+        \item For all $H'\lhd G'$ and $H=\vphi^{-1}(H')$, the following mapping is an isomorphism.
+            \mth{\arr{{ccccc}\vphi_{H}&:&G/H&\isom&G'/H'\\
+                &&\orl{x}&\mapsto&\orl{\vphi(x)}}}
+    }
+\item[Corollary of the fourth theorem]Assume $K\lhd G$, then the canonical surjective homomorphism
+    \mth{\arr{{ccccc}\vphi&:&G&\to&\orl{G}=G/K\\
+        &&x&\mapsto&\orl{x}}}
+    induces a one-to-one correspondence between normal subgroups $\{\orl{H}:\orl{H}\lhd\orl{G}\}$ and normal subgroups $\{H:\ker\vphi\lhd H\lhd G\}$ by setting $H=\vphi^{-1}(H')$.
+    and the correspondence
+    \mth{H=\vphi^{-1}(H')\leftrightarrow H'}
+    satisfies
+    \enu{
+        \item $H_1\subset H_2\iff\orl{H}_1\subset\orl{H}_2$
+        \item $H_1\subset H_2\implies(H_2:H_1)=(\orl{H}_2:\orl{H}_1)$
+        \item $\orl{\bkt{H_1\cup H_2}}=\bkt{\orl{H}_1\cup\orl{H}_2}$
+        \item $H\lhd G\iff\orl{H}\lhd\orl{G}$
+    }
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Decompositions of additive abelian groups}
+The following hold for all abelian groups. Stating them in terms of additive groups is simply for the consistency of notations.
+\begin{description}
+\item[Chinese remainder theorem (decomposition of a cyclic group)]Suppose $m=p_1^{a_1}\cdots p_s^{a_s}$ where $p_i$ are distinct prime numbers, then
+    \mth{\ns{Z}/m\ns{Z}=\bkt{\orl{e_1}}\oplus_{\rm in}\cdots\oplus_{\rm in}\bkt{\orl{e_s}}\cong\ns{Z}/p_1^{a_1}\ns{Z}\oplus_{\rm ext}\cdots\oplus_{\rm ext}\ns{Z}/p_s^{a_s}\ns{Z}}
+\item[Lemmas for primary decomposition]Let $G$ be an additive abelian group. For a positive integer $k$, let $\ker k=\{x\in G:kx=0\}$, then the following hold:
+    \enu{
+        \item $k\divd l\implies\ker k\subset\ker l$
+        \item $\ker(k,l)=\ker k\cap\ker l$
+        \item $\ker[k,l]=\ker k+\ker l$
+        \item $(k,l)=1\implies\ker kl=\ker k\op\ker l$
+        \item $G$ is of exponent $m\implies\ker k=\ker(k,m)$
+        \item $G$ is of exponent $mm',\,(m,m')=1$, then
+            \mth{A=\ker m\op\ker m'}
+    }
+\item[Primary decomposition]Let $A$ be an additive abelian group of exponent $n=p_1^{e_1}\cdots p_s^{e_s}$ ($\inds{p}{s}{,}$ are distinct prime numbers), then
+    \mtha{A&=&A(p_1)\op\cdots\op A(p_s)\\
+            &=&\ker p_1^{e_1}\op\cdots\op\ker p_s^{e_s}}
+    where $A(p_i)=\ker p_i^{e_i}=\{x\in A:p_i^kx=0,\,1\leqs k\in\ZZ\}$ is a $p_i$-group, called the $p_i$ part of $A$. The numbers $\{p_1^{e_1},\cdots,p_s^{e_s}\}$ are called its \udl{primary divisors}.
+\item[Cyclic decomposition]Let $A(p)$ be a finite additive abelian $p$-group ($p$ is a prime number), then $A(p)$ can be decomposed into the direct sum of cyclic subgroups.
+    \mth{A(p)=\bkt{a_1}\op\cdots\op\bkt{a_t}}
+    where each $\bkt{a_i}$ has power $p^{r_i}$. The sequence $\{r_i\}_{i=1}^t$ can be arranged in decreasing order $r_1\geqs\cdots\geqs r_s\geqs1$ such that it is unique.
+    \ntg{$A(p)$ is said to be of the type $(p^{r_1},p^{r_2},\cdots,p^{r_t})$.}
+\item[Basic theorem for finite abelian groups]A finite additive abelian group $A$ can be decomposed into
+    \mtha{A&=&\bkt{b_1}\op\cdots\op\bkt{b_u}\\
+            &\cong&(\ZZ/p_1^{r_{11}}\ZZ\op\cdots\op\ZZ/p_1^{r_{1t_1}}\ZZ)\op\cdots\op(\ZZ/p_s^{r_{s1}}\ZZ\op\cdots\op\ZZ/p_s^{r_{st_s}}\ZZ)}
+    The numbers $\{p_k^{r_{kj}}:1\leqs k\leqs s,1\leqs j\leqs t_k\}$ are called the \udl{elementary divisors} of $A$.
+\item[Basic theorem for finitely generated additive abelian group]A finitely generated additive abelian group $A$ can be decomposed into
+    \mtha{A&=&\bkt{b_1}\op\cdots\op\bkt{b_u}\op\bkt{c_1}\op\cdots\op\bkt{c_v}\\
+            &\cong&(\ZZ/p_1^{r_{11}}\ZZ\op\cdots\op\ZZ/p_s^{r_{st_s}}\ZZ)\op\ZZ\op\cdots\op\ZZ}
+    The \udl{torsion part} of $A$ is $A_{\rm tors}=\bkt{b_1}\op\cdots\op\bkt{b_u}$, and the \udl{free part} of $A$ is $A_{\rm free}=\bkt{c_1}\op\cdots\op\bkt{c_v}$.
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Group Action}
+\begin{description}
+\item[Orbits and elements]Let a group $G$ act on a set $S$, then
+    \enu{
+        \item Any element on a orbit is a generator of this orbit.
+            \mth{t\in G(s)\iff G(t)=G(s)}
+        \item Different orbits do not intersect.
+            \mth{G(s)\cap G(t)\neq\varn\iff G(s)=G(t)}
+        \item $S$ is decomposed into the union of nonintersecting orbits.
+            \mth{S=G(s_1)\cup G(s_2)\cup\cdots\cup G(s_r)\quad\ttt{($r$ may be $\infty$)}}
+        \item The number of elements of $S$ is the sum of the numbers of elements in each orbit.
+            \mth{\abs{S}=\sum_{i=1}^r\abs{G(s_i)}}
+        \item The relation of ``being on the same orbit'' is an equivalence relation, which may be denoted by $s\sim t$.
+    }
+\item[Action and isotropy group]Let a group $G$ act on a set $S$, then for all $s\in S$ and $a\in G$:
+    \mth{\pi_xs=\pi_as\iff x\equiv a\pmod{G_s}}
+\item[Length of orbit]Let a group $G$ act on a set $S$, and $s\in S$. The following are true:
+    \enu{
+        \item The following mapping that maps a coset to a point on the orbit
+            \mth{G/G_s\to G,\quad aG_s\mapsto as}
+            is a bijection.
+            \ntg{$G/G_s$ is the set of cosets, not necessarily a quotient group.}
+        \item Index of isotropy group=$(G:G_s)=\abs{G/G_s}=\abs{G(s)}=$ length of orbit
+    }
+\item[Orbit decomposition formula]Let a group $G$ act on a set $S$, then
+    $S$ is decomposed into the union of nonintersecting orbits.
+    \mth{S=G(s_1)\cup G(s_2)\cup\cdots\cup G(s_r)\quad\ttt{($r$ may be $\infty$)}}
+    The number of elements of $S$ is the sum of the lengths of the orbits.
+    \mth{\abs{S}=\sum_{i=1}^r\abs{G(s_i)}=\sum_{i=r}^r(G:G_{s_i})}
+\item[Transitivity on an orbit]$\forall s_1,s_2\in G(s),\,\exists g\in G,\,gs_1=s_2$.
+\item[Transitivity on the set]Let a group $G$ act on a set $S$, then
+    \mth{\ttt{The group action is transitive on $S$}\iff S=G(s)}
+\item[Translation on a group itself]Let $G$ act on itself by translation:
+    \mth{\arr{{ccccc}T&:&G&\to&\Perm(G)\\
+            &&g&\mapsto&T_g(\cdot)=g(\cdot)}}
+    This group action is faithful. Each $T_g$ is a bijection but not a homomorphism. $T$ itself is a homomorphism.
+\item[Translation on the set of subsets]Let $G$ act on the set $2^G=\{H:H\subset G\}$ of its subsets:
+    \mth{\arr{{ccccc}T&:&G&\to&\Perm(2^G)\\
+            &&g&\mapsto&T_g(\cdot)=g(\cdot)}}
+\item[Translation on the set of cosets]Let $G$ act on the set $G/H$ of its cosets:
+    \mth{\arr{{ccccc}T&:&G&\to&\Perm(G/H)\\
+            &&g&\mapsto&T_g(\cdot)=g(\cdot)}}
+    $T$ satisfies the following properties:
+    \enu{
+        \item The isotropy group of $\orl{1}=H$ is $G_{\orl{1}}=G_{\orl{H}}=H$.
+        \item It is transitive on $G/H$, that is, there is only one orbit.
+        \item $\ker T=\bigcap\limits_{x\in G}xHx^{-1}$ is the maximal normal subgroup of $G$ contained in $H$ in the sense that any $N\lhd G,\,N\subset H$ belongs to $\ker T$ as well.
+    }
+\item[Conjugation on a group itself]Let $G$ act on itself by conjugation:
+    \mth{\arr{{ccccc}C&:&G&\to&\Aut(G)\\
+            &&g&\mapsto&C_g(\cdot)=g(\cdot)g^{-1}=(\cdot)^g}}
+    This action satisfies the following:
+    \enu{
+        \item $\ker C=Z(G)$, that is, $C$ is faithful $\iff Z(G)=\{1\}$.
+        \item $\img C$ is the collection of all conjugations, and is called the inner automorphism group $\Inn(G)$ of $G$.
+        \item The isotropy subgroup of $a\in G$ is $G_a=\centr(a)$
+        \item The orbit of $a$ is called the \udl{conjugacy class} of $a$ and is denoted by $G(a)=a^G$. The length of the orbit is
+            \mth{\abs{a^G}=(G:G_a)=(G:\centr(a))}
+            Moreover, $a^G$ is of length $1\iff a\in Z(G)$, that is, $a$ is invariant under all inner automorphisms.
+        \item (Class formula)\mth{\abs{G}=\abs{Z(G)}+\sum_{\substack{i=1\\(G:G_{y_i})\geqs2}}^m(G:G_{y_i})}
+        \ntg{This formula is so important that I will say it again.}
+    }
+\item[(Conjugacy) class formula]Let $G$ be a finite group, then
+    \mtha{\abs{G}&=&\abs{Z(G)}+\sum_{\substack{i=1\\(G:G_{y_i})\geqs2}}^m(G:G_{y_i})\\
+            &=&\abs{Z(G)}+\sum_{\substack{i=1\\(G:G_{y_i})\geqs2}}^m\abs{G(y_i)}}
+    where $G_{y_i}=\centr(y_i)$ is the isotropy subgroup/centralizer of $y_i$. In the summation $y_i$ goes through the representatives of all conjugacy classes.
+\item[Conjugation on a normal subgroup]Let $G$ act on one of its normal subgroup $H\lhd G$ by conjugation:
+    \mth{\arr{{ccccc}C&:&G&\to&\Aut(H)\\
+            &&g&\mapsto&C_g(\cdot)=g(\cdot)g^{-1}=(\cdot)^g}}
+    This action satisfies the following:
+    \enu{
+        \item The kernel of $C$ is
+            \mtha{\ker C&=&\{g\in G:ghg^{-1}=h,\,\forall h\in H\}\\
+                    &=&\{g\in G:gh=hg,\,\forall h\in H\}\\
+                    &=&\centr_G(H)}
+            The latter is called the \udl{centralizer} of $H$ in $G$, that is, the elements that commutes with each element of $H$.
+            \ntg{Not the elements that commutes with $H$, but with elements of $H$.}
+    }
+\item[Conjugation on the set of all subgroups]Let $G$ act on the set $S=\{H:H<G\}$ of its subgroups by conjugation:
+    \mth{\arr{{ccccc}C&:&G&\to&\Perm(S)\\
+            &&g&\mapsto&C_g(\cdot)=g(\cdot)g^{-1}=(\cdot)^g}}
+    This action satisfies the following:
+    \enu{
+        \item The isotropy subgroup of a subgroup $H<G$ is
+            \mtha{G_H&=&\{g\in G:gHg^{-1}=H\}\\
+                    &=&\{g\in G:gH=Hg\}\\
+                    &=&N_G(H)}
+            The latter is called the \udl{normalizer} of $H$ in $G$, and it the maximal subgroup of $G$ that contains $H$ as a normal subgroup.
+        \item An orbit $H^G$ is called a \udl{conjugacy class}
+        \item The length of an orbit is
+            \mth{\abs{H^G}=(G:N_G(H))}
+    }
+\item[Cayley's theorem]Each group of order $n$ is isomorphic to some subgroup of $S_n$.
+\end{description}
+\end{subsection}
+
+\begin{subsection}{$p$-groups and Sylow subgroups}
+\begin{description}
+\item[Lemmas for $p$-groups]\quad
+    \enu{
+        \item The center of a $p$-group $G$ is not trivial ($Z(G)\neq\{1\}$), and $Z(G)$ contains a subgroup of order $p$.
+        \sprf{Use the class formula.}
+        \item $p$-groups are solvable.
+        \sprf{Prove $G/Z(G)$ is solvable first and use induction.}
+        \item A group of order $p^2$ is abelian, and is either of the type $(p^2)$ or $(p,p)$.
+        \sprf{Construct an isomorphism from $\bkt{x}\x_{\rm ext}\bkt{y}$ if there is no element of order $p^2$.}
+        \item If $G$ is abelian and $p\divd\abs{G}$ ($p$ is prime), then $G$ has a subgroup of order $p$.
+        \item The center of a nonabelian group $G$ of order $p^3$ is a subgroup of order $p$ and $Z=G^C$.
+        \item A group $G$ of order $p^n$ has normal subgroups of order $p^0,p^1,p^2,\cdots,p^n$.
+        \item The normalizer $N_H$ of a proper subgroup $H\lneqq G$ of a $p$-group $G$ contains $H$ properly, that is,
+            \mth{H\lneqq N_H\leqs G}
+        \item Any normal subgroup $N\lhd G$ of a $p$-group $G$ intersects nontrivially with the center $Z(G)$ of $G$, that is,
+            \mth{N\cap Z(G)\neq\{1\}}
+    }
+\item[Sylow subgroup]Let group $G$ be such that $\abs{G}=p^nm$ ($p$ is prime, $p\centernot\divd m,\,n\geqs1$), then any subgroup of order $p^n$ is called a \udl{Sylow $p$-subgroup} of $G$.
+    \ntg{In other words, the subgroups of order of primary factors.}
+\item[Sylow theorems]Let group $G$ be such that $\abs{G}=p^nm$ ($p$ is prime, $p\centernot\divd m,\,n\geqs1$). The following theorems hold.
+    \enu{
+        \item (Existence)$G$ has at least one Sylow $p$-subgroup, and hence has all subgroups of order $p,p^2,\cdots,p^n$.
+        \item (Maximal)Any $p$-subgroup of $G$ is contained in some Sylow $p$-subgroup.
+        \item (Conjugate)Sylow $p$-subgroups of $G$ are conjugate in $G$.
+        \item (Number)The number $n_p$ of Sylow $p$-subgroup of $G$ satisfies
+            \mth{n_p\equiv1\pmod{p},\quad n_p\divd m}
+        \item (Uniqueness and Normality)Sylow subgroup is unique $\iff$ Sylow subgroup is normal
+        \ntg{The last one was not listed on the lecture note.}
+    }
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Structures of groups}
+\begin{description}
+\item[Group of order $pq$]The following about a group $G$ of order $pq$ ($p<q$ are prime) are true:
+    \enu{
+        \item The Sylow $q$-subgroup of $G$ is unique and normal.
+        \item $G$ is solvable.
+        \item $G=PQ$ is a semidirect/direct product, where $Q$ is the unique Sylow $q$-subgroup and $P$ is an arbitrary Sylow $p$-subgroup.
+        \item If $G=PQ$ is a direct product, then it is cyclic, otherwise it is nonabelian.
+        \item If $p\centernot\divd q-1$, then $G$ is cyclic. If $p\divd q-1$, then it can be both.
+    }
+\item[Examples]\quad
+    \enu{
+        \item A group of order $35$ is cyclic.
+        \item A group of order $6$ is cyclic or isomorphic to $S_3$.
+    }
+\item[Group of order $p^q$]The following about a group of order $p^q$ ($p,q$ are distinct prime numbers) are true:
+    \enu{
+        \item The Sylow $p$ or $q$-subgroups are normal
+    }
+\item[Example]\quad
+    \enu{
+        \item A group $G$ of order $12$ has either a unique Sylow $3$-subgroup or a unique Sylow $2$-subgroup. In the second case, $G\cong A_4$.
+    }
+\item[Example]\quad
+    \enu{
+        \item The Sylow $3$-subgroup $P$ and Sylow $5$-subgroup $Q$ of a group $G$ of order $30$ are normal in $G$, and $P\x Q$ is a normal cyclic subgroup of order $15$.
+    }
+\end{description}
+\end{subsection}
+\end{section}
+
+\begin{section}{Rings}
+\begin{subsection}{Definitions}
+The following are from GTM158.
+\begin{description}
+\item[Ring]A \tf{ring} is a nonempty set $R$, together two binary operations addition and multiplication that satisfy:
+    \enu{
+        \item $R$ is an abelian group under addition.
+        \item $R$ is a semigroup under multiplication.
+        \item Left and right distributivity holds.
+    }
+\item[Ring with identity]A ring $R$ is called a \tf{ring with identity} if there exists a multiplicative element.
+\item[Unit]An element in a ring is a \tf{unit} if there exists an inverse of it.
+\item[Commutative ring]A ring that is commutative in multiplication.
+\item[Zero divisor]A \tf{zero divisor} is a nonzero element such that for some other nonzero element their product equals $0$.
+\item[Integral domain]An \tf{integral domain} is a commutative ring with identity and no zero divisors.
+\item[Field]A \tf{field} is a commutative ring with identity such that $1\neq0$ and that every nonzero element has an inverse.
+\item[Subring]Omitted.
+\item[Subfield]Omitted.
+\item[Ring homomorphism]A mapping from a ring to another that preserves addition and multiplication.
+\item[Monomorphism]An injective homomorphism.
+\item[Embedding]Monomorphism.
+\item[Epimorphism]A surjective homomorphism.
+\item[Isomorphism]A bijective homomorphism.
+\item[Endomorphism]A homomorphism from a ring into itself.
+\item[Automorphism]An isomorphism from a ring onto itself.
+\item[Ideal]An \tf{ideal} is a nonempty subset of a ring that is closed under subtraction and absorbs the ring into itself through left and right multiplication.
+\ntg{Roman's defining ideal using closedness under subtraction may have something to do with the fact that an identity is not yet required.}
+\item[Generated ideal]The \tf{ideal generated} by a nonempty subset of a ring is the smallest ideal containing that set.
+\item[Principal ideal]An ideal generated by a single element.
+\item[Factor ring]The ring of cosets of an ideal.
+\item[Maximal ideal]Omitted.
+\item[Characteristic]The \tf{characteristic} of a ring is the smallest positive integer such that this number of $1's$ added equals $0$, should it exist. If it does not, the ring has characteristic $0$.
+\item[Prime subfield]The smallest subfield, or the intersection of all subfield.
+\end{description}
+The following are defined for only integral domains.
+\begin{description}
+\item[Divides]In an integral domain, $a$ \tf{divides} $b$ if $b=\rho a$ for some $\rho$.
+\item[Properly divides]In an integral domain, if $b=\rho a$ and $a,\,b$ are nonunits, then $a$ \tf{properly divides} $b$.
+\item[Associates]In an integral domain, if $a=ub$ for some unit $u$, then $a,\,b$ are associates.
+\item[Irreducible]A nonzero nonunit element is \tf{irreducible} if it has no proper divisors.
+\item[Prime]A nonzero nonunit element is \tf{prime} if it dividing a product always implies it dividing a factor of that product.
+\item[Greatest common divisor]A \tf{greatest common divisor} is a common divisor such that any other common divisor is a factor of it.
+\item[Relatively prime]Two elements are \tf{relatively prime} if their greatest common divisor is a unit.
+\end{description}
+\end{subsection}
+\begin{subsection}{Ideals}
+\begin{description}
+\item[Proposition]A commutative ring $A$ contains no proper ideal $\iff A$ is a field.
+\item[Kernel of a homomorphism]The kernel of a ring homomorphism is a two-sided ideal.
+\item[Sum of ideals]The sum of the ideals $\got a,\,\got b$:
+    \[\got a+\got b\dfas\{x+y:x\in\got a,\,y\in\got b\}\]
+    is an ideal.
+\item[Product of ideals]The product of the ideals $\got a,\,\got b$:
+    \[\got a\got b\dfas\{x_1y_1+\cdots+x_ny_n,\,x_i\in\got a,\,y_i\in\got b\}\]
+    is an ideal.
+\item[Intersection of ideals]The intersection of any family of ideals $\{\got a_i\}_{i\in I}$
+    \[\bigcap_{i\in I}\got a_i\]
+    is an ideal.
+\item[The set of ideals]\quad
+    \enu{
+        \item The set of ideals form a additive monoid, with $(0)$ as the zero element.
+        \item The set of ideals form a multiplicative monoid, with $(1)$ as the identity.
+        \item Distributivity holds for ideal addition and multiplication.
+        \item The set of ideals \tf{does not} form a ring.
+    }
+\item[Proposition]$\got a,\,\got b$ are ideals of a commutative ring $A$, then\[(\got a+\got b)(\got a\cap\got b)\subset\got a\got b\subset\got a\cap\got b\]
+\item[Coprime ideals]The following are true for a commutative ring $A$ and its coprime ideals $\got a,\,\got b$.
+    \enu{
+        \item $\got a+\got b=A\implies\got a\got b=\got a\cap\got b$
+        \item $\got a+\got b=A\implies\got a^m+\got b^n=A,\,\forall m,n\in\NN$
+    }
+\item[Prime ideal]The following are equivalent.
+    \enu{
+        \item $\got p\subset A$ is a \tf{prime ideal}.
+        \item $\got p\neq A,\,xy\in\got p\implies(x\in\got p)\lor(y\in\got p)$
+        \item $\got p\neq A,\,A/\got p$ is an integral domain.
+    }
+\item[Maximal ideal]The following are equivalent.
+    \enu{
+        \item $\got m\subset A$ is a \tf{maximal ideal}.
+        \item $\got m\subset\got a\subset A\implies(\got m=\got a)\lor(\got m=A)$
+        \item $A/\got m$ is a field.
+    }
+\item[Suff. cond. for the existence of a maximal ideal]Any nonzero commutative ring $R$ with identity contains a maximal ideal.
+    \sprf{Use Zorn's lemma on the set of all proper ideals.}
+\item[About maximal and prime]The following are true.
+    \enu{
+        \item Every maximal ideal is prime.
+        \item Every nonunit ideal is contained in some maximal ideal.
+        \item $\{0\}\subset A$ is prime $\iff A$ is entire.
+        \item $f\in\Hom(A,A'),\,\got p'\subset A$ is prime $\implies f^{-1}(\got p')$ is prime.
+        \item $f\in\Hom(A,A'),\,f$ is surjective,\,$\got m'\subset A'$ is maximal $\implies f^{-1}(\got m')$ is maximal.
+    }
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Isomorphism Theorems}
+\begin{description}
+\item[Fundamental homomorphism theorem]If $f\in\Hom(A,A'),\,\got a\subset A$ is an ideal, $\ker f\supset\got a$, then there exists a unique $f_*:A/\got a\to A'$ such that
+    \[g=g_*\comp\vphi\]
+    where $\vphi:A\to A/\got a$ is the canonical mapping. In other words, the following diagram commutes:
+    \[\xymatrix{
+        A\ar[r]^f\ar[d]_\vphi&	A'\\
+        A/\got a\ar[ur]_{f_*}&}\]
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Characteristic}
+\begin{description}
+\item[Characteristic]The characteristic of an integral domain is either $0$ or a prime $p$.
+\item[Prime subfield]Let $F$ be a field, then
+    \enu{
+        \item $\chr F=0\implies$ the prime subfield of $F\cong\ns{Q}$
+        \item $\chr F=p\implies$ the prime subfield of $F\cong\ns{Z}_p$
+    }
+\item[Power of sum]In a commutative ring with identity of prime characteristic $p$, \[(a+b)^p=a^p+b^p\]
+\item[Field of quotients]Let $R'$ be the field of quotients of an integral domain $R$, then any monomorphism $\sigma$ from $R$ into a field $F$ has a unique extension to a monomorphism $\bar\sigma:R'\to F$.
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Integral Domains}
+The following are considered within an integral domain $R$.
+\ntg{Prime ideal is a concept defined for all commutative rings; irreducible element and prime element are concepts defined for only integral domains, hence here I shall discuss only propositions concerning irreducible and prime elements and others that only hold in integral domains.}
+\begin{description}
+\item[Dividing]The following are true in $R$.
+    \enu{
+        \item $u\in R^*\implies u\divd a,\,\forall a\in R$
+        \item $a\divd b\iff(b)\subset(a)$
+        \item $a\divd b$ properly $\iff(b)\subsetneqq(a)\subsetneqq R$
+    }
+\item[Associates]The following are equivalent.
+    \enu{
+        \item $a\sim b$
+        \item $u\in R^*,\,a=bu$
+        \item $a\divd b,\,b\divd a$
+        \item $(a)=(b)$
+    }
+\item[Proposition]$(a)\neq(0)$ is prime $\iff a$ is prime .
+\item[Proposition]A prime element is irreducible.
+\item[Proposition]The greatest common divisor is unique up to associate.
+\item[UFD]The following are equivalent for an integral domain $R$ with the \tf{factorization property}.
+    \enu{
+        \item $R$ is UFD.
+        \item Factorization is essentially unique.
+        \item Irreducible implies prime.
+        \item Nonzero elements have a gcd.
+    }
+\item[Proposition]In a UFD, prime $\iff$ irreducible.
+\item[PID]The following are equivalent in a PID $R$.
+    \enu{
+        \item $R/(a)$ is a field.
+        \item $R/(a)$ is an integral domain.
+        \item $a$ is irreducible.
+        \item $a$ is prime.
+    }
+\item[Proposition]In a PID $A$, $a,b\neq0$, then\[(a)+(b)=(c)\implies c=\gcd(a,b)\]
+\item[Proposition]In a PID, prime $\iff$ irreducible.
+
+\item[Theorem]ED is PID.
+\item[Theorem]PID is UFD.
+\item[Theorem]PID is B\'ezoutD
+\end{description}
+\end{subsection}
+\end{section}
+
+\begin{section}{Polynomials}
+\begin{subsection}{Definitions}
+\begin{description}
+\item[Split]If a polynomial $f(x)\in F[x]$ factors into linear factors\[f(x)=a(x-\alpha_1)\cdots(x-\alpha_n)\]in an extension field $E$, we say that $f(x)$ \tf{splits} in $E$.
+\item[Separable]An irreducible polynomial $f(x)\in F[x]$ is \tf{separable} if it has no multiple roots in any extension of $F$.
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Polynomials over a Ring}
+\begin{description}
+\item[Polynomials as a ring]The polynomials $R[x]$ over a ring $x$ is a ring.
+\item[Units]Units of $R$ are exactly units of $R[x]$.
+\item[Extension of a ring homomorphism]If there is a ring homomorphism $\sigma:R\to S$, then it has an extension $\sigma^*:R[x]\to S[x],\,f\to f^\sigma$.
+\item[Properties of the original ring carried over to polynomials]The following are true.
+    \enu{
+        \item $R$ is an integral domain $\implies R[x]$ is an integral domain.
+        \item $R$ is a UFD $\implies R[x]$ is a UFD.
+        \item $R$ is a PID $\centernot\implies R[x]$ is a PID.
+        \item $F$ is a field $\implies F[x]$ is an ED.
+    }
+\item[Degree formula]Let $R$ be an integral domain, then in $R[x]$,\[\deg(fg)=\deg f+\deg g\]
+\item[Division algorithm]Let $R$ be a commutative ring with identity. If $g(x)$ has an invertible leading coefficient, then $g(x)$ can be used as a divisor, that is, for all $f(x)\in R[x]$, there exists unique $q(x),\,r(x)\in R[x]$ such that\[f(x)=q(x)g(x)+r(x)\]where $\deg r<\deg g$.
+\item[Divisor theorem]Let $R$ be a commutative ring with identity. Let $f(x)\in R[x]$ and $a\in R$, then\[f(a)=0\iff (x-a)\divd f(x)\]
+\item[Number of roots]Let $R$ be an integral domain, then $0\neq f\in R[x]$ has at most $\deg f$ distinct roots in $R$.
+\item[Finite multiplicative subgroup of a field is cyclic]Let $F$ be a field, then any finite multiplicative subgroup of $F^*$ is cyclic.
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Polynomials over a Field}
+\begin{description}
+\item[Polynomials as a domain]The polynomials $F[x]$ over a field $F$ is an ED.
+\item[Units]Units of $F[x]$ are exactly units of $F$.
+\item[Degree formula]In $F[x]$,\[\deg(fg)=\deg f+\deg g\]
+\item[Division algorithm]Omitted.
+\item[Divisor theorem]Let $f(x)\in F[x]$ and $a\in F$, then\[f(a)=0\iff (x-a)\divd f(x)\]
+\item[Number of roots]$0\neq f\in F[x]$ has at most $\deg f$ distinct roots in $F$.
+\item[Finite multiplicative subgroup of a field is cyclic]Let $F$ be a field, then any finite multiplicative subgroup of $F^*$ is cyclic.
+\item[Field independence of gcd (1)]Let $f(x),\,g(x)\in F[x]$. Let $K\subset F$ be the smallest field containing the coefficient of $f(x)$ and $g(x)$.
+    \enu{
+        \item The gcd of $f,\,g$ does not depend on $F$.
+        \item $d=(f,g)$ has coefficients in $K$.
+        \item The B\'ezout equality holds in $K[x]$.
+    }
+\item[Field independence of gcd (2)]Let $f(x),\,g(x)\in F[x]$. If $E$ is any extension of $F$, then $f,\,g$ have a nonconstant common factor over $E\iff f,\,g$ have a nonconstant common factor over $F$.
+\item[Existence of root in an extension]Let $f(x)\in F[x]$ be a nonconstant polynomial. Then there exists an extension $E$ of $F$ and an $a\in E$ such that $f(a)=0$.
+\item[Existence of a splitting field]Let $f(x)\in F[x]$. There exists an extension of $F$ over which $f(x)$ \tf{splits}.
+\item[Common roots]Let $f(x),\,g(x)\in F[x]$, then
+    \enu{
+        \item $f,\,g$ have a nonconstant common factor over some extension of $F\iff f,\,g$ have a common root over some extension of $F$
+        \item $f,\,g$ are relatively prime $\iff f,\,g$ have no common roots in any extension of $F$
+    }
+\item[Separability]The following are true.
+    \enu{
+        \item An irreducible polynomial is separable $\iff$ its derivative is nonzero.
+        \item All irreducible polynomials over a field of characteristic $0$ are separable.
+        \item An irreducible polynomial $f(x)$ over a field of characteristic $p$ is inseparable $\iff f(x)$ has the form $f(x)=g(x^{p^d})$ where $d>0$ and $g(x)$ is nonconstant.
+    }
+\end{description}
+\end{subsection}
+\end{section}
+
+\begin{section}{Fields}
+\begin{subsection}{Definitions}
+\begin{description}
+\item[Conjugate]Let $F<E$. Then $a,b\in E$ are said to be \tf{conjugates} over $F$ if $\min(a,F)=\min(b,F)$.
+\item[Algebraic element]Let $E/F$. The following are equivalent.
+    \enu{
+        \item $\alpha\in E$ is \tf{algebraic} over $F$.
+        \item $\exists\,a_0,a_1,\cdots,a_n\in F\,(n\geqs1)$ not all equal to $0$,\,$a_0+a_1\alpha+\cdots+a_n\alpha^n=0$
+        \item $\exists\,f\in F[X],\,f(\alpha)=0$
+        \item The homomorphism $F[X]\to E,\,f(X)\mapsto f(\alpha)$ has a nonzero kernel.
+    }
+\item[Primitive element]In a simple extension $E=F(a)$, $a$ is called a \tf{primitive element} of $E$.
+\item[Separable element]An algebraic element is called \tf{separable} if its minimal polynomial is separable.
+\item[Tower]A sequence of field extensions is referred to as a \tf{tower} of fields.
+\item[Distinguished class of extensions]A class $\mcl C$ of field extensions is \tf{distinguished} provided that it has the following properties.
+    \enu{
+        \item (The tower property) For any 2-tower $F<K<E$, \[(F<E)\in\mcl{C}\iff(F<K)\in\mcl{C},\,(K<E)\in\mcl{C}\]
+        \item (The lifting property) The class $\mcl{C}$ is closed under lifting by an arbitrary field, that is, \[(F<E)\in\mcl{C},\,F<K\implies(K<EK)\in\mcl{C}\]
+            The tower $K<EK$ is the \tf{lifting} of $F<E$ by $K$.
+        \item (Closure under finite compositions) If $EK$ is defined, then\[(F<E)\in\mcl{C},\,(F<K)\in\mcl{C}\implies(F<EK)\in\mcl{C}\]
+    }
+\item[Algebraic extension]Let $F<E$. $E$ is \tf{algebraic} over $F$ if every $a\in E$ is algebraic over $F$.
+\item[Transcendental extension]$E$ is \tf{transcendental} over $F$ if there exists a transcendental element in $E$ over $F$.
+\item[Finitely generated extension]Let $F<E$. If $E=F(S)$ where $S\subset E$ is a finite set, then we say $E$ is \tf{finitely generated} over $F$.
+\item[Separable extension]An algebraic extension $F<E$ is \tf{separable} if every element in $E$ is separable over $F$.
+\item[Degreewise separable]An algebraic extension $F<E$ is \tf{degreewise separable} if $[E:F]_S=[E:F]$.
+\item[Degreewise separable]An algebraic extension $F<E$ is \tf{separably generated} if $E=F(S)$ where each $\alpha\in S$ is separable over $F$.
+\item[Simple extension]$E$ is a \tf{simple} extension of $F$ if $E=F(a)$ for some $a$.
+\item[Finite extension]$E$ is a finite extension of $F$ if $[E:F]$ is finite.
+\item[Normal extension]Let $F<E<\bar F$. The following are equivalent.
+    \enu{
+        \item $F\lhd E$
+        \item $E$ is a splitting field of a family $\mcl F$ of polynomials over $F$.
+        \item $E$ is invariant under every embedding $\sigma:E\into\bar F$ over $F$.
+        \item Every embedding of $E$ into $F$ is an automorphism of $E$.
+        \item Every irreducible polynomial over $F$ that has one root in $E$ splits in $E$.
+    }
+\item[Galois extension]An extension that is both separable and normal is called a \tf{Galois extension}.
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Fields}
+\begin{description}
+\item[Field]The following are equivalent.
+    \enu{
+        \item $F$ is a field.
+        \item $F$ is a commutative division ring.
+        \item $F$ is a commutative ring with no proper ideal.
+    }
+\item[Sufficient condition for a field]A finite integral domain is a field.
+\item[Wedderburn's theorem]A finite division ring is a field.
+\item[Homomorphism]Any nonzero field homomorphism is injective.
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Extensions}
+\begin{description}
+\item[Extension as vector space]An extension field is a vector space over the original field.
+\item[Degree of extension]Let $K\subset F\subset E$ be an extension tower, then
+    \enu{
+        \item $[E:K]=[E:F][F:K]$
+        \item $\{x_i\}_{i\in I}$ is a basis for $F$ over $K$, $\{y_i\}_{j\in J}$ is a basis for $E$ over $F$, then $\{x_iy_j\}_{(i,j)\in I\x J}$ is a basis for $E$ over $K$.
+    }
+\item[Distinguished classes of extensions]The following are distinguished.
+    \enu{
+        \item Algebraic extensions
+        \item Finite extensions
+        \item Finitely generated extensions
+        \item Separable extensions
+    }
+\item[Not distinguished extensions]The following are not distinguished.
+    \enu{
+        \item Transcendental extensions
+        \item Simple extensions (lifting property holds, upper and lower steps simple)
+        \item Normal extensions (lifting property holds, upper step normal)
+    }
+\item[Finitely generated extensions]The following are true for finitely generated extensions.
+    \enu{
+        \item $F(\inds{a}{n}{,})=F(a_1,\cdots,a_k)(a_{k+1},\cdots,a_n)$
+        \item $F(a_1,\cdots,a_n)=\left\{\frac{f(a_1,\cdots,a_n)}{g(a_1,\cdots,a_n)}:f,\,g\in F[x_1,\cdots,x_n],\,g(\inds{a}{n}{,})\neq0\right\}$
+        \item Finitely generated extensions are distinguished.
+    }
+\item[Simple extensions]The following are true for simple extensions.
+    \enu{
+        \item Simple extensions are not distinguished.
+        \item Full extension is simple implies upper step and lower step are simple.
+        \item Lifting property holds.
+    }
+\item[Finite and algebraic extensions]The following are true.
+    \enu{
+        \item A finite extension is algebraic.
+        \item An algebraic extension may not be finite.
+    }
+\item[Simple algebraic extensions]Let $F<E$ and $a\in E$ be algebraic over $F$, then
+    \enu{
+        \item The extension can be written as
+            \mtha{F(a)&=&\left\{\frac{f(a)}{g(a)}:f,\,g\in F[x],\,g(a)\neq0\right\}\\
+                    &=&\Big\{f(a):f\in F[x]\Big\}\\
+                    &=&\Big\{f(a):f\in F[x],\,\deg f<\deg\irr(a,F,X)\Big\}}
+        \item The extension is isomorphic to the exterior extension.
+            \[F(a)=F[x]/(p_a(x))\]
+        \item $F(a)$ is finite over $F$ and $[F(a):F]=\deg(p_a(x))$. The set $\mcl B=\{1,a,\cdots,a^{d-1}$ is a vector space basis for $E$ over $F$.
+        \item If $a,\,b\in E$ are conjugate over $F$ then $F(a)=F(b)$.
+    }
+\item[Simple extensions and algebraic extensions]The following are equivalent for a simple extension $F<F(a)$.
+    \enu{
+        \item $a$ is algebraic.
+        \item $F(a)$ is algebraic.
+        \item $F(a)$ is finite.
+    }
+\item[Finitely generated algebraic extensions]Let $E=F(\inds{a}{n}{,})$ be finitely generated over $F$ by algebraic elements over $F$.
+    \enu{
+        \item $E=F(a)$ for some algebraic element $a\in E\iff$ there is only a finite number of intermediate fields $F<K<E$.
+        \item In this case, if $E$ is an infinite field, then $E=F(a)$ where $a$ has the form \[a=\lambda_1a_1+\cdots+\lambda_na_n\]
+    }
+\item[Simple transcendent extension]Let $E/F$ and $\alpha\in E$ is transcendent over $F$, then $F(\alpha)\cong F(X)$.
+\item[Finite extensions]The following are true.
+    \enu{
+        \item An extension is finite $\iff$ it is finitely generated by algebraic elements.
+        \item A finite extension is algebraic.
+        \item Finite extensions are distinguished.
+        \item (The lifting degree) $[EK:K]\leqs[E:F]$
+    }
+\item[Algebraic extensions]The following are true.
+    \enu{
+        \item The set of all algebraic elements over $F$ is a field called the \tf{algebraic closure} of $F$.
+        \item Algebraic extensions are distinguished.
+        \item Algebraic extensions are closed under taking arbitrary composites.
+    }
+\item[Finite extensions and algebraic extensions]The following are equivalent for $F<E$.
+    \enu{
+        \item $F<E$ is finite.
+        \item $F<E$ is finitely generated by algebraic elements.
+        \item $F<E$ is algebraic and finitely generated.
+    }
+\item[Existence of primitive elements]Any extension of the form \[F<F(\inds{\alpha}{n}{,},\beta)\]
+    where $\alpha_i$ is separable over $F$ and $\beta$ is algebraic over $F$ is a simple extension. Moreover, if $F$ is infinite, this extension has infinitely many primitive elements, of the form\[a_1\alpha_1+\cdots+a_n\alpha_n+b\beta\]
+    where $a_i,b\in F$.
+\item[Existence of primitive elements (for finite extensions)]For any finite extension $F<E$, there exists $\beta\in E$ such that
+    \[F(\beta):F]=[E:F]_s\]
+    If $F$ is infinite, there exist infinitely many such elements $\beta$.
+\item[Theorem of the primitive element]If $F<E$ is finite and separable, say\[F<F(\inds{\alpha}{n}{,})\]
+    where $\alpha_i$ is separable over $F$ then $F<E$ is simple. If $F$ is infinite, there exists infinitely many primitive elements for $E$ over $F$ of the form
+    \[a_1\alpha_1+\cdots+a_n\alpha_n\]
+\item[Normal extensions]The following are true.
+    \enu{
+        \item Normal extensions are not distinguished.
+        \item Full extension normal implies upper step normal.
+        \item Lifting of a normal extension is normal.
+        \item Arbitrary composites and intersections of normal are normal.
+    }
+\item[Galois extensions]See the next section.
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Embeddings}
+\begin{description}
+\item[Ring homomorphism from a field]Any ring homomorphism from a field into a ring is either the zero mapping or a monomorphism.
+\item[Embeddings preserve factorizations and roots]If $\sigma:F\into L$ and $f(x)\in F[x]$, then
+    \enu{
+        \item $f(x)=p(x)q(x)\iff f^\sigma(x)=p^\sigma(x)q^\sigma(x)$
+        \item $p(a)=0,\,a\in F\iff p^\sigma(\sigma a)=0$
+    }
+\item[Embeddings preserve the lattice structure]If $\sigma:F\into L$ and $\{E_i:i\in I\}$ is a family of subfields of $F$, then
+    \[\sigma(\bigcap E_i)=\bigcap\sigma E_i,\quad\sigma(\bigvee E_i)=\bigvee\sigma E_i\]
+\item[Embeddings preserve adjoining]If $\sigma:K\into L$ and $F<K,\,S\subset K$, then
+    \[\sigma(F(S))=F^\sigma(\sigma S)\]
+\item[Embeddings preserve being algebraic]Let $\sigma:F\into L$ and $F<E$. If $\bar\sigma:E\into L$ is an extension of $\sigma$, then
+    \[F<E\ttt{ is algebraic}\implies\sigma F<\bar\sigma E\ttt{ is algebraic}\]
+\item[Embeddings preserve the algebraic closures]Omitted.
+\item[Embedding is automorphism]\[F<E\ttt{ is algebraic}\implies\Hom_F(E,E)=\Aut_F(E)\]
+\item[Simple algebraic extensions]Let $F<E$ and $a\in E$ be algebraic over $F$, with $\min(a,F)=p_a(x)$. Let $\sigma:F\into L$, where $L$ is algebraically closed.
+    \enu{
+        \item $b\in L,\,p^\sigma(b)=0\implies\sigma$ can be extended to an embedding $\sigma_b:F(a)\into L$ for which $\sigma_ba=b$.
+        \item Any extension of $\sigma$ to $F(a)$ can only have the form $\sigma_b,\,p^\sigma(b)=0$.
+        \item The number of extensions of $\sigma$ to $F(a)$ equals the number of distinct roots of $\min(a,F)$.
+    }
+\end{description}
+\end{subsection}
+\end{section}
+
+\begin{section}{Galois Theory}
+\begin{subsection}{Definitions}
+\begin{description}
+\item[Galois connection]Let $P$ and $Q$ be partially ordered sets. A \tf{Galois connection} on the pair $(P,Q)$ is a pair $(\Pi,\Omega)$ of maps $\Pi:P\to Q$ and $\Omega:Q\to P$, where we write $\Pi=p^*$ and $\Omega(q)=q'$, with the following properties:
+    \enu{
+        \item (\tf{Order-reversing} or \tf{antitone}) For all $p,r\in P$ and $q,s\in Q$,\[p\leqs r\implies p^*\geqs r^*\]\[q\leqs s\implies q'\geqs s'\]
+        \item (\tf{Extensive}) For all $p\in P,\,q\in Q$,\[p\leqs {p^*}'\ttt{ and }q\leqs {q'}^*\]
+    }
+\item[Closure operation]Let $P$ be a partially ordered set. A map $p\mapsto\cl(p)$ on $P$ is an (algebraic) \tf{closure operation} if the following properties hold for all $p,q\in P$:
+    \enu{
+        \item (\tf{Extensive})\[p\leqs\cl(p)\]
+        \item (\tf{Idempotent})\[\cl(\cl(p))=\cl(p)\]
+        \item (\tf{Isotone})\[p\leqs q\implies\cl(p)\leqs\cl(q)\]
+    }
+\item[Closed element]An element $p\in P$ is said to be \tf{closed} if $\cl(p)=p$. The set of all closed elements in $P$ is denoted by $\Cl(P)$.
+\item[Indexed Galois connection]A Galois connection $(\Pi,\Omega)$ on $(P,Q)$ is \tf{indexed} if
+    \enu{
+        \item For each $p,r\in P$ with $p\leqs r$, there exists a number $(r:p)_P\in\ZZ^+\cup\{\infty\}$, called the \tf{degree}, or \tf{index} of $r$ over $p$.
+        \item For each $q,s\in P$ with $q\leqs s$, there exists a number $(s:q)_Q\in\ZZ^+\cup\{\infty\}$, called the \tf{degree}, or \tf{index} of $s$ over $q$.
+        \item (\tf{Degree is multiplicative}) Both in $P$ and $Q$,
+            \[a\leqs b\leqs c\implies (c:a)=(c:b)(b:a)\]
+        \item (\tf{$\Pi$ and $\Omega$ are degree-nonincreasing})
+            \[p,r\in P,\,p\leqs r\implies(q^*:r^*)\leqs(r:q)\]
+            \[q,s\in Q,\,q\leqs s\implies(q':s')\leqs(s:q)\]
+        \item (\tf{Equality by degree}) Both in $P$ and $Q$,
+            \[(s:t)=1\iff s=t\]
+    }
+\item[Galois group]The \tf{Galois group} of a field extension $F<E$, denoted by $G_F(E)$ or $G(E/F)$, is the group $\Aut_F(E)$ of all automorphisms of $E$ over $F$. The group $G_F(E)$ is also called the \tf{Galois group of $E$ over $F$}.
+\item[Fixed field]Let $G_F(E)$ be the Galois group of $E$ over $F$ and $H<G_F(E)$, then $\fix(H)$ is defined as
+    \[\fix(H)=\{\alpha\in E:\sigma\alpha=\alpha,\,\forall\sigma\in H\]
+    that is, the biggest subfield fixed under each element in $H$, and is called the \tf{fixed field} of $H$.
+\item[Galois correspondence]The pair $(\Pi,\Omega)$ of maps on the complete lattices of all intermediate fields $\mcl F$ of $F<E$ and all subgroups $\mcl G$ of $G_F(E)$ (both ordered by set inclusion) in which $\Pi$ assigns to each intermediate field $K$ the subgroup of all automorphisms that fix $K$, and in which $\Omega$ assigns to each subgroup $H$ the fixed field of $H$
+    \[\Pi:\mcl F\to\mcl G,\,K\mapsto G_K(E)\]
+    \[\Omega:\mcl G\to\mcl F,\,H\to\fix(H)\]
+    is a Galois connection called the \tf{Galois correspondence} of the extension $F<E$.
+\item[Conjugate (of fields)]Let $F<K<E,\,L<E$. If there is a $\sigma\in G_F(E)$ for which $\sigma K=L$, then $K$ and $L$ are said to be \tf{conjugate}.
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Galois Connections}
+Let $(\Pi,\Omega)$ be a Galois connection on $(P,Q)$.
+\begin{description}
+\item[Galois connection induces closure operations]The maps
+    \[\cl(p)=(\Omega\Pi)(p)={p^*}'\ttt{ and }\cl(q)=(\Pi\Omega)(q)={q'}^*\]
+    are closure operations on $P$ and $Q$ respectively, and satisfy
+    \enu{
+        \item $p^{*\p *}=p^*$, that is, $\cl(p^*)=\cl(p)^*=p^*$.
+        \item $q^{\p*\p}=q'$, that is, $\cl(q')=\cl(q)'=q'$.
+    }
+\item[Galois connections are surjective onto the closures]The maps $\Pi:P\to\Cl(Q)$ and $\Omega:Q\to\Cl(P)$ are surjective and the restricted maps $\Pi:\Cl(P)\to\Cl(Q)$ and $\Omega:\Cl(Q)\to\Cl(P)$ are inverse bijections.
+\item[Closure of a lattice]Let $(P,Q)$ be a pair of lattices. If $P$ is a complete lattice, then so is $\Cl(p)$, under the same meet as $P$. The same holds for $Q$.
+\item[De Morgan's Laws for Galois connections on lattices]Let $(\Pi,\Omega)$ be a Galois connection on a pair $(P,Q)$ of lattices. Then De Morgan's Laws hold in $\Cl(P)$ and $\Cl(Q)$, that is, for $p,r\in\Cl(P)$ and $q,s\in\Cl(Q)$,
+    \[(p\land r)^*=p^*\lor r^*,\quad(p\lor r)^*=p^*\land r^*\]
+    \[(q\land s)^*=q^*\lor s^*,\quad(q\lor s)^*=q^*\land s^*\]
+\item[Galois connections are degree-preserving on closed elements]If $p,r\in\Cl(P)$, then
+    \[p\leqs r\implies(r:p)=(p^*:r^*)\]
+    The same holds for $Q$.
+\item[Finite extension of closed elements are closed]
+    \[p\in\Cl(P),\,(r:p)<\infty\implies r\in\Cl(P)\]
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Galois Correspondence}
+\begin{description}
+\item[Galois correspondence]The following are true.
+    \enu{
+        \item The Galois correspondence is a Galois connection.
+        \item The Galois correspondence is indexed.
+        \item The restriction of the Galois correspondence to closed elements are order-reversing, degree-preserving inverse bijections as well as lattice anti-isomorphisms, that is, if $K_i$ are closed intermediate fields and $H_i$ are closed subgroups, then
+            \mtha{G_{\bigcap K_i}(E)=\bigvee G_{K_i}(E),&\quad&G_{\bigvee K_i}(E)=\bigcap G_{K_i}(E)\\
+                \fix\Brk{\bigcap H_i}=\bigvee\fix(H_i),&\quad&\fix(\bigvee H_i)=\bigcap\fix(H_i)}
+        \item The class of Galois extensions is not distinguished.
+        \item Full extension Galois implies upper step Galois.
+        \item The class of Galois extensions is closed under lifting.
+        \item The class of Galois extensions is closed under arbitrary composites and intersections.
+    }
+\item[Closed intermediate fields]Let $F<E$ be algebraic. The closed intermediate fields are precisely the fixed fields, that is, the fields of the form $\fix(H)$ for some $H\leqs G_F(E)$. The following are true.
+    \enu{
+        \item An intermediate field $K$ is closed if and only if $K<E$ is Galois.
+        \item Any extension of a closed intermediate field is closed. In particular, if $F$ is closed, then $F<E$ is completely closed.
+        \item If $F<\cl(K)<L<E$ and \[[L:K]=(G_K(E):G_L(E))<\infty\]
+            then $K$ is closed. In particular, if \[[E:K]=\abs{G_K(E)}<\infty\]
+            then $K$ is closed.
+    }
+\item[Closed groups]The closed subgroups of $G_F(E)$ are precisely the Galois groups of $E$, that is, the subgroups of the form $G_K(E)$, for some intermediate field $K$.
+    \enu{
+        \item Any finite extension of a closed subgroup is closed.
+        \item $G_E(E)=\{\id\}$ is closed and so any finite subgroup of $G_F(E)$ is closed.
+        \item When $F<E$ is finite, so is $G_F(E)$ and so $G_E(E)=\{\id\}<G_F(E)$ is completely closed.
+    }
+\item[Finite Galois extension is completely closed]If $F$ is a finite Galois extension, then the correspondence is completely closed.
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Normal Extensions}
+\begin{description}
+\item[Conjugate fields and their Galois groups]The following are true.
+    \enu{
+        \item If $F<K<E$, then for any $\sigma\in\Hom_F(E,\orl{E})$,\[\sigma G_K(E)\sigma^{-1}=G_{\sigma K}(\sigma E)\]
+        \item If $F\lhd K<E$, then for any $\sigma\in\Hom_F(E,\orl{E})$,\[\sigma G_K(E)\sigma^{-1}=G_K(\sigma E)\]
+        \item If $F<K<E$ with $F\lhd E$, then for any $\sigma\in\Hom_F(E,\orl{E})$,\[\sigma G_K(E)\sigma^{-1}=G_{\sigma K}(E)\]
+        \item If $F<K<E,\,L<E$, with $F<E$ Galois, then
+            \[K\ttt{ and }L\ttt{ are conjugate }\iff G_K(E)\ttt{ and }G_L(E)\ttt{ are conjugate}\]
+    }
+\item[Normality]Let $F<K<E$. Let $\phi:G_F(E)\to\Hom_F(K,E)$ be the restriction map
+    \[\phi(\sigma)=\sigma|_K\]
+    \enu{
+        \item If $F\lhd K$ then $G_K(E)\lhd G_F(E)$ and $\phi$ induces an embedding
+            \[\frac{G_F(E)}{G_K(E)}\into G_F(K)\]
+            which is an isomorphism if the full extension $F<E$ is normal.
+        \item If $G_K(E)\lhd G_F(E)$ and in addition, $F\lhd E$ and $K$ is closed (that is, $K<E$ is Galois), then $F\lhd K$ and $\phi$ induces an isomorphism
+            \[\frac{G_F(E)}{G_K(E)}\cong G_F(K)\]
+        \item If $F<E$ is Galois, then $F\lhd K \iff G_K(E)\lhd G_F(E)$.
+    }
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Galois Groups}
+\begin{description}
+\item[The Galois group of a lifting (1)]Let $F<E$ be normal and let $F<K$. The restriction map
+    \[\phi:G_K(EK)\to G_{E\cap\cl(K)}(E)\]
+    where $\cl(K)=\fix(G_K(EK))$, defined by $\phi\sigma=\sigma|_E$ is an isomorphism and
+    \[G_K(EK)\cong G_{E\cap\cl(K)}(E)\]
+\item[The Galois group of a lifting (2)]The lifting $K<EK$ of a Galois extension $F<E$ by an arbitrary extension $F<K$ is Galois. Moreover, the restriction map $\phi:G_K(EK)\to G_{E\cap K}(E)$ defined by $\phi\sigma=\sigma|_E$ is an isomorphism and
+    \[G_K(EK)\cong G_{E\cap K}(E)\]
+    Also,
+    \enu{
+        \item $F=E\cap K\implies G_K(EK)\cong G_F(E)$
+        \item If $F<E$ is finite, then $G_K(EK)\implies G_F(E)\implies E\cap K=F$
+    }
+\item[Corollary: degree of a lifting]Suppose $F<E$ is finite Galois and $F<K$. The following are true.
+    \enu{
+        \item $[EK:K]=[E:E\cap K]$ and so $[EK:K]\divd[E:F]$
+        \item If $F<K$ is finite, then $[EK:F]=[E:E\cap K][K:F]$
+        \item If $F<K$ is finite, then $[EK:F]\divd[E:F][K:F]$, with equality if and only if $E\cap K=F$
+        \item The formulas for multiple extensions are omitted.
+    }
+\item[The Galois group of a composite]\quad
+    \enu{
+        \item Let $\mcl F=\{E_i\ |\ i\in I\}$ be a family of fields, with $F<E_i$ normal for all $i\in I$. Let $G=\prod G_F(E_i)$ be the direct product of the Galois groups $G_F(E_i)$ and let $\pi_i:G\to G_F(E_i)$ be projection onto the $i$th coordinate. Then the map
+            \[\phi:G_F(\bigvee E_i)\to \prod G_F(E_i)\]
+    }
+\end{description}
+\end{subsection}
+\end{section}
+
+\begin{section}{Vector Spaces}
+\begin{subsection}{Correspondence Theorems}
+\begin{description}
+\item[The correspondence theorem (for vector spaces)]Let $S$ be a subspace of $V$. Then the function that assigns to each intermediate subspace $S\subset T\subset V$ the subspace $T/S$ of $V/S$ is an order-preserving (with respect to set inclusion) one-to-one correspondence between the set of all subspaces of $V$ containing and the set of all subspaces of $V/S$.
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Decompositions of Linear Operators and Matrices}
+\begin{description}
+\item[Polar decomposition (of an operator)]Let $\tau$ be a nonzero linear operator on a finite-dimensional complex inner product space $V$.
+    \enu{
+        \item There exists a positive operator $\rho$ and a unitary operator $\nu$ for which $\tau=\nu\rho$. Moreover, $\rho$ is unique and if $\tau$ is invertible, then $\nu$ is also unique.
+        \item Similarly, there exists a positive operator $\sigma$ and a unitary operator $\mu$ for which $\tau=\sigma\mu$. Moreover, $\sigma$ is unique and if $\tau$ is invertible, then $\mu$ is also unique.
+        \item (Polar decomposition) Let $\tau$ There is a positive operator $\rho$ and a self-adjoint operator $\sigma$ for which $\tau$ has the \udl{polar decomposition}
+            \mth{\tau=\rho e^{i\sigma}}
+            Moreover, $\rho$ is unique and if $\tau$ is invertible, then $\sigma$ is also unique.
+    }
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Isomorphism Theorems}
+\begin{description}
+\item[The isomorphism theorem (for vector spaces)]Let $\tau:V\to W$ be a linear transformation. Then the linear transformation $\tau':V/\ker(\tau)\to W$ defined by
+    \mth{\tau'(v+\ker(\tau))=\tau v}
+    is injective and
+    \mth{\frac{V}{\ker(\tau)}\isom\img(\tau)}
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Riesz Representation Theorem}
+\begin{description}
+\item[The Riesz representation theorem (for inner product spaces)]Let $V$ be a finite-dimensional inner product space.
+    \enu{
+        \item The map $\tau:V\to V^*$ defined by
+            \mth{\tau x=\inprod{\cdot,x}}
+            is a conjugate isomorphism. In particular, for each $f\in V^*$, there exists a unique vector $x\in V$ for which $f=\inprod{\cdot,x}$, that is,
+            \mth{fv=\inprod{v,x}}
+            for all $v\in V$. We call $x$ the \udl{Riesz vector} for $f$ and denote it by $R_f$.
+        \item The map $R:V^*\to V$ defined by
+            \mth{Rf=R_f}
+            is also a conjugate isomorphism, being the inverse of $\tau$. We will call this map the \udl{Riesz map}.
+        }
+\item[The Riesz representation theorem (for metric spaces)]Let $V$ be a finite-dimensional nonsingular metric vector space. The map $\tau:V\to V^*$ defined by
+    \mth{\tau x=\inprod{\cdot,x}}
+    is an isomorphism from $V$ to $V^*$. It follows that for each $f\in V^*$ there exists a unique vector $x\in V$ for which
+    \mth{fv=\inprod{v,x}}
+    for all $v\in V$.
+\item[The Riesz representation theorem (for metric subspaces)]Let $S$ be a subspace of a metric vector space $V$. If either $V$ or $S$ is nonsingular, the linear map $\tau:V\to S^*$ defined by
+    \mth{\tau x=\inprod{\cdot,x}|_S}
+    is surjective and has kernel $S^\perp$. Hence, for any linear functional $f\in S^*$, there is a (not necessarily unique) vector $x\in V$ for which $fs=\inprod{s,x}$ for all $x\in S$. Moreover, if $S$ is nonsingular, then $x$ can be taken from $S$, in which case it is unique.
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Spectral Theorem for Normal Operators}
+\begin{description}
+\item[The spectral theorem for normal operators: complex case]Let $V$ be a finite-dimensional complex inner product space and let $\tau\in\mcl{L}(V)$. The following are equivalent:
+    \enu{
+        \item $\tau$ is normal.
+        \item $\tau$ is unitarily diagonalizable, that is, $V_\tau=\cnts{\mcl{E}_{\lambda_1}}{\mcl{E}_{\lambda_k}}{\odot}$
+        \item $\tau$ has an \udl{orthogonal spectral resolution}
+            \mth{\tau=\lambda_1\rho_1+\cdots+\lambda_k\rho_k}
+            where $\inds{\rho}{n}{+}=\id$ and $\rho_i$ is orthogonal for all $i$, in which case, $\{\inds{\lambda}{k}{,}\}$ is the spectrum of $\tau$ and
+            \mth{\img(\rho_i)=\mcl{E}_{\lambda_i},\quad\ker(\rho_i)=\bigodot_{j\neq i}\mcl{E}_{\lambda_j}}
+    }
+\item[The spectral theorem for normal operators: real case]A linear operator $\tau$ on a finite-dimensional real inner product space is normal if and only if
+    \mth{V=\cnts{\mcl{E}_{\lambda_1}}{\mcl{E}_{\lambda_k}}{\odot}\odot\inds{W}{m}{\odot}}
+    where $\{\inds{\lambda}{k}{,}\}$ is the spectrum of $\tau$ and each $W_i$ is an indecomposable two-dimensional $\tau$-invariant subspace with an ordered basis $\mcl{B}_i$ for which
+    \mth{[\tau]_\mcl{B}=\mat{{cc}a_i&-b_i\\b_i&a_i}}
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Structure Theorem for Normal Operators}
+\begin{description}
+\item[The structure theorem for normal operators: complex case]Let $V$ be a finite-dimensional complex inner product space.
+    \enu{
+        \item The following are equivalent for $\tau\in\mcl{L}(V)$:
+        \itm{
+            \item $\tau$ is normal.
+            \item $\tau$ is unitarily diagonalizable, that is, $V_\tau=\cnts{\mcl{E}_{\lambda_1}}{\mcl{E}_{\lambda_k}}{\odot}$
+            \item $\tau$ has an \udl{orthogonal spectral resolution}
+                \mth{\tau=\lambda_1\rho_1+\cdots+\lambda_k\rho_k}
+        }
+        \item Among the normal operators, the Hermitian operators are precisely those for which all complex eigenvalues are real.
+        \item Among the normal operators, the unitary operators are precisely those for which all complex eigenvalues have norm 1.
+    }
+\item[The structure theorem for normal operators: real case]Let $V$ be a finite-dimensional complex inner product space.
+    \enu{
+        \item $\tau$ is normal if and only if
+            \mth{V=\cnts{\mcl{E}_{\lambda_1}}{\mcl{E}_{\lambda_k}}{\odot}\odot\inds{W}{m}{\odot}}
+            where $\{\inds{\lambda}{k}{,}\}$ is the spectrum of $\tau$ and each $W_i$ is an indecomposable two-dimensional $\tau$-invariant subspace with an ordered basis $\mcl{B}_i$ for which
+            \mth{[\tau]_\mcl{B}=\mat{{cc}a_i&-b_i\\b_i&a_i}}
+        \item Among the real normal operators, the symmetric operators are those for which there are no subspaces $W_i$ in the aforementioned decomposition. Hence, the following are equivalent for $\tau\in\mcl{L}(V)$:
+            \itm{
+                \item $\tau$ is symmetric.
+                \item $\tau$ is orthogonally diagonalizable.
+                \item $\tau$ has the orthogonal spectral resolution
+                    \mth{\tau=\lambda_1\rho_1+\cdots+\lambda_k\rho_k}
+            }
+        \item Among the real normal operators, the orthogonal operators are precisely those for which the eigenvalues are equal to $\pm1$ and the matrices $[\tau]_{\mcl{B}_i}$ described in the aforementioned decomposition have rows (and columns) of norm 1, that is,
+            \mth{[\tau]_{\mcl{B}_i}=\mat{{cc}\sin\theta&-\cos\theta\\ \cos\theta&\sin\theta}}
+            for some $\theta\in\RR$.
+    }
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Structure Theorem for Normal Operators}
+\begin{description}
+\item[The structure theorem for normal matrices: complex case]\quad
+    \enu{
+        \item A complex matrix $A$ is normal $\iff$ it is unitarily diagonalizable, that is, there is a unitary matrix $U$ for which
+            \mth{UAU^*=\diag(\inds{\lambda}{k}{,})}
+        \item A complex matrix $A$ is Hermitian $\iff$ it is unitarily diagonalizable and all eigenvalues of $A$ are real.
+        \item A complex matrix $A$ is unitary $\iff$ it is unitarily diagonalizable and all eigenvalues of $A$ have norm $1$.
+    }
+\item[The structure theorem for normal matrices: real case]\quad
+    \enu{
+        \item A real matrix $A$ is normal $\iff$ there is an orthogonal matrix $O$ for which
+            \mth{OA\ts{O}=\diag\Brk{\inds{\lambda}{k}{,},\mat{{cc}a_1&-b_1\\ b_1&a_1},\cdots,\mat{{cc}a_m&-b_m\\ b_m&a_m}}}
+        \item A real matrix $A$ is symmetric $\iff$ it is orthogonally diagonalizable, that is, there is an orthogonal matrix $O$ for which
+            \mth{OA\ts{O}=\diag\Brk{\inds{\lambda}{k}{,}}}
+        \item A real matrix is orthogonal $\iff$ there is an orthogonal matrix $O$ for which\\\\
+            $OA\ts{O}$
+            \mth{=\diag\Brk{\inds{\lambda}{k}{,},\mat{{cc}\sin\theta_1&-\cos\theta_1\\ \cos\theta_1&\sin\theta_1},\cdots,\mat{{cc}\sin\theta_m&-\cos\theta_m\\ \cos\theta_m&\sin\theta_m}}}
+    }
+\end{description}
+\end{subsection}
+\end{section}
+
+\begin{section}{Modules}
+\begin{subsection}{Isomorphism Theorems}
+\begin{description}
+\item[The isomorphism theorem (for modules)]Let $\tau:M\to N$ be an $R$-homomorphism. Then the map $\tau':M/\ker(\tau)\to N$ defined by
+    \mth{\tau'(v+\ker(\tau))=\tau v}
+    is an $R$-embedding and so
+    \mth{\frac{M}{\ker(\tau)}\isom\img(\tau)}
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Correspondence Theorems}
+\begin{description}
+\item[The correspondence theorem (for modules)]Let $S$ be a submodule of $M$. Then the function that assigns to each intermediate submodule $S\subset T\subset M$ the quotient space $T/S$ of $M/S$ is an order-preserving (with respect to set inclusion) one-to-one correspondence between submodules of $M$ containing $S$ and all submodules of $M/S$.
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Decompositions of Modules}
+\begin{description}
+\item[Primary decomposition (of a module)]Let $M$ be a torsion module over a principal ideal domain $R$, with order
+    \mth{\mu=p_q^{e_1}\cdots p_n^{e_n}}
+    where the $p_i$'s are distinct nonassociate primes in $R$.
+    \enu{
+        \item $M$ is the direct sum
+            \mth{M=M_{p_1}\op\cdots\op M_{p_n}}
+            where
+            \mth{M_{p_i}=\frac{\mu}{p_i^{e_i}}M=\{v\in M:p_i^{e_i}v=0\}}
+            is a primary submodule of order $p_i^{e_i}$. This decomposition of $M$ into primary submodules is called the \udl{primary decomposition} of $M$.
+        \item The primary decomposition of $M$ is unique up to order of the summands. That is, if
+            \mth{M=N_{q_1}\op\cdots\op N_{q_m}}
+            where $N_{q_i}$ is primary of order $q_i^{f_i}$ and $\inds{q}{m}{,}$ are distinct nonassociate primes, then $m=n$ and, after a possible reindexing, $N_{q_i}=M_{p_i}$. Hence, $f_i=e_i$ and $q_i\sim p_i$, for $i=1,\cdot,n$.
+        \item Two $R$-modules $M$ and $N$ are isomorphic $\iff$ the summands in their primary decompositions are pairwise isomorphic, that is, if
+            \mth{M=M_{p_1}\op\cdots\op M_{p_n}}
+            and
+            \mth{N=N_{q_1}\op\cdots\op N_{q_m}}
+            are primary decompositions, then $m=n$ and, after a possible reindexing, $M_{p_i}\apr N_{q_i}$ for $i=1,\cdots,n$.
+    }
+\item[Cyclic decomposition (of a primary module)]Let $M$ be a primary finitely generated torsion module over a principal ideal domain $R$, with order $p^e$.
+    \enu{
+        \item $M$ is a direct sum
+            \mth{M=\dbk{v_1}\op\cdots\op\dbk{v_n}}
+            of cyclic submodules with annihilators $\ann(\dbk{v_i})=\bkt{p^{e_i}}$, which can be arranged in ascending order
+            \mth{\ann(\dbk{v_1})\subseteq\cdots\subseteq\ann(\dbk{v_n})}
+            or equivalently,
+            \mth{e=\inds{e}{n}{\geqs}}
+        \item As to uniqueness, suppose that $M$ is also the direct sum
+            \mth{M=\dindx{\dbk}{u_1}{u_m}{\op}}
+            of cyclic submodules with annihilators $\ann(\dbk{u_i})=\bkt{q^{f_i}}$, arranged in ascending order
+            \mth{\ann(\dbk{u_1})\subseteq\cdots\subseteq\ann(\dbk{u_m})}
+            or equivalently
+            \mth{\inds{f}{m}{\geqs}}
+            Then the two chains of annihilators are identical, that is, $m=n$ and
+            \mth{\ann(\dbk{u_i})=\ann(\dbk{v_i})}
+            for all $i$. Thus, $p\sim q$ and $f_i=e_i$ for all $i$.
+        \item Two $p$-primary $R$-modules
+            \mth{M=\dindx{\dbk}{v_1}{v_n}{\op}}
+            and
+            \mth{N=\dindx{\dbk}{u_1}{u_m}{\op}}
+            are isomorphic $\iff$ they have the same annihilator chains, that is, $m=n$ and, after a possible reindexing
+            \mth{\ann(\dbk{u_i})=\ann(\dbk{v_i})}
+    }
+\item[Primary cyclic decomposition (of a module)]Let $M$ be a finitely generated torsion module over a principal ideal domain $R$.
+    \enu{
+        \item If $M$ has order
+            \mth{\mu=p_1^{e_1}\cdots p_n^{e_n}}
+            where the $p_i$'s are distinct nonassociate primes in $R$, then $M$ can be uniquely decomposed (up to the order of the summands) into the direct sum
+            \mth{M=\dindx{M_}{p_1}{p_n}{\op}}
+            where
+            \mth{M_{p_i}=\frac{\mu}{p_i^{e_i}}M=\{v\in M:p_i^{e_i}v=0\}}
+            is a primary submodule with annihilator $\bkt{p_i^{e_i}}$. Finally, each primary submodule $M_{p_i}$ can be written as a direct sum of cyclic submodules, so that
+            \mth{M=\underbrace{[\dindx{\dbk}{v_{1,1}}{v_{1,k_1}}{\op}]}_{M_{p_1}}\op\cdots\op\underbrace{[\dindx{\dbk}{v_{n,1}}{v_{n,k_n}}{\op}]}_{M_{p_n}}}
+            where $\ann(\dbk{v_{i,j}})=\bkt{p_i^{e_{i,j}}}$ and the terms in each cyclic decomposition can be arranged so that, for each $i$,
+            \mth{\ann(\dbk{v_{i,1}})\subseteq\cdots\subseteq\ann(\dbk{v_{i,k_i}})}
+            or, equivalently,
+            \mth{e_i=\cnts{e_{i,1}}{e_{i,k_i}}{\geqs}}
+        \item As for uniqueness, suppose that
+            \mth{M=\underbrace{[\dindx{\dbk}{u_{1,1}}{u_{1,j_1}}{\op}]}_{N_{q_1}}\op\cdots\op\underbrace{[\dindx{\dbk}{u_{m,1}}{u_{m,j_m}}{\op}]}_{N_{q_m}}}
+            is also a primary cyclic decomposition of $M$. Then,
+            \itm{
+                \item The number of summands is the sam in both decompositions; in fact, $m=n$ and after possible reindexing, $k_u=j_u$ for all $u$.
+                \item The primary submodules are the same; that is, after possible reindexing, $q_i\sim p_i$ and $N_{q_i}=M_{p_i}$.
+                \item For each primary submodule pair $N_{q_i}=M_{p_i}$, the cyclic submodules have the same annihilator chains; that is, after possible reindexing,
+                    \mth{\ann(\dbk{u_{i,j}})=\ann(\dbk{v_{i,j}})}
+                    for all $i,j$.
+            }
+            In summary, the primary submodules and annihilator chains are uniquely determined by the module $M$.
+        \item Two $R$-modules $M$ and $N$ are isomorphic $\iff$ they have the same annihilator chains.
+    }
+\end{description}
+\end{subsection}
+\end{section}
+\end{document}
