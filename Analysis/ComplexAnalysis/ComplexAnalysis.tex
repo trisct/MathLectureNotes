@@ -1,0 +1,659 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{geometry,xcolor,layout,amssymb,amsthm,amsmath,mathrsfs,graphicx,centernot,textcomp,galois,extarrows,bbm,dsfont,makeidx,empheq}
+\usepackage[normalem]{ulem}
+\usepackage[all]{xy}
+
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{prp}{Proposition}[section]
+\newtheorem{theom}{Theorem}[section]
+\newtheorem{coro}{Corollary}[section]
+
+\theoremstyle{definition}
+\newtheorem{eg}{Example}[section]
+\newtheorem{ct}{\textcolor{cyan}{Counterexample}}[section]
+\newtheorem*{pf}{\blue{Proof}}
+\newtheorem{question}{Q}[section]
+\newtheorem{dfn}{Definition}[section]
+\newtheorem{probl}{Problem}[section]
+\newtheorem{nt}{\cg{Note}}[section]
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}[section]
+
+\newcommand*\widefbox[1]{\fbox{\vspace{2em}\hspace{2em}#1\hspace{2em}}}
+\setlength\fboxsep{0.2cm}
+
+\newcommand{\tick}{\textcolor{red}{\checkmark}}
+\newcommand{\bs}{\backslash}
+\newcommand{\udots}{\mathinner{\mskip 1mu\raise 1pt\vbox{\kern 7pt\hbox{.}}
+\mskip 2mu\raise 4pt\hbox{.}\mskip 2mu\raise 7pt\hbox{.}\mskip 1mu}}
+\newcommand{\geqs}{\geqslant}
+\newcommand{\leqs}{\leqslant}
+\newcommand{\Var}{{\rm Var}}
+\newcommand{\sdd}{\sigma}
+\newcommand{\ga}{\got a}
+\newcommand{\gb}{\got b}
+\newcommand{\gp}{\got p}
+\newcommand{\gq}{\got q}
+\newcommand{\lst}{L^{s,t}}
+\newcommand{\EE}{\mathbb{E}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\rsa}{\sigma(f;\pi,\xi)}
+\newcommand{\wlg}{{\rm w.l.o.g.}}
+\newcommand{\spn}{{\rm span}}
+\newcommand{\rank}{{\rm rank}}
+\newcommand{\nul}{{\rm null}}
+\newcommand{\disc}{{\rm disc}}
+\newcommand{\im}{{\rm Im}}
+\newcommand{\coker}{{\rm Coker}}
+\newcommand{\coim}{{\rm Coim}}
+\newcommand{\ud}{{\rm d}}
+\newcommand{\lub}{{\rm lub}}
+\newcommand{\glb}{{\rm glb}}
+\newcommand{\dx}{\ud x}
+\newcommand{\dy}{\ud y}
+\newcommand{\dz}{\ud z}
+\newcommand{\dmu}{\ud\mu}
+\newcommand{\x}{\times}                     %乘号
+\newcommand{\ox}{\otimes}
+\newcommand{\op}{\oplus}
+\newcommand{\p}{\prime}
+\newcommand{\fctr}{\Rightarrow}
+\newcommand{\unito}{\rightrightarrows}
+\newcommand{\lbint}{\int\!\!\!\int}      %二重积分号
+\newcommand{\bint}{\int\!\!\!\!\int}      %二重积分号
+\newcommand{\tint}{\int\!\!\!\!\int\!\!\!\!\int}      %三重积分号
+\newcommand{\apr}{\approx}
+\newcommand{\prdn}{\prod\limits_{n=1}^\infty}
+\newcommand{\sumn}{\sum\limits_{n=1}^\infty}
+\newcommand{\sump}{\sum\limits_{n=0}^\infty}
+\newcommand{\limn}{\lim\limits_{n\to\infty}}
+\newcommand{\limx}{\lim\limits_{x\to+\infty}}
+\newcommand{\operp}{\stackrel{\perp}{\oplus}}
+\newcommand{\const}{{\rm const}}
+\newcommand{\codim}{{\rm codim}}
+\newcommand{\sgn}{{\rm sgn}}
+\newcommand{\ann}{{\rm Ann}}
+\newcommand{\chr}{{\rm \,char\,}}
+\newcommand{\tr}{{\rm Tr}}
+\newcommand{\sym}{{\rm Sym}}
+\newcommand{\centr}{{\rm Centr}}
+\newcommand{\Sp}{{\rm Sp}}              %symplectic
+\newcommand{\id}{{\rm id}}
+\newcommand{\Obj}{\mf{Obj}}
+\newcommand{\Mor}{\mf{Mor}}
+\newcommand{\Perm}{{\rm Perm}}
+\newcommand{\Hom}{{\rm Hom}}
+\newcommand{\Aut}{{\rm Aut}}
+\newcommand{\Inn}{{\rm Inn}}
+\newcommand{\End}{{\rm End}}
+\newcommand{\re}{{\rm Re}}
+\newcommand{\diag}{{\rm diag}}
+\newcommand{\grad}{{\rm grad\,}}
+\newcommand{\dive}{{\rm div\,}}
+\newcommand{\rot}{{\rm rot\,}}
+\newcommand{\curl}{{\rm curl\,}}
+\newcommand{\free}{{\rm free}}
+\newcommand{\tor}{{\rm tor}}
+\newcommand{\rad}{{\rm rad}}
+\newcommand{\nilrad}{{\rm nilrad}}
+\newcommand{\ord}{{\rm ord}}
+\newcommand{\irr}{{\rm Irr}}
+\newcommand{\cl}{{\rm cl}}
+\newcommand{\Cl}{{\rm Cl}}
+\newcommand{\fix}{{\rm fix}}
+\newcommand{\boun}{\partial}
+\newcommand{\into}{\hookrightarrow}
+\newcommand{\varn}{\varnothing}
+\newcommand{\vare}{\varepsilon}
+\newcommand{\vphi}{\varphi}
+\newcommand{\diam}{{\rm diam}}
+\newcommand{\vect}{{\rm Vect}}
+\newcommand{\isom}{\stackrel{\cong}{\longrightarrow}}
+\newcommand{\dfas}{\triangleq}
+\newcommand{\st}{{\rm\quad s.t.\quad}}
+\newcommand{\lapla}{\Delta}
+\newcommand{\divd}{\big|}
+\makeatletter
+\newcommand{\lambdabar}{{\mathchoice
+  {\smash@bar\textfont\displaystyle{0.25}{1.2}\lambda}
+  {\smash@bar\textfont\textstyle{0.25}{1.2}\lambda}
+  {\smash@bar\scriptfont\scriptstyle{0.25}{1.2}\lambda}
+  {\smash@bar\scriptscriptfont\scriptscriptstyle{0.25}{1.2}\lambda}}}
+\newcommand{\smash@bar}[4]{%
+  \smash{\rlap{\raisebox{-#3\fontdimen5#10}{$\m@th#2\mkern#4mu\mathchar'26$}}}}
+\makeatother
+
+
+\newcommand{\res}[2]{\left.#1\right|_{#2}}
+\newcommand{\rsb}[3]{\sigma(#1;#2,#3)}      %Riemann sum with arguments
+\newcommand{\derv}[2]{\frac{\ud#1}{\ud#2}}
+\newcommand{\parf}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\secpf}[3]{\frac{\partial^2 #1}{\partial #2\partial #3}}
+\newcommand{\comb}[2]{\binom{#1}{#2}}       %组合数
+\newcommand{\norm}[1]{\left\lVert #1\right\rVert}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\brc}[1]{\left\{#1\right\}}
+\newcommand{\brk}[1]{\left\langle#1\right\rangle}
+\newcommand{\prn}[1]{\left(#1\right)}
+\newcommand{\sqb}[1]{\left\lbrack#1\right\rbrack}
+\newcommand{\dbk}[1]{\langle\!\langle#1\rangle\!\rangle}
+\newcommand{\inprod}[1]{\langle#1\rangle}
+\newcommand{\itr}[1]{#1^\circ}           %内部,interior
+\newcommand{\Int}{{\rm Int}}
+\newcommand{\cmp}[1]{#1^c}               %补集,complement
+\newcommand{\cnts}[3]{#1#3\cdots#3#2}
+\newcommand{\inds}[3]{#1_{1}#3\cdots#3#1_{#2}}
+\newcommand{\dindx}[4]{#1{#2}#4\cdots#4#1{#3}}
+\newcommand{\dinds}[4]{#1_{#2}#4\cdots#4#1_{#3}}
+\newcommand{\vct}[1]{\overrightarrow{#1}}
+\newcommand{\simlr}[2]{#2^{-1}#1#2}     %相似
+\newcommand{\congt}[2]{\ts{#2}#1#2}     %相合
+\newcommand{\ccong}[2]{\cts{#2}#1#2}    %共轭相合
+\newcommand{\rcong}[2]{\ts{#2}#1\orl{#2}}    %右共轭相合
+\newcommand{\ts}[1]{#1^{\rm T}}
+\newcommand{\cts}[1]{\orl{#1}^{\rm T}}   %共轭转置
+\newcommand{\wt}[1]{\widetilde{#1}}
+\newcommand{\bss}[2]{\inds{#1}{#2}{,}}
+\newcommand{\unitob}[1]{\mathop{\rightrightarrows}\limits_{#1}}
+\newcommand{\limb}[1]{\lim\limits_{#1}}
+\newcommand{\limp}[2]{\lim\limits_{#1\to#2}}
+\newcommand{\mapn}[5]{\arr{{ccrcl}#1&:&#2&\to&#3\\&&#4&\mapsto&#5}}
+\newcommand{\map}[4]{\arr{{rcl}#1&\to&#2\\#3&\mapsto&#4}}
+
+\newcommand{\mth}[1]{\begin{displaymath}#1\end{displaymath}}
+\newcommand{\mtha}[1]{\begin{eqnarray*}#1\end{eqnarray*}}
+\newcommand{\arr}[1]{\begin{array}#1\end{array}}
+\newcommand{\lem}[1]{\begin{lemma}#1\end{lemma}}
+\newcommand{\prf}[1]{\begin{pf}\blue{#1}\end{pf}}
+\newcommand{\ques}[1]{\begin{question}#1\end{question}}
+\newcommand{\sprf}[1]{\begin{pf}\cb{#1}\end{pf}}
+\newcommand{\df}[1]{\begin{dfn}#1\end{dfn}}
+\newcommand{\ntg}[1]{\begin{nt}\cg{#1}\end{nt}}
+\newcommand{\mat}[1]{\begin{matrix}#1\end{matrix}}
+\newcommand{\matp}[1]{\prn{\begin{matrix}#1\end{matrix}}}
+\newcommand{\itm}[1]{\begin{itemize}#1\end{itemize}}
+\newcommand{\enu}[1]{\begin{enumerate}#1\end{enumerate}}
+\newcommand{\desc}[1]{\begin{description}#1\end{description}}
+\newcommand{\tmth}[1]{\begin{displaymath}\ttt{#1}\end{displaymath}}
+\newcommand{\thm}[1]{\begin{theom}#1\end{theom}}
+\newcommand{\emp}[1]{\begin{eg}#1\end{eg}}
+\newcommand{\rmk}[1]{\begin{remark}#1\end{remark}}
+\newcommand{\pbl}[1]{\begin{probl}#1\end{probl}}
+\newcommand{\prop}[1]{\begin{prp}#1\end{prp}}
+\newcommand{\cor}[1]{\begin{coro}#1\end{coro}}
+\newcommand{\eqn}[1]{\begin{equation}#1\end{equation}}
+\newcommand{\eqna}[1]{\begin{eqnarray}#1\end{eqnarray}}
+
+\newcommand{\clr}[1]{\textcolor{red}{#1}}   %红色
+\newcommand{\cb}[1]{\textcolor{blue}{#1}}   %蓝色
+\newcommand{\cg}[1]{\textcolor{magenta}{#1}}%紫色
+\newcommand{\hlg}[1]{\cg{\udl{#1}}}
+\newcommand{\hlb}[1]{\cb{\udl{#1}}}
+\newcommand{\hlr}[1]{\clr{\udl{#1}}}
+
+\newcommand{\mf}{\mathbf}
+\newcommand{\tf}{\textbf}
+\newcommand{\hlt}[1]{\textbf{\red{#1}}}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+
+\newcommand{\nm}[1]{{\rm#1}}                %竖体
+\newcommand{\ttt}{\textrm}
+\newcommand{\mhb}[1]{\mathbb{#1}}
+\newcommand{\mcl}[1]{\mathcal{#1}}
+\newcommand{\flr}[1]{\mathscr{#1}}
+\newcommand{\got}[1]{\mathfrak{#1}}
+\newcommand{\orl}[1]{\overline{#1}}
+\newcommand{\udl}[1]{\underline{#1}}
+\newcommand{\uudl}[1]{\uuline{#1}}
+\newcommand{\wudl}[1]{\uwave{#1}}
+
+%%%%%%%%%%%%%PHYSICS CONSTANTS
+\newcommand{\cstk}{\frac{1}{4\pi\vare_0}}
+\newcommand{\cstm}{\frac{\mu_0}{4\pi}}
+
+\renewcommand{\Re}{{\rm Re}}
+\renewcommand{\Im}{{\rm Im}}
+
+\title{Definitions, Propositions and Theorems in Complex Analysis}
+\author{TRISCT}
+\date{}
+
+\makeindex
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+We consider sets in $\CC$ unless otherwise specified.
+\begin{section}{Geometry of the Complex Plane}
+\begin{subsection}{Definitions}
+\begin{description}
+\item[The Riemann sphere\index{sphere!Riemann}]There are numerous ways to define the Riemann sphere.
+    \itm{
+        \item[(i)]As a complex manifold, \tf{the Riemann sphere} is a separate compact topological space $\PP^1=\CC\cup\{\infty\}$ together with two charts $\vphi_1,\vphi_2$. In $\PP^1$ an open set is either an open set in $\CC$, or a set of the form $V\cup\{\infty\}$ where $V$ is the complement of a compact set. The charts $\vphi_1,\vphi_2$ are:
+            \[\arr{{ccrcl}\vphi_1&:&U_1=\PP^1\backslash\{\infty\}=\CC&\to&\CC\\
+                &&z&\mapsto&z\\
+                \vphi_2&:&U_2=\PP^1\backslash\{0\}=\CC^*\cup\{\infty\}&\to&\CC\\
+                &&z&\mapsto&1/z}\]
+        \item[(ii)]As a sphere, \tf{the Riemann sphere} can be embedded in $\RR^3$ as $S^2$ using a projection:
+            \mtha{\orl\CC&\to&S^2\\
+                z&\mapsto&\prn{\frac{z+\orl z}{\abs{z}^2+1},\frac{z-\orl z}{i(\abs{z}^2+1)},\frac{\abs{z}^2-1}{\abs{z}^2+1}}\\
+                \infty&\mapsto&(0,0,1)}
+            The projection is invertible, and the inverse is
+            \mtha{S^2&\to&\orl\CC\\
+                (x,y,z)&\mapsto&\frac{x+iy}{1-z}\\
+                (0,0,1)&\mapsto&\infty}
+    }
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Propositions}
+\begin{description}
+\item[Symmetric points]\
+    \itm{
+        \item[(i)]Let $Az\orl z+\orl Bz+B\orl z+C=0$ be a circle or a line, then for $z_1,z_2\in\CC$,
+            \[Az_1\orl z_2+\orl Bz_1+B\orl z_2+C=0\iff z_1,z_2\ttt{ are symmtric about the circle}\]
+        \item[(ii)]Let $S^2$ be the Riemann sphere, then $z,\frac{1}{\orl z}$ correspond to points on the sphere symmetric about the $xOy$ plane
+        \item[(iii)]Let $S^2$ be the Riemann sphere, then for $z_1,z_2\in\CC$,
+            \[z_1\orl z_2=-1\iff z_1,z_2\ttt{ correspond to endpoints of a diameter of} S^2\]
+    }
+\end{description}
+\end{subsection}
+\end{section}
+
+\begin{section}{Holomorphic Functions}
+\begin{subsection}{Definitions}
+\begin{description}
+\item[Derivative\index{derivative}]Let $\Omega$ be a open set. The \tf{derivative} of a complex function $f$ at a point $z_0\in\Omega$ is a complex number $f'(z_0)$ that satisfies either one of the equivalent conditions.
+    \itm{
+        \item[(i)]$f'(z_0)=\lim\limits_{z\to z_0}\frac{f(z)-f(z_0)}{z-z_0}$;
+        \item[(ii)]$f(z)=f(z_0)+f'(z_0)(z-z_0)+o(z-z_0)$.
+    }
+    If such $f'(z_0)$ exists, we say $f$ is differentiable at $z_0$. If the limit in (i) does not exist, or that there is no such number satisfying  (ii), we say that $f$ is \tf{not differentiable}\index{differentiable} at $z_0$.
+\item[Holomorphic, analytic\index{function!holomorphic}\index{function!analytic}]Let $f$ be a complex function on an open set $\Omega$. For $z_0\in\Omega$, if $f$ is analytic in a neighborhood of $z_0$, we say $f$ is \tf{analytic at $z_0$}. If $f$ is analytic at each $z\in\Omega$, or equivalently, $f$ is differentiable everywhere in $\Omega$, we say $f$ is \tf{holomorphic} or \tf{analytic} in $\Omega$. The set of holomorphic function in $\Omega$ is denoted by $H(\Omega)$. A function holomorphic on $\CC$ is called an \tf{entire function} or \tf{integral function}\index{function!entire}\index{function!integral}.
+\item[Power series\index{series!power}\index{power series}]A \tf{power series} is of the form
+    \[s(z)=\sum_{k=0}^\infty a_k(z-z_0)^k\]
+    To each power series there corresponds a number
+    \[R=\frac{1}{\limsup_n\sqrt[n]{\abs{a_n}}}\in[0,\infty]\]
+    called the \tf{radius of convergence}\index{radius!convergence} such that
+    \itm{
+        \item[(i)]In $B(z_0,R)$, $s$ converges. More specifically, $\forall r<R,\ s$ converges uniformly in $\orl B(z_0,r)$;
+        \item[(i$'$)]In $B(z_0,R)$, $s$ is holomorphic, whose derivative is given by termwise differentiation
+            \[s'(z)=\sum_{k=1}^\infty ka_k(z-z_0)^{k-1}\]
+            and has the same radius of convergence;
+            \ntg{The proof is to directly compare $\sum ka_k(z-z_0)^k$ with $\frac{s(z+h)-s(z)}{h}$.}
+        \item[(ii)]$s$ diverges outside $\orl B(z_0,R)$;
+        \item[(iii)]Nothing is said on the boundary of $B(z_0,R)$.
+    }
+    A function $f$ in an open set $\Omega$ is \tf{representable by power series} in $\Omega$ if in each $B(z,r)\subset\Omega$, there is a power series converging to $f$. If $f$ is representable by power series in $\Omega$, then $f\in H(\Omega)$, and its derivative $f'$ is obtained by termwise differentiation. Note $f'$ satisfies the same hypothesis, hence $f$ is differentiable infinitely many times.
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Propositions}
+\begin{description}
+\item[Structure of $H(\Omega)$]\index{$H(\Omega)$}$H(\Omega)$ is a ring (multiplication being multiplication of functions). The differential operation follows the usual rules.
+\item[Power series\index{series!power}\index{power series}]See the definition section.
+\end{description}
+\end{subsection}
+\end{section}
+
+\begin{section}{M\"obius Transformations}
+\begin{subsection}{Definitions and Properties}
+\begin{description}
+\item[Circles\footnote{Infinitely long straight lines are also called circles (the $\infty$) is added.} in $\orl\CC$\index{circle}]Any \tf{circle} in $\orl\CC$ can be written in the form
+    \[Az\orl z+\orl Bz+B\orl z+C=0\quad(A,C\in\RR,\ B\in\CC,\ \abs{B}^2-AC>0\]
+    Let $\Gamma$ be a circle and $(z_1,z_2,z_3)$ distinct points on $\Gamma$. We say this ordered triplet determines an \tf{orientation}\index{orientation} of $\Gamma$. The \tf{left side}\index{left side!of a circle} of $\Gamma$ with respect to the orientation $(z_1,z_2,z_3)$ is the set of points
+    \[L=\{x\in\orl\CC:\Im(z,z_1,z_2,z_3)<0\}\]
+    Respectively, if the sign is changed to $>$, then it is called the \tf{right side}\index{right side!of a circle}.
+    \ntg{As an easy way to remember this, one can consider the identity map $(z,1,0,\infty)=z$. With respect to the orientation $(1,0,\infty)$, the lower half plane
+        \[\Im(z,1,0,\infty)=\Im z<0\]
+        is clearly the left side of $\orl\RR$.}
+\item[M\"obius transformation]\index{transformation!M\"obius}\index{transformation!linear fractional}A mapping of the form
+    \[f(z)=\frac{az+b}{cz+d}\quad(ad-bc\neq0)\]
+    is called a \tf{M\"obius transformation} or a \tf{linear fractional transformation}. For computational convenience, it is better to write it in the matrix form
+    \[f\sim\matp{a&b\\c&d\\}=A_f\quad(\det A_f\neq0)\]
+    \ntg{The representation by a matrix is unique up to a multiple of a nonzero number.}
+    The composite of $f\sim A_f,g\sim A_g$ is $f\comp g\sim A_fA_g$, and the inverse of $f\sim A_f$ is
+    \[f^{-1}\sim A_f^{-1}=\matp{d&-b\\-c&a}\]
+    \ntg{The trick to compute the inverse is: switch the diagonal and minus the sides.}
+    The following types are elementary among all M\"obius transformations.
+    \itm{
+        \item[(i)](\tf{Parallel translation}\index{translation!parallel}) $f(z)=z+b\sim\matp{1&b\\0&1}$.
+        \item[(ii)](\tf{Rotation}\index{Rotation}) $f(z)=kz\sim\matp{k&0\\0&1}$ with $\abs{k}=1$.
+        \item[(iii)](\tf{Homothetic transformation}\index{transformation!homothetic}) $f(z)=kz\sim\matp{k&0\\0&1}$ with $k>0$.
+        \item[(iv)](\tf{Inversion}\index{inversion}) $f(z)=1/z\sim\matp{0&1\\1&0}$.
+    }
+    And one can prove that any M\"obius transformation is a composite some these elementary transformations. A very special kind of M\"obius transformation is the \tf{cross ratio}\index{cross ratio}. The \tf{cross ratio} of four points $z_1,z_2,z_3,z_4$ is the image of $z_1$ under the unique M\"obius transformation which takes $z_2$ to $1$, $z_3$ to $0$ and $z_4$ to $\infty$, namely,
+    \[(z,z_2,z_3,z_4)=\prn{\frac{z-z_3}{z-z_4}}\Big/\prn{\frac{z_2-z_3}{z_2-z_4}}\]
+    The M\"obius transformations have the following basic properties.
+    \itm{
+        \item[(i)](\tf{Fixed points}) A nonidentity M\"obius transformation admits at most $2$ fixed points, namely, for $S(z)=\frac{az+b}{cz+d}$, the fixed points satisfy
+            \mtha{&&f(z)=z\\
+                &\iff&az+b=z(cz+d)\\
+                &\iff&cz^2+(d-a)z-b=0}
+            One can also include infinity in this proposition. If $\infty$ is a fixed point, then it is necessary $c=0$ and the equation becomes
+            \[(d-a)z-b=0\]
+            meaning $S$ admits only one more fixed point beside $\infty$.
+        \item[(ii)](\tf{Uniquely determined by three points}) For any distinct points $z_2,z_3,z_4,\omega_2,\omega_3,\omega_4\in\orl\CC$, there exists a unique M\"obius transformation such that $z_2\mapsto\omega_2,\ z_3\mapsto\omega_3,\ z_4\mapsto\omega_4$.
+            \prf{Let $S(z)=(z,z_2,z_3,z_4),\ M(\omega)=(\omega,\omega_2,\omega_3,\omega_4)$. Then $M^{-1}S$ satisfies the requirement. For uniqueness, if $R,S$ are M\"obius transformations that agree on three points, then $R^{-1}{S}$ is a M\"obius transformation with $3$ fixed points, hence the identity.}
+        \item[(iii)](\tf{Substitution by a M\"obius transformation}) The cross ratio is invariant under a change of variable by a M\"obius transformation, i.e., if $T$ is any M\"obius transformation and $z_2,z_3,z_4$ are distinct points, then for all $z$,
+            \[(z,z_2,z_3,z_4)=(Tz,Tz_2,Tz_3,Tz_4)\]
+            \prf{Let $S(z)=(z,z_2,z_3,z_4)$. Consider $ST^{-1}$. It satisfies $ST^{-1}(Tz_2)=1,\ ST^{-1}(Tz_3)=0,\ ST^{-1}(Tz_4)=\infty$, hence it is the cross ratio
+            \[ST^{-1}(z)=(z,Tz_2,Tz_3,Tz_4)\]
+            Replacing $z$ by $Tz$ yields
+            \[S(z)=(z,z_2,z_3,z_4)=(Tz,Tz_2,Tz_3,Tz_4)\]}
+    }
+    The following describes more about the geometric properties of M\"obius transformations.
+    \itm{
+        \item[(i)](\tf{Cross ratio: circle to real line}) Let $z_1,z_2,z_3,z_4$ be four distinct points in $\orl\CC$. Then
+            \[(z_1,z_2,z_3,z_4)\in\RR\iff z_1,z_2,z_3,z_4\ttt{ lie on the same circle}\]
+            \prf{It is equivalent to say for the M\"obius transformation $S(z)=(z,z_2,z_3,z_4)$ that
+            \[S(z)\in\RR\iff z\ttt{ lies on the same circle as }z_2,z_3,z_4\]
+            It is then equivalent to say for $S^{-1}$ that
+            \[\omega\in\RR\iff S^{-1}(\omega)\ttt{ lies on the same cirlce as }z_2,z_3,z_4\]
+            If we can show that a M\"obius transformation maps $\RR$ to a circle then we are finished.
+            }
+        \item[(ii)](\tf{Preserving a circle}) M\"obius transformations carries circles into circles.
+        \item[(iii)](\tf{Preserving symmetric points about a circle}) If a M\"obius transformation takes the circle $\Gamma_1$ into $\Gamma_2$, then it takes a pair of symmetric points about $\Gamma_1$ into a pair about $\Gamma_2$.
+        \item[(iv)](\tf{Orientation principle\index{principle!orientation}}) Let $\Gamma_1,\Gamma_2$ be two circles in $\orl\CC$ and let $T$ be a M\"obius transformation such that $T(\Gamma_1)=\Gamma_2$. Let $(z_1,z_2,z_3)$ be an orientation of $\Gamma_1$. Then the left side of $\Gamma_1$ with respect to $(z_1,z_2,z_3)$ is mapped to the left side of $\Gamma_2$ with respect to $(Tz_1,Tz_2,Tz_3)$.
+    }
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Finding the Right M\"obius Transformations}
+This section is devoted to constructing useful M\"obius transformations to provide a suitable change of variable.
+\emp{(\tf{Half plane to unit disk}) The M\"obius transformation
+    \[T(z)=e^{i\theta}\frac{z-a}{z+\orl a}\quad(\theta\in\RR,\ \Im a>0)\]
+    carries the upper half plane to the inside of the unit disk. Conversely, all M\"obius transformations that carry the upper half plane to the inside of the unit disk have this form.
+    \prf{Verifying that $T$ has the stated property is easy (it suffices to prove $z\in\orl\RR\implies\abs{T(z)}=1$). But to find all such transformations, in principle, one can find three points in $\orl\RR$ and then another three points on the unit circle, and then use the cross ratio. But the computation is too complex for our purpose and there may be redundant results. An easier way is to proceed as follows. Since a M\"obius transformation is bijective, some point must be mapped to $0$. We suppose $a:\ \Im a>0$ is such that $T(a)=0$. Then we make use of the fact that $T$ preserves symmetric points, i.e., $T(\orl a)=\infty$. This means $T$ has the form
+    \[T(z)=K\frac{z-a}{z-\orl a}\]
+    Finally, in order for $T$ to map $\orl\RR$ to the unit circle, we need
+    \[z\in\orl\RR\implies\abs{T(z)}=\abs{K}\frac{\abs{z-a}}{\abs{z-\orl a}}=1\]
+    Note that $z\in\orl\RR$ implies $\abs{z-a}=\abs{z-\orl a}$, hence it suffices that $\abs{K}=1\implies K=e^{i\theta}$.}
+    \ntg{The assumption that $T(a)=0$ provides no essential information, but it does us a head start by allowing us to assume $T(z)=K\frac{z-a}{z-\orl a}$. If we had started with $T(z)=K\frac{az+b}{cz+d}$, the computation could have been very nasty.}
+    It is also useful to consider its inverse
+    \[T^{-1}(z)=\frac{\orl az+ae^{i\theta}}{-z+e^{i\theta}}\]
+    \qed}
+\emp{(\tf{Unit disk to unit disk}) The M\"obius transformation
+    \[T(z)=e^{i\theta}\frac{z-a}{1-\orl az}\quad(\theta\in\RR,\ \abs{a}<1)\]
+    is such that it carries the unit disk to the unit disk and $a\mapsto0$. Conversely, all M\"obius transformations that carry the unit disk to itself have this form.
+    \prf{Same as above, since such a $T$ is invertible, some point $a:\abs{a}<1$ must be mapped to $0$, i.e., $T(a)=0$. By the property of preserving symmetric points, $T(1/\orl a)=\infty$. If $a\neq0$, then we have $T$ of the form
+    \mtha{T(z)&=&\wt K\frac{z-a}{z-1/\orl a}\\
+        &=&(-\wt K\orl a)\frac{z-a}{1-\orl az}\\
+        &=&K\frac{z-a}{1-\orl az}}
+    It remains to check
+    \[\abs{z}=1\implies\abs{T(z)}=1\]
+    Note that
+    \mtha{\abs{T(z)}&=&\abs{K}\frac{\abs{z-a}}{\abs{1-\orl az}}\\
+        &=&\abs{K}\sqrt{\frac{\abs{z}^2-\orl az-a\orl z+\abs{a}^2}{1-\orl az-a\orl z+\abs{az}^2}}\\
+        &=&\abs{K}\sqrt{\frac{1-\orl az-a\orl z+\abs{a}^2}{1-\orl az-a\orl z+\abs{a}^2}}\\
+        &=&\abs{K}}
+    Hence $\abs{K}=1$. If $a=0$ in the first place, we have $T(z)=e^{i\theta}z$, which is consistent with the previous result.}
+    \ntg{Two symmetric points with respect to the unit disk are such that $z_1\orl z_2=1\implies z_2=1/\orl z_1=\orl{1/z_1}=\orl{z^{-1}}$.}
+    Its inverse is
+    \[T(z)=\frac{z+ae^{i\theta}}{\orl az+e^{i\theta}}=e^{-i\theta}\frac{z+ae^{i\theta}}{\orl ae^{-i\theta}z+1}\]}
+\emp{(\tf{Real line to real line}) They have the form
+    \[f(z)=\frac{az+b}{cz+d}\quad(a,b,c,d\in\RR)\]
+    I have not quite understood the reasoning yet.}
+\end{subsection}
+\end{section}
+
+\begin{section}{Integration}
+\begin{subsection}{Definitions}
+\begin{description}
+\item[Bounded variation\index{variation!bounded}]A function $\gamma:[a,b]\to\CC$ is of \tf{bounded variation} if its variation with respect to a partition $\pi$ of the parameter interval $[a,b]$ is uniformly bounded with respect to $\pi$:
+    \[\sup_\pi v(\gamma,\pi)=\sup_\pi\sum_{i=1}^n\abs{\gamma(t_k)-\gamma(t_{k-1})}<\infty\]
+    This supremum is called the \tf{total variation}\index{variation!total} of $\gamma$ and is denoted by $V(\gamma)$.
+\item[Rectifiable curve\index{curve!rectifiable}]Let $\gamma:[\alpha,\beta]\to\CC$ be a curve. We say $\gamma$ is \tf{rectifiable} if $\gamma$ is of bounded variation. And its length is $V(\gamma)$.
+\item[Line integral\index{integral!line}\index{integral!complex}]Let $f$ be a complex function in $\Omega$ and $\gamma$ a rectifiable curve in it. The following limits, if they exist, will be given corresponding notations (on the left) as follows.
+    \itm{
+        \item[(i)]\tf{Line integral with respect to $z$}:
+            \[\int_\gamma f\,\dz=\lim_\pi\sum_{k=1}^n f(\gamma(\tau_k))(\gamma(t_k)-\gamma(t_{k-1}))\]
+        \item[(ii)]\tf{Line integral with respect to $\orl z$}:
+            \[\int_\gamma f\,\orl{\dz}=\orl{\int_\gamma\orl f\,\dz}\]
+        \item[(iii)]\tf{Line integral with respect to $x$ and $y$}:
+            \[\int_\gamma f\,\dx=\frac{1}{2}\prn{\int_\gamma f\,\dz+\int_\gamma f\orl{\dz}}\]
+            \[\int_\gamma f\,\dy=\frac{1}{2i}\prn{\int_\gamma f\,\dz-\int_\gamma f\orl{\dz}}\]
+        \item[(iv)]\tf{Line integral with respect to curve length}:
+            \[\int_\gamma f\abs{\dz}=\lim_{\pi}\sum_{k=1}^n f(\gamma(\tau_k))\abs{\gamma(t_k)-\gamma(t_{k-1})}\]
+    }
+\item[Cauchy's integral\index{integral!Cauchy}]Let $\gamma$ be a rectifiable curve and $f$ continuous on $\gamma$. The following function is called a \tf{Cauchy integral}
+    \[F(z)=\frac{1}{2\pi i}\int_\gamma\frac{f(\zeta)}{\zeta-z}\ud\zeta\]
+\item[Winding number\index{number!winding}]Let $\gamma$ be a rectifiable closed curve. We define for $z\notin\gamma$ the \tf{winding number} of $\gamma$ around $z$ to be
+    \[n(\gamma,z)=\frac{1}{2\pi i}\int_\gamma\frac{\ud\zeta}{\zeta-z}\]
+    \ntg{Need to verify that this is an integer.}
+    \sprf{May assume $\gamma$ is differentiable. Let
+        \[g(t)=\frac{1}{2\pi i}\int_0^t\frac{\ud\zeta}{\zeta-z}\]
+        Note that $2\pi ig(t)$ represents both radial and angular change, hence in a way, we can say $e^{2\pi ig(t)}=\gamma(t)-z$. It remains to prove that $e^{-2\pi ig(t)}(\gamma(t)-z)$ is a constant.}
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Propositions}
+\begin{description}
+\item[Variation of a differentiable curve]Let $\gamma(t)=u(t)+v(t),\ t\in[a,b]$ be a differentiable curve. Then its variation is
+    \[V(\gamma)=\int_\gamma\abs{\dz}=\int_a^b\abs{\gamma'(t)}\ud t=\int_a^b\sqrt{u^2+v^2}\ud t\]
+\item[Integrability]Let $\gamma$ be a rectifiable curve. If $f$ is defined and continuous on $\gamma$, then $f$ is integrable over $\gamma$
+\item[Integral of a derivative]Let $f$ have a primitive $F$. Then
+    \[\int_\gamma f\,\dz=\int_\gamma F'\,\dz=F(\gamma(b))-F(\gamma(a))\]
+\item[Corollary 1: path-independence]Let $f$ be continuous on $\gamma$. Then
+    \[\int_\gamma f\,\dz\ttt{ is path-independent }\iff f\ttt{ has a primitive}\]
+\item[Corollary 2: integration over a closed curve]Let $\gamma$ be any closed curve. If $f$ has a primitive, then
+    \[\int_\gamma f\,\dz=0\]
+\item[Conditions for constant]Such analytic functions can only be constants.
+    \itm{
+        \item[(i)](\tf{Zero derivative}) If $f'\equiv0$ in a domain, then $f\equiv c$.
+        \item[(ii)](\tf{Const real/imaginary part or modulus}) If $f$ is analytic in a domain $D$, then
+            \itm{
+                \item $\Re f\equiv c_1\implies f\equiv c$;
+                \item $\Im f\equiv c_2\implies f\equiv c$;
+                \item $\abs{f}\equiv c_3\implies f\equiv c$.
+            }
+        \item[(iii)](\tf{Entire, positive real part}) If $f\in H(\CC)$ and $\Re f(z)>0$, then $f\equiv c$.
+        \sprf{$e^{-f(z)}$ or $\frac{f(z)-1}{f(z)+1}$.}
+        \item[(iv)](\tf{Const modulus on the boundary}) Let $D$ be a bounded domain and $f\in H(D)\cap C(\orl D)$. If $f\neq0$ and $\abs{f}\equiv M$, then $f\equiv Me^{i\alpha}$.
+    }
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Theorems}
+\begin{description}
+\item[Lemma: Approximation by Polygon Chains]Let $\gamma$ be a rectifiable curve and $f$ a continuous function. Then for all $\vare>0$, there exists a polygon chain $\Gamma$ such that
+    \itm{
+        \item[(i)]$\Gamma$ and $\gamma$ have the same initial and end points. The vertices of $\Gamma$ are on $\gamma$;
+        \item[(ii)]$\abs{\int_\gamma f\,\dz-\int_\Gamma f\,\dz}<\vare$.
+    }
+\item[The Cauchy-Goursat Theorem\index{theorem!Cauchy}\index{theorem!Goursat}\index{theorem!Cauchy-Goursat}]The theorem is proven in steps. Part (i) to (iv) emphasizes on integrating over a closed curve, and (v) to (vi) consider integrals over homotopic paths. Let $D$ be a domain and $f$ an analytic function on $D$.
+    \itm{
+        \item[(i)]Let $\Delta$ be a triangle in $D$, then
+            \[\int_{\boun\Delta}f\,\dz=0\]
+        \ntg{The orientation of $\boun\Delta$ is consistent with that of $\Delta$, in the sense that it is considered as a manifold.}
+        \ntg{In the proof one needs to approximate the integral of $f$ by $\vare\abs{z-z_0}$. Note that their difference has integral $0$.}
+        \sprf{From this one can yield a contradiction.
+            \mtha{\abs{\int_{\boun\Delta_n}f\,\dz}&=&\abs{\int_{\boun\Delta_n}f(z)-f(z_0)-f'(z_0)(z-z_0)\dz}\\
+                &\leqs&\int_{\boun\Delta_n}\vare\abs{z-z_0}\abs{\dz}\\
+                &\leqs&\vare V(\boun\Delta_n)^2}
+        }
+        \item[(ii)]If $\gamma$ is a \emph{closed polygon chain} lying in some \emph{convex subdomain} of $D$, then
+            \[\int_\gamma f\,\dz=0\]
+        \item[(iii)]If $\gamma$ is a \emph{closed rectifiable curve} lying in \emph{some convex subdomain} of $D$, then
+            \[\int_\gamma f\,\dz=0\]
+        \item[(iv)]If $\gamma$ is a \emph{closed rectifiable curve} lying in \emph{some simply connected component} of $D$, then
+            \[\int_\gamma f\,\dz=0\]
+        \item[(v)]If $D$ is a \emph{domain whose boundary is a finite set of rectifiable curves}, and $f\in H(D)\cap C(\orl D)$, then
+            \[\int_{\boun D}f\,\dz=0\]
+        \item[(v)]If $\gamma_1,\gamma_2$ are two \emph{homotopic closed rectifiable curves} (in the sense that each intermediate curve is also closed) in $D$, then
+            \[\int_{\gamma_1}f\,\dz=\int_{\gamma_2}f\,\dz\]
+        \item[(vi)]If $\gamma_1,\gamma_2$ are two \emph{path-homotopic rectifiable curves} (that is, $\gamma_1,\gamma_2$ have the same endpoints and that the endpoints are fixed) in $D$, then
+            \[\int_{\gamma_1}f\,\dz=\int_{\gamma_2}f\,\dz\]
+        \item[(vii)]If $\gamma_0,\gamma_1,\cdots,\gamma_m$ are rectifiable simple closed curves in $\CC$ such that $\Int(\gamma_i)\subset\Int(\gamma_0)\ (i\geqs1),\ \Int(\gamma_i)\cap\Int(\gamma_j)=\varn\ (i\neq j\geqs1)$, then $D=\Int(\gamma_0)\backslash\bigcup_{i=1}^m\orl{\Int(\gamma_i)}$ is an open set. If moreover, $f\in H(D)\cap C(\orl D)$, then
+            \[\int_{\boun D}f(z)\,\dz=0\]
+    }
+\item[Cauchy's Integral Formula\index{integral!Cauchy}\index{formula!Cauchy's integral}]Let $\gamma$ be a rectifiable curve and $f$ a continuous function on $\gamma$.
+    \itm{
+        \item[(i)](\tf{The Cauchy integral}) The function
+            \[F(z)=\frac{1}{2\pi i}\int_\gamma\frac{f(\zeta)}{\zeta-z}\ud\zeta,\quad\forall z\notin\gamma\]
+            is infinitely differentiable.
+            \[F^{(n)}(z)=\frac{n!}{2\pi i}\int_\gamma\frac{f(\zeta)}{(\zeta-z)^{n+1}}\ud\zeta\]
+            \sprf{First prove that it is continuous by directly comparing $F(z)$ with $F(z_0)$ and note that $f$ is bounded. The differentiability also follows from direct computation:
+            \mtha{\lim_{z\to z_0}\frac{F(z)-F(z_0)}{z-z_0}&=&\lim_{z\to z_0}\frac{1}{2\pi i}\int_\gamma\frac{1}{z-z_0}\prn{\frac{f(\zeta)}{\zeta-z}-\frac{f(\zeta)}{\zeta-z_0}}\ud\zeta\\
+                &=&\lim_{z\to z_0}\frac{1}{2\pi i}\int_\gamma\frac{1}{(\zeta-z)}\frac{f(\zeta)}{(\zeta-z_0)}\ud\zeta\\
+                &=&\lim_{z\to z_0}\frac{1}{2\pi i}\int_\gamma\frac{f(\zeta)}{(\zeta-z_0)^2}\ud\zeta}
+            The general result follows from induction. Suppose
+            \[F^{(n)}(z)=\frac{n!}{2\pi i}\int_\gamma\frac{f(\zeta)}{(\zeta-z)^{n+1}}\ud\zeta\]
+            holds. Then
+            \mtha{&&\lim_{z\to z_0}\frac{F^{(n)}(z)-F^{(n)}(z_0)}{z-z_0}\\
+                &=&\lim_{z\to z_0}\frac{n!}{2\pi i}\int_\gamma\frac{\prn{(\zeta-z_0)^{n+1}-(\zeta-z)^{n+1}}f(\zeta)}{(z-z_0)(\zeta-z)^{n+1}(\zeta-z_0)^{n+1}}\ud\zeta\\
+                &=&\lim_{z\to z_0}\frac{n!}{2\pi i}\int_\gamma\frac{\prn{\sum_{k=0}^n(\zeta-z_0)^k(\zeta-z)^{n-k}}f(\zeta)}{(\zeta-z)^{n+1}(\zeta-z_0)^{n+1}}\ud\zeta\\
+                &=&\lim_{z\to z_0}\sum_{k=0}^n\frac{n!}{2\pi i}\int_\gamma\frac{f(\zeta)\ud\zeta}{(\zeta-z)^{k+1}(\zeta-z_0)^{n+1-k}}\\
+                &=&\frac{(n+1)!}{2\pi i}\int_\gamma\frac{f(\zeta)\ud\zeta}{(\zeta-z_0)^{n+2}}\\}
+            }
+        \item[(ii)](\tf{Cauchy's integral formula on a disk}) Let $f$ be analytic on $D$, $\orl B(z_0,R)\subset D$, then $\forall z\in B(z_0,R)$,
+            \[f(z)=\frac{1}{2\pi i}\int_{\boun B(z_0,R)}\frac{f(\zeta)}{\zeta-z}\ud\zeta\]
+            and $f$ is infinitely differentiable
+            \[f^{(n)}(z)=\frac{n!}{2\pi i}\int_{\boun B(z_0,R)}\frac{f(\zeta)}{(\zeta-z)^{n+1}}\ud\zeta\]
+            \sprf{Direct comparison.}
+        \item[(iii)](\tf{Cauchy's integral formula in a domain}) Let $D$ be a domain whose boundary consists of Jordan curves. Let $f\in H(D)\cap C(\orl D)$. Then for any $z\in D$,
+            \[f(z)=\frac{1}{2\pi i}\int_{\boun D}\frac{f(\zeta)}{\zeta-z}\ud\zeta\]
+            \[f^{(n)}(z)=\frac{n!}{2\pi i}\int_{\boun D}\frac{f(\zeta)}{(\zeta-z)^{n+1}}\ud\zeta\]
+        \item[(iv)](\tf{Cauchy's integral formula with a winding number}) Let $\gamma$ be a \emph{rectifiable closed curve homotopic to $0$} in a domain $D$. Let $f$ be analytic on $D$. Then for $z\notin\gamma$,
+            \[n(\gamma,z)f(z)=\frac{1}{2\pi i}\int_\gamma\frac{f(\zeta)\ud\zeta}{\zeta-z}\]
+            \sprf{By the definition of the winding number, $n(\gamma,z)=\frac{1}{2\pi i}\int_\gamma\frac{\ud\zeta}{\zeta-z}$. Then we have
+                \[n(\gamma,z)f(z)-\frac{1}{2\pi i}\int_\gamma\frac{f(\zeta)\ud\zeta}{\zeta-z}=\frac{1}{2\pi i}\int_\gamma\frac{(f(z)-f(\zeta))\ud\zeta}{\zeta-z}=0\]}
+        \item[(v)](\tf{Multiple paths}) Let $D$ be a domain and $\inds{\gamma}{n}{,}$ rectifiable closed curves in $D$ such that
+            \[\forall z\notin D,\ \sum_{k=1}^nn(\gamma_k,z)=0\]
+            Then
+            \[\forall z\in D\backslash\bigcup_{k=1}^n\gamma_k,\ \sum_{k=1}^nn(\gamma_k,z)f(z)=\frac{1}{2\pi i}\sum_{k=1}^n\int_{\gamma_k}\frac{f(\zeta)\ud\zeta}{\zeta-z}\]
+    }
+\item[Corollaries of the Cauchy integral formula]\
+    \itm{
+        \item[(i)](\tf{Analytic function is infinitely differentiable\index{function!analytic}\index{function!holomorphic}}) Let $f$ be analytic on $D$. Then for any $z_0\in D$, it holds in some neighborhood $B$ of $z_0$ that
+            \[f(z)=\frac{1}{2\pi i}\int_{\boun B}\frac{f(\zeta)}{\zeta-z}\ud\zeta\]
+            which is infinitely differentiable. A corollary is that is $f$ has a primitive, then $f$ is analytic.
+        \item[(ii)](\tf{Morera's theorem}\index{theorem!Morera}) Let $f$ be continuous in a domain $D$. If for any triangle $\Delta\subset D$,
+            \[\int_{\boun\Delta}f(z)\,\dz=0\]
+            then $f$ is analytic in $D$.
+            \sprf{In some neighborhood of any $z_0$ define
+                \[F(z)=\int_{z_0}^zf(\zeta)\,\ud\zeta\]
+                and verify $F'(z)=f(z)$.}
+            A corollary is that if $f$ is analytic maybe except at one point, and $f$ is continuous at that point, then $f$ is analytic everywhere.
+            \ntg{Also stated as: if $f$ is continuous in a domain $D$ and $\gamma$ in $D$ is a Jordan curve, enclosing a part within $D$, and $f$ has integral $0$ over any such $\gamma$, then $f$ is analytic in $D$.}
+            \ntg{AKA, the converse of Cauchy's theorem.}
+        \item[(iii)](\tf{Riemann's theorem of removable singularities\index{theorem!Riemann}\index{singularity!removable}}) If $f$ is analytic maybe except at one point, and $f$ is bounded near this point, then the point is a removable singularity (such that $f$ becomes analytic).
+            \sprf{Construct $g(z)=f(z)(z-z_0)$ ($z_0$ is the putative singularity), then $g$ is analytic. Then recreate $f(z)=g(z)/(z-z_0)$}
+            \ntg{Actually this means that $\lim_{z\to z_0}f(z)$ exists. After all,
+                \[\lim_{z\to z_0}f(z)=\lim_{z\to z_0}g(z)/(z-z_0)=\lim_{z\to z_0}f(z)(z-z_0)/(z-z_0)\]}
+        \item[(iv)](\tf{Cauchy's Estimate}\index{estimate!Cauchy}) If $f(z)$ is analytic in $\abs{z-a}<R$, and $\abs{f(z)}\leqs M$, then
+            \[\abs{f^{(n)}(a)}\leqs Mn!R^n\]
+        \item[(v)](\tf{Liouville's theorem}\index{theorem!Liouville}) A bounded entire function is a constant.
+            \sprf{Use Cauchy's integral to prove $f'\equiv0$.}
+        \item[(vi)](\tf{Fundamental theorem of algebra}) Any nonconstant complex polynomial has a complex root.
+            \sprf{Use Liouville's theorem on $1/P(z)$.}
+        \item[(vii)](\tf{Picard's little theorem}\index{theorem!Picard's little}) An entire function's range is either $\CC$, or $\CC\backslash\{c\}$, or $c$.
+        \item[(viii)](\tf{Maximum modulus principle}\index{principle!maximum modulus}) If $f$ is analytic in a domain $D$, and is not a constant, then $\abs{f}$ has no maximum value in $D$. For a harmonic function, both the local maximum and minimum do not exist.
+            \sprf{Let $M=\sup_{z\in D}\abs{f(z)}$. If $M\neq\infty$, then prove that $\{z\in D:f(z)=M\}$ is either empty or open.}
+        \item[(ix)](\tf{Schwarz's lemma}) If $f$ is analytic in $\abs{z}<1$, and $f(0)=0,\ \abs{f(z)}\leqs1$, then
+            \[\forall z:\abs{z}\leqs1,\ \abs{f(z)}\leqs\abs{z},\ \abs{f'(0)}\leqs1\]
+            and
+            \[\exists z_0:0<\abs{z_0}<1,\ \abs{f(z_0)}=\abs{z_0}\implies f(z)=e^{i\alpha}z\]
+            A corollary is if $f$ is analytic in $\abs{z}<R$ and $\abs{f(z)}\leqs M,\ f(0)=0$, then
+                \[\abs{f(z)}\leqs\frac{M}{R}\abs{z},\quad\abs{f'(0)}\leqs\frac{M}{R}\]
+            and the equality is achieved iff $f(z)=\frac{M}{R}e^{i\alpha}z$.
+            \sprf{Prove $\vphi(z)/z$ is analytic using Morera's theorem. Then estimate $\vphi(z)$ using Cauchy's integral.}
+            \ntg{The lemma says a analytic mapping of the unit disk into itself is compressing. And if there is another fixed point than $0$, then it is a rotation.}
+    }
+\end{description}
+\end{subsection}
+\end{section}
+
+\begin{section}{Sequences and Series}
+In this section, we talk about the convergence of sequences and series of complex functions, and the properties of the limit function.
+
+The first theorem sheds light on the zeros of a limit function.
+\thm{\tf{(Hurwitz)}\tf{\red{(Possibly fake)}} Let $f_n(z)$ be a sequence of analytic functions on a domain $D$ and converges uniformly to $f(z)$ on every compact subset of $D$. Then $f(z)$ is analytic on $D$. Moreover, if all $f_n$ have no zeros on $D$ then either $f$ has no zeros on $D$ or is identically $0$.}
+\prf{Use Rouch\'e's theorem.}
+
+\thm{\tf{(Hurwitz)} Let $f_n(z)$ be a sequence of analytic functions on a domain $D$ and converges uniformly to $f(z)$ on every compact subset of $D$. If $f(z)$ is not identically $0$ in some closed ball $\orl B$ in $D$, and $f(z)$ has no zero on $\boun B$ then for all sufficiently large $n$, $f$ and $f_n$ has the same number of zeros in $B$.}
+\prf{Not yet.}
+
+\thm{Let $\{f_n(z)\}$ be a series of complex functions, the following are true.
+    \itm{
+        \item[(i)]If $f_n(z)$ are continuous on the rectifiable curve $\gamma$, and the series $f(z)=\sum_{n=1}^\infty f_n(z)$ converges uniformly on $\gamma$, then the termwise integral formula holds.
+            \[\int_\gamma\sum_{n=1}^\infty f_n(z)\dz=\sum_{n=1}^\infty\int_\gamma f_n(z)\dz\]
+        \item[(ii)]If $f_n(z)$ are analytic in the domain $D$ and the series $f(z)=\sum_{n=1}^\infty f_n(z)$ converges uniformly in every compact subset of $D$, then the termwise differential formula holds.
+            \[f^{(k)}(z)=\sum_{n=1}^\infty f_n^{(k)}(z)\]
+            whose convergence is also uniform on every compact subset of $D$.
+}}
+\prf{\
+    \itm{
+        \item[(i)]By direct comparison.
+        \item[(ii)]First we prove $f(z)$ is analytic, this follows from the termwise integral and Morera's theorem. Then
+}}
+\end{section}
+
+\begin{section}{Conformal Mappings}
+\begin{subsection}{Riemann Mapping Theorem}
+Let $\mcl F$ be a family of functions $D\to\CC$. We say $\mcl F$ is \tf{equicontinuous}\footnote{I call this uniformly uniformly continuous, first uniform for points and second uniform for functions.} if for any $\vare>0$, there exists $\delta>0$ such that $\abs{f(z_1)-f(z_2)}<\vare$ whenever $\abs{z_1-z_2}<\delta$ and $f\in\mcl F$. The family $\mcl F$ is called \tf{uniformly bounded} if there exists $M>0$ such that all $f\in\mcl F$ are bounded by $M$.
+
+Before we start we need the following preparations in topology.
+\lem{For any compact metric space $X$, there exists a countable Vitali covering and hence a countable dense subset of $X$.}
+\prf{Consider the families of balls.
+    \[\mcl{\wt{B}}_n=\{B(x,1/n):x\in X\}\]
+    Each $\mcl{\wt B}_n$ is an open covering of $X$. Since $X$ is compact, we can extract a finite covering $\mcl B_n$ of $X$. Then $\mcl B=\bigcup_{n=1}^\infty \mcl B_n$ is a Vitali covering. Indeed, for any $x\in X$ and $\eta>0$, we choose $n>\frac{1}{\eta}$ then there exists a ball $B$ in $\mcl B_n$ (hence in $\mcl B$ as well) that covers $x$ with radius less than $\eta$. The centers of these balls obviously form a countable dense subset of $X$.}
+
+\lem{Any open subset $D$ of $\RR^n$ has a compact exhaustion.}
+\prf{Let $K_n=\orl{B(0,n)}\cap\{z\in D:d(z,\boun D)\geqs\frac{1}{n}\}$. Then $K_n$ is compact and $\bigcup_{n=1}^\infty K_n=D$. Moreover we have $K_n\subset\itr{K_{n+1}}$.}
+
+\thm{\tf{(Arzel\`a-Ascoli)}For any compact metric space $X$, if $\{f_n\}$ is a sequence of continuous functions from $X$ to $\CC$ that is uniformly bounded and equicontinuous, then $\{f_n\}$ has a uniformly convergent subsequence.}
+\prf{First there exists a dense subset $P$ of $X$. Next we use the diagonal method to prove that there exists a subsequence $\{f_{n_k}\}$ that converges in $P$. To prove the uniform convergence of this sequence on $X$, we use estimate
+\[\abs{f_{n_k}(z)-f_{n_j}(z)}\leqs\abs{f_{n_k}(z)-f_{n_k}(a)}+\abs{f_{n_k}(a)-f_{n_j}(a)}+\abs{f_{n_j}(a)-f_{n_j}(z)}\]
+We want the first and the third term to be estimated by the equicontinuity and the second term estimated by the convergence at $a$. To achieve this, we must have $\abs{a-z}<\delta$ and $a\in P$. Both can be achieved because $P$ is dense (the uniformity needs extra but little work).}
+
+Now we turn to the discussion of Arzel\`a-Ascoli's theorem in the complex analysis setting.
+\thm{If $\{f_n\}$ are continuous functions defined in a domain $D\subset\CC$ and the family is equicontinuous and uniformly bounded in any compact subset $K$ of $D$, then it contains a subsequence that converges uniformly in any compact subset $K$ of $D$.}
+\prf{Let $K_n$ be a compact exhaustion of $D$. Then we have subsequences $\{f_{m_{1k}}\},\{f_{m_{1k}}\},\cdots,\{f_{m_{jk}}\},\cdots$ such that $\{f_{m_{jk}}\}$ converges uniformly $K_j$. If we use the diagonal method again for all the $K_n$ then the theorem is proved.}
+
+\thm{\tf{(Montel\footnote{Basically Montel's theorem says analytic and uniformly bounded implies equicontinuous (on any compact subset).})} Let $\{f_n\}$ be a sequence of analytic functions on $D$ that is uniformly bounded on any compact subset of $D$, then there exists a subsequence that converges uniformly on any compact subset of $D$.}
+\prf{It suffices to prove it is equicontinuous\footnote{Youjin took a finite subcovering, but I don't think it is right.}. First finding a intermediate compact subset is the right way.}
+
+\thm{\tf{(Koebe)} Let $D=B(0,1)$ and $\Omega\subset D$ a domain in $D$ such that
+    \itm{
+        \item[(a)]$\Omega\subsetneqq D$
+        \item[(b)]$0\in\Omega$
+        \item[(c)]For any analytic $f:\Omega$ with $f\neq0$ everywhere in $\Omega$ there exists a branch of $\sqrt{f}$.
+    }
+    Then there exists an analytic function $\tau$ such that
+    \itm{
+        \item[(i)]$\tau(0)=0,\ \tau(\Omega)\subset D$
+        \item[(ii)]$\tau$ is analytic and univalent.
+        \item[(iii)]$0\neq z\in\Omega\implies\abs{\tau(z)}>\abs{z}$
+        \item[(iv)]$\abs{\tau'(0)}>1$
+    }
+}
+\prf{Take any $a\in D\backslash\Omega$ and let $\vphi_a(z)=\frac{z-a}{1-\orl az}$. Then $\tau=\vphi_b\comp\sqrt{\cdot}\comp\vphi_a$ is the desired mapping. As to (iii), consider the continuation of $\tau^{-1}$ and use Schwarz's lemma.}
+
+\thm{\tf{(Riemann)} Let $\Omega\subset\CC$ be a domain such that
+    \itm{
+        \item[(a)]$\Omega\subsetneqq\CC$
+        \item[(b)]For any analytic $f:\Omega$ with $f\neq0$ everywhere in $\Omega$ there exists a branch of $\sqrt{f}$.
+    }
+    Then $\Omega$ is holomorphically equivalent to $D=B(0,1)$.}
+\prf{Suppose $0\in\Omega$ by translation. Take $0\neq z_1\in\Omega$. Consider the family \tf{\red{(Q: How to show $\mcl A$ is nonempty)}}
+    \[\mcl A=\{h:\Omega\to D,\ h(0)=0,\ h\ttt{ is analytic and univalent}\}\]
+    Since each $h\in\mcl A$ is univalent and $h(0)=0$, we have $h(z_1)\neq0\implies0<\alpha=\sup_{h\in\mcl A}\abs{h(z_1)}\leqs1$. By the definition of $\alpha$, there exists a sequence $f_n\in\mcl A$ that is uniformly bounded (by assumption $\abs{h(z)}\leqs1$ and analytic). By Montel's theorem there exists subsequence $f_{n_k}$ converging to some $F(z)$ uniformly on every compact subset of $\Omega$, with $F(z)$ analytic, $F(0)=0$ and $\abs{F(z_1)}=\alpha$. Hence $F$ is not constant, then by Hurwitz's theorem \red{(Why?)} $F$ is univalent on $\Omega$.}
+
+\cor{\tf{(Riemann)} Any simply connected domain $\Omega\subsetneqq\CC$ is holomorphically equivalent.}
+\prf{One can do the square root on any simply connected domain.}
+
+\cor{\tf{(Riemann)} Let $\Omega\subsetneqq\CC$ be a simply connect domain. Among all the holomorphic equivalences $f:\Omega\to D=B(0,1)$, the one such that $f(a)=0,\ f'(a)>0$ exists and is unique. Moreover if $F(z)=\frac{f(z)}{f'(a)}$, then $F:\Omega\to B(0,\frac{1}{f'(a)})$ is a holomorphic equivalence with $F(a)=0,\ F'(a)=1$.}
+\prf{Existence: easy. Uniqueness: suppose $f,g$ both satisfies that, then consider $f\comp g^{-1}$ and $g\comp f^{-1}$.}
+The radius $R=\frac{1}{f'(a)}$ of the image of $F$ above is called the \tf{radius} of $\Omega$ with respect to $a$.
+\end{subsection}
+\end{section}
+\printindex
+\end{document}
