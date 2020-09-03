@@ -1,0 +1,775 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{geometry,xcolor,layout,amssymb,amsthm,amsmath,mathrsfs,graphicx,centernot,textcomp,galois,extarrows,bbm,dsfont,makeidx,empheq}
+\usepackage[normalem]{ulem}
+\usepackage[all]{xy}
+
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{prp}{Proposition}[section]
+\newtheorem{theom}{Theorem}[section]
+\newtheorem{coro}{Corollary}[section]
+
+\theoremstyle{definition}
+\newtheorem{eg}{Example}[section]
+\newtheorem{ct}{\textcolor{cyan}{Counterexample}}[section]
+\newtheorem*{pf}{\blue{Proof}}
+\newtheorem{question}{Q}[section]
+\newtheorem{dfn}{Definition}[section]
+\newtheorem{probl}{Problem}[section]
+\newtheorem{nt}{\cg{Note}}[section]
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}[section]
+
+\newcommand*\widefbox[1]{\fbox{\vspace{2em}\hspace{2em}#1\hspace{2em}}}
+\setlength\fboxsep{0.2cm}
+
+\newcommand{\tick}{\textcolor{red}{\checkmark}}
+\newcommand{\bs}{\backslash}
+\newcommand{\udots}{\mathinner{\mskip 1mu\raise 1pt\vbox{\kern 7pt\hbox{.}}
+\mskip 2mu\raise 4pt\hbox{.}\mskip 2mu\raise 7pt\hbox{.}\mskip 1mu}}
+\newcommand{\wot}{\backslash}
+\newcommand{\geqs}{\geqslant}
+\newcommand{\leqs}{\leqslant}
+\newcommand{\Var}{{\rm Var}}
+\newcommand{\sdd}{\sigma}
+\newcommand{\mD}{\mcl D}
+\newcommand{\mP}{\mcl P}
+\newcommand{\ga}{\got a}
+\newcommand{\gb}{\got b}
+\newcommand{\gc}{\got c}
+\newcommand{\gp}{\got p}
+\newcommand{\gq}{\got q}
+\newcommand{\gm}{\got m}
+\newcommand{\lst}{L^{s,t}}
+\newcommand{\EE}{\mathbb{E}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\FF}{\mathbb{F}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\rsa}{\sigma(f;\pi,\xi)}
+\newcommand{\wlg}{{\rm w.l.o.g.}}
+\newcommand{\spn}{{\rm span}}
+\newcommand{\rank}{{\rm rank}}
+\newcommand{\nul}{{\rm null}}
+\newcommand{\disc}{{\rm disc}}
+\newcommand{\im}{{\rm Im}}
+\newcommand{\coker}{{\rm Coker}}
+\newcommand{\coim}{{\rm Coim}}
+\newcommand{\ud}{{\rm d}}
+\newcommand{\Log}{{\rm Log}}
+\newcommand{\lub}{{\rm lub}}
+\newcommand{\glb}{{\rm glb}}
+\newcommand{\supp}{{\rm supp}}
+\newcommand{\Div}{{\rm Div}}
+\newcommand{\dx}{\ud x}
+\newcommand{\dy}{\ud y}
+\newcommand{\dz}{\ud z}
+\newcommand{\dmu}{\ud\mu}
+\newcommand{\x}{\times}                     %乘号
+\newcommand{\ox}{\otimes}
+\newcommand{\op}{\oplus}
+\newcommand{\p}{\prime}
+\newcommand{\fctr}{\Rightarrow}
+\newcommand{\unito}{\rightrightarrows}
+\newcommand{\lbint}{\int\!\!\!\int}      %二重积分号
+\newcommand{\bint}{\int\!\!\!\!\int}      %二重积分号
+\newcommand{\tint}{\int\!\!\!\!\int\!\!\!\!\int}      %三重积分号
+\newcommand{\apr}{\approx}
+\newcommand{\prdn}{\prod\limits_{n=1}^\infty}
+\newcommand{\sumn}{\sum\limits_{n=1}^\infty}
+\newcommand{\sump}{\sum\limits_{n=0}^\infty}
+\newcommand{\limn}{\lim\limits_{n\to\infty}}
+\newcommand{\limx}{\lim\limits_{x\to+\infty}}
+\newcommand{\operp}{\stackrel{\perp}{\oplus}}
+\newcommand{\const}{{\rm const}}
+\newcommand{\codim}{{\rm codim}}
+\newcommand{\sgn}{{\rm sgn}}
+\newcommand{\ann}{{\rm Ann}}
+\newcommand{\chr}{{\rm \,char\,}}
+\newcommand{\tr}{{\rm Tr}}
+\newcommand{\sym}{{\rm Sym}}
+\newcommand{\centr}{{\rm Centr}}
+\newcommand{\Sp}{{\rm Sp}}              %symplectic
+\newcommand{\id}{{\rm id}}
+\newcommand{\Obj}{\mf{Obj}}
+\newcommand{\Mor}{\mf{Mor}}
+\newcommand{\Perm}{{\rm Perm}}
+\newcommand{\Hom}{{\rm Hom}}
+\newcommand{\Aut}{{\rm Aut}}
+\newcommand{\Inn}{{\rm Inn}}
+\newcommand{\End}{{\rm End}}
+\newcommand{\re}{{\rm Re}}
+\newcommand{\diag}{{\rm diag}}
+\newcommand{\grad}{{\rm grad\,}}
+\newcommand{\dive}{{\rm div\,}}
+\newcommand{\rot}{{\rm rot\,}}
+\newcommand{\curl}{{\rm curl\,}}
+\newcommand{\free}{{\rm free}}
+\newcommand{\tor}{{\rm tor}}
+\newcommand{\rad}{{\rm rad}}
+\newcommand{\nilrad}{{\rm nilrad}}
+\newcommand{\ord}{{\rm ord}}
+\newcommand{\irr}{{\rm Irr}}
+\newcommand{\cl}{{\rm cl}}
+\newcommand{\Cl}{{\rm Cl}}
+\newcommand{\fix}{{\rm fix}}
+\newcommand{\boun}{\partial}
+\newcommand{\into}{\hookrightarrow}
+\newcommand{\varn}{\varnothing}
+\newcommand{\vare}{\varepsilon}
+\newcommand{\vphi}{\varphi}
+\newcommand{\diam}{{\rm diam}}
+\newcommand{\vect}{{\rm Vect}}
+\newcommand{\isom}{\stackrel{\cong}{\longrightarrow}}
+\newcommand{\dfas}{\triangleq}
+\newcommand{\st}{{\rm\quad s.t.\quad}}
+\newcommand{\lapla}{\Delta}
+\newcommand{\divd}{\big|}
+\makeatletter
+\newcommand{\lambdabar}{{\mathchoice
+  {\smash@bar\textfont\displaystyle{0.25}{1.2}\lambda}
+  {\smash@bar\textfont\textstyle{0.25}{1.2}\lambda}
+  {\smash@bar\scriptfont\scriptstyle{0.25}{1.2}\lambda}
+  {\smash@bar\scriptscriptfont\scriptscriptstyle{0.25}{1.2}\lambda}}}
+\newcommand{\smash@bar}[4]{%
+  \smash{\rlap{\raisebox{-#3\fontdimen5#10}{$\m@th#2\mkern#4mu\mathchar'26$}}}}
+\makeatother
+
+
+\newcommand{\res}[2]{\left.#1\right|_{#2}}
+\newcommand{\rsb}[3]{\sigma(#1;#2,#3)}      %Riemann sum with arguments
+\newcommand{\derv}[2]{\frac{\ud#1}{\ud#2}}
+\newcommand{\parf}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\secpf}[3]{\frac{\partial^2 #1}{\partial #2\partial #3}}
+\newcommand{\comb}[2]{\binom{#1}{#2}}       %组合数
+\newcommand{\norm}[1]{\left\lVert #1\right\rVert}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\brc}[1]{\left\{#1\right\}}
+\newcommand{\brk}[1]{\left\langle#1\right\rangle}
+\newcommand{\prn}[1]{\left(#1\right)}
+\newcommand{\sqb}[1]{\left\lbrack#1\right\rbrack}
+\newcommand{\dbk}[1]{\langle\!\langle#1\rangle\!\rangle}
+\newcommand{\inprod}[1]{\langle#1\rangle}
+\newcommand{\itr}[1]{#1^\circ}           %内部,interior
+\newcommand{\cmp}[1]{#1^c}               %补集,complement
+\newcommand{\cnts}[3]{#1#3\cdots#3#2}
+\newcommand{\inds}[3]{#1_{1}#3\cdots#3#1_{#2}}
+\newcommand{\dindx}[4]{#1{#2}#4\cdots#4#1{#3}}
+\newcommand{\dinds}[4]{#1_{#2}#4\cdots#4#1_{#3}}
+\newcommand{\vct}[1]{\overrightarrow{#1}}
+\newcommand{\simlr}[2]{#2^{-1}#1#2}     %相似
+\newcommand{\congt}[2]{\ts{#2}#1#2}     %相合
+\newcommand{\ccong}[2]{\cts{#2}#1#2}    %共轭相合
+\newcommand{\rcong}[2]{\ts{#2}#1\orl{#2}}    %右共轭相合
+\newcommand{\ts}[1]{#1^{\rm T}}
+\newcommand{\cts}[1]{\orl{#1}^{\rm T}}   %共轭转置
+\newcommand{\wt}[1]{\widetilde{#1}}
+\newcommand{\bss}[2]{\inds{#1}{#2}{,}}
+\newcommand{\unitob}[1]{\mathop{\rightrightarrows}\limits_{#1}}
+\newcommand{\limb}[1]{\lim\limits_{#1}}
+\newcommand{\limp}[2]{\lim\limits_{#1\to#2}}
+\newcommand{\mapn}[5]{\arr{{ccrcl}#1&:&#2&\to&#3\\&&#4&\mapsto&#5}}
+\newcommand{\map}[4]{\arr{{rcl}#1&\to&#2\\#3&\mapsto&#4}}
+
+\newcommand{\mth}[1]{\begin{displaymath}#1\end{displaymath}}
+\newcommand{\mtha}[1]{\begin{eqnarray*}#1\end{eqnarray*}}
+\newcommand{\arr}[1]{\begin{array}#1\end{array}}
+\newcommand{\lem}[1]{\begin{lemma}#1\end{lemma}}
+\newcommand{\prf}[1]{\begin{pf}#1\end{pf}}
+\newcommand{\ques}[1]{\begin{question}#1\end{question}}
+\newcommand{\sprf}[1]{\begin{pf}\cb{#1}\end{pf}}
+\newcommand{\df}[1]{\begin{dfn}#1\end{dfn}}
+\newcommand{\ntg}[1]{\begin{nt}\cg{#1}\end{nt}}
+\newcommand{\mat}[1]{\begin{matrix}#1\end{matrix}}
+\newcommand{\matp}[1]{\prn{\begin{matrix}#1\end{matrix}}}
+\newcommand{\itm}[1]{\begin{itemize}#1\end{itemize}}
+\newcommand{\enu}[1]{\begin{enumerate}#1\end{enumerate}}
+\newcommand{\desc}[1]{\begin{description}#1\end{description}}
+\newcommand{\tmth}[1]{\begin{displaymath}\ttt{#1}\end{displaymath}}
+\newcommand{\thm}[1]{\begin{theom}#1\end{theom}}
+\newcommand{\emp}[1]{\begin{eg}#1\end{eg}}
+\newcommand{\rmk}[1]{\begin{remark}#1\end{remark}}
+\newcommand{\pbl}[1]{\begin{probl}#1\end{probl}}
+\newcommand{\prop}[1]{\begin{prp}#1\end{prp}}
+\newcommand{\cor}[1]{\begin{coro}#1\end{coro}}
+\newcommand{\eqn}[1]{\begin{equation}#1\end{equation}}
+\newcommand{\eqna}[1]{\begin{eqnarray}#1\end{eqnarray}}
+
+
+\newcommand{\clr}[1]{\textcolor{red}{#1}}   %红色
+\newcommand{\cb}[1]{\textcolor{blue}{#1}}   %蓝色
+\newcommand{\cg}[1]{\textcolor{magenta}{#1}}%紫色
+\newcommand{\cy}[1]{\textcolor{cyan}{#1}}
+\newcommand{\hlg}[1]{\cg{\udl{#1}}}
+\newcommand{\hlb}[1]{\cb{\udl{#1}}}
+\newcommand{\hlr}[1]{\clr{\udl{#1}}}
+
+\newcommand{\mf}{\mathbf}
+\newcommand{\tf}{\textbf}
+\newcommand{\hlt}[1]{\textbf{\red{#1}}}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+
+\newcommand{\nm}[1]{{\rm#1}}                %竖体
+\newcommand{\ttt}{\textrm}
+\newcommand{\mhb}[1]{\mathbb{#1}}
+\newcommand{\mcl}[1]{\mathcal{#1}}
+\newcommand{\flr}[1]{\mathscr{#1}}
+\newcommand{\got}[1]{\mathfrak{#1}}
+\newcommand{\orl}[1]{\overline{#1}}
+\newcommand{\udl}[1]{\underline{#1}}
+\newcommand{\uudl}[1]{\uuline{#1}}
+\newcommand{\wudl}[1]{\uwave{#1}}
+
+%%%%%%%%%%%%%PHYSICS CONSTANTS
+\newcommand{\cstk}{\frac{1}{4\pi\vare_0}}
+\newcommand{\cstm}{\frac{\mu_0}{4\pi}}
+
+\renewcommand{\ker}{{\rm Ker}}
+\renewcommand{\Re}{{\rm Re}}
+\renewcommand{\Im}{{\rm Im}}
+\renewcommand{\S}{S^{-1}}
+
+\makeindex
+\title{Algebra Number Theory}
+\author{TRISCT}
+\date{}
+\begin{document}
+\maketitle
+\tableofcontents
+Fields are algebraic number fields unless otherwise specified. And they are usually denoted by $K$.
+\begin{section}{Preliminary Topics}
+\begin{subsection}{Algebraic Number Field}
+\begin{description}
+\item[Algebraic number field\index{number field!algebraic}]A finite extension field of $\QQ$ is called an \tf{algebraic number field}. Its elements are called \tf{algebraic numbers}\index{number!algebraic}.
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Cayley-Hamilton's Theorem}
+The statement is as follows.
+\thm{Let $M$ be a finitely generated module over a commutative ring with identity $R$ and let $\phi$ be an endomorphism on $R$. Then
+    \itm{
+        \item[(i)]If $x_1,\cdots,x_n$ are generators of $M$, and we write
+            \[\phi(x_i)=\sum_{j=1}^na_{ij}x_j,\quad a_{ij}\in R\]
+            then $f(t)=\det(tI-A)$ is an annihilating polynomial of $\phi$, where $A=(a_{ij})$.
+        \item[(ii)]If moreover there exists an ideal $\ga\subset R$ such that $\phi(M)\subset\ga M$, then we may choose
+            \[f(t)\in\ga[t]\]
+    }
+}
+\prf{\itm{
+    \item[(i)]It suffices to prove that $f(\phi)(x_i)=0$ for all $i$. We start by writing
+        \[\phi(x_i)=\sum_{j=1}^na_{ij}x_j,\quad a_{ij}\in R\]
+        in the matrix form:
+        \[\matp{\phi(x_1)&&\\&\ddots&\\&&\phi(x_n)}
+            =\matp{\phi&&\\&\ddots&\\&&\phi}\matp{x_1\\\vdots\\x_n}
+            =\matp{a_{11}&\cdots&a_{1n}\\\vdots&\ddots&\vdots\\a_{n1}&\cdots&a_{nn}}\matp{x_1\\\vdots\\x_n}\]
+        \[\implies\matp{\phi-a_{11}&\cdots&-a_{1n}\\\vdots&\ddots&\vdots\\-a_{n1}&\cdots&\phi-a_{nn}}\matp{x_1\\\vdots\\x_n}=(\phi I-A)\matp{x_1\\\vdots\\x_n}=\matp{0\\\vdots\\0}\]
+        Multiply this on the left by the adjugate matrix $(\phi I-A)^*$ and we obtain
+        \[\det(\phi I-A)I\matp{x_1\\\vdots\\x_n}=\matp{0\\\vdots\\0}\implies\det(\phi I-A)x_i=0\ttt{ for each }i\]
+        \[\implies\det(\phi I-A)=0\]
+    \item[(ii)]By assumption we may choose $a_{ij}\in\ga$, which finishes the proof.}}
+
+\emp{\label{cht}One application of this theorem is to give a criterion on whether a number is an algebraic integer. If one can find a (nonzero) finitely generated $\ZZ$-module $M$ in an algebraic number field $K$, such that the multiplication mapping $a:x\mapsto ax$ by some $a\in K$ from $M$ is into $M$, then $a$ is an algebraic integer. Furthermore, we may use this to prove that all algebraic integers form a ring. Let $a,b$ be algebraic integers and consider the ring and $\ZZ$-module $\ZZ[a,b]$. If is finitely generated by $a^ib^j$ (degrees are finite, because $a,b$ are algebraic). Then each element in $\ZZ[a,b]$ is an algebraic integer, and so are $a-b$ and $ab$.\qed}
+\end{subsection}
+
+
+\begin{subsection}{Riesz Representation Theorem}
+\index{theorem!Riesz}
+This section discusses the use of the following theorem.
+\thm{Let $V$ be a finite-dimensional nonsingular\footnote{In a vector space $V$ over $F$ equipped with a bilinear form $\inprod{\cdot,\cdot}$ (either symmetric, skew-symmetric or alternate), a vector $v$ is call \tf{degenerate}\index{vector!degenerate} if $\inprod{v,\cdot}=0\in V^*$. The set of all degenerate vectors is called the \tf{radical}\index{radical!of a vector space} of $V$, denoted by $\rad{V}=V^\perp$. If $\rad V=0$, then $V$ is called \tf{nonsingular} or \tf{nondegenerate}, otherwise \tf{singular} or \tf{degenerate}.} vector space equipped with a bilinear form $\inprod{\cdot,\cdot}$ (either symmetric, skew-symmetric or alternate). Then the mapping
+\[\mapn{\tau}{V}{V^*}{x}{\inprod{x,\cdot}}\]
+is an isomorphism $V\cong V^*$. It follows that each $f\in V^*$ can be represented uniquely by its \tf{Riesz vector}\index{vector!Riesz}.}
+
+The following example shows that the ring $R$ of algebraic numbers of an algebraic number field $K$ is finitely generated.
+\emp{\label{aim}Let $K$ be an algebraic number field and consider the bilinear form
+\[\mapn{\inprod{\cdot,\cdot}}{K\x K}{\QQ}{(x,y)}{\tr_{K/\QQ}(xy)}\]
+and the homomorphism it induces
+\[\mapn{\vphi}{K}{K^*}{x}{\tr_{K/\QQ}(x(\cdot))}\]
+The bilinear form is symmetric and nondegenerate because if $x\neq0$, then $\inprod{x,1/x}=\tr_{K/\QQ}(1)=[K:\QQ]\neq0$. It follows that $\vphi$ is an isomorphism between $K$ and $K^*$ (because $K/\QQ$ is finite dimensional). Since $K$ is finite dimensional, any basis $\inds{e}{n}{,}$ in $K$ has a dual basis $\inds{e^*}{n}{,}$ in $K^*$, which, by the isomorphism $\vphi$ induced by the nondegenerate bilinear form $\tr_{K/\QQ}(xy)$, in turn corresponds to a basis $\inds{f}{n}{,}$ in $K$ (such that $\vphi_{f_i}=e_i^*$).
+
+In short, given a basis $\inds{e}{n}{,}$ of $K$ we can find another basis $\inds{f}{n}{,}$ of $K$ such that $\inprod{e_i,f_j}=\delta_{ij}$.
+
+Let $\inds{e}{n}{,}$ be a basis of any order $\mcl O$ (hence also a basis of $K/\QQ$). From what we just proved there is a corresponding basis $\inds{f}{n}{,}$ of $K$ such that $\inprod{e_i,f_j}=\delta_{ij}$. We shall prove that $R$ is generated by $\inds{f}{n}{,}$ over $\ZZ$
+
+The most direct approach is to compute the component of an arbitrary $x\in R$ with respect to $f_j$ by
+\[x=\sum_{j=1}^nx_jf_j\implies x_i=\tr_{K/\QQ}(xe_i)\in\ZZ\]
+\ntg{Note that any element in an order is an algebraic integer, and that the product of two algebraic integers is also an algebraic integer.}
+\ntg{This whole proof relies on only three conditions. (i) $K$ is an algebraic number field; (i) $\tr_{K/\QQ}$ is nondegenerate; (iii) Any order is full of algebraic integers and algebraic integers form a ring.}\qed}
+\end{subsection}
+
+\begin{subsection}{The Discriminant}
+\label{disc}
+Let $K$ be an algebraic number field. From Example.\ref{aim}., we know any $x\in K$ has the coordinate $x=\sum_{j=1}^n\tr(xe_j)f_j$ (the extension $K/\QQ$ of $\tr$ is omitted) under the dual basis $f_j$ of $e_i$. Then we have a transition matrix from $e_i$ to $f_j$:
+\mtha{\matp{e_1\\\vdots\\e_n}&=&\matp{\sum_{j=1}^n\tr(e_1e_j)f_j\\\vdots\\\sum_{j=1}^n\tr(e_ne_j)f_j\\}
+    =\matp{\tr(e_1e_1)&\cdots&\tr(e_1e_n)\\\vdots&\ddots&\vdots\\\tr(e_ne_1)&\cdots&\tr(e_ne_n)\\}\matp{f_1\\\vdots\\f_n}\\
+    &=&\prn{\tr(e_ie_j)}\matp{f_1\\\vdots\\f_n}}
+The transition matrix between two bases has a nonzero determinant, which is defined to be the \tf{discriminant}\index{discriminant} of the basis $e_i$.
+
+The \tf{discriminant} of a full module $M$ in $K$ is defined as the discriminant of one of its bases.
+\[\Delta(M)=\disc(M)=\det\prn{\tr(e_ie_j)}\]
+for any basis $e_i$ of the module. One can verify that this is invariant under a change of basis. Let $e_i'$ be another basis for $M$, then the transition matrix\footnote{Such that $\prn{\inds{e'}{n}{,}}^T=A\prn{\inds{e}{n}{,}}^T$} $A=(a_{ij})$ from $e_i$ to $e_i'$ has determinant $\pm1$, hence
+\mtha{\det\prn{\tr(e_i'e_j')}&=&\det\prn{\tr{\prn{\sum_{t=1}^na_{it}e_t}\prn{\sum_{s=1}^na_{js}e_s}}}\\
+    &=&\det\prn{\sum_{t=1}^na_{it}\sum_{s=1}^na_{js}\tr(e_te_s)}\\
+    &=&\det\prn{A\cdot\tr(e_ie_j)\cdot A^T}\\
+    &=&\det(A)^2\det\prn{\tr(e_ie_j)}\\
+    &=&\det\prn{\tr(e_ie_j)}}
+
+The \tf{discriminant} of an algebraic number field is the discriminant of its ring of algebraic integers.
+\end{subsection}
+
+\begin{subsection}{Lattices in $\RR^n$}
+\label{ltcr}
+We begin with the definitions and properties.
+\desc{
+    \item[Discrete set\index{discrete}]A set $D$ in a topological space $X$ is called \tf{discrete} if the induced topology on $D$ is the discrete topology\footnote{I think Fu has added in the definition that a discrete set is by default closed, but the Internet says otherwise.}, or equivalently, $D$ has only isolated points. We have the following criterion. Let $X$ be a metric space and $D\subset X$. Then
+        \mtha{
+            &&D\ttt{ is closed and discrete}\\
+            &\iff&\ttt{for any bounded set }B\subset X,\ D\cap B\ttt{ is finite}\\
+            &\iff&D\ttt{ has no limit point in $X$}}
+    \item[Lattice\index{lattice!in $\RR^n$}]A \tf{lattice} in $\RR^n$ is a set of the form
+        \[L=\ZZ e_1+\cdots+\ZZ e_m\]
+        with linearly independent generators $\inds{e}{m}{,}$ and integer coefficients. A lattice in $\RR^n$ is called \tf{full} if it has a basis of $\RR^n$, i.e., $n$ linearly independent vectors.
+}
+We now move to the most important proposition of this section.
+\thm{Any lattice in $\RR^n$ is discrete.\label{lid}}
+\prf{Let $L=\inds{\ZZ e}{m}{+}$ be a lattice in $\RR^n$. Since $\inds{\ZZ e}{m}{,}$ are linearly independent, we can expand them to a basis $\inds{\ZZ e}{n}{,}$ of $\RR^n$. Then we have an isomorphism (as vector spaces)
+\[\mapn{\vphi}{\RR^n}{\RR^n}{(\inds{\lambda}{n}{,})}{\lambda_1e_1+\cdots+\lambda_ne_n}\]
+Note that this is a continuous nonsingular linear map, hence $x$ is isolated in $L\iff\vphi^{-1}(x)$ is isolated in $\vphi^{-1}(L)$. And it follows from $\vphi^{-1}(L)=\ZZ^m\x\{0\}^{n-m}$ that $L\cong\vphi^{-1}(L)$ is discrete.}
+
+The converse is very important, but its proof is postponed.
+\thm{Any discrete (additive) subgroup of $\RR^n$ is a lattice.}
+
+The method used in the proof of Theorem.\ref{lid}. can be better summarized into the following lemma.
+\lem{A homeomorphism does not change discreteness and closedness.}
+\sprf{Let $h:A\to B$ be a homeomorphism where $A,B$ are topological spaces. We want to prove
+    \itm{
+        \item[(i)]$D\subset A$ is discrete $\implies h(D)$ is discrete.
+        \item[(ii)]$F\subset A$ is closed $\implies h(F)$ is closed.
+    }
+    For (i), let $y\in h(D),\ x=h^{-1}(y)\in D$. Since $D$ is discrete, there exists an open neighborhood $U_x$ of $x$ such that $U_x\cap D=\{x\}$. By the continuity of $h^{-1}$, there exists a neighborhood $V_y$ of $y$ such that $h^{-1}(V_y)\subset U_x$. Intersect with $D$ on both side and take $h$ to obtain:
+    \[h^{-1}(V_y)\cap D\subset U_x\cap D=\{x\}\implies V_y\cap h(D)\subset\{h(x)\}\implies V_y\cap h(D)=\{y\}\]
+    For (ii), $(h(F))^c=h(F^c)=(h^{-1})^{-1}(F^c)$, and we have $F$ closed $\implies F^c$ open $\implies(h^{-1})^{-1}(F^c)$, being the preimage of $F^c$ under $h^{-1}$, open $\implies h(F)$ closed.
+}
+\ntg{\red{Warning: actually the second part seems problematic.}}
+\end{subsection}
+
+\begin{subsection}{Completion and Dense Subsets}
+Completion arises in metric spaces, where Cauchy sequences can be defined. Let $(X,d)$ be a metric space. The \tf{completion} $(\hat X,\hat d)$ of $(X,d)$ is the space of equivalence classes of Cauchy sequences in $X$, with a metric $\hat d$ induced by $d$.
+
+The completion has the following properties.
+\thm{Let $(\hat X,\hat d)$ be the completion of $(X,d)$.
+    \itm{
+        \item[(i)]$X$ is a subspace of $\hat X$ by the natural embedding
+            \[X\into\hat X,\ x\mapsto\{x\}\]
+        \item[(ii)]$X$ is dense in $\hat X$.
+        \item[(iii)]A closed subspace of a complete space is complete.
+}}
+
+A dense subset provide a criterion for completeness.
+\thm{\tf{\red{(Exer.)}}Let $(X,d)$ be a metric space. Let $D$ be a dense subset of $X$. If $\orl D=\hat D\subset X$, then $X$ is complete.}
+
+Dense subsets have another nice property.
+\thm{Let $(X,d)$ be a metric space. Let $S\subset L\subset X$ and $S$ dense in $L$ and $L$ dense in $X$. Then $S$ is dense in $X$.}
+\prf{For any $x\in X$, we find $\{l_n\}\subset L$ such that
+    \[d(l_n,x)\leqs\frac{1}{2n}\]
+    and for each $l_n$ we find $s_n\in S$ such that
+    \[d(l_n,s_n)\leqs\frac{1}{2n}\]
+    Then
+    \[d(x,s_n)\leqs\frac{1}{n}\to0\]
+}
+\end{subsection}
+\end{section}
+
+\begin{section}{Modules in an Algebraic Number Field}
+\begin{subsection}{Definitions and Properties}
+\begin{description}
+\item[Module\index{module}]Let $K$ be an algebraic number field and $\inds{\mu}{n}{,}\in K$. The $\ZZ$-module $M$ generated by the finitely many elements $\inds{\mu}{n}{,}$
+    \[M=\{r_1\mu_1+\cdots+r_n\mu_n,\ r_i\in\ZZ\}\]
+    is simply called a \tf{module} in $K$. In other words, a \tf{module} in an algebraic number field is a finitely generated $\ZZ$-module in $K$. If the generators are linearly independent, then they form a \tf{basis}\index{basis}. The cardinality of each basis is unique, and is called the \tf{rank} of the module. Two modules $M_1,M_2$ are called \tf{similar}\index{module!similar} if $M_1=\alpha M_2$ for some $\alpha\neq0$ in $K$. A module in $K$ is called \tf{full} if it contains a basis of $K/\QQ$, i.e., $[K:\QQ]$ linearly independent elements in $K$, otherwise \tf{nonfull}.\par
+    \ntg{Even though a module in $K$ cannot have more than $n=[K:\QQ]$ linearly independent elements, it may not be finitely generated. For example, $\QQ$ is not a finitely generated module over $\ZZ$, but any two elements in $\QQ$ are linearly dependent. However, if it is finitely generated, we can always reduce the generators to less than $n$ generators.}
+    Now we move to properties of modules in an algebraic number field.
+    \itm{
+        \item[(i)]Any module in an algebraic number field is free, i.e., has a basis.
+            \prf{Recall that a finitely generated torsion-free module over a PID must be free.}
+        \item[(ii)]An additive subgroup of a module is also a module.
+            \ntg{I have no idea why this is a theorem.}
+            \ntg{Now I know. One needs to verify that it is finitely generated.}
+        \item[(iii)]A basis for a full module is also a basis for the field extension. Conversely, though a basis for an extension may not be a basis for a full module, there exists $c\in\ZZ$ such that $c$ times the basis is in the module and hence is a basis of this module.
+    }
+\item[Ring of coefficients\index{ring!of coefficients}]Let $K$ be an algebraic number field and $M$ a module in $K$. A number $\alpha\in K$ is called a \tf{coefficient} if $\alpha M\subset M$. The set of all coefficients form a ring $\mcl O_M$ called the \tf{ring of coefficients} of $M$. $\mcl O_M$ has the following properties.
+    \itm{
+        \item[(i)]$\mcl O_M$ is a commutative ring with identity.
+            \ntg{Even though the definition of $\mcl O_M$ seems to coincide with $(M:M)$, they are not the same. The former is chosen from $K$ while the latter is from $\ZZ$ (actually $(M:M)=\ZZ$). However, obviously we have $\ZZ=(M:M)\subset\mcl O_M$.}
+            \ntg{We may not conclude from $\mcl O_M$ being an additive group in $K$ that $\mcl O_M$ is a module in $K$, because $\mcl O_M$ may not be finitely generated. See (iii) below.}
+        \item[(ii)]If $\alpha\in K$ is such that $\alpha\mu_i\in M$ for a basis $\inds{\mu}{n}{,}$ of $M$, then $\alpha\in\mcl O_M$.
+        \item[(iii)]$\mcl O_M$ is a module.
+            \prf{Let $\gamma\in M$ be nonzero, then $\gamma\mcl O_M\subset M$ is a additive subgroup of $M$ and hence a module. It follows that $\mcl O_M$ is also a module.}
+        \item[(iv)]If $M$ is full in $K$, then $\mcl O_M$ is full in $K$.
+            \prf{Let $\inds{\mu}{n}{,}$ be a basis for $M$. Show that for each $\alpha\in K$ there exists some $c\in\ZZ$ such that $c\alpha\in\mcl O_M$. And then prove that for a basis $\inds{\alpha}{n}{,}$ for $K/\QQ$ there is a $c\in\ZZ$ such that $\inds{c\alpha}{n}{,}\subset\mcl O_M$ and hence $\mcl O_M$ is full.}
+            \ntg{\label{fullm}\red{\tf{(Theorem)}}
+                \[M\ttt{ is full in }K\iff\forall\alpha\in K,\ \exists c\in\ZZ,\ c\alpha\in M\]
+                \prf{($\Rightarrow$) Expand $\alpha$ with respect to a basis of $M$. ($\Leftarrow$) Choose a basis $\inds{\alpha}{n}{,}$ of $K/\QQ$.}}
+        \item[(v)]$\mcl O_{\gamma M}=\mcl O_M$ for $\gamma\neq0$
+        \item[(vi)]$\mcl O_{\mcl O_M}=\mcl O_M$
+        \item[(vii)]$\mcl O_M$ for any full module $M$ is an order (see below).
+    }
+\item[Order\index{order!of a field}]An \tf{order} $\mcl O$ of an algebraic number field $K$ is a full module that is also a ring with identity. An element $\vare$ in an order $\mcl O$ is call a \tf{unit} of the ring if $\vare,\vare^{-1}\in\mcl O$. Two numbers $\mu_1,\mu_2$ in a full module $M$ are \tf{associates} if $\mu_1/\mu_2\in\mcl O_M^*$. The following are true.
+    \itm{
+        \item[(i)](\tf{Equivalent definitions for the units}) Let $\mcl O_M$ be the ring of coefficients of a full module $M$, we have
+            \[\vare,\vare^{-1}\in\mcl O_M\iff\vare M=M\iff N(\vare)=\pm1\]
+        \item[(ii)]Let $\mcl O$ be an order and $a\in\mcl O$. Then the minimal and characteristic polynomials of $a$ have integer coefficients.
+            \prf{Choose a basis for $\mcl O$ and for any }
+        \item[(iii)]An order $\mcl O$ contains only finitely many nonassociate elements of given norm. The same is true for a full module.
+    }
+\item[Algebraic integers\index{integer!algebraic}]An \tf{algebraic integer} $a$ in an algebraic number field $K$ is a number whose minimal polynomial has integer coefficients. All algebraic integers form a ring $R$ called the \tf{ring of algebraic integers}. The following are true.
+    \itm{
+        \item[(i)]An algebraic integer has integer norm and trace.
+            \prf{What is the relation between the norm, the trace and the coefficients of the minimal polynomial?}
+        \item[(ii)]$a\in R\implies\ZZ[a]$ is both a module and a ring in $K$.
+        \item[(iii)]$\mcl O$ is any order, $a\in R\implies\mcl O[a]$ is an order.
+        \item[(iv)]$R$ is an order, and $R$ is the maximal order of $K$ in the sense that any other order is contained in it.
+            \prf{Note that any element in an order is an algebraic integer. The maximality is therefore evident, and it remains to show that $R$ is an order, i.e., a ring with $1$ and a full module. For the ring part, see Example.\ref{cht}; for the module part see Example.\ref{aim}; for the full part see Note.\ref{fullm}.}
+    }
+\item[Discriminant\index{discriminant}]A bit troublesome. See Sect.\ref{disc}.
+\end{description}
+\end{subsection}
+\end{section}
+
+
+\begin{section}{The Space $\lst$ and the Dirichlet Theorem}
+Let $\mcl O$ be an order in $K$. We have shown that the problem of solving an equation in a full module can be converted to solving it in its ring of coefficient, which is an order. The equation solving is then again decomposed into two parts: (i) find enough (finite) particular solutions; (ii) find all units in $\mcl O$, i.e., $\mcl O^*$. And this section is focused on the second part. To understand the structure of $\mcl O^*$, we design a mapping $L:K^*\to\RR^{s+t}$ and study $\ker(\res{L}{\mcl O^*})$ and $\im(\res{L}{\mcl O^*})=L(\mcl O^*)$ respectively, the second part of which is known as the Dirichlet's theorem\index{theorem!Dirichlet}.
+\begin{subsection}{$\lst$ and $\RR^{s+t}$}
+Let $K$ be an algebraic number field, and $\sigma_1,\cdots,\sigma_s,\sigma_{s+1},\orl\sigma_{s+1},\cdots,\sigma_{s+t},\orl\sigma_{s+t}$ all possible embeddings from $K$ to $\CC$, among which the first $s$ embeddings are real, and the rest are complex. In the following text, we use $s,t$ with the tacit understanding that they denote respectively the number of real embeddings and half of the number of complex embeddings, and that $n=s+2t$ is the dimension of the extension $K/\QQ$.
+\begin{description}
+\item[The space $\lst$]The following set is called the \tf{space $\lst$}.
+    \mtha{\lst&=&\RR^s\x\CC^t\\
+        &=&\{(\inds{x}{s}{,},x_{s+1},\cdots,x_{s+t}):\inds{x}{s}{,}\in\RR,\ x_{s+1},\cdots,x_{s+t}\in\CC\}}
+    It is a real vector space of dimension $s+2t$, with the \tf{standard basis}
+    \mtha{
+        e_1&=&(1,\cdots,0,0,\cdots,0)\\
+        e_s&=&(0,\cdots,s,0,\cdots,0)\\
+        &\vdots&\\
+        e_{s+1}&=&(0,\cdots,0,1,\cdots,0)\\
+        e'_{s+1}&=&(0,\cdots,0,i,\cdots,0)\\
+        &\vdots&\\
+        e_{s+t}&=&(0,\cdots,0,0,\cdots,1)\\
+        e'_{s+t}&=&(0,\cdots,0,0,\cdots,i)\\
+    }
+    One can use the following mapping $X:K\to \lst$ to embed an algebraic number field into the space $\lst$.
+    \[\mapn{X}{K}{\lst}{\alpha}{(\sigma_1\alpha,\cdots,\sigma_s\alpha,\sigma_{s+1}\alpha,\cdots,\sigma_{s+t}\alpha)}\]
+    This mapping has the following properties.
+    \itm{
+        \item[(i)](\tf{Preserving bases}) If $\inds{\alpha}{n}{,}$ is a basis for $K/\QQ$, then $\inds{X\alpha}{n}{,}$ is a basis for $\lst$ over $\RR$.
+        \item[(i$'$)](\tf{Preserving linear independence}) If $\inds{\beta}{k}{,}$ are linearly independent over $K/\QQ$, then $\inds{X\beta}{k}{,}$ are independent over $\RR$.
+        \item[(ii)](\tf{Turning a full module into a full lattice}) If $M$ is a full module in $K$ with basis $\inds{\alpha}{n}{,}$, then $X(M)$ is a full lattice in $\lst$ as a real vector space.
+    }
+    \prf{\itm{
+        \item[(i)]The is done by directly computing the determinant of the matrix formed by the coordinates of $\inds{X\alpha}{n}{,}$ under the standard basis, which is
+            \[\abs{\mat{
+                \sigma_1\alpha_1&\cdots&\sigma_s\alpha_1&\Re\,\sigma_{s+1}\alpha_1&\Im\,\sigma_{s+1}\alpha_1&\cdots&\Re\,\sigma_{s+t}\alpha_1&\Im\,\sigma_{s+t}\alpha_1\\
+                \vdots&&\vdots&\vdots&\vdots&&\vdots&\vdots\\
+                \vdots&&\vdots&\vdots&\vdots&&\vdots&\vdots\\
+                \sigma_1\alpha_1&\cdots&\sigma_s\alpha_1&\Re\,\sigma_{s+1}\alpha_1&\Im\,\sigma_{s+1}\alpha_1&\cdots&\Re\,\sigma_{s+t}\alpha_1&\Im\,\sigma_{s+t}\alpha_1}}\]
+            \[=\frac{1}{(-2i)^t}\abs{\mat{
+                \sigma_1\alpha_1&\cdots&\sigma_s\alpha_1&\sigma_{s+1}\alpha_1&\orl\sigma_{s+1}\alpha_1&\cdots&\sigma_{s+t}\alpha_1&\orl\sigma_{s+t}\alpha_1\\
+                \vdots&&\vdots&\vdots&\vdots&&\vdots&\vdots\\
+                \vdots&&\vdots&\vdots&\vdots&&\vdots&\vdots\\
+                \sigma_1\alpha_1&\cdots&\sigma_s\alpha_1&\sigma_{s+1}\alpha_1&\orl\sigma_{s+1}\alpha_1&\cdots&\sigma_{s+t}\alpha_1&\orl\sigma_{s+t}\alpha_1}}\]
+            \ntg{Use only elementary operations to obtain \[(\Re\,\alpha,\Im\,\alpha)\mapsto(\alpha,\orl\alpha)\] is easy exercise.}
+            If we denote the matrix inside by $A$, then by direct computation, the $(i,j)$-element of $AA^T$ is
+            \[\matp{\sigma_1\alpha_i&\cdots&\sigma_s\alpha_i&\sigma_{s+1}\alpha_i&\orl\sigma_{s+1}\alpha_i&\cdots&\sigma_{s+t}\alpha_i&\orl\sigma_{s+t}\alpha_i\\}
+                \matp{\sigma_1\alpha_j\\\cdots\\\sigma_s\alpha_j\\\sigma_{s+1}\alpha_j\\\orl\sigma_{s+1}\alpha_j\\\cdots\\\sigma_{s+t}\alpha_j\\\orl\sigma_{s+t}\alpha_j\\}\]
+            \mtha{&=&\sum_{k=1}^s\sigma_k(\alpha_i\alpha_j)+\sum_{k=1}^t\prn{\sigma_{s+k}(\alpha_i\alpha_j)+\orl\sigma_{s+k}(\alpha_i\alpha_j)}\\
+                &=&\tr(\alpha_i\alpha_j)}
+            Then $AA^T=\prn{\tr(\alpha_i\alpha_j)}$, which has a nonzero determinant if $\inds{\alpha}{n}{,}$ is a basis for $K$ over $\QQ$ (see Sect.\ref{disc}.). It follows that $\det(A)\neq0\implies\inds{X\alpha}{n}{,}$ are linearly independent. In short, first we transform the coordinate matrix into the conjugate form, and then consider the transformed matrix multiplied by its transpose.
+        \item[(i$'$)]This is a simple corollary. First expand $\inds{\beta}{k}{,}$ to a basis, then use (i).
+        \item[(ii)]This follows from (i). Writing $X(M)$ in terms of $\inds{X\alpha}{n}{,}$ should do the job.
+    }}
+    Using the mapping $X:K\to\lst$, we take a structure in $K$ to a structure in $\lst$, and by studying the latter we may be able to characterize the structure of the former. We have shown that a module is mapped to a lattice, hence a further examination requires some understanding about lattices in $\lst$, i.e., $\RR^n$, and this is separated as an individual text (see Sect.\ref{ltcr}.).
+\item[Embedding $\lst$ into $\RR^{s+t}$]Besides the addition structure of $\lst$ (being a vector space), it also has a componentwise multiplication structure. Under the mapping $X:K\to\lst$, the componentwise multiplication corresponds to the multiplication of elements in $K$, and hence is of great importance. For we to examine this structure more easily, we embed $\lst$ once again into $\RR^{s+t}$ with a logarithm-like mapping, changing the multiplication into addition. Consider the mapping
+    \mtha{\Log:\lst&\to&\RR^{s+t}\\
+        (\inds{x}{s+t}{,})&\mapsto&(\log\abs{x_1},\cdots,\log\abs{x_s},\log\abs{x_{s+1}}^2,\cdots,\log\abs{x_{s+t}}^2)}
+    \ntg{Note that each $x_i$ should be nonzero.}
+\end{description}
+\end{subsection}
+
+\begin{subsection}{The Structure of $\ker(\res{L}{O^*})$}
+On the structure of $\mcl O^*$, we have the following theorem.
+\thm{Let $\mcl O$ be an order in an algebraic number field $K$. Let $L=\Log\comp X$ be the mapping
+    \[\mapn{L}{K^*}{\RR^{s+t}}{\alpha}{(\log\abs{\sigma_1\alpha},\cdots,\log\abs{\sigma_s\alpha},\log\abs{\sigma_{s+1}\alpha}^2,\cdots,\log\abs{\sigma_{s+t}\alpha}^2)}\]
+    Then $L$ is a homomorphism in the sense that $K^*$ is a multiplicative group while $\RR^{s+t}$ is an additive group. And we have
+    \mtha{\ker(\res{L}{\mcl O^*})&=&\{\ttt{\rm All elements in $\mcl O$ that is a root of unity}\}\\
+        &=&\{\xi\in\mcl O:\xi^k=1\ttt{\rm\ for some }k\}}
+    And more over $\ker(\res{L}{\mcl O^*})$ is finite and has even order.}
+\end{subsection}
+\end{section}
+
+\begin{section}{Theory of Divisors and Valuations}
+\begin{subsection}{Theory of Divisors and the Class Group}
+The base structure of a theory of divisors we are about to define is a commutative monoid. Let $\mD$ be a \tf{commutative monoid}. Let $\ga,\gb,\gc,\gp\in\mD$. We say $\gb$ \tf{divides} $\ga$ (written as $\gb\divd\ga$) if $\ga=\gb\gc$ for some $\gc\in\mD$. $\gp$ is called \tf{irreducible} if $\gp=\gb\gc\implies\gb=1$ or $\gc=1$. $\mD$ is said to have the \tf{unique factorization property} if each $\ga$ is a unique product of irreducible elements in $\mD$.
+\ntg{These definitions arise form the analysis of ideals. All nonzero ideals of a ring form a commutative monoid under multiplication, with $(1)$ being the identity.}
+\ntg{Recall that in a Dedekind domain every nonzero ideal has a unique factorization as a product of prime ideals.}
+
+Let $R$ be an integral domain. A \tf{theory of divisors} on $R$ is a pair $(\mD,\tau)$, where $\mD$ is a unique factorization commutative monoid, and $\tau:R\backslash\{0\}\to\mD$ a monoid homomorphism (we usually write $\tau(a)=(a)$) satisfying
+\itm{
+    \item[(i)]$(ab)=(a)(b)$ (homomorphism)
+    \item[(ii)]$a\divd b\iff(a)\divd(b)$
+    \item[(iii)]$\forall\ga\in\mD$, the set $I(\ga)=\{a\in R\backslash\{0\}:\ga\divd(a)\}\cup\{0\}$ is an ideal of $R$.
+    \item[(iv)]$\ga,\gb\in\mD,\ I(\ga)=I(\gb)\implies\ga=\gb$
+}
+\emp{Let $R$ be a Dedekind domain and $\mD$ its nonzero ideals. Let $\tau$ be the mapping $\tau:R\backslash\{0\}\to\mD, a\mapsto(a)$. Then $(\mD,\tau)$ is a theory of divisors on $R$.\qed}
+\emp{The ring of algebraic integers in an algebraic number field is a Dedekind domain.\qed}
+
+Moreover, we can define a mapping on $R$ and its field of fractions $K$, if $R$ is a integral domain equipped with a theory of divisors $(\mD,\tau)$. Since $\mD$ is a UFCM\footnote{Unique factorization commutative monoid.}, we can let $\mP$ be the set of irreducible elements in $\mD$. Then the unique factorization property says for any $a\in R\wot\{0\}$, we can write $(a)$ as a unique product
+\[(a)=\prod\limits_{\gp\in\mP}\gp^{n_\gp}\]
+where each $n_\gp$ is uniquely determined by $a$ (hence we can write $n_\gp=v_\gp(a)$ to emphasize the dependence) and only finitely many $n_\gp\geqs0$ are nonzero. Then we have defined the mapping
+\[\mapn{v_\gp}{R\wot\{0\}}{\ZZ_{\geqs0}}{a}{v_\gp(a)}\]
+This can be naturally extended to $K^*$.
+
+This map $v_\gp$ (extended to $K^*$) satisfies all axioms of a (discrete) valuation.
+\thm{The map $v_\gp$ defined above is a valuation, that is,
+    \itm{
+        \item[(i)]$v$ is surjective.
+        \item[(ii)]$v(xy)=v(x)+v(y)$ (homomorphism)
+        \item[(iii)]$v(x+y)\geqs\min(v(x),v(y))$
+    }}
+
+The following are some example of valuations.
+\emp{Let $K$ be the field of all meromorphic functions on $\PP^1$. For every $f\in K^*$, define $v_a(f)$ to be the order of the zero/pole (positive if $a$ is a zero; negative if a pole) of $f$ at $a$. Then $v_a$ is a valuation.\qed}
+\emp{Let $K$ be the field of rational functions $\FF(x)$ and define $v_\infty(f)=-\deg(f)$. Then $v_\infty$ is a valuation.\qed}
+\emp{Let $C$ be a compact Riemann surface. Let $K$ be the field of meromorphic functions on $C$. Define $\Div(C)=\ZZ^{(C)}$,\footnote{The free abelian group generated by all points in $C$.} whose elements are called the \tf{divisors} on $C$. Let $\tau:K^*\to\Div(C), f\mapsto(f)=\sum\limits_{a\in C}v_a(f)a$. Since $C$ is compact and $f$ is nonzero meromorphic, the sum is finite. Then $(\Div(C),\tau)$ is a theory of divisors on $K$. And $\coker\tau=\Div(C)/\im(\tau)$ is called the \tf{class group} of $C$. And elements in $\im(\tau)$ are called the \tf{principal divisors}.\qed}
+
+We now move to generalize the notion of the class group. Let $R$ be an integral domain. $(\mD,\tau:a\mapsto(a))$ a theory of divisors on $R$. Let $\mP$ be the set of all irreducible elements in $\mD$. Define the \tf{divisors} on $R$ to be $\Div=\ZZ^{(\mP)}$. The unique factorization property of $\mD$ implies $\mD\subset\Div$.\footnote{So the set of divisors may be much larger than the theory of divisors.} Let $\tau$ extend to $K^*$ and define the \tf{principal divisors} to be the image of the mapping $\tau$, i.e., all elements in $\mD$ of the form $(f)$ with $f\in K^*$. The \tf{class group} of $R$ is defined as $\Cl(R)=\Div/\im(\tau)$.\footnote{Class group=divisors/principal divisors}.
+\ntg{$\im(\tau)\subset\mD\subset\Div$}
+We have the following theorem concerning the class group.
+\thm{$\Cl(R)$ is a finite abelian group.}
+\prf{No proof here.}
+Following the theorem, $\#\Cl(R)$ is called the \tf{class number} of $K$.
+\thm{$\Cl(R)=\{0\}\iff R$ is a PID.}
+\emp{When these concepts are applied to an algebraic number field $K\supset\QQ$, we have
+    \mtha{R&=&\ttt{algebraic integers in $K$}\\
+        \mD&=&\ttt{nonzero ideals of $R$}\\
+        \tau&:&a\mapsto(a)}}
+\end{subsection}
+\begin{subsection}{Discrete Valuations and Normed Fields}
+A \tf{discrete valuation} on a field $K$ is a mapping $v:K^*\to\ZZ$ such that
+    \itm{
+        \item[(i)]$v$ is surjective.
+        \item[(ii)]$v(xy)=v(x)+v(y)$ (homomorphism)
+        \item[(iii)]$v(x+y)\geqs\min(v(x),v(y))$
+    }
+For convenience we put $v(0)=+\infty$ in addition.
+The valuation induces a \tf{norm} $\norm{\cdot}$ on $K$ by defining
+\[\norm{\cdot}=\lambda^{v(x)},\ \ttt{for some }0<\lambda<1\]
+We can check that
+\itm{
+    \item[(i)]$\norm{ab}=\norm{a}\norm{b}$
+    \item[(ii)]$\norm{a+b}\leqs\max(\norm{a},\norm{b})$
+    \item[(iii)]$\norm{x}=0\iff x=0$
+}
+That is, $\norm{\cdot}$ satisfies all the axioms of a norm and in addition a \textit{stronger triangle inequality}.
+\emp{The $p$-adic valuation $v_p$ on $\QQ$ induces the $p$-adic norm $\norm{\cdot}_p=\prn{\frac{1}{p}}^{v_p(\cdot)}$. The number $\frac{1}{p}$ is chosen out of respect to $p$.}
+
+Before we advance, we discuss some properties of the norm on a field. Let $(K,\norm{\cdot})$ be a normed field. Some times these norms satisfy a strong triangle inequality of the form $\norm{a+b}\leqs\max(\norm{a},\norm{b})$, which has an equivalent condition.
+\thm{$\norm{a+b}\leqs\max(\norm{a},\norm{b})\iff\forall n\in\NN,\ \norm{n}\leqs1$}
+\prf{(``$\Rightarrow$'') easy. (``$\Leftarrow$'') Use the hypothesis on the binomial coefficients: consider $\norm{a+b}^n=\norm{(a+b)^n}.$}
+The notion of the norm can be generalized to rings (The axioms are exactly the same).
+
+The Ostrowski theorem gives all possibilities of the norms on $\QQ$.
+\thm{Any norm on $\QQ$ is one of the three.
+    \itm{
+        \item[(i)]The 0-1 trivial norm $\abs{\cdot}_{\infty}^0$.
+        \item[(ii)]The absolute value with a power $\abs{\cdot}_\infty^\alpha$, with $0<\alpha\leqs1$.
+        \item[(iii)]The $p$-adic norm $\norm{\cdot}_p=\lambda^{v_p(\cdot)}$ for some prime number $p$ and some $0<\lambda<1$.
+    }}
+\prf{Since $\QQ$ is the field of fractions of $\ZZ$, it suffices to prove the Ostrowski theorem for $\ZZ$.}
+\thm{Any norm on $\ZZ$ is one of the three.
+    \itm{
+        \item[(i*)]The norm induced on $\ZZ/(p)$.
+        \item[(i)]The 0-1 trivial norm $\abs{\cdot}_{\infty}^0$.
+        \item[(ii)]The absolute value with a power $\abs{\cdot}_\infty^\alpha$, with $0<\alpha\leqs1$.
+        \item[(iii)]The $p$-adic norm $\norm{\cdot}_p=\lambda^{v_p(\cdot)}$ for some prime number $p$ and some $0<\lambda<1$.
+    }}
+\prf{First notice that in either case, $\norm{1}=1$. Then we remark that these two cases (a), (b) leads to (ii) and (iii) respectively.\footnote{We have exhibited the theorem that a strong triangle inequality is equivalent to (b), so it is an educated guess that (b) leads to (iii).}\\
+    (a) $\exists N\in\NN,\ \norm{N}>1$\\
+    (b) $\forall N\in\NN,\ \norm{N}\leqs1$\\
+    And taking the limit yields the other one.
+}
+
+Each of the possible norms corresponds to a point of the following diagrams, which are called the \tf{Berkovich spaces} on $\ZZ$ (left) and $\QQ$ (right).
+\[\setlength{\unitlength}{1mm}
+\begin{picture}(50,50)
+\put(25,25){\line(0,1){20}}
+\put(25,25){\line(-3,-2){30}}
+\put(25,25){\line(-1,-1){20}}
+\put(25,25){\line(-1,-2){10}}
+\put(25,25){\line(1,-1){20}}
+\put(25,25){\circle*{1}}
+\put(25,45){\circle*{1}}
+\put(-5,5){\circle*{1}}
+\put(5,5){\circle*{1}}
+\put(15,5){\circle*{1}}
+\put(45,5){\circle*{1}}
+\put(27,25){$\abs{\,\cdot\,}^0=1^{v_p(\cdot)}$}
+\put(27,45){$\abs{\,\cdot\,}$}
+\put(27,35){$\abs{\,\cdot\,}^\alpha$}
+\put(-6,20){$\norm{\,\cdot\,}_p=\lambda^{v_p(\cdot)}$}
+\put(-8,8){$0^{v_p(\cdot)}$}
+\put(-6,0){$2$}
+\put(4,0){$3$}
+\put(14,0){$5$}
+\put(44,0){$p$}
+\put(27,3){$\cdots$}
+\end{picture}\qquad\qquad
+\begin{picture}(50,50)
+\put(25,25){\line(0,1){20}}
+\put(25,25){\line(-3,-2){29.5}}
+\put(25,25){\line(-1,-1){19.6}}
+\put(25,25){\line(-1,-2){9.7}}
+\put(25,25){\line(1,-1){19.6}}
+\put(25,25){\circle*{1}}
+\put(25,45){\circle*{1}}
+\put(-5,5){\circle{1}}
+\put(5,5){\circle{1}}
+\put(15,5){\circle{1}}
+\put(45,5){\circle{1}}
+\put(27,25){$\abs{\,\cdot\,}^0=1^{v_p(\cdot)}$}
+\put(27,45){$\abs{\,\cdot\,}$}
+\put(27,35){$\abs{\,\cdot\,}^\alpha$}
+\put(-6,20){$\norm{\,\cdot\,}_p=\lambda^{v_p(\cdot)}$}
+\put(-6,0){$2$}
+\put(4,0){$3$}
+\put(14,0){$5$}
+\put(44,0){$p$}
+\put(27,3){$\cdots$}
+\end{picture}
+\]
+\end{subsection}
+
+\begin{subsection}{Properties of Discrete Valuations}
+\begin{subsubsection}{Single Valuation}
+Let $v:K^*\to\ZZ$ be a discrete valuation on the field $K$. Then $v$ satisfies the following properties.
+\thm{The following are true for $v$.
+    \itm{
+        \item[(i)]$v$ is surjective.
+        \item[(ii)]$v$ is homomorphism.
+        \item[(iii)]$v(x+y)\geqs\min(v(x),(y))$.
+        \item[(iv)]$v(x)\neq v(y)\implies v(x+y)=\min(v(x),v(y))$
+    }}
+\prf{The first three are axioms. It suffices to prove the last. Wlog suppose that $v(x)>v(y)$ and the goal is then to prove $v(x+y)=v(y)$. Suppose not then we must have $v(x+y)>v(y)=v((x+y)-x)\geqs\min(v(x+y),v(x))>v(y)$.}
+\ntg{The key is $v(y)\geqs\min(v(x+y),v(x))$.}
+\end{subsubsection}
+\begin{subsubsection}{Distinct Valuations}
+\thm{Distinct valuations are independent. Let $K$ be a field and $\inds{v}{m}{,}:K^*\to\ZZ$ distinct valuations on $K$.
+    \itm{
+        \item[(i)]For integers $\inds{\lambda}{m}{,}$,
+            \[\lambda_1v_1+\cdots+\lambda_mv_m=0\implies\inds{\lambda}{m}{=}=0\]
+        \item[(ii)]There exists $x\in K^*$ such that
+            \[v_1(x)=k_1,\ v_2(x)=k_2,\ \cdots,\ v_m(x)=k_m\]
+            for any predesignated $\inds{k}{m}{,}\in\ZZ$.
+}}
+An important corollary is in order.
+\thm{\tf{(Approximation theorem)} Let $K$ be a field with distinct valuations $\inds{v}{m}{,}:K^*\to\ZZ$ and denote the norms induced by $v_i$ by $\norm{\ }_i=\lambda^{v_i(\ )}$ for some $0<\lambda<1$. For any $\inds{a}{m}{,}$ we can find $x\in K$ to approximate them all. The formulation is as follows.
+    \itm{
+        \item[(i)]For any $N\in\ZZ$ there exists $x\in K$ such that
+            \[v_1(x-a_1)\geqs N,\ \cdots,\ v_m(x-a_m)\geqs N\]
+        \item[(ii)]If $\inds{a}{m}{,}\in\ZZ$ and $\inds{p}{m}{,}$ are distinct prime numbers, then for any $N\geqs0$, there exists $x\in\ZZ$ such that
+            \mtha{x&\equiv&a_1\pmod{p_1^N}\\
+                &\vdots&\\
+                x&\equiv&a_m\pmod{p_m^N}}
+        \item[(iii)]For any $\vare>0$ there exists $x\in K$ such that
+            \[\norm{x-a_1}_1\leqs\vare,\ \cdots,\ \norm{x-a_m}_m\leqs\vare\]
+        \item[(iv)]The product space
+            \[(K,\norm{\ }_1)\x\cdots\x(K,\norm{\ }_m)\]
+            has a dense diagonal.
+    }}
+\ntg{If we are considering $(\QQ,\norm{\ }_p=\prn{\frac{1}{p}}^{v_p(\ )})$, then note that $\norm{p^k}=\norm{p^k\frac{a}{b}}$, hence we can always assume an integer if we only want to fix the norm.}
+\thm{\tf{(Riemann-Roch)} Let $C$ be a compact Riemann surface and $g$ the genus of $C$. Let $K(C)$ the field of all meromorphic functions on $C$. Let $D=\sum_{p\in C}n_pp$ be a divisor, and let
+    \[l(D)=\dim\{f\in K(C):(f)+D\geqs0\}\]
+    Then $l(D)\geqs 1-g+\deg D,\ l(D)-l((f)-D)=1-g+\deg D$.
+}
+\ntg{The set $\{f\in K(C):(f)+D\geqs\}$ is a $\CC$-linear space. Note that $(f)=\sum_{p\in C}v_p(f)p$. Hence the expression $(f)+D\geqs0$ means $v_p(f)+n_p\geqs0$ for all $p\in C$.}
+\end{subsubsection}
+
+\begin{subsubsection}{Extension and Restriction}
+The extension of a valuation is associated to the extension of a field. But unlike an extension of a mapping, the \tf{ramification index} comes into play when we extend valuations.
+
+Let $K\subset L$ be an extension of fields. A discrete valuation $v':L^*\to\ZZ$ on $L$ can be restricted to $K$ in the following manner. Note that $v'(K^*)$ is a subgroup of $\ZZ$ and hence has the form of an ideal\footnote{A subgroup of $\ZZ$ is also an ideal.} $\res{v'}{K^*}\neq e\ZZ$. Then if $e\neq0$, the new mapping
+\[v=\frac{\res{v'}{K^*}}{e}:K^*\to\ZZ\]
+is a valuation on $K$, called the \tf{restriction} of $v'$ to $K^*$. Conversely, if $v:K^*\to\ZZ$ is a valuation on $K$ such that $\res{v'}{K^*}=ev$ then $v'$ is called an \tf{extension} of $v$ to $L$. The integer $e$ is call the \tf{ramification index}.
+\end{subsubsection}
+\begin{subsubsection}{*Valuation and Distance}
+We know that a valuation $v$ induces a norm $\norm{\cdot}_v=\lambda^v(\cdot)$ with some $0<\lambda<1$. We have
+\[\norm{x}\ttt{ arbitrarily small}\iff v(x)\ttt{ arbitrarily large}\]
+This norm satisfies a stronger triangle inequality
+\[\norm{a+b}\leqs\max(\norm{a},\norm{b})\]
+Hence we have this \red{\tf{amazing}} result
+\[\norm{a_i}<\vare\implies\norm{\inds{a}{m}{+}}<\vare\]
+This greatly simplifies the criterion for a Cauchy series.
+\thm{Let $\sum_i x_i$ be a series with terms in $K$, whose norm is defined by a valuation. Then it is a Cauchy sequence if one of these equivalent conditions holds.
+    \itm{
+        \item[(i)]$\forall\vare>0,\ \exists N>0,\ \forall m,n\geqs N,\ \norm{x_n+\cdots+x_m}<\vare$
+        \item[(ii)]$\forall M>0,\ \exists N>0,\ \forall m,n\geqs N,\ v(x_n+\cdots+x_m)>M$
+        \item[(1)]$\norm{x_n}\to0$
+        \item[(2)]$v(x_n)\to\infty$
+}}
+\ntg{Note that this does not ensure the convergence of the series unless we assume $K$ to be complete.}
+\end{subsubsection}
+\end{subsection}
+
+\begin{subsection}{The Valuation Ring}
+Let $K$ be a field and $v:K^*\to\ZZ$ a discrete valuation on $K$. The subset
+\[R=\{x\in K:v(x)\geqs0\}\]
+is a subring of $K$, called the \tf{valuation ring} or \tf{integer ring} of $K$.
+\ntg{Since $v(x)\geqs0\iff\norm{x}\leqs1$, one can see $R$ as the unit ball in $K$.}
+Other important subsets should also be introduced.
+\[\gm=\{x\in K:v(x)\geqs1\}\]
+is the (only) maximal ideal of $R$.
+\ntg{\[\gm^n=\{x\in K:v(x)\geqs n\}\]}
+\[R^*=\{x\in K:x,x^{-1}\in R\}=\{x\in K:v(x)=0\}\]
+is the invertible elements of $R$.
+
+The following are some properties of $R$.
+\thm{Let $R$ be the valuation ring of $(K,v)$. Let $\gm$ be defined as above.
+    \itm{
+        \item[(i)]$R$ is local with $\gm$ being its only maximal ideal.
+        \item[(ii)]$\gm^n=\{x\in K:v(x)\geqs n\}$
+        \item[(iii)]$R^*=\{x\in K:v(x)=0\}$
+        \item[(iv)]$\pi$ for which $v(\pi)=1$ is so special that any $x\in K$ has a unique factorization $x=\eta\pi^{v(x)}$ with $\eta\in R^*$.
+        \item[(v)]$R$ is a PID.
+}}
+
+I would like to call a $\pi\in K$ such that $v(\pi)=1$ a \tf{regular} element of $v$. Note that all regular elements are associates in $R$.
+\end{subsection}
+
+\begin{subsection}{Power Series Development}
+Let $(K,v)$ be a valued field, $R$ its valuation ring and $\gm$ the maximal ideal of $R$. Let $\pi\in K$ have value $v(\pi)=1$. Let the set $S\subset R$ consist of \textit{exactly one} preimage of each element in $R/\gm$. We construct the power series development as follows.
+\thm{For any $x\in R$, we can write $x=\xi+\pi x'$ with $\xi\in S,\ x'\in R$.}
+\prf{By the definition of $S$ and the UFD property of $R$.}
+\thm{For any $x\in R$, we can write $x=\sum_{k=0}^\infty\xi_k\pi^k$ with $\xi_k\in S$.}
+\prf{Repeatedly use the last theorem.}
+\thm{For any $x\in K$, we can write $x=\sum_{k=0}^\infty\xi_k\pi^k$ with $\xi_k\in S$.}
+\prf{If $x\in R$ then we are done. If $v(x)<0$, then let $n=-v(x)$ and $x=\frac{\eta}{\pi^n}$ with $\eta\in R^*$. Hence we have $\eta=\sum_{k=0}^\infty a_{k-n}\pi^k$ and $x=\frac{a_{-n}}{\pi^n}+\frac{a_{-(n-1)}}{\pi^{n-1}}+\cdots+a_0+\frac{a_1}{\pi}+\frac{a_2}{\pi^2}+\cdots$.}
+
+Next we consider its completion $(\hat K,\hat v)$, and the following sets.
+\mtha{
+    R=\{x\in K:v(x)\geqs0\}&,&\hat R=\{x\in\hat K:\hat v(x)\geqs0\}\\
+    \gm=\{x\in K:v(x)\geqs1\}&,&\hat\gm=\{x\in\hat K:\hat v(x)\geqs1\}}
+Then
+\thm{
+    \itm{
+        \item[(i)]$\hat R$ is closed and hence complete.
+        \item[(ii)]$R$ is dense in $\hat R$.
+}}
+
+If no valuation is given and we have only a norm, then consider a normed field $(K,\abs{\cdot})$. Choose some $\pi\in K$ with $\abs{\pi}<1$, say $\abs{\pi}=1/10$. Let $R=\{x\in K:\abs{x}\leqs1\}$ and $S\subset R$ be such that $\forall x\in R,\ \exists a\in S,\ \abs{x-a}\leqs\abs{\pi}$. Then we have
+\thm{Let $(K,\abs{\cdot})$ be a normed field and let $R,S$ be as above. Then for any $x\in K$, we can write $x=\sum_{k=0}^\infty a_k\pi^k$ with $a_k\in S$.}
+\prf{The condition $R=\{x\in K:\abs{x}\leqs1\}$ is for iteration and the convergence of the final series.}
+\end{subsection}
+\end{section}
+
+\printindex
+\end{document}
