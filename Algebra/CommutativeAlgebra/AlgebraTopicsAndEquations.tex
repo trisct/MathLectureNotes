@@ -1,0 +1,777 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{geometry,xcolor,layout,amssymb,amsthm,amsmath,mathrsfs,graphicx,centernot,textcomp,galois,extarrows,bbm,dsfont,makeidx,empheq}
+\usepackage[normalem]{ulem}
+\usepackage[all]{xy}
+
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{prp}{Proposition}[section]
+\newtheorem{theom}{Theorem}[section]
+\newtheorem{coro}{Corollary}[section]
+
+\theoremstyle{definition}
+\newtheorem{eg}{Example}[section]
+\newtheorem{ct}{\textcolor{cyan}{Counterexample}}[section]
+\newtheorem*{pf}{\blue{Proof}}
+\newtheorem{question}{Q}[section]
+\newtheorem{dfn}{Definition}[section]
+\newtheorem{probl}{\red{Problem}}[section]
+\newtheorem{nt}{\cg{Note}}[section]
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}[section]
+
+\newcommand*\widefbox[1]{\fbox{\vspace{2em}\hspace{2em}#1\hspace{2em}}}
+\setlength\fboxsep{0.2cm}
+
+\newcommand{\tick}{\textcolor{red}{\checkmark}}
+\newcommand{\bs}{\backslash}
+\newcommand{\udots}{\mathinner{\mskip 1mu\raise 1pt\vbox{\kern 7pt\hbox{.}}
+\mskip 2mu\raise 4pt\hbox{.}\mskip 2mu\raise 7pt\hbox{.}\mskip 1mu}}
+\newcommand{\geqs}{\geqslant}
+\newcommand{\leqs}{\leqslant}
+\newcommand{\Var}{{\rm Var}}
+\newcommand{\sdd}{\sigma}
+\newcommand{\ga}{\got a}
+\newcommand{\gb}{\got b}
+\newcommand{\gc}{\got c}
+\newcommand{\gp}{\got p}
+\newcommand{\gq}{\got q}
+\newcommand{\gm}{\got m}
+\newcommand{\lst}{L^{s,t}}
+\newcommand{\EE}{\mathbb{E}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\rsa}{\sigma(f;\pi,\xi)}
+\newcommand{\wlg}{{\rm w.l.o.g.}}
+\newcommand{\spn}{{\rm span}}
+\newcommand{\rank}{{\rm rank}}
+\newcommand{\nul}{{\rm null}}
+\newcommand{\disc}{{\rm disc}}
+\newcommand{\im}{{\rm Im}}
+\newcommand{\coker}{{\rm Coker}}
+\newcommand{\coim}{{\rm Coim}}
+\newcommand{\ud}{{\rm d}}
+\newcommand{\Log}{{\rm Log}}
+\newcommand{\lub}{{\rm lub}}
+\newcommand{\glb}{{\rm glb}}
+\newcommand{\dx}{\ud x}
+\newcommand{\dy}{\ud y}
+\newcommand{\dz}{\ud z}
+\newcommand{\dmu}{\ud\mu}
+\newcommand{\x}{\times}                     %乘号
+\newcommand{\ox}{\otimes}
+\newcommand{\op}{\oplus}
+\newcommand{\p}{\prime}
+\newcommand{\fctr}{\Rightarrow}
+\newcommand{\unito}{\rightrightarrows}
+\newcommand{\lbint}{\int\!\!\!\int}      %二重积分号
+\newcommand{\bint}{\int\!\!\!\!\int}      %二重积分号
+\newcommand{\tint}{\int\!\!\!\!\int\!\!\!\!\int}      %三重积分号
+\newcommand{\apr}{\approx}
+\newcommand{\prdn}{\prod\limits_{n=1}^\infty}
+\newcommand{\sumn}{\sum\limits_{n=1}^\infty}
+\newcommand{\sump}{\sum\limits_{n=0}^\infty}
+\newcommand{\limn}{\lim\limits_{n\to\infty}}
+\newcommand{\limx}{\lim\limits_{x\to+\infty}}
+\newcommand{\operp}{\stackrel{\perp}{\oplus}}
+\newcommand{\const}{{\rm const}}
+\newcommand{\codim}{{\rm codim}}
+\newcommand{\sgn}{{\rm sgn}}
+\newcommand{\ann}{{\rm Ann}}
+\newcommand{\chr}{{\rm \,char\,}}
+\newcommand{\tr}{{\rm Tr}}
+\newcommand{\sym}{{\rm Sym}}
+\newcommand{\centr}{{\rm Centr}}
+\newcommand{\Sp}{{\rm Sp}}              %symplectic
+\newcommand{\id}{{\rm id}}
+\newcommand{\Obj}{\mf{Obj}}
+\newcommand{\Mor}{\mf{Mor}}
+\newcommand{\Perm}{{\rm Perm}}
+\newcommand{\Hom}{{\rm Hom}}
+\newcommand{\Aut}{{\rm Aut}}
+\newcommand{\Inn}{{\rm Inn}}
+\newcommand{\End}{{\rm End}}
+\newcommand{\re}{{\rm Re}}
+\newcommand{\diag}{{\rm diag}}
+\newcommand{\grad}{{\rm grad\,}}
+\newcommand{\dive}{{\rm div\,}}
+\newcommand{\rot}{{\rm rot\,}}
+\newcommand{\curl}{{\rm curl\,}}
+\newcommand{\free}{{\rm free}}
+\newcommand{\tor}{{\rm tor}}
+\newcommand{\rad}{{\rm rad}}
+\newcommand{\nilrad}{{\rm nilrad}}
+\newcommand{\ord}{{\rm ord}}
+\newcommand{\irr}{{\rm Irr}}
+\newcommand{\cl}{{\rm cl}}
+\newcommand{\Cl}{{\rm Cl}}
+\newcommand{\fix}{{\rm fix}}
+\newcommand{\boun}{\partial}
+\newcommand{\into}{\hookrightarrow}
+\newcommand{\ton}{\xrightarrow}
+\newcommand{\varn}{\varnothing}
+\newcommand{\vare}{\varepsilon}
+\newcommand{\vphi}{\varphi}
+\newcommand{\diam}{{\rm diam}}
+\newcommand{\vect}{{\rm Vect}}
+\newcommand{\isom}{\stackrel{\cong}{\longrightarrow}}
+\newcommand{\dfas}{\triangleq}
+\newcommand{\st}{{\rm\quad s.t.\quad}}
+\newcommand{\lapla}{\Delta}
+\newcommand{\divd}{\big|}
+\makeatletter
+\newcommand{\lambdabar}{{\mathchoice
+  {\smash@bar\textfont\displaystyle{0.25}{1.2}\lambda}
+  {\smash@bar\textfont\textstyle{0.25}{1.2}\lambda}
+  {\smash@bar\scriptfont\scriptstyle{0.25}{1.2}\lambda}
+  {\smash@bar\scriptscriptfont\scriptscriptstyle{0.25}{1.2}\lambda}}}
+\newcommand{\smash@bar}[4]{%
+  \smash{\rlap{\raisebox{-#3\fontdimen5#10}{$\m@th#2\mkern#4mu\mathchar'26$}}}}
+\makeatother
+
+
+\newcommand{\res}[2]{\left.#1\right|_{#2}}
+\newcommand{\rsb}[3]{\sigma(#1;#2,#3)}      %Riemann sum with arguments
+\newcommand{\derv}[2]{\frac{\ud#1}{\ud#2}}
+\newcommand{\parf}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\secpf}[3]{\frac{\partial^2 #1}{\partial #2\partial #3}}
+\newcommand{\comb}[2]{\binom{#1}{#2}}       %组合数
+\newcommand{\norm}[1]{\left\lVert #1\right\rVert}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\brc}[1]{\left\{#1\right\}}
+\newcommand{\brk}[1]{\left\langle#1\right\rangle}
+\newcommand{\prn}[1]{\left(#1\right)}
+\newcommand{\sqb}[1]{\left\lbrack#1\right\rbrack}
+\newcommand{\dbk}[1]{\langle\!\langle#1\rangle\!\rangle}
+\newcommand{\inprod}[1]{\langle#1\rangle}
+\newcommand{\itr}[1]{#1^\circ}           %内部,interior
+\newcommand{\cmp}[1]{#1^c}               %补集,complement
+\newcommand{\cnts}[3]{#1#3\cdots#3#2}
+\newcommand{\inds}[3]{#1_{1}#3\cdots#3#1_{#2}}
+\newcommand{\dindx}[4]{#1{#2}#4\cdots#4#1{#3}}
+\newcommand{\dinds}[4]{#1_{#2}#4\cdots#4#1_{#3}}
+\newcommand{\vct}[1]{\overrightarrow{#1}}
+\newcommand{\simlr}[2]{#2^{-1}#1#2}     %相似
+\newcommand{\congt}[2]{\ts{#2}#1#2}     %相合
+\newcommand{\ccong}[2]{\cts{#2}#1#2}    %共轭相合
+\newcommand{\rcong}[2]{\ts{#2}#1\orl{#2}}    %右共轭相合
+\newcommand{\ts}[1]{#1^{\rm T}}
+\newcommand{\cts}[1]{\orl{#1}^{\rm T}}   %共轭转置
+\newcommand{\wt}[1]{\widetilde{#1}}
+\newcommand{\bss}[2]{\inds{#1}{#2}{,}}
+\newcommand{\unitob}[1]{\mathop{\rightrightarrows}\limits_{#1}}
+\newcommand{\limb}[1]{\lim\limits_{#1}}
+\newcommand{\limp}[2]{\lim\limits_{#1\to#2}}
+\newcommand{\mapn}[5]{\arr{{ccrcl}#1&:&#2&\to&#3\\&&#4&\mapsto&#5}}
+\newcommand{\map}[4]{\arr{{rcl}#1&\to&#2\\#3&\mapsto&#4}}
+
+\newcommand{\mth}[1]{\begin{displaymath}#1\end{displaymath}}
+\newcommand{\mtha}[1]{\begin{eqnarray*}#1\end{eqnarray*}}
+\newcommand{\arr}[1]{\begin{array}#1\end{array}}
+\newcommand{\lem}[1]{\begin{lemma}#1\end{lemma}}
+\newcommand{\prf}[1]{\begin{pf}\blue{#1}\end{pf}}
+\newcommand{\ques}[1]{\begin{question}#1\end{question}}
+\newcommand{\sprf}[1]{\begin{pf}\cb{#1}\end{pf}}
+\newcommand{\df}[1]{\begin{dfn}#1\end{dfn}}
+\newcommand{\ntg}[1]{\begin{nt}\cg{#1}\end{nt}}
+\newcommand{\mat}[1]{\begin{matrix}#1\end{matrix}}
+\newcommand{\matp}[1]{\prn{\begin{matrix}#1\end{matrix}}}
+\newcommand{\itm}[1]{\begin{itemize}#1\end{itemize}}
+\newcommand{\enu}[1]{\begin{enumerate}#1\end{enumerate}}
+\newcommand{\desc}[1]{\begin{description}#1\end{description}}
+\newcommand{\tmth}[1]{\begin{displaymath}\ttt{#1}\end{displaymath}}
+\newcommand{\thm}[1]{\begin{theom}#1\end{theom}}
+\newcommand{\emp}[1]{\begin{eg}#1\end{eg}}
+\newcommand{\rmk}[1]{\begin{remark}#1\end{remark}}
+\newcommand{\pbl}[1]{\begin{probl}\red{#1}\end{probl}}
+\newcommand{\prop}[1]{\begin{prp}#1\end{prp}}
+\newcommand{\cor}[1]{\begin{coro}#1\end{coro}}
+\newcommand{\eqn}[1]{\begin{equation}#1\end{equation}}
+\newcommand{\eqna}[1]{\begin{eqnarray}#1\end{eqnarray}}
+
+
+\newcommand{\clr}[1]{\textcolor{red}{#1}}   %红色
+\newcommand{\cb}[1]{\textcolor{blue}{#1}}   %蓝色
+\newcommand{\cg}[1]{\textcolor{magenta}{#1}}%紫色
+\newcommand{\hlg}[1]{\cg{\udl{#1}}}
+\newcommand{\hlb}[1]{\cb{\udl{#1}}}
+\newcommand{\hlr}[1]{\clr{\udl{#1}}}
+
+\newcommand{\mf}{\mathbf}
+\newcommand{\tf}{\textbf}
+\newcommand{\hlt}[1]{\textbf{\red{#1}}}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+
+\newcommand{\nm}[1]{{\rm#1}}                %竖体
+\newcommand{\ttt}{\textrm}
+\newcommand{\mhb}[1]{\mathbb{#1}}
+\newcommand{\mcl}[1]{\mathcal{#1}}
+\newcommand{\flr}[1]{\mathscr{#1}}
+\newcommand{\got}[1]{\mathfrak{#1}}
+\newcommand{\orl}[1]{\overline{#1}}
+\newcommand{\udl}[1]{\underline{#1}}
+\newcommand{\uudl}[1]{\uuline{#1}}
+\newcommand{\wudl}[1]{\uwave{#1}}
+
+%%%%%%%%%%%%%PHYSICS CONSTANTS
+\newcommand{\cstk}{\frac{1}{4\pi\vare_0}}
+\newcommand{\cstm}{\frac{\mu_0}{4\pi}}
+\newcommand{\xym}{\xymatrix}
+
+\renewcommand{\ker}{{\rm Ker}}
+\renewcommand{\Re}{{\rm Re}}
+\renewcommand{\Im}{{\rm Im}}
+\renewcommand{\S}{S^{-1}}
+\makeindex
+
+\title{Topics and Equations in Commutative Algebra}
+\author{TRISCT}
+\date{}
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+\begin{section}{Properties of Five Types of Rings}
+\begin{subsection}{Noetherian Rings}
+Recall that a ring $A$ is called \tf{Noetherian} if it satisfies the ACC on ideals. The following are true if $A$ is a Noetherian ring.
+\itm{
+    \item[(i)]Every ideal is a finite intersection of irreducible ideals\footnote{An irreducible ideal $\ga\neq(1)$ is such that $\ga=\gb\cap\gc\implies\ga=\gb$ or $\ga=\gc$.}.
+    \item[(ii)]Every irreducible ideal is primary.
+    \item[(iii)]Every proper ideal has a primary decomposition.
+    \item[(iv)]Every ideal contains a power of its radical.
+    \item[(v)]$\nilrad A$ is nilpotent.
+    \item[(vi)]If $\gm$ is maximal and $\gq$ is any ideal, then the following are equivalent.
+        \itm{
+            \item[(i)]$\gq$ is $\gm$-primary.
+            \item[(ii)]$\sqrt\gq=\gm$.
+            \item[(iii)]$\gm^n\subset\gq\subset\gm$ for some $n>0$.
+        }
+    \item[(vii)]If $A$ is a Noetherian local ring with $\gm$ maximal, then one and only one of the following is true.
+        \itm{
+            \item[(i)]$\gm^n\neq\gm^{n+1}$ for all $n$, i.e., $\gm\supsetneqq\gm^2\supsetneqq\gm^3\supsetneqq\cdots$ decreases indefinitely.
+            \item[(ii)]$\gm^n=0$ for some $n$, in which case $A$ is an Artin local ring.
+        }
+}
+Other properties that involve passing the Noetherian property to its quotient rings, finitely generated modules, etc., are listed in the ``Preserved Properties'' part.
+\end{subsection}
+\begin{subsection}{Artinian Rings}
+Recall that a ring $A$ is called \tf{Artinian} if it satisfies the DCC on ideals. The following are true if $A$ is an Artinian ring.
+\itm{
+    \item[(i)]$A$ is Artinian $\iff A$ is Noetherian and of dimension $0$.\footnote{This actually needs to be proved using some of the following.}
+    \item[(ii)]Every prime ideal is maximal.
+    \item[(iii)]There are only finitely many maximal ideals.
+    \item[(iv)]$\nilrad A=\rad A$.
+    \item[(v)]$\nilrad A$ is nilpotent.
+    \item[(vi)]$A$ is a unique direct product of finitely many Artin local rings.
+}
+\end{subsection}
+\begin{subsection}{Valuation Rings}
+First we discuss a valuation ring $A$ of its field of fractions $K$ (defined without using a specific valuation). Then the following are true.
+\itm{
+    \item[(i)]$A$ is local.
+    \item[(ii)]Any extension of $A$ in $K$ is also a valuation ring.
+    \item[(iii)]$A$ is integrally closed in $K$.
+}
+Next we turn to valuation rings defined by using valuations. Let $K$ be any field and $v$ a discrete valuation on it. We begin by providing some properties of $v$.
+\itm{
+    \item[(i)]$v(xy)=v(x)+v(y)$
+    \item[(ii)]$v(x+y)\geqs\min(v(x),v(y))$
+    \item[(iii)]$v(1)=v(-1)=0$
+    \item[(iv)]$v(-x)=v(x)$
+    \item[(v)]$v(x^{-1})=-v(x)$
+}
+Then we turn to the valuation ring $A=\{x\in K^*:v(x)\geqs0\}\cup\{0\}$.
+\itm{
+    \item[(i)]$A$ is a valuation ring of $K$. Hence has all the properties of a valuation ring.
+}
+\end{subsection}
+\begin{subsection}{Noetherian Domains of Dimension $1$}
+The following are true if $A$ is a Noetherian domain of dimension $1$.
+\itm{
+    \item[(i)]Every nonzero prime ideal is maximal.
+    \item[(ii)]Every nonzero ideal has a unique factorization as a product of primary ideals with distinct radicals.
+}
+The following are equivalent in a Noetherian local domain $A$ of dimension $1$, with $\gm$ maximal.
+\itm{
+    \item[(i)]$A$ is a discrete valuation ring.
+    \item[(ii)]$A$ is integrally closed.
+    \item[(iii)]$\gm$ principal.
+    \item[(iv)]$\dim_{A/\gm}(\gm/\gm^2)=1$.
+    \item[(v)]All nonzero ideals are $\{\gm^k:k\geqs0\}$.
+    \item[(vi)]$\exists x\in A$, all nonzero ideals are $\{(x^k):k\geqs0\}$.
+}
+The following are equivalent in a Noetherian domain $A$ of dimension $1$.
+\itm{
+    \item[(i)]$A$ is integrally closed.
+    \item[(ii)]Every primary ideal in $A$ is a prime power.
+    \item[(iii)]Every local ring $A_\gp$ with $\gp\neq(0)$ is a discrete valuation ring.
+}
+\end{subsection}
+\begin{subsection}{Dedekind Domains}
+Let $A$ be a Dedekind domain. The following are true.
+\itm{
+    \item[(i)]Every nonzero ideal has a unique factorization as a product of prime ideals.
+}
+\end{subsection}
+\end{section}
+
+\begin{section}{Equations}
+\begin{subsection}{Ideals}
+\itm{
+    \item[(i)]$\ga(\gb+\gc)=\ga\gb+\ga\gc$
+    \item[(ii)]$\ga+\gb=(1)\implies\ga\gb=\ga\cap\gb$
+    \item[(ii$'$)]$\ga_i+\ga_j=(1)\ (i\neq j)\implies\prod_{i=1}^n\ga_i=\bigcap_{i=1}^n\ga_i$
+    \item[(ii$''$)]$\sqrt\ga+\sqrt\gb=(1)\implies\ga+\gb=(1)$
+}
+\end{subsection}
+\begin{subsection}{Ideal Quotients}
+\itm{
+    \item[(i)]$\ga\subset(\ga:\gb)$
+    \item[(ii)]$(\ga:\gb)\gb\subset\ga$
+    \item[(iii)]$((\ga:\gb):\gc)=(\ga:\gb\gc)=((\ga:\gc):\gb)$
+    \item[(iv)]$(\bigcap_i\ga_i:\gb)=\bigcap_i(\ga_i:\gb)$
+    \item[(v)]$(\ga:\sum_i\gb_i)=\bigcap_i(\ga:\gb_i)$
+}
+\end{subsection}
+\begin{subsection}{Radicals}
+Let $\ga,\gb,\gc,\gp,\gm$ be ideals of a ring $R$.
+\itm{
+    \item[(i)]$\got a\subset\got b\implies\sqrt{\got a}\subset\sqrt{\got b}$
+    \item[(ii)]$\got a\subset\sqrt{\got a}$
+    \item[(iii)]$\sqrt{\sqrt{\got a}}=\sqrt{\got a}$
+    \item[(iv)]$\sqrt{\got{ab}}=\sqrt{\got a\cap\got b}=\sqrt{\got a}\cap\sqrt{\got b}$
+    \item[(v)]$\sqrt{\sqrt{\got a}+\sqrt{\got b}}=\sqrt{\got a+\got b}$
+    \item[(vi)]$\sqrt{\got a}=(1)\iff\got a=(1)$
+    \item[(vii)]$\sqrt{(0)}=\nilrad R$
+    \item[(viii)]$\sqrt{\ga}=\bigcap\limits_{\ttt{prime }\gp\supset\ga}\gp$
+    \item[(ix)]If $\got p$ is prime, then $\forall n\geqs1,\ \sqrt{\got p^n}=\got p$
+    \item[(x)]$\sqrt{\ga}$ is maximal $\implies\ga$ is primary.
+    \item[(xi)]$\gm$ is maximal $\implies\gm^n$ is $\gm$-primary
+    \item[(xii$''$)]$\sqrt\ga+\sqrt\gb=(1)\implies\ga+\gb=(1)$
+}
+\end{subsection}
+\begin{subsection}{Contractions and Extensions}
+Let $f:A\to B$, $\ga,\ga_i$ ideals of $A$ and $\gb,\gb_i$ ideals of $B$.
+\itm{
+    \item[(i)]$\ga\subset\ga^{ec},\ \gb\supset\gb^{ce}$
+    \item[(ii)]$\ga^e=\ga^{ece},\ \gb^c=\gb^{cec}$
+    \item[(iii)]There is a one-to-one correspondence between all contracted ideals and all extended ideals.
+    \item[(iv)]$(\ga_1+\ga_2)^e=\ga_1^e+\ga_2^e$
+    \item[(v)]$(\ga_1\cap\ga_2)^e\subset\ga_1^e\cap\ga_2^e$
+    \item[(vi)]$(\ga_1\ga_2)^e=\ga_1^e\ga_2^e$
+    \item[(vii)]$(\ga_1:\ga_2)^e\subset(\ga_1^e:\ga_2^e)$
+    \item[(viii)]$(\sqrt{\ga})^e\subset\sqrt{\ga^e}$
+    \item[(ix)]$(\gb_1+\gb_2)^c\supset\gb_1^c+\gb_2^c$
+    \item[(x)]$(\gb_1\cap\gb)^c=\gb_1^c\cap\gb_2^c$
+    \item[(xi)]$(\gb_1\gb_2)^c\supset\gb_1^c\gb_2^c$
+    \item[(xii)]$(\gb_1:\gb_2)^c\subset(\gb_1^c:\gb_2^c)$
+    \item[(xiii)]$(\sqrt{\gb})^c=\sqrt{\gb^c}$
+    \item[(xiv)]$\gb$ is prime $\implies\gb^c$ is prime.
+    \item[(xv)]$R\subset\Lambda,\ \Lambda$ is integral over $R\implies\rad(\Lambda)^c=R\cap\rad(\Lambda)=\rad(R)$.
+}
+\ntg{In short, (i)-(iii) say $\ga\mapsto\ga^{ec}$ and $\gb\mapsto\gb^{ce}$ are closure operations and if restricted to the contracted and extended ideals then extension and contraction are mutual inverses and bijective maps. (iv)-(viii) mean extended ideals are closed under sum and product; while (ix)-(xiii) implies contracted ideals are closed under intersection and radical.}
+\end{subsection}
+\begin{subsection}{Modules of Fractions}
+Let $N,P\subset M$ be $A$-modules and $S$ a multiplicatively closed subgroup of $A$.
+\itm{
+    \item[(i)]$\S (N+P)=\S N+\S P$
+    \item[(ii)]$\S (N\cap P)=\S N\cap \S P$
+    \item[(iii)]$\S (g\comp f)=(\S g)\comp(\S f)$
+    \item[(iv)]$\S (M/N)\cong(\S M)/(\S N)$ as $\S A$-modules.
+    \item[(v)]$\S A\ox_AM\cong \S M$ as $\S A$-modules.
+    \item[(vi)]$\S N\ox_{\S A}\S P\cong \S (N\ox_AP)$ as $\S A$-modules.
+    \item[(vii)]$M$ is finitely generated over $A\implies \S (\ann(M))=\ann(\S M)$
+    \item[(viii)]$P$ is finitely generated over $A\implies \S (N:P)=(\S N:\S P)$
+}
+\end{subsection}
+\begin{subsection}{Rings of Fractions}
+Let $S$ be a multiplicatively closed subset of the ring $A$ and $f:A\to \S A$ the natural homomorphism.
+\itm{
+    \item[(i)]The extension of an ideal $\ga\subset A$ under $f$ is $\ga^e=\S \ga$.
+    \item[(ii)]Every ideal in $\S A$ is an extended ideal, i.e., has the form $\S \ga$ with $\ga\subset A$ being an ideal.
+        \ntg{To show some of the properties below, it is important to view $\S \ga$ as the extension of $\ga$ under $f$ and apply the properties for extended ideals.}
+    \item[(iii)]Every prime ideal in $\S A$ is extension of some prime ideal $\gp\subset A$ with $\gp\cap S=\varn$, i.e., has the form $\S \gp$, and this correspondence is one-to-one.
+        \ntg{If $\gp\cap S\neq\varn$, then some element in $\gp$ is invertible in $\S A\implies \S \gp=(1)$.}
+    \item[(iv)]$\S (\ga+\gb)=\S \ga+\S \gb$
+    \item[(v)]$\S (\ga\cap\gb)=\S \ga\cap \S \gb$
+    \item[(vi)]$\S (\ga\gb)=(\S \ga)(\S \gb)$
+    \item[(vii)]$\S (\sqrt{\ga})=\sqrt{\S \ga}$
+    \item[(viii)]$\gb\subset\ga\implies \S (\ga/\gb)\cong(\S \ga)/(\S \gb)$ as (at least) $\S A$-modules.
+    \item[(ix)]$\gb$ is finitely generated $\implies \S (\ga:\gb)=(\S \ga:\S \gb)$
+    \item[(x)]$\nilrad(\S A)=\S (\nilrad A)$
+}
+\end{subsection}
+\begin{subsection}{The Tensor Product}
+Let $M,N,P$ be $R$-modules, $\ga$ an ideal in $R$.
+\itm{
+    \item[(i)]$M\ox N\cong N\ox M$
+    \item[(ii)]$(M\ox N)\ox P\cong M\ox(N\ox P)\cong M\ox N\ox P$
+    \item[(iii)]$(M\op N)\ox P\cong(M\ox P)\op(N\ox P)$
+    \item[(iii$'$)]$(\bigoplus_iM_i)\ox P\cong\bigoplus_i(M_i\ox P)$
+    \item[(iv)]$R\ox M\cong M$
+    \item[(v)]If $A,B$ are rings, $M$ is an $A$-module, $P$ is a $B$-module and $N$ is an $(A,B)$-bimodule, then $M\ox_AN$ is a $B$-module, $N\ox_BP$ is an $A$-module and
+        \[(M\ox_AN)\ox_BP\cong M\ox_A(N\ox_BP)\]
+    \red{(Q: As what module? What is the isomorphism?)}
+    \item[(vi)]$(R/\ga)\ox_R M\cong M/\ga M$
+    \item[(vii)]$(f\ox g)(x\ox y)=f(x)\ox g(y)$
+    \item[(viii)]$(f'\comp f)\ox(g'\comp g)=(f'\ox g')\comp(f\ox g)$
+}
+\end{subsection}
+\end{section}
+
+\begin{section}{Preserved Properties (Downward)}
+\begin{subsection}{To the Polynomial Ring}
+\itm{
+    \item[(i)]$A$ is an integral domain $\implies A[x]$ is an integral domain.
+    \item[(ii)]$A$ is a UFD $\implies A[x]$ is a UFD.
+    \item[(iii)]$A$ is Noetherian $\implies A[x]$ is Noetherian.
+    \item[(iv)]$A$ is an integrally closed integral domain $\implies A[x]$ is an integrally closed domain.
+    \item[(iv)]$F$ is a field $\implies F[x]$ is an Euclidean domain.
+    \item[(v)]$\ga$ is an ideal in $A\implies\ga[x]$ is an ideal in $A[x]$.
+    \item[(vi)]$\gp$ is prime in $A\implies\gp[x]$ is prime in $A[x]$.
+    \item[(vii)]$\gq$ is $\gp$-primary in $A\implies\gq[x]$ is $\gp[x]$-primary in $A[x]$.
+    \item[(viii)]$\ga=\bigcap_{i=1}^n\gq_i$ is a minimal primary decomposition $\implies\ga[x]=\bigcap_{i=1}^n\gq_i[x]$ is a minimal primary decomposition.
+    \item[(ix)]Let $A\subset C\subset B$ be ring extensions. Then $C$ is the integral closure of $A$ in $B\implies C[x]$ is the integral closure of $A[x]$ in $B[x]$.
+}
+\end{subsection}
+\begin{subsection}{To the Ring of Formal Power Series}
+\itm{
+    \item[(i)]$A$ is Noetherian $\implies A[[x]]$ is Noetherian.
+    \item[(ii)]$F$ is a field $\implies F[[x]]$ is a DVR.
+}
+\end{subsection}
+\begin{subsection}{To the Quotient Ring}
+\itm{
+    \item[(i)]$B$ is integral over $A\implies B/\gb$ is integral over $A/(A\cap\gb)$.
+    \item[(ii)]$A$ is a PID $\implies A/\ga$ is a PID.
+    \item[(iii)]$A$ is a Dedekind domain, $(0)\neq\ga\subset R/\ga\implies R/\ga$ is a PID.
+}
+\ntg{All of these apply to the image under a homomorphism as well, for it is isomorphic to a quotient.}
+\end{subsection}
+\begin{subsection}{To the Submodule}
+Let $M$ be a module and $N\subset M$ a submodule.
+\itm{
+    \item[(i)]$M$ is semisimple $\implies N$ is semisimple.
+    \item[(ii)]$M$ is finitely generated over a PID $\implies N$ is finitely generated.
+    \item[(iii)]$M$ is Noetherian $\implies N$ is Noetherian.
+    \item[(iv)]$M$ is Artinian $\implies N$ is Artinian.
+}
+\end{subsection}
+\begin{subsection}{To the Quotient Module}
+Let $M$ be a module and $N\subset M$ a submodule.
+\itm{
+    \item[(i)]$M$ is semisimple $\implies M/N$ is semisimple.
+    \item[(ii)]$M$ is finitely generated $\implies M/N$ is finitely generated.
+    \item[(iii)]$M$ is Noetherian $\implies M/N$ is Noetherian.
+    \item[(iv)]$M$ is Artinian $\implies M/N$ is Artinian.
+}
+\end{subsection}
+\begin{subsection}{To the Ring}
+\itm{
+    \item[(i)]$A$ is Noetherian, $B$ is a ring extension of $A$, $B$ is finitely generated as an $A$-module $\implies B$ is a Noetherian ring.
+}
+\end{subsection}
+\begin{subsection}{To the Module}
+\itm{
+    \item[(i)]$A$ is Noetherian, $M$ is a finitely generated $A$-module $\implies M$ is Noetherian.
+    \item[(ii)]$A$ is Artinian, $M$ is a finitely generated $A$-module $\implies M$ is Artinian.
+}
+\end{subsection}
+\begin{subsection}{To the Algebra}
+\itm{
+    \item[(i)]$A$ is Noetherian, $B$ is a finitely generated $A$-algebra $\implies B$ is Noetherian.
+}
+\end{subsection}
+\begin{subsection}{To the Ring of Fractions}
+Let $A$ be a ring, $\ga$ one of its ideals and $S$ a multiplicatively closed subset.
+\itm{
+    \item[(i)]$A$ is integral $\implies S^{-1}A$ is integral.
+    \item[(ii)]$A$ is Noetherian $\implies S^{-1}A$ is Noetherian. In particular $A_\gp$ is Noetherian.
+    \item[(iii)]$\ga$ is an ideal $\implies \S \ga=\ga^e$ is an ideal.
+    \item[(iv)]$\gp$ is prime, $\gp\cap S=\varn\implies \S \gp$ is prime.
+    \item[(v)]$\gq$ is $\gp$-primary, $S\cap\gp\neq\varn\implies \S \gq=\S A$.
+    \item[(vi)]$\gq$ is $\gp$-primary, $S\cap\gp=\varn\implies \S \gq$ is $\S\gp$-primary.
+    \item[(vii)]\footnote{Atiyah. Exer. 4.16}Every $\ga$ in $A$ has a primary decomposition $\implies$ every ideal in $S^{-1}A$ has a primary decomposition.
+}
+\end{subsection}
+\begin{subsection}{To the Module of Fractions}
+\itm{
+    \item[(i)]$M'\to M\to M''$ is exact $\implies \S M'\to \S M\to \S M''$ is exact.
+}
+\end{subsection}
+\begin{subsection}{To the Direct Sum}
+\itm{
+    \item[(i)]$\bigoplus(\ttt{torsion})=\ttt{torsion}$
+    \item[(ii)]$\bigoplus(\ttt{torsion-free})=\ttt{torsion-free}$
+}
+\end{subsection}
+\begin{subsection}{To the Product}
+\end{subsection}
+\end{section}
+
+\begin{section}{Preserved Properties (Upward)}
+\itm{
+    \item[(i)]$N$ is a submodule of $M$. Then $N, M/N$ are Noetherian $\implies M$ is Noetherian.
+    \item[(ii)]$N$ is a submodule of $M$. Then $N, M/N$ are Artinian $\implies M$ is Artinian.
+}
+\end{section}
+
+\begin{section}{Correspondences}
+\itm{
+    \item[(i)]Each \tf{ideal} $\orl\gb$ of $A/\ga$ corresponds to a unique ideal $\gb$ of $A$ with $\ga\subset\gb$.
+    \item[(ii)]Each \tf{ideal} of $\S A$ has the form $\S \ga=\ga^e$. And $\S \ga=(1)\iff\ga\cap S\neq\varn$.
+    \item[(iii)]Each \tf{prime ideal} $\S \gp$ of $\S A$ corresponds to a unique prime ideal $\gp$ with $\gp\cap S=\varn$.
+    \item[(iii$'$)]Each \tf{prime ideal} $\gq_\gp$ of $A_\gp$ corresponds to a unique prime ideal $\gq$ of $A$ with $\gq\subset\gp$.
+}
+\end{section}
+
+\newpage
+\begin{section}{Topics}
+\begin{subsection}{Splitting Short Exact Sequence}
+\label{split}
+A short exact sequence
+\eqn{0\to L\xrightarrow{f}M\xrightarrow{g}N\to0\label{splits}}
+is said to \tf{split}\index{split} if any of the following equivalent conditions are satisfied.
+\itm{
+    \item[(i)]One can project $M$ back to $L$, i.e., $\exists f':M\to L$ as a left inverse of $f$.
+    \item[(ii)]One can embed $N$ back to $M$, i.e., $\exists g':N\to M$ as a right inverse of $g$.
+    \item[(iii)]$L,N$ are isomorphic to two direct summands of $M$ that add up to $M$, i.e., $\exists\phi:L\op N\isom M$ such that the diagram commutes.
+        \[\xymatrix{
+            0\ar[r]&L\ar@{=}^{\id_L}[d]\ar^{\iota_L}[r]&L\op N\ar^{\pi_P}[r]\ar^{\phi}[d]&N\ar@{=}^{\id_P}[d]\ar[r]&0\\
+            0\ar[r]&L\ar^f[r]&M\ar^g[r]&N\ar[r]&0\\
+        }\]
+}
+The following lemma is essential in the proof of the equivalence of the conditions.
+\[f\in\End_R(M),\ f^2=f\implies M=\ker f\op\im f\]
+Such an endomorphism is called a \tf{projection}\index{projection}. The existence of a projection allows us to decompose a module into a direct sum of the projection plane and its direct complement. Conditions (i) and (ii) respectively give two projections on $M$, allowing us to decompose $M$ and construct a isomorphism required in (iii).
+
+In essence, these conditions describe when one can decompose a module into a direct sum. When a sequence splits, condition (iii) gives two submodules $L'=\phi(L\x\{0\})$ and $N'=\phi(\{0\}\x N)$ of $M$, and we wish to prove that $M=L'\op N'$. For any $z\in M$ we have $\phi^{-1}(z)=(x,y)$ with $x\in L,\ y\in N$, hence $z=\phi(x,y)=\phi(x,0)+\phi(0,y)\in L'+N'$. Also $z\in L'\cap N'\implies\phi^{-1}(z)=(x,0)=(0,y)\implies x=y=0\implies L'\cap N'=0$, hence $M=\L'\op N'$.
+
+The sequence (\ref{splits}) splits if $N$ is free, for one can construct $g':N\to M$ by extending a mapping on a basis. Then there exists some free submodule $N'=g'(N)\cong N$ such that $N'$ is a direct summand of $M$. This result comes handy when dealing with the free-torsion decomposition.
+\end{subsection}
+
+\begin{subsection}{Correspondence Theorem for Ring Homomorphisms (Apr. 20, 2019)}
+It is known that the preimage of an ideal under a ring homomorphism is also an ideal. Furthermore, prime ideals are preserved under taking the preimage. Yet, the converse part of this proposition, although desirable, is in general not true. Some questions regarding whether an ideal is preserved under a homomorphism are as follows (let $\phi:A\to B$ be a ring homomorphism).
+\itm{
+    \item[(i)]If $\ga$ is an ideal, is $\phi(\ga)$ also an ideal?
+    \item[(ii)]Is there a correspondence between the ideals of the two rings?
+    \item[(iii)]If $\ga\neq\gb$ are ideals, is it possible that $\phi(\ga)=\phi(\gb)$?
+    \item[(iv)]Does $\phi$ preserve prime and maximal ideals?
+}
+
+We should note that, for a homomorphism in general, (i) does not hold and a fortiori (ii) and (iii). However, if $\phi$ is an injective homomorphism, we might be able to obtain some delightful results.
+
+Let $\phi:A\to B$ be a surjective ring homomorphism.
+
+For (i), if $\ga\subset A$ is an ideal, then $\phi(\ga)$ is for sure a subring. The only obstacle between $\phi(\ga)$ and an ideal is the law of absorption, which may be overcome by the surjectiveness of $\phi$. Let $y\in\phi(\ga)$ and $r'\in B$. Then there exists $x\in\ga$ such that $\phi(x)=y$. Also, by the surjectiveness of $\phi$ there exists some $r\in A$ such that $\phi(r)=r'$. Then we have $rx\in\ga$ and $r'y=\phi(rx)\in\ga$.
+
+For (ii) and (iii), note that $\phi^{-1}$ gives a correspondence of all ideals of $B$ and the ideals of $A$ containing $\ker\phi$. Therefore, if we are going to find such a correspondence, we should restrict ourselves to the ideals containing $\ker\phi$. To prove it is a correspondence, it suffices to show (iii) is not possible. Let $\ga,\gb\supset\ker\phi$ be ideals and $\phi(\ga)=\phi(\gb)$. For any $x\in\ga,\ \phi(x)\in\phi(\ga)=\phi(\gb)$, there exists $y\in\gb,\ \phi(y)=\phi(x)$. Hence $\phi(x-y)=0\implies x-y\in\ker\phi\subset(\ga\cap\gb)\implies x=x-y+y\in\gb$. Then $\ga\subset\gb$ and symmetrically $\gb\subset\ga$, whence $\ga=\gb$.
+\ntg{If one notices that $\ga$ and $\gb$ can only differ by at most $\ker\phi$, which is contained in both $\ga,\gb$, hence they don't differ at all.}
+
+For (iv), we claim the following.
+    \[\ttt{prime}\supset\ker\phi\longleftrightarrow\ttt{prime}\]
+    \[\ttt{maximal}\supset\ker\phi\longleftrightarrow\ttt{maximal}\]
+The preimage direction is common sense. For the other direction, let $\gp\subset A$ be prime such that $\gp\supset\ker\phi$ and $x,y\in B,\ xy\in\phi(\gp)$. By the surjectiveness we can respectively find the preimages of $x,y,xy$, say, $a,b\in A$ and $c\in\gp$. Then $\phi(ab-c)=0\implies ab-c\in\ker\phi\subset\gp\implies ab\in\gp\implies a$ or $b\in\gp\implies x$ or $y\in\phi(\gp)$. Hence $\phi(\gp)$ is prime. The claim on maximal ideals is similar.
+\end{subsection}
+
+
+\newpage
+\begin{subsection}{When does a module becomes a vector space? (Apr. 25, 2019)}
+As is known, each vector space has a dimension because every basis has the same cardinality, while in general modules do not. However, in practice, a similar invariant is in demand, which algebraists often try to obtain by constructing a vector space from known modules.
+
+\emp{The first example is in Roman's proof\footnote{Steven Roman. Advanced Linear Algebra. GTM 135.} that a free module $M$ over a commutative ring $R$ with identity has a well-defined rank, i.e., each basis $\mcl B$ has the same cardinality. He proved this proposition by showing
+\[\abs{\mcl B}=\abs{\mcl B+IM}=\dim_{R/I}(M/IM)\]
+where $I\subset R$ is a maximal ideal. One of the key steps in this proof is that one needs to construct and verify that $M/IM$ is a vector space over $R/I$.\qed}
+
+\ntg{If $M$ is an $R$-module, $I$ an ideal of $R$ and $N$ a submodule of $M$, then $IN$ is a submodule of $M$ such that $IN\subset N$, which can be explicitly expressed as
+    \[IN=\{r_1x_1+\cdots+r_nx_n\ |\ r_i\in I,x_i\in N\}\]
+    It is easily verified to be closed under scalar multiplication and addition. We can also obtain submodules by multiplying a submodule by a single ring element.
+    \[aN=\{ax\ |\ x\in N\}\]
+    This is closed under addition ($ax_1+a_x2=a(x_1+x_2)$) and scalar multiplication by $R$ ($r(ax)=a(rx)$). For rings, this means that if $\ga,\gb$ are ideals and $r$ is an element of a ring $R$, then $\ga\gb$ and $r\ga$ are both ideals.
+}
+
+Now we continue to state our problem. If $M$ is an $R$-module, $N$ a submodule of $M$ and $I$ an ideal of $R$, when is $M/N$ an $R/I$-module, i.e, a vector space over $R/I$?
+Actually, the only thing that needs to be checked is the well-definedness of scalar multiplication defined by $\bar r\bar x=\orl{rx}$. Let $r_1,r_2,r\in R$ and $x_1,x_2,x\in M$. It suffices for $I,N$ to satisfy
+\[x\in M,\ r_1-r_2\in I\implies r_1x-r_2x\in N\]
+\[r\in R,x_1-x_2\in N\implies rx_1-rx_2\in N\]
+The second condition is automatically satisfied as $N$ is a submodule. The first can be simplified to
+\[r\in I,x\in M\implies rx\in N,\quad\]
+or more concisely,
+\[IM\subset N\]
+One easily sees that this is an equivalent condition for $M/N$ to be a vector space over $R/I$. This result is concluded as the following theorem.
+
+\thm{Let $M$ be an $R$-module, $N$ a submodule and $I$ an ideal. Then
+    \eqn{\boxed{M/N\ttt{ is a vector space over }R/I\iff IM\subset N}\label{m!vs}}
+    Let $\ga$ and $\gb$ be ideals of $R$ and $\gb\supset\ga$. Then
+    \eqn{\boxed{\ga/\gb\ttt{ is a vector space over }R/I\iff I\ga\subset\gb}\label{r!vs}}}
+
+We move on to provide more examples.
+\emp{Let $M$ be a finitely generated $p$-torsion $R$-module, where $p$ is a prime in $R$. We know from the primary decomposition that
+    \[M\cong R/(p^{n_1})\op\cdots\op R/(p^{n_s})\]
+    One also needs to check the uniqueness of the (elementary) factors $p^{n_i}$. Consider the module $p^nM$. Note that each summand multiplied by $p^n$ is $p^nR/(p^{n_i})=(p^n)/(p^{n_i})$. Since $(p^n)/(p^{n_i})$ and $(p^{n+1})/(p^{n_i})$ satisfies (\ref{m!vs}), hence we have for $n<n_i$
+    \[\frac{(p^n)/(p^{n_i})}{(p^{n+1})/(p^{n_i})}\cong(p^n)/(p^{n+1})\cong R/(p)\ttt{ is a vector space over }R/(p)\]
+    \ntg{The second isomorphism is obtained by
+        \[\arr{{rcl}R&\to&(p^n)/(p^{n+1})\\x&\mapsto&\orl{p^nx}}\]}
+    and for $n\geqs n_i$ that $p^nR/(p^{n_i})=0$. It follows that
+    \[p^nM\cong\bigoplus_{n_i>n}(p^n)/(p^{n_i})\]
+    \[\frac{p^nM}{p^{n+1}M}\cong\frac{\bigoplus_{n_i>n}(p^n)/(p^{n_i})}{\bigoplus_{n_i>n}(p^{n+1})/(p^{n_i})}\cong\bigoplus_{n_i>n}R/(p)\]
+    $\frac{p^nM}{p^{n+1}M}$ and all summands on the right are vector spaces over $R/(p)$, which is a field.
+    \ntg{In a PID, nonzero prime ideal $\iff$ maximal ideal, because prime element $\iff$ irreducible element.}
+    If follows that
+    \[\dim_{R/(p)}\prn{\frac{p^nM}{p^{n+1}M}}=\dim_{R/(p)}\prn{\bigoplus_{n_i>n}R/(p)}=\#\{i:n_i>n\}\]
+    Hence the $n_i$'s are uniquely determined by $M$ and so are the $p^{n_i}$'s.\qed}
+
+\emp{Consider the following proposition. Let $R$ be a ring in which $0=\gm_1\cdots\gm_n$ for some maximal ideals (not necessarily distinct) $\gm_1,\cdots,\gm_n$. Then
+    \[R\ttt{ is Noetherian}\iff R\ttt{ is Artinian}\]
+    The proof requires us to consider the chain
+    \[R\supset\gm_1\supset\gm_1\gm_2\supset\cdots\supset\inds{\gm}{n}{}=0\]
+    The each quotient $R$-module $\inds{\gm}{i-1}{}/\inds{\gm}{i}{}$ is a vector space over $R/\gm_i$.}
+\end{subsection}
+
+\begin{subsection}{Localization (May. 25, 2019)}
+Let $A$ be a ring and $\gp$ a prime ideal. Then $A_\gp$ is the \tf{localization} of $A$ at $\gp$. The localized ring $A_\gp$ seems really important and appears everywhere but its property has not been systematically discussed. This article aims to integrate the known properties of the localized ring $A_\gp$.
+
+\thm{The localization $A_\gp$ is a local ring, whose only maximal ideal is $\gp_\gp$.\footnote{I want to mention the notation here. In Serre's book, the notation $\gp A_\gp$ is used. It can mean two things: $(\gp A)_\gp$ and $\gp(A_\gp)$. But they are equal, because if we write $a\frac{b}{s}=\frac{ab}{s}$ and let $a$ range over $\gp$, $b$ over $A$ and $s$ over $A_\gp$, then $ab$ runs through $\gp$. Hence $\gp_\gp=(\gp A)_\gp=\gp(A_\gp)$.}}
+\prf{First note that $\gp_\gp$ is an ideal. Then prove $A_\gp-\gp_\gp$ contains only units in $A_\gp$. It follows that $A_\gp$ is local and $\gp_\gp$ is its only maximal ideal.}
+
+Every rule that holds for the ring/module of fractions holds for localization as well, namely the following.
+\thm{The following are true.
+\itm{
+    \item[(i)]The extension of an ideal $\ga$ is $\ga^e=\ga_\gp$. Conversely, every ideal in $A_\gp$ has the form $\ga_\gp$. And
+        \[\ga_\gp=A_\gp\iff\ga\cap(A-\gp)\neq\varn\]
+        Hence
+        \[\ga_\gp\neq A_\gp\iff\ga\cap(A-\gp)=\varn\iff\ga\subset\gp\]
+    \item[(i$'$)]If we restrict $\ga$ in (i) to be prime, then the correspondence $\ga\leftrightarrow\ga_\gp$ with $\ga\subset\gp$ is a one-to-one correspondence between prime ideals.
+    \item[(ii)]$(\ga+\gb)_\gp=\ga_\gp+\gb_\gp$
+    \item[(iii)]$(\ga\cap\gb)_\gp=\ga_\gp\cap\gb_\gp$
+    \item[(iv)]$(\ga\gb)_\gp=\ga_\gp\gb_\gp$
+    \item[(v)]$(\sqrt{\ga})_\gp=\sqrt{\ga_\gp}$
+    \item[(vi)]$\gb\subset\ga\implies(\ga_\gp/\gb_\gp)\cong(\ga_\gp)/(\gb_\gp)$ as (at least) $A_\gp$-modules.
+    \item[(vii)]$\gb$ is finitely generated $\implies(\ga:\gb)_\gp=(\ga_\gp:\gb_\gp)$
+    \item[(viii)]$\nilrad(A_\gp)=(\nilrad A)_\gp$
+}}
+
+We should place our focus on (i) and (i'). They state that, after the localization, all ideals $\ga\supsetneqq\gp$ goes to $A_\gp=(1)$ under $A\to A_\gp$. Let $\gp\subset\gq$ be prime ideals of $A$, then
+\[A\to A/\gq\to(A/\gq)_\gp\cong A_\gp/\gq_\gp\]
+or
+\[A\to A_\gp\to A_\gp/\gq_\gp\]
+sends all ideals $\ga\supsetneqq\gp$ to $A_\gp/\gq_\gp=(1)$ and all $\gb\subset\gq$ to (0). In other words, the only ones (possibly) left are the ideals $\gq\subsetneqq\gc\subset\gp$. And recall that if we restrict to prime ideals only, then the correspondence is one-to-one\footnote{If $A\to B$ is surjective, then the correspondence between prime ideals is one-to-one.}. Hence we have the following.
+\thm{There is a one-to-one correspondence between the primes ideals $\gp'$ satisfying $\gq\subset\gp'\subset\gp$ and all prime ideals of $A_\gp/\gq_\gp$.}
+
+\pbl{Is $A_\gp/\gq_\gp$ still local? Yes, by the correspondence theorem.}
+\pbl{Is $A_\gp/\gq_\gp$ integral? Yes, because $\gq_\gp$ is prime.}
+\pbl{Is $(A/\gq)_\gp$ a ring?}
+\pbl{When we set $\gp=\gq$, the isomorphism above gives $(A/\gp)_\gp\cong A_\gp/\gp_\gp$. But in reality, $(A/\gp)_{(0)}\cong A_\gp/\gp_\gp$. Which is right?}
+
+Localization appears most often in the discussion of local properties. A property of a ring $A$ is called a \tf{local property} if ``\textit{$P$ holds for $A\iff P$ holds for all $A_\gp$ where $\gp$ is prime}''. Similarly, an $A$-module $M$ has a \tf{local property} $P$ if ``\textit{$P$ holds for $M\iff P$ holds for all $M_\gp$ where $\gp$ is prime}''.
+
+\thm{The following are local properties for an $A$-module $M$.
+    \itm{
+        \item[(i)]$M=0$.
+        \item[(ii)]$M\to N$ is injective.
+        \item[(iii)]$M\to N$ is surjective.
+        \item[(iv)]$M\to N$ is a flat $A$-module.
+        \item[(v)]$M$ is a finitely generated, invertible fractional ideal.
+    }}
+\thm{The following are local properties for a ring $A$.
+    \itm{
+        \item[(i)]$\nilrad A=0$.
+        \item[(ii)]$A$ is integrally closed integral domain.
+    }}
+\end{subsection}
+
+\begin{subsection}{Commutative Diagrams}
+This part integrates all the operations we have on the commutative diagrams of modules. The following diagrams are all diagrams of $R$-modules and their homomorphisms.
+\desc{
+    \item[Square extension]A commutative square
+        \[\xym{
+            X\ar[d]_\alpha\ar[r]^f&Y\ar[d]^\beta\\
+            M\ar[r]^g&N
+        }\]
+        can be extended to
+        \[\xym{
+            \ker(\alpha)\ar[r]^{f'}\ar@{^{(}->}[d]_{\ttt{inc}}&\ker(\beta)\ar@{^{(}->}[d]^{\ttt{inc}}\\
+            X\ar[d]_\alpha\ar[r]^f&Y\ar[d]^\beta\\
+            M\ar@{>>}[d]_{\ttt{prj}}\ar[r]^g&N\ar@{>>}[d]^{\ttt{prj}}\\
+            \coker(\alpha)\ar[r]^{\orl g}&\coker(\beta)
+        }\]
+    \item[Snake Lemma]A commutative diagram with exact rows
+        \[\xym{
+            &L_1\ar[r]^f\ar[d]^\alpha&M_1\ar[r]^g\ar[d]^\beta&N_1\ar[r]\ar[d]^\gamma&0\\
+            0\ar[r]&L_2\ar[r]^h&M_2\ar[r]^k&N_2&
+        }\]
+        can be embedded in
+        \[\xym{
+            &&\ker\alpha\ar@{^{(}->}[d]\ar@[red][r]^{\red{f'}}&\ker\beta\ar@{^{(}->}[d]\ar@[red][r]^{\red{g'}}&\ker\gamma\ar@{^{(}->}[d]\ar@[red]`r[r]`[rdd]`^d[ddlll]`[dddddll]_{\red{\delta}}[dddddll]&&\\
+            &&L_1\ar[r]^f\ar[ddd]^\alpha&M_1\ar[r]^g\ar[ddd]^\beta&N_1\ar[rr]\ar[ddd]^\gamma&&0\\
+            &&&&&&\\
+            &&&&&&\\
+            0\ar[rr]&&L_2\ar@{>>}[d]\ar[r]^h&M_2\ar[r]^k\ar@{>>}[d]&N_2\ar@{>>}[d]&\\
+            &&\coker\alpha\ar@[red][r]^{\red{\orl h}}&\coker\beta\ar@[red][r]^{\red{\orl k}}&\coker\gamma&\\
+        }\]
+        And the sequence
+        \[\ker\alpha\ton{f'}\ker\beta\ton{g'}\ker\gamma\ton{\delta}\coker\alpha\ton{\bar h}\coker\beta\ton{\orl k}\coker\gamma\]
+        is exact.
+    \item[5 Lemma]A commutative diagram with exact rows
+        \[\xym{
+            M_1\ar[r]^f\ar[d]^{\xi_1}&M_2\ar[r]^g\ar[d]^{\xi_2}&M_3\ar[r]^h\ar[d]^{\xi_3}&M_4\ar[r]^k\ar[d]^{\xi_4}&M_5\ar[d]^{\xi_5}\\
+            N_1\ar[r]^\alpha&N_2\ar[r]^\beta&N_3\ar[r]^\gamma&N_4\ar[r]^\delta&N_5\\
+        }\]
+        satisfies
+        \itm{
+            \item[(i)]the injectiveness of $\xi_2,\xi_4$ is passed to $\xi_3$ if $\xi_1$ is surjective;
+            \item[(ii)]the surjectiveness of $\xi_2,\xi_4$ is passed to $\xi_3$ if $\xi_5$ is injective.
+        }
+        \ntg{LSRI.}
+    \item[Pushout Square]The diagram
+        \[\xym{
+            M\ar[r]^f\ar[d]^g&X\\
+            Y&\\
+        }\]
+        can be embedded in some commutative square
+        \[\xym{
+            M\ar[r]^f\ar[d]^g&X\ar[d]^\beta\\
+            Y\ar[r]^\alpha&Z\\
+        }\]
+        such that any other commutative square
+        \[\xym{
+            M\ar[r]^f\ar[d]^g&X\ar[d]^{\beta'}\\
+            Y\ar[r]^{\alpha'}&Z'\\
+        }\]
+        can be factored through the square
+        \[\xym{
+            M\ar[r]^f\ar[d]_g&X\ar[d]_\beta\ar[rdd]^{\beta'}&\\
+            Y\ar[r]^\alpha\ar[rrd]_{\alpha'}&Z\ar@{.>}[rd]|{\exists!\gamma}&\\
+            &&Z'
+        }\]
+        \prf{Let $Z=X\oplus Y/N$}
+    \item[Pullback Square]The diagram
+        \[\xym{
+            &Y\ar[d]^g\\
+            X\ar[r]^f&M\\
+        }\]
+        can be embedded in some commutative square
+        \[\xym{
+            L\ar[r]^\xi\ar[d]^\eta&Y\ar[d]^g\\
+            X\ar[r]^f&M\\
+        }\]
+        such that any other commutative square
+        \[\xym{
+            L'\ar[r]^{\xi'}\ar[d]^{\eta'}&Y\ar[d]^g\\
+            X\ar[r]^f&M\\
+        }\]
+        can be factored through the square
+        \[\xym{
+            L'\ar[rrd]^{\xi'}\ar[ddr]_{\eta'}\ar@{.>}[dr]|{\exists!\sigma}&&\\
+            &L\ar[r]_\xi\ar[d]^\eta&Y\ar[d]^g\\
+            &X\ar[r]^f&M\\
+        }\]
+}
+\end{subsection}
+\end{section}
+\end{document}

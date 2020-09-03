@@ -1,0 +1,1013 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{geometry,xcolor,layout,amssymb,amsthm,amsmath,mathrsfs,graphicx,centernot,textcomp,galois,extarrows,bbm,dsfont,makeidx,empheq}
+\usepackage[normalem]{ulem}
+\usepackage[all]{xy}
+
+\newtheorem{prp}{Proposition}[section]
+\newtheorem{theom}{Theorem}[section]
+\newtheorem{eg}{Example}[section]
+\newtheorem{coro}{Corollary}[section]
+
+\theoremstyle{definition}
+\newtheorem{ct}{\textcolor{cyan}{Counterexample}}[section]
+\newtheorem*{pf}{\blue{Proof}}
+\newtheorem{question}{Q}[section]
+\newtheorem{dfn}{Definition}[section]
+\newtheorem{probl}{Problem}[section]
+\newtheorem{nt}{\cg{Note}}[section]
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}[section]
+
+\newcommand*\widefbox[1]{\fbox{\vspace{2em}\hspace{2em}#1\hspace{2em}}}
+\setlength\fboxsep{0.2cm}
+
+\newcommand{\tick}{\textcolor{red}{\checkmark}}
+\newcommand{\bs}{\backslash}
+\newcommand{\udots}{\mathinner{\mskip 1mu\raise 1pt\vbox{\kern 7pt\hbox{.}}
+\mskip 2mu\raise 4pt\hbox{.}\mskip 2mu\raise 7pt\hbox{.}\mskip 1mu}}
+\newcommand{\geqs}{\geqslant}
+\newcommand{\leqs}{\leqslant}
+\newcommand{\Var}{{\rm Var}}
+\newcommand{\sdd}{\sigma}
+\newcommand{\ga}{\got a}
+\newcommand{\gb}{\got b}
+\newcommand{\gc}{\got c}
+\newcommand{\gp}{\got p}
+\newcommand{\gq}{\got q}
+\newcommand{\gm}{\got m}
+\newcommand{\EE}{\mathbb{E}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\rsa}{\sigma(f;\pi,\xi)}
+\newcommand{\wlg}{{\rm w.l.o.g.}}
+\newcommand{\spn}{{\rm span}}
+\newcommand{\rank}{{\rm rank}}
+\newcommand{\nul}{{\rm null}}
+\newcommand{\im}{{\rm im}}
+\newcommand{\coker}{{\rm coker}}
+\newcommand{\coim}{{\rm coim}}
+\newcommand{\ud}{{\rm d}}
+\newcommand{\lub}{{\rm lub}}
+\newcommand{\glb}{{\rm glb}}
+\newcommand{\dx}{\ud x}
+\newcommand{\dy}{\ud y}
+\newcommand{\dz}{\ud z}
+\newcommand{\dmu}{\ud\mu}
+\newcommand{\x}{\times}                     %乘号
+\newcommand{\ox}{\otimes}
+\newcommand{\op}{\oplus}
+\newcommand{\p}{\prime}
+\newcommand{\fctr}{\Rightarrow}
+\newcommand{\unito}{\rightrightarrows}
+\newcommand{\lbint}{\int\!\!\!\int}      %二重积分号
+\newcommand{\bint}{\int\!\!\!\!\int}      %二重积分号
+\newcommand{\tint}{\int\!\!\!\!\int\!\!\!\!\int}      %三重积分号
+\newcommand{\apr}{\approx}
+\newcommand{\prdn}{\prod\limits_{n=1}^\infty}
+\newcommand{\sumn}{\sum\limits_{n=1}^\infty}
+\newcommand{\sump}{\sum\limits_{n=0}^\infty}
+\newcommand{\limn}{\lim\limits_{n\to\infty}}
+\newcommand{\limx}{\lim\limits_{x\to+\infty}}
+\newcommand{\operp}{\stackrel{\perp}{\oplus}}
+\newcommand{\const}{{\rm const}}
+\newcommand{\codim}{{\rm codim}}
+\newcommand{\sgn}{{\rm sgn}}
+\newcommand{\ann}{{\rm ann}}
+\newcommand{\chr}{{\rm \,char\,}}
+\newcommand{\tr}{{\rm tr}}
+\newcommand{\sym}{{\rm Sym}}
+\newcommand{\centr}{{\rm Centr}}
+\newcommand{\Sp}{{\rm Sp}}              %symplectic
+\newcommand{\id}{{\rm id}}
+\newcommand{\Obj}{\mf{Obj}}
+\newcommand{\Mor}{\mf{Mor}}
+\newcommand{\Perm}{{\rm Perm}}
+\newcommand{\Hom}{{\rm Hom}}
+\newcommand{\Aut}{{\rm Aut}}
+\newcommand{\Inn}{{\rm Inn}}
+\newcommand{\End}{{\rm End}}
+\newcommand{\re}{{\rm Re}}
+\newcommand{\diag}{{\rm diag}}
+\newcommand{\grad}{{\rm grad\,}}
+\newcommand{\dive}{{\rm div\,}}
+\newcommand{\rot}{{\rm rot\,}}
+\newcommand{\curl}{{\rm curl\,}}
+\newcommand{\free}{{\rm free}}
+\newcommand{\tor}{{\rm tor}}
+\newcommand{\rad}{{\rm rad}}
+\newcommand{\nilrad}{{\rm nilrad}}
+\newcommand{\ord}{{\rm ord}}
+\newcommand{\irr}{{\rm Irr}}
+\newcommand{\cl}{{\rm cl}}
+\newcommand{\Cl}{{\rm Cl}}
+\newcommand{\fix}{{\rm fix}}
+\newcommand{\boun}{\partial}
+\newcommand{\into}{\hookrightarrow}
+\newcommand{\varn}{\varnothing}
+\newcommand{\vare}{\varepsilon}
+\newcommand{\vphi}{\varphi}
+\newcommand{\diam}{{\rm diam}}
+\newcommand{\vect}{{\rm Vect}}
+\newcommand{\isom}{\stackrel{\cong}{\longrightarrow}}
+\newcommand{\dfas}{\triangleq}
+\newcommand{\st}{{\rm\quad s.t.\quad}}
+\newcommand{\lapla}{\Delta}
+\newcommand{\divd}{\big|}
+\makeatletter
+\newcommand{\lambdabar}{{\mathchoice
+  {\smash@bar\textfont\displaystyle{0.25}{1.2}\lambda}
+  {\smash@bar\textfont\textstyle{0.25}{1.2}\lambda}
+  {\smash@bar\scriptfont\scriptstyle{0.25}{1.2}\lambda}
+  {\smash@bar\scriptscriptfont\scriptscriptstyle{0.25}{1.2}\lambda}}}
+\newcommand{\smash@bar}[4]{%
+  \smash{\rlap{\raisebox{-#3\fontdimen5#10}{$\m@th#2\mkern#4mu\mathchar'26$}}}}
+\makeatother
+
+
+\newcommand{\exts}[5]{0\to#1\xrightarrow{#2}#3\xrightarrow{#4}#5\to0}
+\newcommand{\res}[2]{\left.#1\right|_{#2}}
+\newcommand{\rsb}[3]{\sigma(#1;#2,#3)}      %Riemann sum with arguments
+\newcommand{\derv}[2]{\frac{\ud#1}{\ud#2}}
+\newcommand{\parf}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\secpf}[3]{\frac{\partial^2 #1}{\partial #2\partial #3}}
+\newcommand{\comb}[2]{\binom{#1}{#2}}       %组合数
+\newcommand{\norm}[1]{\left\lVert #1\right\rVert}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\brc}[1]{\left\{#1\right\}}
+\newcommand{\brk}[1]{\left\langle#1\right\rangle}
+\newcommand{\prn}[1]{\left(#1\right)}
+\newcommand{\sqb}[1]{\left\lbrack#1\right\rbrack}
+\newcommand{\dbk}[1]{\langle\!\langle#1\rangle\!\rangle}
+\newcommand{\inprod}[1]{\langle#1\rangle}
+\newcommand{\itr}[1]{#1^\circ}           %内部,interior
+\newcommand{\cmp}[1]{#1^c}               %补集,complement
+\newcommand{\cnts}[3]{#1#3\cdots#3#2}
+\newcommand{\inds}[3]{#1_{1}#3\cdots#3#1_{#2}}
+\newcommand{\dindx}[4]{#1{#2}#4\cdots#4#1{#3}}
+\newcommand{\dinds}[4]{#1_{#2}#4\cdots#4#1_{#3}}
+\newcommand{\vct}[1]{\overrightarrow{#1}}
+\newcommand{\simlr}[2]{#2^{-1}#1#2}     %相似
+\newcommand{\congt}[2]{\ts{#2}#1#2}     %相合
+\newcommand{\ccong}[2]{\cts{#2}#1#2}    %共轭相合
+\newcommand{\rcong}[2]{\ts{#2}#1\orl{#2}}    %右共轭相合
+\newcommand{\ts}[1]{#1^{\rm T}}
+\newcommand{\cts}[1]{\orl{#1}^{\rm T}}   %共轭转置
+\newcommand{\wt}[1]{\widetilde{#1}}
+\newcommand{\bss}[2]{\inds{#1}{#2}{,}}
+\newcommand{\unitob}[1]{\mathop{\rightrightarrows}\limits_{#1}}
+\newcommand{\limb}[1]{\lim\limits_{#1}}
+\newcommand{\limp}[2]{\lim\limits_{#1\to#2}}
+
+\newcommand{\mth}[1]{\begin{displaymath}#1\end{displaymath}}
+\newcommand{\mtha}[1]{\begin{eqnarray*}#1\end{eqnarray*}}
+\newcommand{\arr}[1]{\begin{array}#1\end{array}}
+\newcommand{\prf}[1]{\begin{pf}#1\end{pf}}
+\newcommand{\ques}[1]{\begin{question}#1\end{question}}
+\newcommand{\sprf}[1]{\begin{pf}\cb{#1}\end{pf}}
+\newcommand{\df}[1]{\begin{dfn}#1\end{dfn}}
+\newcommand{\cte}[1]{\begin{ct}\textcolor{cyan}{#1}\end{ct}}
+\newcommand{\ntg}[1]{\begin{nt}\cg{#1}\end{nt}}
+\newcommand{\mat}[1]{\left(\arr{#1}\right)}
+\newcommand{\itm}[1]{\begin{itemize}#1\end{itemize}}
+\newcommand{\enu}[1]{\begin{enumerate}#1\end{enumerate}}
+\newcommand{\desc}[1]{\begin{description}#1\end{description}}
+\newcommand{\tmth}[1]{\begin{displaymath}\ttt{#1}\end{displaymath}}
+\newcommand{\thm}[1]{\begin{theom}#1\end{theom}}
+\newcommand{\rmk}[1]{\begin{remark}#1\end{remark}}
+\newcommand{\pbl}[1]{\begin{probl}#1\end{probl}}
+\newcommand{\prop}[1]{\begin{prp}#1\end{prp}}
+\newcommand{\cor}[1]{\begin{coro}#1\end{coro}}
+\newcommand{\eqn}[1]{\begin{equation}#1\end{equation}}
+\newcommand{\eqna}[1]{\begin{eqnarray}#1\end{eqnarray}}
+
+
+\newcommand{\clr}[1]{\textcolor{red}{#1}}   %红色
+\newcommand{\cb}[1]{\textcolor{blue}{#1}}   %蓝色
+\newcommand{\cg}[1]{\textcolor{magenta}{#1}}%紫色
+\newcommand{\hlg}[1]{\cg{\udl{#1}}}
+\newcommand{\hlb}[1]{\cb{\udl{#1}}}
+\newcommand{\hlr}[1]{\clr{\udl{#1}}}
+
+\newcommand{\mf}{\mathbf}
+\newcommand{\tf}{\textbf}
+\newcommand{\hlt}[1]{\textbf{\red{#1}}}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+
+\newcommand{\nm}[1]{{\rm#1}}                %竖体
+\newcommand{\ttt}{\textrm}
+\newcommand{\mhb}[1]{\mathbb{#1}}
+\newcommand{\mcl}[1]{\mathcal{#1}}
+\newcommand{\flr}[1]{\mathscr{#1}}
+\newcommand{\got}[1]{\mathfrak{#1}}
+\newcommand{\orl}[1]{\overline{#1}}
+\newcommand{\udl}[1]{\underline{#1}}
+\newcommand{\uudl}[1]{\uuline{#1}}
+\newcommand{\wudl}[1]{\uwave{#1}}
+
+%%%%%%%%%%%%%PHYSICS CONSTANTS
+\newcommand{\cstk}{\frac{1}{4\pi\vare_0}}
+\newcommand{\cstm}{\frac{\mu_0}{4\pi}}
+\newcommand{\fr}[1]{\blue{(#1)}}
+\makeindex
+
+\title{Definitions, Propositions and Theorems in Commutative Algebra}
+\author{TRISCT}
+\date{}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+All rings are considered to be commutative rings with identity by default, unless otherwise specified.
+\begin{section}{General Ring Theory}
+\label{gnlrng}
+\begin{subsection}{Definitions}
+\begin{description}
+\item[Ring]Let $R$ be a nonempty set equipped with an addition and a multiplication such that $R$ is an abelian group under addition and multiplication is distributive over addition.
+    \itm{
+        \item[(i)]If $R$ is a semigroup under multiplication, then $R$ is called a \tf{ring}\index{ring}.
+        \item[(ii)]If $R$ is a monoid under multiplication, then $R$ is called a \tf{ring with identity}\index{ring!with identity}.
+        \item[(iii)]If $R$ is a commutative semigroup under multiplication, then $E$ is called a \tf{commutative ring}\index{ring!commutative}.
+    }
+    However, in this part from now on, we will use the word ``ring'' to refer to a commutative ring with identity and ignore other kinds of rings.
+\item[Ring homomorphism]A \tf{ring homomorphism}\index{homomorphism!ring} $f$ is a mapping between two rings such that it
+    \itm{
+        \item[(i)]\tf{preserves addition}: $f(x+y)=f(x)+f(y)$;
+        \item[(ii)]\tf{preserves multiplication}: $f(xy)=f(x)f(y)$;
+        \item[(iii)]\tf{preserves the identity}: $f(1)=1$;
+    }
+\item[Subring\index{subring}]A \tf{subring} is a subset of a ring that is a ring (with identity) in its own right (with operations inherited from the original ring).
+\item[Multiplicatively closed subset]A \tf{multiplicatively closed subset}\index{subset!multiplicatively closed} $S$ of a ring is a subset of the ring such that $1\in S$ and $S$ is closed under multiplication.
+\item[Ideal]An \tf{ideal}\index{ideal} $\got a$ of a ring $R$ is a subset such that
+    \itm{
+        \item[(i)]$\got a$ is an additive subgroup;
+        \item[(ii)]$R\got a\subset\got a$.
+    }
+    Ideals can be operated on.
+    \itm{
+        \item[(i)](\tf{Sum}) The \tf{sum}\index{sum!of ideals} $\got a+\got b$ of two ideals $\got a,\got b$ is the set
+            \[\got a+\got b=\{a+b:a\in\got a,b\in\got b\}\]
+            It is an ideal. The sum of any family is also an ideal.
+        \item[(ii)](\tf{Intersection}) The \tf{intersection}\index{intersection!of ideals} $\got a\cap\got b$ of two ideal $\got a,\got b$ is the intersection of them as sets. It is an ideal. The intersection of any family is also an ideal.
+        \item[(ii')]The union of ideals is in general not an ideal. However, the union of an ascending chain is an ideal.
+        \item[(iii)](\tf{Product}) The \tf{product}\index{product of ideals} $\got a\got b$ of two ideals $\got a,\got b$ is the set
+            \[\got a\got b=\{\ttt{Finite sum }\sum_i a_ib_i:a_i\in\got a,b_i\in\got b\}\]
+            In other words, $\got a\got b$ is the ideal generated by all products of elements of $\got a$ and $\got b$.
+        \item[(iv)](\tf{Radical}) The \tf{radical}\index{radical!of an ideal} $\sqrt{\got a}=\rad(\got a)$ of an ideal $\got a$ is the set
+            \[\{a\in R:a^n\in\got a\ttt{ for some }n\geqs1\}\]
+            It is an ideal.
+        \item[(v)](\tf{Quotient}) The \tf{ideal quotient}\index{quotient!ideal} $(\got a:\got b)$ of two ideals $\got a,\got b$ is the set
+            \[\{x\in R:x\got b\subset\got a\}\]
+            It is an ideal. In particular, $(0:\got b)$ is called the \tf{annihilator}\index{annihilator!of an ideal} of $\got b$ and is denoted by $\ann(\got b)$.
+            \ntg{Somehow it feels like
+                \[x\got b\subset\got a\implies x\in\frac{\got a}{\got b}\]
+                I guess that's why they call such $x$ the ideal quotient, because it certainly seems like a quotient.
+            }
+    }
+\item[Quotient ring]If $\got a$ is an ideal of a ring $R$, then $R/\got a$ has well-defined addition and multiplication that makes it into a ring, called the \tf{quotient ring}.
+\item[Descriptors of elements]Elements often have the following descriptors.
+    \itm{
+        \item[(i)](\tf{Zero-divisor}) $x$ is called a \tf{zero-divisor}\index{zero-divisor}\index{divisor!zero} if $x\neq0$ and $\exists y\in R,y\neq0$, but $xy=0$.
+        \item[(ii)](\tf{Nilpotent}) $x$ is \tf{nilpotent}\index{nilpotent} if $x^n=0$ for some $n\geqs1$.
+        \item[(iii)](\tf{Unit}) $x$ is called a \tf{unit}\index{unit} if $x$ has a multiplicative inverse $x^{-1}$. The set of all units are denoted by $R^*$, which is a multiplicative subgroup of $R$.
+        \item[(iv)](\tf{Divisor}) If $a,b\in R$ and there exists $y\in R$ such that $ay=b$, then $a$ is a \tf{divisor}\index{divisor} of $b$ and $b$ is a \tf{multiple}\index{multiple} of $a$, and we write $a\divd b$.
+        \item[(v)](\tf{Associate}) If $a\divd b$ and $b\divd a$, then $a,b$ are said to be \tf{associates}\index{associate} and we write $a\sim b$. This relation is an equivalent relation.
+        \item[(vi)](\tf{Prime}) If $p$ is such that $p\notin R^*\cup\{0\}$, and
+            \[p\divd ab\implies p\divd a\ttt{ or }p\divd b\]
+            then $p$ is called a \tf{prime}\index{element!prime}\index{prime} element.
+        \item[(vii)](\tf{Irreducible}) If $a$ is such that $a\notin R^*\cup\{0\}$, and
+            \[a=bc\implies b\in R^*\ttt{ or }c\in R^*\]
+            then $a$ is called an \tf{irreducible}\index{element!irreducible}\index{irreducible} element.
+        \item[(viii)](\tf{Regular})\index{regular} An element $a\in R$ is called \tf{regular} if $a\neq0,\ a$ is not a zero-divisor.
+        \item[(ix)](\tf{Quasi-regular}\index{quasi-regular}) An element $a\in R$ is called \tf{quasi-regular} if $1+a\in R^*$.
+    }
+\item[Descriptors of ideals and specific ideals]Ideals often have the following descriptors.
+    \itm{
+        \item[(i)](\tf{Principal ideal}) An ideal $\got a$ is called \tf{principal}\index{ideal!principal} if it has the form $\got a=Rx=(x)$ for some $x\in R$. In other words, a principal ideal is an ideal  generated by a single element.
+            \ntg{Its correspondence is the cyclic submodule.}
+        \item[(ii)](\tf{Prime ideal}\index{ideal!prime}) An ideal $\got p$ is called \tf{prime} if $\got p\neq(1)$ and
+                \[xy\in\got p\implies x\in\got p\ttt{ or }y\in\got p\]
+        \item[(iii)](\tf{Coprime/comaximal ideals}\index{ideal!coprime}\index{ideal!comaximal}) Two ideals $\got a$ and $\got b$ are called \tf{coprime} or \tf{comaximal} if $\got a+\got b=(1)$.
+        \item[(iii)](\tf{Primary ideal}\index{ideal!primary}) An ideal $\got q$ is called \tf{primary} if $\got q\neq(1)$ and
+                \[xy\in\got q\implies x\in\got q\ttt{ or }y^n\in\got q\ttt{ for some }n\geqs1\]
+                For more about primary ideals, see Sect.\ref{prmidl}.
+        \item[(iv)](\tf{Maximal ideal}\index{ideal!maximal}) An ideal $\got m$ is called \tf{maximal} if $\got m\neq(1)$ and for any ideal $\got a$
+                \[\got m\subset\got a\subset(1)\implies\got a=\got m\ttt{ or }\got a=(1)\]
+        \item[(v)](\tf{Nilradical}\index{nilradical}\index{radical!nil-}) The \tf{nilradical} of a ring $R$ is the set of all nilpotent elements of $R$, or equivalently, the intersection of all prime ideals of $R$. It is an ideal, and it is denoted by $\nilrad(R)$
+        \item[(vi)](\tf{Jacobson radical}\index{Jacobson radical}\index{radical!Jacobson}) The \tf{Jacobson radical} of a ring $R$ is the intersection of all maximal ideals of $R$. It is an ideal, and it is denoted by $\rad(R)$
+        \item[(vii)](\tf{Quasi-regular}\index{quasi-regular}) An ideal $\got a\subset R$ is called \tf{quasi-regular} if every $a\in\got a$ is quasi-regular.
+    }
+\item[Descriptors of a ring]Let $R$ be a ring.
+    \itm{
+        \item[(i)](\tf{Local, semi-local}) If $R$ has only one maximal ideal $\got m$, then $R$ is called a \tf{local ring}\index{ring!local}\index{local}. The field $R/\got m$ is called the \tf{residue field}\index{field!residue} of $R$. If $R$ has a finite number of maximal ideals then it is called \tf{semi-local}\index{semi-local}\index{ring!semi-local}
+        \item[(ii)](\tf{Integral domain, entire ring}) If $R$ has no zero-divisors, then $R$ is called an \tf{integral domain} or \tf{entire ring}.
+        \item[(iii)](\tf{Field}) If $1\neq0$ and $R^*=R\backslash\{0\}$, then $R$ is called a \tf{field}\index{field}.
+        \item[(iv)](\tf{Unique factorization domain}) If $R$ is an integral domain and  any element in $R$ can be written as a product of irreducible elements and a unit, and this representation is unique up to reordering and associates, then $R$ is called a \tf{unique factorization domain}\index{unique factorization domain}\index{domain!unique factorization}\index{UFD}.
+        \item[(v)](\tf{Principal ideal domain}) If $R$ is an integral domain and each ideal of $R$ is a principal ideal, then $R$ is called a \tf{principal ideal domain}\index{principal ideal domain}\index{domain!principal ideal}\index{PID}.
+    }
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Propositions}
+\begin{description}
+\item[Prime ideal]Let $R$ be a ring.
+    \itm{
+        \item[(i)](\tf{Equivalent conditions})
+            \[\got p\ttt{ is prime}\iff R/\got p\ttt{ is an integral domain}\]
+        \item[(ii)](\tf{Complete inclusion property\footnote{Name invented by me.} 1}) Let $\inds{\got p}{n}{,}$ be prime ideals, and $\got a$ any ideal. Then
+            \[\got a\subset\bigcup_{i=1}^n\got p_i\implies\got a\subset\got p_i\ttt{ for some }\got p_i\]
+        \item[(iii)](\tf{Complete inclusion property 2}) Let $\inds{\got a}{n}{,}$ be ideals, and $\got p$ a prime ideal. Then
+            \[\bigcap_{i=1}^n\got a_i\subset\got p\implies\ttt{some }\got a_i\subset\got p\]
+        \item[(iv)](\tf{Under a homomorphism}) The preimage of a prime ideal under a homomorphism is also prime, while the image may not be.
+        \cte{Consider $\ZZ\to\ZZ/(6)$. Then $(0)$ is prime in $\ZZ$ but $(0)/(6)$ is not prime in $\ZZ/(6)$.}
+    }
+\item[Maximal ideal]Let $R$ be a ring.
+    \itm{
+        \item[(i)](\tf{Equivalent conditions})
+            \[\got m\ttt{ is maximal}\iff R/\got m\ttt{ is a field}\]
+        \item[(ii)]There exists at least one maximal ideal. In particular, for any $\got a\neq R$, there exists a maximal ideal $\got m\supset\got a$. And for any nonunit element $a$, there exists a maximal ideal $\got m\ni a$.
+        \item[(iii)](\tf{Test of localness 1}) If an ideal $\got m\neq R$ is such that $R-\got m\subset R^*$, then $\got m$ is its unique maximal ideal.
+        \item[(iv)](\tf{Test of localness 2}) If a maximal ideal $\got m\neq R$ is such that $1+\got m\subset R^*$, then $\got m$ is its unique maximal ideal.
+        \item[(v)](\tf{Under a homomorphism}) The preimage of a maximal ideal under a homomorphism is also maximal, while the image may not be.
+    }
+\item[Nilradical\index{nilradical}]Let $R$ be a ring.
+    \itm{
+        \item[(i)](\tf{Equivalent conditions})
+            \[\nilrad(R)=\{x\in R:\exists n\geqs1,\ x^n=0\}=\bigcap_{\ttt{prime }\got p}\got p\]
+        \item[(ii)]$\nilrad(R/\nilrad(R))=0$, that is, $R/\nilrad(R)$ has no nonzero nilpotent elements.
+    }
+\item[Jacobson radical\index{radical!Jacobson}]Let $R$ be a ring.
+    \itm{
+        \item[(i)](\tf{Equivalent conditions})
+            \[\rad(R)=\{x\in R:\forall y\in R,\ 1-xy\in R^*\}=\bigcap_{\ttt{maximal }\got m}\got m\]
+        \item[(ii)]$\rad(R/\rad(R))=0$
+    }
+\item[Ideal radical\index{radical!of an ideal}]Let $\got a\subsetneq R$ be an ideal.
+    \itm{
+        \item(\tf{Equivalent conditions})
+            \[\sqrt{\got a}=\bigcap_{\substack{\ttt{prime }\got p\\\got p\supset\got a}}\got p\]
+    }
+\item[Laws of usual operations]\
+    \itm{
+        \item[(i)](\tf{Distributivity}) $\got a(\got b+\got c)=\got a\got b+\got a\got c$
+            \ntg{In general, $\got a\cap(\got b+\got c)\neq\got a\cap\got b+\got a\cap\got c$, except in $\ZZ$.}
+        \item[(ii)](\tf{Modular law}) $\got b\subset\got a$ or $\got c\subset\got a\implies\got a\cap(\got b+\got c)=\got a\cap\got b+\got a\cap\got c$
+        \item[(iii)]$(\got a+\got b)(\got a\cap\got b)\subset\got a\got b$
+        \item[(iv)]$\got a\got b\subset\got a\cap\got b$ and further more
+            \[\got a,\got b\ttt{ are coprime}\implies\got a\got b=\got a\cap\got b\]
+            If $\got a_1,\cdots,\got a_n$ are ideals, then
+            \[\got a_i,\got a_j\ttt{ are coprime when }i\neq j\implies\prod\got a_i=\bigcap\got a_i\]
+    }
+\item[Laws of operations regarding ideal quotients]\
+    \itm{
+        \item[(i)]$\got a\subset(\got a:\got b)$
+        \item[(ii)]$(\got a:\got b)\got b\subset\got a$
+        \item[(iii)]$((\got a:\got b):\got c)=(\got a:\got{bc})=((\got a:\got c):\got b)$
+        \item[(iv)]$(\cap_i\got a_i:\got b)=\cap_i(\got a_i:\got b)$
+        \item[(v)]$(\got a:\sum_i\got b_i)=\cap_i(\got a:\got b_i)$
+    }
+\item[Laws of taking the radical]\
+    \itm{
+        \item[(i)]$\got a\subset\got b\implies\sqrt{\got a}\subset\sqrt{\got b}$
+        \item[(ii)]$\got a\subset\sqrt{\got a}$
+            \ntg{The radical goes larger.}
+        \item[(iii)]$\sqrt{\sqrt{\got a}}=\sqrt{\got a}$
+        \item[(iv)]$\sqrt{\got{ab}}=\sqrt{\got a\cap\got b}=\sqrt{\got a}\cap\sqrt{\got b}$
+        \item[(v)]$\sqrt{\got a}=(1)\iff\got a=(1)$
+        \item[(vi)]$\sqrt{\sqrt{\got a}+\sqrt{\got b}}=\sqrt{\got a+\got b}$
+        \item[(vii)]If $\got p$ is prime, then $\forall n\geqs1,\ \sqrt{\got p^n}=\got p$
+    }
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Theorems}
+\begin{description}
+\item[Chinese Remainder Theorem]Let $\inds{\got a}{n}{,}$ be ideals of $R$. Then the homomorphism
+    \[\arr{{ccrcl}\phi&:&R&\to&\frac{R}{\got a_1}\x\cdots\x\frac{R}{\got a_n}\\
+        &&x&\mapsto&(\orl x,\cdots,\orl x)}\]
+    satisfies
+    \itm{
+        \item[(i)]$\phi$ is surjective $\iff\inds{\got a}{n}{,}$ are pairwise coprime.
+        \item[(ii)]$\phi$ is injective $\iff\bigcap_i\got a_i=0$.
+    }
+\end{description}
+\end{subsection}
+\end{section}
+
+\begin{section}{General Module Theory}
+\begin{subsection}{Definitions}
+\begin{description}
+\item[Module\index{module}]An \tf{$R$-module} is a nonempty set $M$, together with an addition on it, and a scalar multiplication with some ring $R$ such that
+    \itm{
+        \item[(i)]$M$ is an abelian group under addition;
+        \item[(ii)]Left and right distributivity;
+        \item[(iii)]Scalar associativity $(rs)u=r(su)$;
+        \item[(iv)]$1u=u$.
+    }
+    If $A,B$ are rings and $M$ is both an $A$-module and a $B$-module, and $M$ the scalar multiplications by $A,B$ are compatible in the sense that $a(xb)=(ax)b$, then $M$ is called an \tf{$(A,B)$-bimodule}\index{bimodule}\index{module!bi-}. A subset $N$ of an $R$-module $M$ that is an $R$-module in its own right (with operations inherited from $M$) is called a \tf{submodule}\index{submodule}. For any submodule $N$, operations on $M/N$ are well-defined and $M/N$ is also an $R$-module called the \tf{quotient module}\index{module!quotient}.
+\item[Operations]Let $M$ be an $R$-module ,$N,\{M_i\}$ submodules of $M$, and $\got a\subset R$ an ideal. Then we can define the following.
+    \itm{
+        \item[(i)]The \tf{sum} $\sum_iM_i$ of submodules $M_i$ is defined to be all finite sums $\sum_ix_i$ with $x_i\in M_i$. It is a submodule.
+        \item[(ii)]The \tf{intersection} $\bigcap_iM_i$ of submodules $M_i$ is defined to the intersection of them as sets. It is a submodule.
+        \item[(iii)]The \tf{product} $\got aN$ of an ideal and a submodule is defined to be all finite sums $\sum_ia_ix_i$ with $a_i\in\got a,\ x_i\in N$. It is a submodule.
+    }
+\item[Homomorphism\index{homomorphism!module}]A \tf{(module) homomorphism} is a mapping $\phi:M\to N$ from an $R$-module $M$ to another $R$-module $N$, which satisfies $\phi(rx+sy)=r\phi(x)+s\phi(y)$. The following important sets are respectively called:
+    \itm{
+        \item[(i)]\tf{Kernel}\index{kernel} of $\phi$:
+            \[\ker\phi=\{x\in M:\phi(x)=0\}\]
+        \item[(ii)]\tf{Image}\index{image} of $\phi$:
+            \[\im\phi=\phi(M)\]
+        \item[(iii)]\tf{Cokernel}\index{cokernel} of $\phi$:
+            \[\coker\phi=N/\im\phi\]
+        \item[(iv)]\tf{Coimage}\index{coimage} of $\phi$:
+            \[\coim\phi=M/\ker\phi\]
+    }
+\item[Module quotient\index{$(N:P)$}]Let $M$ be an $R$-module and $N,P$ submodules of $M$. The set $(N:P)$ is defined as
+    \[(N:P)=\{a\in R:aP\subset N\}\]
+    It is an ideal of $R$. I myself call it the \tf{module quotient}\index{quotient!module}.
+\item[Annihilator\index{annihilator!of a module}]The \tf{annihilator} $\ann(M)$ of an $R$-module $M$ is \[\ann(M)=(0:M)=\{a\in R:aM=0\}\]
+\item[Descriptors of a module]An $R$-module $M$ is called
+    \itm{
+        \item[(i)]\tf{faithful}\index{faithful}\index{module!faithful} if $\ann(M)=0$;
+        \item[(ii)]\tf{cyclic}\index{cyclic}\index{module!cyclic} if $M=Rx$ for some $x\in M$;
+        \item[(iii)]\tf{finitely generated}\index{module!finitely generated} if $M=Rx_1+\cdots+Rx_n$ for some finitely many $x_1,\cdots,x_n\in M$;
+        \item[(iv)]\tf{simple}\index{module!simple} or \tf{irreducible}\index{module!irreducible} if $M\neq 0$ and $M$ has no nontrivial submodule;
+            \cte{There exists a non-simple module that contains no simple submodule.\red{Q: what}}
+        \item[(v)]\tf{semi-simple}\index{module!semi-simple} if it is the sum of all simple submodules, or equivalently, the direct sum of some of its simple submodules;
+        \item[(vi)]\tf{indecomposable} if $M=M_1\op M_2\implies M_1=0$ or $M_2=0$;
+        \item[(vii)]\tf{free}\index{free}\index{module!free} if $M$ has a basis, or equivalently, if there exists a set $\mcl B$ such that $M\cong(R^{\mcl B})_0$.
+    }
+    \ntg{For modules concerning torsion, see Sect.\ref{fgm}.}
+\item[Direct family of homorphisms\index{direct family!of homomorphisms}]Let $M$ be an $R$-module and $\{M_i\}$ a family of $R$-modules. If the homomorphisms $\{\iota_i,\pi_i\}$:
+    \[M_i\xrightarrow{\iota_i}M\xrightarrow{\pi_i}M_i\]
+    are such that
+    \itm{
+        \item[(i)]$\pi_i \iota_i=\id_{M_i}$;
+        \item[(ii)]$\beta\neq i\implies \pi_\beta \iota_i=0$,
+    }
+    then $\{\iota_i,\pi_i\}$ is called a \tf{direct family of homomorphisms}.
+\item[Direct sum/coproduct\index{direct sum}\index{coproduct}\index{sum!direct}]The \tf{direct sum} or \tf{coproduct} of a family $\{M_i\}_{i\in I}$ of $R$-modules can be defined in the following manners.
+    \itm{
+        \item[(i)](\tf{As a direct family of homomorphisms}) The \tf{direct sum} or \tf{coproduct} of a family $\{M_i\}$ of $R$-modules is any triplet $(M,\iota_i,\pi_i)$, where $M$ is an $R$-module and $\iota_i,\pi_i$ are homomorphisms $M_i\xrightarrow{\iota_i}M\xrightarrow{\pi_i}M_i$, satisfying
+            \itm{
+                \item[(i)]$\{\iota_i,\pi_i\}$ is a direct family;
+                \item[(ii)]$\forall x\in M$, $x$ can be written as a finite sum $x=\sum \iota_i x_i$ with $x_i\in M_i$.
+            }
+            More precisely, we say $\{\iota_i,p_i\}$ yields a \tf{representation of $M$ as a direct sum of $M_i$}.
+            \ntg{In this case, the following are true.
+                \itm{
+                    \item[(a)]$x$ has a unique form as a sum;
+                    \item[(b)]$\pi_i$ can be defined using $\iota_i$ alone;
+                    \item[(c)]All direct sums under definition (i) are isomorphic.
+                }
+            }
+        \item[(ii)](\tf{By the universal property}) The \tf{direct sum} or \tf{coproduct} of a family $\{M_i\}$ of $R$-modules is any pair $(M,\iota_i)$, where $M$ is an $R$-module and $\iota_i:M_i\to M$ is are homomorphisms, such that for any $R$-module $X$ and homomorphisms $\phi_i:M_i\to X$, there exists a unique homomorphism $\psi:M\to X$ such that the following diagram commutes for each $i$.
+            \[\xymatrix{
+                M_i\ar^{\iota_i}[rr]\ar_{\phi_i}[rrd]&&M\ar^{\psi}[d]\\
+                &&X
+            }\]
+        \ntg{All direct sums under definition (ii) are isomorphic.}
+        \ntg{Definitions (i) and (ii) are equivalent. For (i)$\implies$(ii), notice that the following diagram commutes
+        \[\xymatrix{
+            &&M\ar^{\pi_i}[d]\\
+            M_i\ar_{\phi_i}[rrd]\ar^{\iota_i}[rru]\ar_{\id_{M_i}}[rr]&&M_i\ar^{\phi_i}[d]\\
+                &&X
+        }\]
+        and that $\psi=\sum_i\phi_i\pi_i$ (the sum is well-defined, because each member of $M$ is a finite sum). For (ii)$\implies$(i), one can show it by setting $X=M_i$ and $\phi_i=\id_{M_i}$.}
+        \item[(iii)](\tf{By construction}) In practice, we need to prove such a direct sum exists, and even construct one. The construction is as follows. Let $M$ be the set \[M=\brc{f:I\to\bigcup_{i}M_i\ \Big|\ f(i)\in M_i, f\ttt{ has finite support}}\]
+            and $M$ can be turned into an $R$-module by defining addition and scalar multiplication. It can be verified that $M$ satisfies (ii)\footnote{See assignment 3.5} (\red{Q: what are the homomorphisms $\iota_i$?}), and hence (i). This direct sum is usually denoted by $\bigoplus_{i\in I}M_i$, or by $\coprod_{i\in I}M_i$ if we want to call it the coproduct.
+    }
+\item[Direct product\index{direct product}\index{product!direct}]The \tf{direct product} of a family $\{M_i\}_{i\in I}$ of $R$-modules can be defined in the following manners.
+    \itm{
+        \item[(i)](\tf{As a direct family of homomorphisms}) The \tf{direct product} of a family $\{M_i\}$ of $R$-modules is any triplet $(M,\iota_i,\pi_i)$, where $M$ is an $R$-module and $\iota_i,\pi_i$ are homomorphisms $M_i\xrightarrow{\iota_i}M\xrightarrow{\pi_i}M_i$, satisfying
+            \itm{
+                \item[(i)]$\{\iota_i,\pi_i\}$ is a direct family;
+                \item[(ii)]$\forall\{x_i\in M_i\},\ \exists\,!\,x\in M,\ x_i=\pi_ix$,$\{x_i\}$.
+            }
+            More precisely, we say $\{\iota_i,p_i\}$ yields a \tf{representation of $M$ as a direct product of $M_i$}.
+            \ntg{In this case, the following are true.
+                \itm{
+                    \item[(a)]$\iota_i$ can be defined using $\pi_i$ alone;
+                    \item[(b)]All direct products under definition (i) are isomorphic.
+                }
+            }
+        \item[(ii)](\tf{By the universal property}) The \tf{direct product} of a family $\{M_i\}$ of $R$-modules is any pair $(M,\pi_i)$, where $M$ is an $R$-module and $\pi_i:M\to M_i$ is are homomorphisms, such that for any $R$-module $X$ and homomorphisms $\phi_i:X\to M_i$, there exists a unique homomorphism $\psi:X\to M$ such that the following diagram commutes for each $i$.
+            \[\xymatrix{
+                M_i&&M\ar_{\pi_i}[ll]\\
+                &&X\ar^{\phi_i}[llu]\ar_{\psi}[u]
+            }\]
+        \ntg{All direct sums under definition (ii) are isomorphic.}
+        \ntg{Definitions (i) and (ii) are equivalent.}
+        \item[(iii)](\tf{By construction}) In practice, we need to prove such a direct product exists, and even construct one. The construction is as follows. Let $M$ be the set \[M=\brc{f:I\to\bigcup_{i}M_i\ \Big|\ f(i)\in M_i}\]
+            and $M$ can be turned into an $R$-module by defining addition and scalar multiplication. It can be verified that $M$ satisfies (ii)\footnote{See assignment 3.5} (\red{Q: what are the homomorphisms $\iota_i$?}), and hence (i). This direct product is usually denoted by $\prod_{i\in I}M_i$.
+    }
+\ntg{A more intuitive way of defining the direct product and the direct sum is to say that
+    \itm{
+        \item[(i)]Any collection of homomorphisms from a family of modules can be factored through the direct sum, or that the direct sum is the most \emph{universal} injector from a family;
+        \item[(ii)]Any projection onto a family of modules can be factored through the direct product, or that the direct product is the most \emph{universal} projector onto a family.
+    }}
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Propositions}
+\begin{description}
+\item[Properties of $(N:P)$]Let $M,N$ and $P$ be $R$-modules.
+    \itm{
+        \item[(i)]$\ann(M)=0\implies M$ is faithful as an $R/\ann(M)$-module;
+        \item[(ii)]$\ann(M+N)=\ann(M)+\ann(N)$;
+        \item[(iii)]$(N:P)=\ann((N+P)/N)$.
+    }
+\item[Change of base ring]Let $M$ be an $R$-module. If there is a ring homomorphism $\phi:A\to R$, then $M$ is also an $A$-module under
+    \[ax=\phi(a)x\]
+    Note that the two structures are compatible, hence $M$ is an $(R,A)$-bimodule (if we formally write the multiplication by $A$ on the right).
+    \ntg{In the language of category, this operation is a functor from $\mf{Mod}_R$ to $\mf{Mod}_A$.}
+\item[Submodules]Submodules can be operated on.
+    \itm{
+        \item[(i)](\tf{Sum}) The sum $\sum_iM_i$ of an arbitrary family of submodules $\{M_i\}$ is a submodule.
+        \item[(ii)](\tf{Intersection}) The intersection $\bigcap_iM_i$ of an arbitrary family of submodules $\{M_i\}$ is a submodule.
+        \item[(iii)](\tf{Set of all submodules}) All submodules of a module form a complete lattice with respect to inclusion.
+    }
+\item[Mutual implications]Some common and obvious ones are left out in order not to confuse readers.
+    \[\xymatrix{
+        &\ttt{simple}\ar@{=>}[ld]\ar@{=>}[rd]&\\
+        \ttt{semi-simple}&&\ttt{indecomposable}\ar@{=>}[d]\\
+        &&\ttt{cyclic}\ar@{=>}[d]\\
+        &&\ttt{finitely generated}\\
+    }\]
+\item[Faithful modules]For any $R$-module $M$, $M$ is a faithful $R/\ann(M)$-module.
+\item[Simple modules]All simple $R$-modules are cyclic. Conversely, let $M=Rx$. Consider the epimorphism $\phi:R\to Rx$. We have $Rx\cong R/\ker\phi$. Then $M$ is simple if and only if $R/\ker\phi$ is simple, i.e., $\ker\phi$ is a maximal ideal. Thus, we can conclude that any simple module on $R$ has the form $R/\got m$ as an $R$-module.
+    \ntg{I wanted to say a field, but $R/\got m$ as an $R$-module has no multiplication defined on it. \red{Q: what about Exercise 3.8?}}
+    And it follows each maximal ideal corresponds uniquely \red{(Q: how unique?)} to a simple module.
+\item[Semi-simple modules]An $R$-module $M$ is semi-simple if any of these equivalent conditions hold.
+    \itm{
+        \item[(0)]$M=\sum_iS_i$ where the sum is taken over all simple submodules $S_i$.
+        \item[(i)]$M=\bigoplus_iS_i$ where the direct sum is taken over some submodules $S_i$.
+        \item[(ii)]Each submodule is a direct summand.
+    }
+    Any submodule or quotient module of a semi-simple module is semi-simple.
+\item[Properties of the direct sum]\
+    \itm{
+        \item[(i)](\tf{The universal property}) See the definition part.
+        \item[(ii)](\tf{The induced isomorphism}) Let $M$ and $\{N_i\}$ be $R$-modules. By the universal property, any family $\{\phi_i:N_i\to M\}$ of homomorphisms corresponds to a unique homomorphism $\psi_\phi:\coprod_iN_i\to M$. Then we have the isomorphism
+            \[\arr{{rcl}\prod_i\Hom_R(N_i,M)&\isom&\Hom_R(\coprod_iN_i,M)\\
+                (\phi_i)&\mapsto&\psi_\phi}\]
+    }
+\item[Properties of the direct product]\
+    \itm{
+        \item[(i)](\tf{The universal property}) See the definition part.
+        \item[(ii)](\tf{The induced isomorphism}) Let $M$ and $\{N_i\}$ be $R$-modules. By the universal properties, any family $\{\phi_i:M\to N_i\}$ of homomorphisms corresponds to a unique homomorphism $\psi_\phi:M\to\prod_iN_i$. Then we have the isomorphism
+            \[\arr{{rcl}\prod_i\Hom_R(M,N_i)&\isom&\Hom_R(M,\prod_iN_i)\\
+                (\phi_i)&\mapsto&\psi_\phi}\]
+    }
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Theorems}
+\begin{description}
+\item[The Isomorphism Theorems\index{theorem!isomorphism}\index{theorem!correspondence}]Let $M,N,P$ be $R$-modules.
+    \itm{
+        \item[(i)]Any homomorphism $f:M\to N$ induces an isomorphism
+            \[\arr{{ccrcl}\orl f&:&\coim(f)&\isom&\im(f)\\
+                &&\orl x&\mapsto&f(x)}\]
+            and a one-to-one correspondence
+            \[\arr{{rcl}\{\ttt{Submodules of $N$}\}&\to&\{\ttt{Submodules of $M$ containing $\ker f$}\}\\
+                H&\mapsto&f^{-1}(H)}\]
+        \item[(ii)]If $P\subset N\subset M$, then we have an isomorphism
+            \[\arr{{rcl}\frac{M/P}{N/P}&\isom&M/N\\
+                \orl x&\mapsto&\orl x}\]
+        \item[(iii)]If $P,N\subset M$, then we have an isomorphism
+            \[\arr{{rcl}\frac{N+P}{P}&\isom&\frac{N}{N\cap P}\\
+                \orl x&\to&\orl x}\]
+    }
+\end{description}
+\end{subsection}
+\end{section}
+
+\begin{section}{Exact Sequences and the Tensor Product}
+\begin{subsection}{Definitions}
+\begin{description}
+\item[Exactness]An \tf{exact sequence}\index{sequence!exact} of algebraic structures and homomorphisms is a sequence of the form
+    \[\cdots\xrightarrow{f_{i-1}}M_{i-1}\xrightarrow{f_i}M_i\xrightarrow{f_{i+1}}M_{i+1}\xrightarrow{f_{i+2}}\cdots\]
+    such that at each $M_i$ we have $\ker f_{i+1}=\im f_{i}$. An exact sequence of form $0\to M'\to M\to M''\to0$ is called a \tf{short exact sequence}\index{sequence!short exact}. A functor is called \tf{exact} if it maps all exact sequences to exact sequences, or equivalently, if it maps all short exact sequences to short exact sequences.
+\item[Tensor product\index{product!tensor}\index{tensor}]The \tf{tensor product} of two $R$-modules $M$ and $N$ can be defined in the following manners.
+    \itm{
+        \item[(i)](\tf{By the universal property}) The \tf{tensor product} of two $R$-modules $M$ and $N$ is any pair $(T,\tau)$ satisfying for any $R$-bilinear form $f:M\x N\to P$, there exists a unique $R$-homomorphism $\phi:T\to P$, such that $f=\phi\tau$. That is, the following diagram commutes.
+            \[\xymatrix{
+                M\x N\ar^\tau[rr]\ar_{f}[rrd]&&T\ar^{\exists\,!\,\phi}[d]\\
+                &&P
+            }\]
+            \ntg{All such tensor products are isomorphic.}
+        \item[(ii)](\tf{By construction}) In practice, one needs to prove such a tensor product exists, and maybe even construct one. Let $T$ be the quotient module
+            \[T=(R^{M\x N})_0/H\]
+            where $(R^{M\x N})_0$ is the free $R$-module generated by $M\x N$ and $H$ is the so-called\footnote{by me.} \tf{submodule of bilinear blockers}, that is, $H=\inprod{S}$ where
+            \mtha{S=\bigcup_{x,x'\in M,y,y'\in N,r\in R}&&\Big\{(x,y+y')-(x,y)-(x,y'),\\
+                &&(x+x',y)-(x,y)-(x,y'),\\
+                &&(rx,y)-r(x,y),\\
+                &&(x,ry)-r(x,y)\Big\}}
+            The $R$-bilinear form $\tau$ is then set to $\tau:(x,y)\mapsto\orl{(x,y)}$ (easily verified). It remains to check the universal property. For any other $R$-bilinear form $f:M\x N\to P$, we first extend it to a homomorphism $F:(R^{M\x N})_0\to P$, and then verify that any generator of $H$ falls in $\ker F$ for $f$ is bilinear, hence $H\subset\ker F$, by the universal property of the quotient $(R^{M\x N})_0/H$, there exists a unique homomorphism $\phi:(R^{M\x N})_0/H\to P$, such that $F=\phi\pi$. Let $\iota:M\x N\to(R^{M\x N})_0$ be the inclusion then $\tau=\pi\iota$ and $f=F\iota=\phi\pi\iota=\phi\tau$ as desired. The tensor product constructed in (ii) is usually denoted by $M\ox_R N$.
+    }
+    \ntg{The tensor product of more than two modules can be constructed form a multilinear mapping, but as we will show later, it is isomorphic to recursively take the tensor product of two modules, so we will not go through that trouble again.}
+\item[Flat module]An $R$-module $N$ is said to be \tf{flat}\index{module!flat} if $M\mapsto M\ox_RN$ is an exact functor on the category of $R$-modules. The following equivalent conditions can be taken as alternative definitions.
+    \itm{
+        \item[(0)]$M\mapsto M\ox_RN$ is exact.
+        \item[(i)]$M\mapsto M\ox_RN$ preserves injective $R$-homomorphisms, i.e, is left-exact.
+        \item[(i')]If $f$ is an $R$-monomorphism between finitely generated $R$-modules, then $f\ox_R\id_N$ is also an $R$-monomorphism.
+        \item[(ii)]For any prime ideal $\got p$ of $R$, $N_{\got p}$ is a flat $R_{\got p}$-module.
+        \item[(iii)]For any maximal ideal $\got m$ of $R$, $N_{\got m}$ is a flat $R_{\got m}$-module.
+    }
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Propositions}
+\begin{description}
+\item[Properties of the tensor product]\
+    \itm{
+        \item[(i)](\tf{The universal property}) See the definition part.
+        \item[(ii)](\tf{The induced isomorphism}) Let $M,N,P$ be $R$-modules. By the universal property of $M\ox N$, for each bilinear form $\inprod{-,-}:M\x N\to P$, there exists a unique homomorphism $f_{\inprod{-,-}}$. Then we have an isomorphism
+            \[\boxed{\arr{{rcl}\Hom_R(M,\Hom_R(N,P))&\isom&\Hom_R(M\ox N,P)\\
+                (x\mapsto\inprod{x,-})&\mapsto&f_{\inprod{-,-}}}}\]
+            \ntg{The set on the left is just the set of all bilinear forms in another guise.}
+        \item[(ii)](\tf{The canonical isomorphisms}) See the next entry.
+    }
+\item[Canonical isomorphisms regarding the tensor product]Let $M,N,P$ be $R$-modules.
+    \itm{
+        \item[(i)]
+            \[\boxed{\arr{{rcl}M\ox N&\isom&N\ox M\\
+                x\ox y&\mapsto&y\ox x}}\]
+            \sprf{Consider $f:M\x N\to N\ox M,(x,y)\mapsto y\ox x$ and $g:N\x M\to M\ox N,(y,x)\mapsto x\ox y$, then the homomorphisms induced by them are mutually inverses.}
+        \item[(ii)]
+            \[\boxed{\arr{{rcccl}(M\ox N)\ox P&\isom&M\ox(N\ox P)&\isom&M\ox N\ox P\\
+                (x\ox y)\ox z&\mapsto&x\ox(y\ox z)&\mapsto&x\ox y\ox z}}\]
+            \sprf{For each fixed $z$, $(x,y)\mapsto x\ox y\ox z$ induces a homomorphism $f_z:M\ox N\to M\ox N\ox P,x\ox y\mapsto x\ox y\ox z$, and then $(t,z)\mapsto f_z(t)$ induces a homomorphism $(M\ox N)\ox P\to M\ox N\ox P$, whose inverse is even easier to construct.}
+        \item[(iii)]
+            \[\boxed{\arr{{rcl}(M\op N)\ox P&\isom&(M\ox P)\op(N\ox P)\\
+                (x,y)\ox z&\mapsto&(x\ox z,y\ox z)}}\]
+        \item[(iii*)]If $\{M_i\}$ is a family of $R$-modules, then
+            \[\boxed{\arr{{rcl}(\bigoplus_iM_i)\ox P&\isom&\bigoplus_i(M_i\ox P)\\
+                (x_i)\ox z&\mapsto&(x_i\ox z)}}\]
+        \item[(iv)]
+            \[\boxed{\arr{{rcl}R\ox M&\isom&M\\
+                r\ox x&\mapsto&rx}}\]
+        \item[(v)]If $A,B$ are rings, $M$ is an $A$-module, $P$ is a $B$-module and $N$ is an $(A,B)$-bimodule, then $M\ox_AN$ is a $B$-module, $N\ox_BP$ is an $A$-module and
+            \[\boxed{(M\ox_AN)\ox_BP\cong M\ox_A(N\ox_BP)}\]
+            \red{(Q: As what module? What is the isomorphism?)}
+    }
+\item[Exactness properties of the tensor product]Consider only the category of all $R$-modules.
+    \itm{
+        \item[(i)]For any $R$-module $N$, both functors $M\mapsto M\ox_RN$ and $M\mapsto N\ox_RM$ are right-exact.
+        \item[(ii)]For a flat $R$-module, then $M\mapsto M\ox_RN$ and $M\mapsto N\ox_RM$ are exact.
+    }
+\item[Properties of a flat module]Let $M$ be a flat $R$-module.
+    \itm{
+        \item[(i)](\tf{Equivalent conditions}) See the definition part.
+        \item[(ii)](\tf{Change of base ring}) If $\vphi:R\to A$ is a ring homomorphism, then $A\ox_RM$ is a flat $A$-module.
+    }
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Theorems}
+\end{subsection}
+\end{section}
+
+\begin{section}{Rings and Modules of Fractions}
+\begin{subsection}{Definitions}
+\begin{description}
+\item[Multiplicatively closed subset]A \tf{multiplicatively closed subset}\index{subset!multiplicatively closed} $S$ of a ring is a subset of the ring such that $1\in S$ and $S$ is closed under multiplication.
+\item[Ring of fractions\index{ring!of fractions}]Let $R$ be a ring and $S$ a multiplicatively closed subgroup of it. Then an equivalence relation may be defined for pairs $(a,s)\in R\x S$ by
+    \[(a,s)\equiv(b,t)\iff(at-bs)u=0\ttt{ for some }u\in S\]
+    The equivalence class which $(a,s)$ is in is then denoted by $\frac{a}{s}$, and the set of all equivalence classes is denoted by
+    \[S^{-1}R=\brc{\frac{a}{s}:a\in R,s\in S}\]
+    on which the addition and multiplication below are well-defined
+    \[\frac{a}{s}+\frac{b}{t}=\frac{at+bs}{st}\]
+    \[\frac{a}{s}\frac{b}{t}=\frac{ab}{st}\]
+    And we can verify that equipped with these operations $S^{-1}R$ is made into a ring, called the \tf{ring of fractions of $R$ with respect to $S$}. The ring homomorphism
+    \[\arr{{ccrcl}f&:&R&\to&S^{-1}R\\
+        &&x&\mapsto&\frac{x}{1}}\]
+    is a canonical homomorphism, but not an injection in general.
+    These two cases are of particular interest.
+    \itm{
+        \item[(i)](\tf{Field of fractions}) If $R$ is an integral domain, then we can take $S=R\backslash\{0\}$, which is multiplicatively closed, and $S^{-1}R$ is then a field, called the \tf{field of fractions} of $R$.
+        \item[(ii)](\tf{Localization}) If $\got p$ is a prime ideal of $R$, then we can take $S=R-\got p$, which is multiplicatively closed. In this case, $S^{-1}R$ is usually denoted by $R_{\got p}$ and called the \tf{localization of $R$ at $\got p$}\index{localization!of a ring}.
+        \item[(iii)](\tf{Powers of an element}) If $a\in R$, let $S=\{a^n:n\geqs0\}$. The resulting ring is denoted $S^{-1}R=R_a$.
+    }
+\item[Module of fractions\index{module!of fractions}]Let $M$ be an $R$-module and $S$ a multiplicatively closed subgroup of $R$. Then an equivalence relation may be defined for pairs $(a,s)\in M\x S$ by
+    \[(a,s)\equiv(b,t)\iff(at-bs)u=0\ttt{ for some }u\in S\]
+    The equivalence class which $(a,s)$ is in is then denoted by $\frac{a}{s}$, and the set of all equivalence classes is denoted by
+    \[S^{-1}M=\brc{\frac{a}{s}:a\in R,s\in S}\]
+    on which the addition and scalar multiplication by $S^{-1}R$ below are well-defined
+    \[\frac{a}{s}+\frac{b}{t}=\frac{at+bs}{st}\]
+    \[\frac{r}{s}\frac{a}{t}=\frac{ra}{st}\]
+    And we can verify that equipped with these operations $S^{-1}M$ is made into a $S^{-1}R$-module, called the \tf{module of fractions of $M$}. For any $R$-homomorphism $f:M\to N$, $u$ can be levitated to a unique $R$-homomorphism $S^{-1}f:S^{-1}M\to S^{-1}N$ that has the form $\frac{x}{s}\mapsto\frac{f(x)}{s}$.
+    \[\xymatrix{
+        S^{-1}M\ar^{S^{-1}f}[rrrr]&&&&S^{-1}N\\
+        &\frac{x}{1}\ar@{|->}[rr]&&\frac{f(x)}{1}&\\
+        &x\ar@{|->}[u]\ar@{|->}[rr]&&f(x)\ar@{|->}[u]&\\
+        M\ar^{\tau}[uuu]\ar^{f}[rrrr]&&&&N\ar_{\sigma}[uuu]&\\
+        }\]
+    As usual, if $\got p$ is a prime ideal of $R$, then we can take $S=R-\got p$, which is multiplicatively closed. In this case, $S^{-1}M$ is by $M_{\got p}$ and called the \tf{localization of $M$ at $\got p$}\index{localization!of a ring}.
+    \ntg{Since we have a canonical homomorphism $R\to S^{-1}R,r\mapsto\frac{r}{1}$, any $S^{-1}R$-module is also an $R$-module with scalar multiplication defined by $rx=\frac{r}{1}x$ for $r\in R$.}
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Propositions}
+\begin{description}
+\item[Properties of the ring of fractions]Let $S^{-1}R$ be the ring of fractions of $R$, and $f:R\to S^{-1}R$ the canonical homomorphism.
+    \itm{
+        \item[(i)](\tf{Universal property}) For any ring homomorphism $g:R\to A$ such that $g(S)\in A^*$, there exists a unique ring homomorphism $h:S^{-1}R\to A$ such that $h\comp f=g$. That is, any homomorphism that turns $S$ in to invertible elements can be factored through $(S^{-1}R,f)$.
+            \[\xymatrix{
+                R\ar^{f}[rr]\ar_{g}[rrd]&&S^{-1}R\ar^{\exists!h}[d]\\
+                &&A}\]
+            \ntg{To construct a ring of fractions it to put elements of $S$ to the denominators, or more precisely, to make elements of $S$ invertible. Clearly, if $0$ is invertible, then $0=0\cdot0^{-1}=1\implies S^{-1}R=0$. Conversely if $S^{-1}R=0$, then $\frac{1}{1}=\frac{0}{1}\implies u=0$ for some $u\in S$.}
+            \ntg{One can also use the universal property to define the ring of fractions, and it is isomorphic to our previous construction.}
+        \item[(ii)](\tf{Properties of $(S^{-1}R,f)$})
+            \itm{
+                \item[(a)](\tf{The zero}) $\frac{0}{1}=\frac{0}{s}=0\in S^{-1}R$ and $\frac{a}{1}=0\in S^{-1}R\iff au=0$ for some $u\in S$
+                \item[(b)](\tf{The one}) $\frac{1}{1}=\frac{s}{s}=1\in S^{-1}R$
+                \item[(c)](\tf{The inverse}) $s\in S\implies\frac{s}{1}\in(S^{-1}R)^*$ and $\prn{\frac{s}{1}}^{-1}=\frac{1}{s}$
+                \item[(d)](\tf{The ideals}) Every ideal of $S^{-1}R$ has the form $S^{-1}\got a$, where $\got a$ is an ideal of $R$.
+                \item
+            }
+        \item[(iii)](\tf{Flatness of $S^{-1}R$}) $S^{-1}R$ is a flat $R$-module.
+    }
+\item[Properties of the module of fractions]Let $M$ be an $R$-module and $S$ a multiplicatively closed subgroup of $R$. Let $\tau:M\to S^{-1}M$ be the canonical homomorphism.
+    \itm{
+        \item[(i)](\tf{Universal property}) Let $N$ be any $S^{-1}R$-module and $f:M\to N$ an $R$-homomorphism, then there exists a unique $S^{-1}R$-homomorphism $h:S^{-1}M\to N$ such that $h\comp\tau=f$. That is, any homomorphism that turns $S$ in to invertible elements can be factored through $(S^{-1}R,f)$.
+            \[\xymatrix{
+                M\ar^{\tau}[rr]\ar_{f}[rrd]&&S^{-1}M\ar^{\exists!h}[d]\\
+                &&N}\]
+            \ntg{To construct a module of fractions is in essence to expand the base ring. Therefore, any other module on the expanded ring, namely, the ring of fractions, can be applied with the universal property.}
+        \item[(ii)](\tf{Equivalent construction}) Let $M$ be an $R$-module, which has $S$ as a multiplicatively closed subgroup. Then
+            \[\arr{{rcl}S^{-1}R\ox_RM&\isom&S^{-1}M\\
+                \frac{a}{s}\ox m&\mapsto&\frac{am}{s}}\]
+            is the unique isomorphism between the two $S^{-1}R$-modules.
+        \item[(iii)](\tf{Flatness}) Let $M$ be an $R$-module and $S$ a multiplicatively closed subgroup of $R$. Then $S^{-1}M$ is a flat $S^{-1}R$-module.
+        \item[(iv)](\tf{Properties of $S^{-1}$}) It is better to think of $S^{-1}$ as a functor on the category of $R$-modules. See the next entry.
+    }
+\item[Properties of $S^{-1}$]The functor
+    \[S^{-1}:\mf{Mod}_R\fctr\mf{Mod}_{S^{-1}R}\]
+    has the following properties.
+    \itm{
+        \item[(i)](\tf{Exact}) $S^{-1}$ turns exact sequences to exact sequences.
+        \item[(ii)](\tf{On submodule operations}) Let $N,P$ be submodules of an $R$-module.
+            \itm{
+                \item[(a)]$S^{-1}(N+P)=S^{-1}N+S^{-1}P$
+                \item[(b)]$S^{-1}(N\cap P)=S^{-1}N\cap S^{-1}P$
+                \item[(c)]$S^{-1}(M/N)\cong(S^{-1}M)/(S^{-1}N)$
+            }
+        \item[(iii)](\tf{On homomorphisms}) Let $M\xrightarrow{f}N\xrightarrow{g}P$. Then
+            \[S^{-1}(gf)=(S^{-1}g)(S^{-1}f)\]
+        \item[(iv)](\tf{Isomorphisms}) Let $M,N$ be $R$-modules, which has $S$ as a multiplicatively closed subgroup.
+            \itm{
+                \item[(a)]There is an isomorphism between the $S^{-1}R$-modules
+                    \[\arr{{rcl}S^{-1}R\ox_RM&\isom&S^{-1}M\\
+                        \frac{a}{s}\ox m&\mapsto&\frac{am}{s}}\]
+                \ntg{Very good point of view to see that the essence of $S^{-1}$ is to expand the base ring.}
+                \item[(b)]There is an isomorphism between the $S^{-1}R$-modules
+                    \[\arr{{rcl}S^{-1}M\ox_{S^{-1}R}S^{-1}N&\isom&S^{-1}(M\ox_RN)\\
+                        \frac{m}{s}\ox\frac{n}{t}&\mapsto&\frac{m\ox n}{st}}\]
+                \ntg{In other words, $S^{-1}$ commutes with $\ox$.}
+            }
+    }
+\item[Local properties]\
+    \itm{
+        \item[(i)](\tf{On modules}) The following are equivalent for an $R$-module $M$.
+            \itm{
+                \item[(a)]$M=0$
+                \item[(b)]$M_{\got p}=0$ for all prime $\got p$
+                \item[(c)]$M_{\got m}=0$ for all maximal $\got m$
+            }
+        \item[(ii)](\tf{On monomorphisms}) The following are equivalent for an $R$-homomorphism $\phi:M\to N$.
+            \itm{
+                \item[(a)]$\ker\phi=0$
+                \item[(b)]$\ker\phi_{\got p}=0$ for all prime $\got p$
+                \item[(c)]$\ker\phi_{\got m}=0$ for all maximal $\got m$
+            }
+        \item[(iii)](\tf{On epimorphisms}) The following are equivalent for an $R$-homomorphism $\phi:M\to N$.
+            \itm{
+                \item[(a)]$\coker\phi=0$
+                \item[(b)]$\coker\phi_{\got p}=0$ for all prime $\got p$
+                \item[(c)]$\coker\phi_{\got m}=0$ for all maximal $\got m$
+            }
+        \item[(iv)](\tf{On flatness}) The following are equivalent for an $R$-module $M$.
+            \itm{
+                \item[(a)]$M$ is a flat $R$-module
+                \item[(b)]$M_{\got p}$ is a flat $R_{\got p}$-module for all prime $\got p$
+                \item[(c)]$M_{\got m}$ is a flat $R_{\got m}$-module for all maximal $\got m$
+            }
+    }
+\end{description}
+\end{subsection}
+\end{section}
+
+\begin{section}{Finitely Generated Modules, Noetherian Modules, and Artinian Modules}
+\label{fgm}
+\begin{subsection}{Definitions and Properties}
+\begin{description}
+\item[Finitely generated module]An $R$-module $M$ is called \tf{finitely generated}\index{module!finitely generated} if $M=Rx_1+\cdots+Rx_n$ for some finitely many $x_1,\cdots,x_n\in M$.
+\item[Chain,minimal,maximal conditions]\index{condition!ascending chain}\index{chain!ascending}\index{ACC}\index{condition!descending chain}\index{chain!descending}\index{DCC}\index{condition!maximal}\index{condition!minimal}A poset is said to satisfy
+    \itm{
+        \item[(i)]the \tf{ascending chain condition} or \tf{ACC} if any ascending chain in it is eventually constant, or stationary;
+        \item[(ii)]the \tf{descending chain condition} or \tf{DCC} if any descending chain in it is eventually constant, or stationary;
+        \item[(iii)]the \tf{maximal condition} if any subset of it has a maximal element;
+        \item[(iv)]the \tf{minimal condition} if any subset of it has a minimal element;
+    }
+\item[Noetherian module/ring\index{module!Noetherian}\index{ring!Noetherian}]An $R$-module $M$ is said to be a \tf{Noetherian module} if it satisfies the ACC on submodules. Alternatively, the following equivalent conditions can also be taken as definitions for a Noetherian module.
+    \itm{
+        \item[(0)](\tf{ACC}) $M$ satisfies the ACC on submodules.
+        \item[(i)](\tf{Maximal condition}) $M$ satisfies the maximal condition on submodules.
+        \item[(ii)](\tf{Finitely generated submodules}) Every submodule of $M$ is finitely generated.
+        \item[(iii)](\tf{Noetherian submodules}) Every submodule of $M$ is Noetherian.
+        \item[(iv)](\tf{Noetherian sub-/quotient modules 1}) For some submodule $N$, $N$ and $M/N$ are both Noetherian.
+        \item[(v)](\tf{Noetherian sub-/quotient modules 2}) For any submodule $N$, $N$ and $M/N$ are both Noetherian.
+        \item[(vii)](\tf{Noetherian sub-/quotient modules 3}) For any exact sequence $\exts{M'}{f}{M}{g}{M''}$, $M'$ and $M''$ are both Noetherian.
+    }
+    A ring $R$ is said to be a \tf{Noetherian ring} if it is Noetherian as an $R$-module. The following are equivalent conditions.
+    \itm{
+        \item[(0)](\tf{ACC}) $R$ satisfies the ACC on ideals.
+        \item[(i)](\tf{Maximal condition}) $R$ satisfies the maximal condition on ideals.
+        \item[(ii)](\tf{Finitely generated ideal}) Every ideal of $M$ is finitely generated.
+        \item[(iii)](\tf{Reflection by modules}) Every finitely generated $R$-module is Noetherian.
+    }
+    Aside from the equivalent conditions for Noetherian rings and modules, we have the following properties.
+    \itm{
+        \item[(i)](\tf{Sum}) A finite sum of Noetherian modules is Noetherian.
+        \item[(i')](\tf{Direct sum}) A direct sum of Noetherian modules is Noetherian. Conversely, if a direct sum is Noetherian, then each summand is Noetherian.
+        \item[(ii)](\tf{Fg. module over a N-ring}) A finitely generated module over a Noetherian ring is Noetherian.
+        \item[(iii)](\tf{Quotient}) A quotient ring of a Noetherian ring is Noetherian.
+        \item[(iv)](\tf{Minimal prime}) A Noetherian ring contains only finitely many minimal prime ideals.
+        \item[(v)](\tf{Image}) $A$ is Noetherian, $\phi:A\to B\implies\im(\phi)$ is Noetherian.
+        \item[(vi)](\tf{Fg. lifting}) $A\subset R$ is a Noetherian subring, and $R$ is finitely generated over $A$. Then $R$ is Noetherian.
+        \item[(vii)](\tf{Localization}) $R$ is Noetherian $\implies S^{-1}R$ is Noetherian.
+        \item[(viii)](\tf{Nilpotent nilradical}) $\nilrad(R)$ is nilpotent for a Noetherian module $R$.
+        \item[(ix)](\tf{Power of radical}) For any ideal $\got a$ in a Noetherian ring, $\sqrt{\ga}^n\subset\ga\subset\sqrt{\ga}$ for some $n$.
+    }
+\item[Artinian module/ring\index{module!Artinian}\index{ring!Artinian}]An $R$-module $M$ is said to be an \tf{Artinian module} if it satisfies the DCC on submodules. Alternatively, the following equivalent conditions can also be taken as definitions for an Artinian module.
+    \itm{
+        \item[(0)](\tf{DCC}) $M$ satisfies the DCC on submodules.
+        \item[(i)](\tf{Minimal condition}) $M$ satisfies the minimal condition on submodules.
+        \item[(ii)](\tf{Artinian sub-/quotient modules}) For any exact sequence $\exts{M'}{f}{M}{g}{M''}$, $M'$ and $M''$ are both Artinian.
+    }
+    A ring $R$ is said to be an \tf{Artinian ring} if it is Artinian as an $R$-module. Aside from the equivalent conditions for Artin rings and modules, we have the following properties.
+    \itm{
+        \item[(i)](\tf{Sum}) A direct sum of Artinian modules is Artinian.
+        \item[(ii)](\tf{Fg. over an A-ring}) A finitely generated module over a Artinian ring is Artinian.
+        \item[(iii)](\tf{Quotient}) A quotient ring of a Artinian ring is Artinian.
+        \item[(iv)](\tf{Prime, maximal}) In an Artinian ring, prime $\iff$ maximal, and $\nilrad=\rad$.
+        \item[(v)]Artinian $\implies$ semi-local.
+        \item[(vi)]
+    }
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Propositions}
+\begin{description}
+\item[]
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Theorems}
+\begin{description}
+\item[Structural Theorem for Finitely Generated Modules\index{theorem!structure}]Let $M$ be an $R$ module.
+    \[M\ttt{ is finitely generated}\iff\exists n,\ M\cong R^n/N\ttt{ for some }N\leqs R^n\]
+\item[Nakayama's Lemma\index{lemma!Nakayama}]Let $M$ be a finitely generated $R$-module. We have
+    \itm{
+        \item[(i)](\tf{Lemma 1}) If $\phi\in\End(M)$ is such that $\phi(M)\subset\got aM$ for some ideal $\got a$ of $R$, then for some $f(x)\in\got a[x]$, $f(\phi)=0$.
+        \item[(ii)](\tf{Lemma 2}) If an ideal $\got a$ is such that $\got aM=M$, then there exists $a\in\got a$, $1+a\in\ann(M)$.
+        \item[(iii)](\tf{Nakayama's Lemma}) If an ideal $\got a\subset\rad R$ is such that $\got aM=M$, then $M=0$.
+        \item[(iv)](\tf{Corollary 1}) If there is a submodule $N\subset M$ and an ideal $\got a\subset\rad R$ such that $M=\got aM+N$, then $M=N$.
+    }
+\item[Hilbert Basis Theorem\index{theorem!Hilbert basis}]Let $R$ be a Noetherian ring. The following are true.
+    \itm{
+        \item[(i)]$R[X]$ is a Noetherian ring.
+        \item[(ii)]$R[[X]]$ is a Noetherian ring.
+    }
+\end{description}
+\end{subsection}
+\end{section}
+
+\begin{section}{Primary Decomposition}
+\label{prmidl}
+We shall recall some definitions and propositions from Sect.\ref{gnlrng}.
+\begin{subsection}{Definitions}
+\begin{description}
+\item[Primary ideal\index{ideal!primary}] An ideal $\got q$ is called \tf{primary} if $\got q\neq(1)$ and
+    \[xy\in\got q\implies x\in\got q\ttt{ or }y^n\in\got q\ttt{ for some }n\geqs1\]
+    or equivalently,
+    \[R/\got q\neq0,\ \ttt{all zero-divisors of $R/\got q$ are nilpotent}\]
+    The radical $\got p=\sqrt{\got q}$ of a primary ideal $\got q$ is a prime ideal. Many different primary ideals $\got q_i$ may happen to have the same radical $\got p=\sqrt{\got q_i}$. If $\got p=\sqrt{\got q}$, then we say $\got p$ is the \tf{prime ideal associated to $\got q$} and that $\got q$ is $p$-primary.
+    \ntg{It is better to illustrate with this picture.
+        \[\xymatrix{
+            \txt{Prime ideal\\associated to $\got q_i$}&&&\got p&&\\
+            &&&&&\\
+            \txt{$\got p$-primary ideals}&\got q_1\ar^{\sqrt{\ }}[uurr]&\got q_2\ar^{\sqrt{\ }}[uur]&\cdots&\got q_n\ar_{\sqrt{\ }}[uul]&\cdots\\
+        }\]
+    }
+    \ntg{I am your primary means you are my radical.}
+\item[Primary decomposition of an ideal\index{decomposition!primary}\index{primary decomposition!of an ideal}]A \tf{primary decomposition} of an ideal $\got a$ in $R$, if it exists, is an expression of $\got a$ as a finite intersection of primary ideals, namely,
+    \[\got a=\bigcap_{i=1}^n\got q_i\]
+    where each $\got q_i$ is primary. If moreover,
+    \itm{
+        \item[(i)]the prime ideals $\sqrt{\got q_i}$ associated to $\got q_i$ are distinct;
+        \item[(ii)]no factor of this decomposition can be left out, i.e., $\bigcap_{j\neq i}\got q_j\not\subset\got q_i$ for each $i$,
+    }
+    then the decomposition is called \tf{minimal}\index{decomposition!minimal}\index{primary decomposition!minimal}.
+\end{description}
+\end{subsection}
+\end{section}
+
+\begin{section}{Finitely Generated Modules over a PID}
+\begin{subsection}{Definitions}
+\begin{description}
+\item[Torsion elements and modules\index{element!torsion}\index{module!torsion}]An element $x$ in an $R$-module $M$ is called a \tf{torsion element} if $rx=0$ for some $0\neq r\in R$ ($0$ is excluded). The \tf{torsion part}\index{part!torsion}\index{torsion} of $M$ is $M_\tor=\{x\in M:\exists r\in R,\ r\neq0,\ rx=0\}$, and it is a submodule if $R$ is an integral domain, in which case the quotient module $M/M_\tor$ is defined and torsion-free. If $M_\tor=0$, then $M$ is said to be \tf{torsion-free}\index{torsion-free}. If $M_\tor=M$, then $M$ is said to be a \tf{torsion module}. For a given prime element $p\in R$, an element $x\in M$ is called \tf{$p$-torsion}\index{element!$p$-torsion}\index{$p$-torsion} if $p^nx=0$ for some $n\geqs1$. A module is called \tf{$p$-torsion}\index{module!$p$-torsion} if it is filled with $p$-torsion element. The $p$-torsion submodule $M(p)$ is the set of all $p$-torsion elements of $M$, which can be verified to be a submodule.
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Propositions}
+\begin{description}
+\item[Torsion submodule]The torsion part $M_\tor$ of $M$ is such that
+    \itm{
+        \item[(i)]The ring needs to be integral to ensure $M_\tor$ is a submodule.
+        \item[(ii)]$M/M_\tor$ is always torsion-free.
+        \item[(iii)]Any homomorphism $f:M\to N$ maps torsion elements to torsion elements, i.e., $f(M_\tor)\subset N_\tor$
+        \item[(iv)]$M\cong N\implies M_\tor\cong N_\tor,\ M/M_\tor\cong N/N_\tor$
+    }
+\item[Finitely generated free module over a PID]Let $M$ be a free module of rank $n$ over a PID $R$. We are interested in the structure of submodules of $M$
+    \itm{
+        \item[(i)]Any submodule $N\leqs M$ is free with rank $d\leqs n$.
+            \ntg{The proof is easy when $M$ has finite rank, and this case may be generalized to infinite rank.}
+        \item[(ii)]For any submodule $N\leqs M$, there exists a basis $\mcl B=\{\inds{e}{n}{,}\}$ of $M$ and elements $\inds{r}{d}{,}\in R$ such that $\{r_1e_1,\cdots,r_de_d\}$ is a basis for $N$.
+        \item[(iii)]A spanning set $S$ of size $n$ is a basis.
+        \item[(iv)](\tf{Corollary of (i)}) Let $P$ be an $n$-generated module over a PID, then any submodule is also $n$-generated.
+    }
+    \ntg{Finitely generated free module $\iff$ free module of finite rank.}
+\item[Torsion-free and free]A finitely generated torsion-free module $M$ over a PID $R$ is free.
+    \sprf{The basic idea is to embed $M$ into some free module and apply the last proposition. Such an embedding is of the form
+        \[a:M\to aM,x\mapsto ax\quad(0\neq a\in R)\]
+        Note that this is an isomorphism because $M$ is torsion-free (so that $ax=0\implies x=0\implies\ker a=0$). It remains to find a free submodule $N$ of $M$ and choose a proper $a$. A free submodule can be generated by a linearly independent set, hence we need to find a maximal linearly independent subset (existence is ensure by $M$ being torsion-free, so that any nonzero singleton is linearly independent):
+        \[\{\inds{u}{k}{,}\}\]
+        of some generating set
+        \[\{\inds{u}{k}{,},\inds{v}{n-k}{,}\}\]
+        Linear dependence of $\{\inds{u}{k}{,},v_i\}$ allows us to choose an element $r_i$ to absorb $v_i$ into $N=(\inds{u}{k}{,})$. And hence $a=\inds{r}{n-k}{}$ absorbs $M$ into $N=(\inds{u}{k}{,})$, which is free, hence $M\cong aM\subset N$ is free.}
+    \ntg{We may not have $N=M$, but the proof above says $\rank(M)\leqs\rank(N)\leqs(M)\implies\rank(N)=\rank(M)$.}
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Theorems}
+\begin{description}
+\item[Structural Theorem for Finitely Generated Modules over a PID]The decomposition is proved in steps. Let $M$ be a finitely generated module over a PID $R$.
+    \itm{
+        \item[(i)](\tf{Free-torsion decomposition})\label{frtd} There exists a free submodule $M_\free$ such that
+            \[M=M_\free\op M_\tor,\quad\ttt{with }M_\free\cong M/M_\tor\]
+            where both $M_\free$ and $M_\tor$ are finitely generated.
+        \item[(ii)](\tf{Torsion to $p$-torsion}) The finitely generated torsion module $M_\tor$ is a finite direct sum of $p$-torsion modules.
+            \[M=\bigoplus_{p\ttt{ is prime}}M(p)\]
+            and the sum is finite.
+        \item[(iii)](\tf{$p$-torsion to cyclic}) Any $x\in M(p)$ generates a direct summand $Rx$ of $M(p)$. Moreover, if $p^nx=0,\ p^{n-1}x\neq0$, then
+            \[Rx\cong R/(p^n)\]
+            and if we keep decomposing $M_(p)$ by extracting direct summands of it, we obtain in the end
+            \[M(p)\cong R/(p^{n_1})\op\cdots\op R/(p^{n_s})\]
+            where $n_1\inds{n}{s}{\geqs}\geqs1$ are uniquely determined by $M(p)$.
+        \item[(iv)](\tf{Combining the above}) Combining all of the above we obtain
+            \[M\cong R^s\op\prn{\bigoplus_{i=1}^t\bigoplus_{j=1}^{m_i}R/(p_i^{n_{ij}})}\]
+            The ring elements $p_i^{m_ij}$ are called the \tf{elementary factors}.
+        \item[(v)](\tf{Combining the coprime factors})
+            \[M\cong R^s\op R/(d_1)\op\cdots\op R/(d_t)\]
+            where $d_1\divd\cdots\divd d_t$ are called the \tf{invariant factors}.
+    }
+\end{description}
+\end{subsection}
+\end{section}
+
+\begin{section}{Valuation Rings}
+\begin{subsection}{Definitions and Properties}
+\begin{description}
+\item[Valuation ring\index{ring!valuation}\index{valuation ring}]If we do not introduce valuation first, we can only define the notion of valuation ring for integral domains. Let $B$ be an integral domain and $K$ its field of fractions. Then $B$ is called a \tf{valuation ring} of $K$ if $x\neq0\implies$ either $x\in B$ or $x^{-1}\in B$ or both. The valuation ring $B$ of $K$ has the following properties.
+    \itm{
+        \item[(i)]$B$ is local.
+        \item[(ii)]Any ring extension of $B$ in $K$ is also a valuation ring.
+        \item[(iii)]$B$ is integrally closed.
+    }
+    Conversely, for any field $K$, there exists a subring of $K$ that is a valuation ring of $K$.
+\item[Valuation\index{valuation}]Let $K$ be a field and $\Gamma$ a totally ordered (additive) abelian group. A \tf{valuation of $K$ with values in $\Gamma$} is a mapping $K^*\to\Gamma$ such that
+    \itm{
+        \item[(i)]$v(xy)=v(x)+v(y)$ (homomorphism)
+        \item[(ii)]$v(x+y)\geqs\min(v(x),v(y))$
+    }
+    The set $R=\{x\in K^*:v(x)\geqs0\}\cup\{0\}$ is a valuation ring of $K$ and is called the \tf{valuation ring} of $v$, and $v(K^*)$ is the value group of $v$.
+    But in practice, we more often consider discrete valuations. A \tf{discrete valuation} on a field $K$ is a mapping $v:K^*\to\ZZ$ such that
+    \itm{
+        \item[(i)]$v$ is surjective.
+        \item[(ii)]$v(xy)=v(x)+v(y)$ (homomorphism)
+        \item[(iii)]$v(x+y)\geqs\min(v(x),v(y))$
+    }
+    Similarly, the set $R=\{x\in K^*:v(x)\geqs0\}\cup\{0\}$ is a valuation ring of $K$ called the \tf{valuation ring} of $v$. Usually we put $v(0)=\infty$. If the field is not given in advance, we say an integral domain $A$ is a \tf{discrete valuation ring} if there exists a discrete valuation $v$ on its field of fractions $K$ such that $A=\{x\in K^*:v(x)\geqs0\}\cup\{0\}$.
+\end{description}
+\end{subsection}
+\end{section}
+\printindex
+\end{document}
