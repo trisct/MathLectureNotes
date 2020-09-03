@@ -1,0 +1,1048 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{geometry,layout,amssymb,amsthm,amsmath,mathrsfs,graphicx,centernot,textcomp,galois,extarrows,bbm,dsfont,makeidx,empheq,xcolor,tikz-cd,tikz,stmaryrd}
+\usepackage[all]{xy}
+
+\newcounter{ctone}
+
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{prp}{Proposition}[section]
+\newtheorem{theom}{Theorem}[section]
+\newtheorem*{theom*}{Theorem}
+\newtheorem{coro}{Corollary}[section]
+
+\newenvironment{hints}{\textbf{Hint}: }{}
+
+\theoremstyle{definition}
+\newtheorem{eg}{Example}[section]
+\newtheorem{ct}{\textcolor{cyan}{Counterexample}}[section]
+\newtheorem*{pf}{\blue{Proof}}
+\newtheorem{question}{Q}[section]
+\newtheorem{dfn}{Definition}[section]
+\newtheorem{probl}{Problem}[section]
+\newtheorem{nt}{\cg{Note}}[section]
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}[section]
+
+\newcommand*\widefbox[1]{\fbox{\vspace{2em}\hspace{2em}#1\hspace{2em}}}
+\setlength\fboxsep{0.2cm}
+
+\newcommand{\tim}{$\implies$}
+\newcommand{\rtl}{\udl{``$\Leftarrow$''}}
+\newcommand{\ltr}{\udl{``$\Rightarrow$''}}
+\newcommand{\ril}{\udl{``$\supset$''}}
+\newcommand{\lir}{\udl{``$\subset$''}}
+\newcommand{\tick}{\textcolor{red}{\checkmark}}
+\newcommand{\bs}{\backslash}
+\newcommand{\udots}{\mathinner{\mskip 1mu\raise 1pt\vbox{\kern 7pt\hbox{.}}
+\mskip 2mu\raise 4pt\hbox{.}\mskip 2mu\raise 7pt\hbox{.}\mskip 1mu}}
+\newcommand{\wot}{\backslash}
+\newcommand{\geqs}{\geqslant}
+\newcommand{\leqs}{\leqslant}
+\newcommand{\Var}{{\rm Var}}
+\newcommand{\sdd}{\sigma}
+\newcommand{\esssup}{{\rm esssup}}
+\newcommand{\gD}{\got D}
+\newcommand{\ga}{\got a}
+\newcommand{\gb}{\got b}
+\newcommand{\gc}{\got c}
+\newcommand{\gp}{\got p}
+\newcommand{\gq}{\got q}
+\newcommand{\gm}{\got m}
+\newcommand{\lst}{L^{s,t}}
+\newcommand{\DD}{\mathbb{D}}
+\newcommand{\EE}{\mathbb{E}}
+\newcommand{\FF}{\mathbb{F}}
+\newcommand{\HH}{\mathbb{H}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\rsa}{\sigma(f;\pi,\xi)}
+\newcommand{\wlg}{{\rm w.l.o.g.}}
+\newcommand{\alg}{{\rm alg}}
+\newcommand{\sep}{{\rm sep}}
+\newcommand{\spn}{{\rm span}}
+\newcommand{\lcm}{{\rm lcm}}
+\newcommand{\rank}{{\rm rank}}
+\newcommand{\nul}{{\rm null}}
+\newcommand{\disc}{{\rm disc}}
+\newcommand{\im}{{\rm Im}}
+\newcommand{\coker}{{\rm Coker}}
+\newcommand{\coim}{{\rm Coim}}
+\newcommand{\ud}{{\rm d}}
+\newcommand{\Log}{{\rm Log}}
+\newcommand{\lub}{{\rm lub}}
+\newcommand{\glb}{{\rm glb}}
+\newcommand{\loc}{{\rm loc}}
+\newcommand{\supp}{{\rm supp}}
+\newcommand{\dx}{\ud x}
+\newcommand{\dy}{\ud y}
+\newcommand{\dz}{\ud z}
+\newcommand{\dbz}{\ud\orl z}
+\newcommand{\bz}{\bar z}
+\newcommand{\bfbz}{\bar f_{\bar z}}
+\newcommand{\fbz}{f_{\bar z}}
+\newcommand{\bfz}{\bar f_z}
+\newcommand{\du}{\ud u}
+\newcommand{\dbu}{\ud\bar u}
+\newcommand{\bu}{\bar u}
+\newcommand{\bubz}{\bar u_{\bar z}}
+\newcommand{\ubz}{u_{\bar z}}
+\newcommand{\buz}{\bar u_z}
+\newcommand{\dw}{\ud w}
+\newcommand{\dbw}{\ud\bar w}
+\newcommand{\bwbz}{\bar w_{\bar z}}
+\newcommand{\wbz}{w_{\bar z}}
+\newcommand{\bwz}{\bar w_z}
+\newcommand{\dv}{\ud v}
+\newcommand{\dbv}{\ud\bar v}
+\newcommand{\bvbz}{\bar v_{\bar z}}
+\newcommand{\vbz}{v_{\bar z}}
+\newcommand{\bvz}{\bar v_z}
+\newcommand{\dmu}{\ud\mu}
+\newcommand{\x}{\times}                     %乘号
+\newcommand{\ox}{\otimes}
+\newcommand{\op}{\oplus}
+\newcommand{\p}{$\prime$}
+\newcommand{\fctr}{\Rightarrow}
+\newcommand{\unito}{\rightrightarrows}
+\newcommand{\bwto}{\rightharpoonup}
+\newcommand{\wto}{\rightharpoondown}
+\newcommand{\lbint}{\int\!\!\!\int}      %二重积分号
+\newcommand{\bint}{\int\!\!\!\!\int}      %二重积分号
+\newcommand{\tint}{\int\!\!\!\!\int\!\!\!\!\int}      %三重积分号
+\newcommand{\apr}{\approx}
+\newcommand{\prdn}{\prod\limits_{n=1}^\infty}
+\newcommand{\sumn}{\sum\limits_{n=1}^\infty}
+\newcommand{\sump}{\sum\limits_{n=0}^\infty}
+\newcommand{\limn}{\lim\limits_{n\to\infty}}
+\newcommand{\limx}{\lim\limits_{x\to+\infty}}
+\newcommand{\operp}{\stackrel{\perp}{\oplus}}
+\newcommand{\const}{{\rm const}}
+\newcommand{\codim}{{\rm codim}}
+\newcommand{\sgn}{{\rm sgn}}
+\newcommand{\ann}{{\rm Ann}}
+\newcommand{\chr}{{\rm \,char\,}}
+\newcommand{\tr}{{\rm tr}}
+\newcommand{\sym}{{\rm Sym}}
+\newcommand{\Alt}{{\rm Alt}}
+\newcommand{\drh}[1]{H^{#1}_{\rm dR}}
+\newcommand{\centr}{{\rm Centr}}
+\newcommand{\conv}{{\rm conv}}
+\newcommand{\Sp}{{\rm Sp}}              %symplectic
+\newcommand{\id}{{\rm id}}
+\newcommand{\Obj}{\mf{Obj}}
+\newcommand{\Mor}{\mf{Mor}}
+\newcommand{\Fr}{{\rm Fr}}
+\newcommand{\Perm}{{\rm Perm}}
+\newcommand{\Hom}{{\rm Hom}}
+\newcommand{\Emb}[2]{{\rm Hom}_{#2}(#1,\bar{#2})}
+\newcommand{\Aut}{{\rm Aut}}
+\newcommand{\Gal}{{\rm Gal}}
+\newcommand{\Inn}{{\rm Inn}}
+\newcommand{\End}{{\rm End}}
+\newcommand{\PSL}{{\rm PSL}}
+\newcommand{\Area}{{\rm Area}}
+\newcommand{\Lip}{{\rm Lip}}
+\newcommand{\Vol}{{\rm Vol}}
+\newcommand{\re}{{\rm Re}}
+\newcommand{\diag}{{\rm diag}}
+\newcommand{\grad}{{\rm grad\,}}
+\newcommand{\dive}{{\rm div\,}}
+\newcommand{\rot}{{\rm rot\,}}
+\newcommand{\curl}{{\rm curl\,}}
+\newcommand{\free}{{\rm free}}
+\newcommand{\tor}{{\rm tor}}
+\newcommand{\rad}{{\rm rad}}
+\newcommand{\nilrad}{{\rm nilrad}}
+\newcommand{\ord}{{\rm ord}}
+\newcommand{\irr}{{\rm Irr}}
+\newcommand{\cl}{{\rm cl}}
+\newcommand{\Cl}{{\rm Cl}}
+\newcommand{\fix}{{\rm fix}}
+\newcommand{\boun}{\partial}
+\newcommand{\into}{\hookrightarrow}
+\newcommand{\varn}{\varnothing}
+\newcommand{\vare}{\varepsilon}
+\newcommand{\vphi}{\varphi}
+\newcommand{\vrho}{\varrho}
+\newcommand{\diam}{{\rm diam}}
+\newcommand{\vect}{{\rm Vect}}
+\newcommand{\isom}{\stackrel{\cong}{\longrightarrow}}
+\newcommand{\dfas}{\triangleq}
+\newcommand{\st}{{\rm\quad s.t.\quad}}
+\newcommand{\lapla}{\Delta}
+\newcommand{\strinc}{\subset\subset}
+
+\makeatletter
+\newcommand{\lambdabar}{{\mathchoice
+  {\smash@bar\textfont\displaystyle{0.25}{1.2}\lambda}
+  {\smash@bar\textfont\textstyle{0.25}{1.2}\lambda}
+  {\smash@bar\scriptfont\scriptstyle{0.25}{1.2}\lambda}
+  {\smash@bar\scriptscriptfont\scriptscriptstyle{0.25}{1.2}\lambda}}}
+\newcommand{\smash@bar}[4]{%
+  \smash{\rlap{\raisebox{-#3\fontdimen5#10}{$\m@th#2\mkern#4mu\mathchar'26$}}}}
+\makeatother
+
+
+\newcommand{\res}[2]{\left.#1\right|_{#2}}
+\newcommand{\rsb}[3]{\sigma(#1;#2,#3)}      %Riemann sum with arguments
+\newcommand{\derv}[2]{\frac{\ud#1}{\ud#2}}
+\newcommand{\parf}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\secpf}[3]{\frac{\partial^2 #1}{\partial #2\partial #3}}
+\newcommand{\comb}[2]{\binom{#1}{#2}}       %组合数
+\newcommand{\norm}[1]{\left\lVert #1\right\rVert}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\brc}[1]{\left\{#1\right\}}
+\newcommand{\udbrc}[2]{\underbrace{#1}_{#2}}
+\newcommand{\brk}[1]{\left\langle#1\right\rangle}
+\newcommand{\prn}[1]{\left(#1\right)}
+\newcommand{\sqb}[1]{\left\lbrack#1\right\rbrack}
+\newcommand{\dbk}[1]{\langle\!\langle#1\rangle\!\rangle}
+\newcommand{\inprod}[1]{\langle#1\rangle}
+\newcommand{\itr}[1]{#1^\circ}           %内部,interior
+\newcommand{\cosp}[1]{\prescript}
+\newcommand{\coo}[1]{\prescript{\circ}{}{#1}}
+\newcommand{\cmp}[1]{#1^c}               %补集,complement
+\newcommand{\cnts}[3]{#1#3\cdots#3#2}
+\newcommand{\inds}[3]{#1_{1}#3\cdots#3#1_{#2}}
+\newcommand{\dindx}[4]{#1{#2}#4\cdots#4#1{#3}}
+\newcommand{\dinds}[4]{#1_{#2}#4\cdots#4#1_{#3}}
+\newcommand{\vct}[1]{\overrightarrow{#1}}
+\newcommand{\simlr}[2]{#2^{-1}#1#2}     %相似
+\newcommand{\congt}[2]{\ts{#2}#1#2}     %相合
+\newcommand{\ccong}[2]{\cts{#2}#1#2}    %共轭相合
+\newcommand{\rcong}[2]{\ts{#2}#1\orl{#2}}    %右共轭相合
+\newcommand{\ts}[1]{#1^{\rm T}}
+\newcommand{\cts}[1]{\orl{#1}^{\rm T}}   %共轭转置
+\newcommand{\bss}[2]{\inds{#1}{#2}{,}}
+\newcommand{\unitob}[1]{\mathop{\rightrightarrows}\limits_{#1}}
+\newcommand{\limb}[1]{\lim\limits_{#1}}
+\newcommand{\limp}[2]{\lim\limits_{#1\to#2}}
+%\newcommand{\mapn}[5]{\arr{{ccrcl}#1&:&#2&\to&#3\\&&#4&\mapsto&#5}}
+\newcommand{\mapn}[5]{\mtha{#1:#2&\to&#3\\#4&\mapsto&#5}}
+\newcommand{\map}[4]{\mtha{#1&\to&#2\\#3&\mapsto&#4}}
+\newcommand{\mapgal}[6]{\arr{{rcl}#1&\leftrightarrow&#2\\#3&\mapsto&#4\\#6&\mapsfrom&#5}}
+\newcommand{\mapgalm}[6]{\mtha{#1&\leftrightarrow&#2\\#3&\mapsto&#4\\#6&\mapsfrom&#5}}
+\newcommand{\mapisom}[4]{\mtha{#1&\isom&#2\\#3&\mapsto&#4}}
+
+\newcommand{\mth}[1]{\begin{displaymath}#1\end{displaymath}}
+\newcommand{\mtha}[1]{\begin{eqnarray*}#1\end{eqnarray*}}
+\newcommand{\arr}[1]{\begin{array}#1\end{array}}
+\newcommand{\lem}[1]{\begin{lemma}#1\end{lemma}}
+\newcommand{\lemn}[1]{\begin{lemma*}#1\end{lemma*}}
+\newcommand{\prf}[1]{\begin{proof}[Proof]#1\end{proof}}
+\newcommand{\prfn}[1]{\begin{proof}#1\end{proof}}
+\newcommand{\hnt}[1]{\begin{hints}#1\end{hints}}
+\newcommand{\sol}[1]{\begin{proof}[Solution]#1\end{proof}}
+\newcommand{\ans}[1]{\begin{proof}[Answer]#1\end{proof}}
+\newcommand{\ques}[1]{\begin{question}#1\end{question}}
+\newcommand{\sprf}[1]{\begin{pf}\cb{#1}\end{pf}}
+\newcommand{\df}[1]{\begin{dfn}#1\end{dfn}}
+\newcommand{\ntg}[1]{\begin{nt}\cg{#1}\end{nt}}
+\newcommand{\mat}[1]{\begin{matrix}#1\end{matrix}}
+\newcommand{\matp}[1]{\prn{\begin{matrix}#1\end{matrix}}}
+\newcommand{\cd}[1]{\begin{tikzcd}[ampersand replacement=\&]#1\end{tikzcd}}
+\newcommand{\tkpic}[1]{\begin{center}\begin{tikzpicture}#1\end{tikzpicture}\end{center}}
+\newcommand{\itm}[1]{\begin{itemize}#1\end{itemize}}
+\newcommand{\enu}[1]{\begin{enumerate}#1\end{enumerate}}
+\newcommand{\desc}[1]{\begin{description}#1\end{description}}
+\newcommand{\tmth}[1]{\begin{displaymath}\ttt{#1}\end{displaymath}}
+\newcommand{\thm}[1]{\begin{theom}#1\end{theom}}
+\newcommand{\thmn}[1]{\begin{theom*}#1\end{theom*}}
+\newcommand{\emp}[1]{\begin{eg}#1\end{eg}}
+\newcommand{\rmk}[1]{\begin{remark}#1\end{remark}}
+\newcommand{\pbl}[1]{\begin{probl}#1\end{probl}}
+\newcommand{\prop}[1]{\begin{prp}#1\end{prp}}
+\newcommand{\cor}[1]{\begin{coro}#1\end{coro}}
+\newcommand{\eqn}[1]{\begin{equation}#1\end{equation}}
+\newcommand{\eqna}[1]{\begin{eqnarray}#1\end{eqnarray}}
+
+\newcommand{\clr}[1]{\textcolor{red}{#1}}   %红色
+\newcommand{\cb}[1]{\textcolor{blue}{#1}}   %蓝色
+\newcommand{\cg}[1]{\textcolor{magenta}{#1}}%紫色
+\newcommand{\cy}[1]{\textcolor{cyan}{#1}}
+\newcommand{\hlg}[1]{\cg{\udl{#1}}}
+\newcommand{\hlb}[1]{\cb{\udl{#1}}}
+\newcommand{\hlr}[1]{\clr{\udl{#1}}}
+
+\newcommand{\mf}{\mathbf}
+\newcommand{\tf}{\textbf}
+\newcommand{\tit}{\textit}
+\newcommand{\hlt}[1]{\textbf{\red{#1}}}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+
+\newcommand{\nm}[1]{{\rm#1}}                %竖体
+\newcommand{\ttt}{\textrm}
+\newcommand{\mhb}{\mathbb}
+\newcommand{\mcl}{\mathcal}
+\newcommand{\flr}{\mathscr}
+\newcommand{\got}{\mathfrak}
+\newcommand{\orl}{\overline}
+\newcommand{\udl}{\underline}
+\newcommand{\uudl}{\uuline}
+\newcommand{\wudl}{\uwave}
+\newcommand{\wt}{\widetilde}
+\newcommand{\bv}{\breve}
+
+%%%%%%%%%%%%%PHYSICS CONSTANTS
+\newcommand{\cstk}{\frac{1}{4\pi\vare_0}}
+\newcommand{\cstm}{\frac{\mu_0}{4\pi}}
+
+\renewcommand{\ker}{{\rm Ker}}
+\renewcommand{\Re}{{\rm Re}}
+\renewcommand{\Im}{{\rm Im}}
+\renewcommand{\S}{S^{-1}}
+\renewcommand{\bar}{\orl}
+\renewcommand{\subset}{\subseteq}
+\renewcommand{\supset}{\supseteq}
+\renewcommand{\subsetneq}{\subsetneqq}
+\renewcommand{\supsetneq}{\supsetneqq}
+
+
+\title{Abstract Algebra II}
+\author{TRISCT}
+\date{}
+\makeindex
+\date{}
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\maketitle
+\tableofcontents
+\begin{section}{Some Weird Stuff}
+\begin{subsection}{Minimal Polynomials over Different Fields}
+\thm{For algebraic extensions, $F\subset E\subset L$, if $u\in L$ has minimal polynomials $P_u^E,P_u^F$ over $E$ and $F$ respectively, then \[P_u^E\mid P_u^F\]
+(\red{Larger fields have smaller polynomials})}
+\ntg{Useful for separability.}
+\end{subsection}
+
+\begin{subsection}{Characters}
+Let $G$ be a monoid and $E$ a field. A \tf{character of $G$ (with values) in $E$} is a map $\chi:G\to E$ that preserves the multiplication and the identity. We say a finite set of characters $\chi_1,\cdots,\chi_k:G\to E$ is \tf{linearly independent}, if for $a_i\in E$, $\sum_{i=1}^ka_i\chi_i=0\implies a_i=0$ for all $i$. For an infinite collection of characters, we say it is \tf{linearly independent} if every finite subset is linearly independent.
+
+\ntg{We shall remark for future use that each field is a monoid under multiplication. Each field embedding $E\into F$ is then a character of $E$ in $F$.}
+
+\thm{[Artin, linear independence of characters]Any set of distinct characters are linearly independent.}
+\prf{We only have to prove the case with finitely many characters. We prove by induction. Suppose we have $k$ distinct characters. $k=1$ is trivially true. Suppose this $k\geqs2$ and this holds for $1,\cdot,k-1$. Let $\sum_{i=1}^ka_i\chi_i=0$ with distinct $\chi_i$. We may consider only the case $a_i\neq0$ for all $i$, because if any $a_i=0$ then the sum reduces to $k-1$ terms and we are finished by the induction hypothesis. Then we find some $h\in G$ such that $\chi_1(h)\neq\chi_2(h)$ (assuming $\chi_1(h)\neq0$, for at least one of them is) and consider the two sums:
+\[\sum_{i=1}^ka_i\chi_1(h)\chi_i=\chi_1(h)\sum_{i=1}^ka_i\chi_i=0\]
+\[\sum_{i=1}^ka_i\chi_i(h)\chi_i=\sum_{i=1}^ka_i\chi_i(h(\cdot))=0\]
+A subtraction yields
+\mtha{0&=&\sum_{i=1}^ka_i\chi_1(h)\chi_i-\sum_{i=1}^ka_i\chi_i(h)\chi_i\\
+    &=&\sum_{i=1}^ka_i(\chi_1(h)-\chi_i(h))\chi_i}
+Let $b_i=a_i(\chi_1(h)-\chi_i(h))$. Then $b_1=0$. By the induction hypothesis all $b_i=0$. But $b_2=a_2(\chi_1(h)-\chi_2(h))=0$ with $\chi_1(h)\neq\chi_2(h)$. Hence $a_2=0$. The case where all $a_i\neq0$ is then impossible.}
+\end{subsection}
+
+\begin{subsection}{Norm and Trace}
+Let $E/F$ be a finite extension. We can define the norm and the trace associated with this extension as follows. First we view $E$ as a finite dimensional over $F$. Then we define an $F$-linear transformation $L_u$ on $E$, parametrized by elements $u$ in $E$:
+\mapn{L_u}{E}{F}{x}{ux}
+The \tf{norm} $N_{E/F}$ is the map
+\mapn{N_{E/F}}{E}{F}{u}{\det(L_u)}
+The \tf{trace} $T_{E/F}$ is the map
+\mapn{T_{E/F}}{E}{F}{u}{\tr(L_u)}
+Without further study, the following are some easy properties.
+\thm{[Basic properties]The following are true for a finite extension $E/F$.
+\itm{
+    \item[(i)]$T_{E/F}$ is $F$-linear.
+    \item[(ii)]$N_{E/F}$ is multiplicative.
+    \item[(iii)]$T_{E/F}$ and $N_{E/F}$ have easy representations for $u\in F$, namely, $u\in F\implies T_{E/F}(u)=nu,\ N_{E/F}(u)=u^n$, where $n=[E:F]$.
+}}
+
+\thm{[Break down into steps]Let $E/F$ be finite. Then for $u\in E$,
+\[T_{E/F}=T_{F(u)/F}\comp T_{E/F(u)}\]
+\[N_{E/F}=N_{F(u)/F}\comp N_{E/F(u)}\]}
+\ntg{N.b. the upper step is computed first.}
+
+\thm{[Computations]Let $E/F$ be finite and $u\in E$. We can compute $T_{E/F}(u)$ and $N_{E/F}(u)$ using the minimal polynomial of $u$ and embeddings of $E$ into $\bar F$, namely, if
+\[P_u(x)=x^n+a_{n-1}x^{n-1}+\cdots+a_0\] is the minimal polynomial of $u$ over $F$, then
+\itm{
+    \item[(i)]$T_{E/F}(u)=[E:F(u)](-a_{n-1})$;
+    \item[(ii)]$N_{F(u)/F}(u)=((-1)^na_0)^{[E:F(u)]}$;
+    \item[(iii)]$T_{E/F}(u)=[E:F]_i\sum_{\sigma\in\Emb{E}{F}}\sigma(u)$;
+    \item[(iii)]$N_{E/F}(u)=\prn{\prod_{\sigma\in\Emb{E}{F}}\sigma(u)}^{[E:F]_i}$.
+}}
+\end{subsection}
+
+\begin{subsection}{The Sylow Theorems}
+\thm{[Sylow]Let $G$ be a finite group of order $n$. Suppose $n=p^kn'$ where $p$ is prime, $k\geqs1$ and $p^{k+1}\mid n$. Then the following are true.
+\itm{
+    \item[(i)]There exists a subgroups of order $p^k$, called a \tf{Sylow $p$-subgroup}.
+    \item[(ii)]Any $p$-subgroup of $G$ is contained in some Sylow $p$-subgroup.
+    \item[(iii)]All Sylow $p$-subgroups are conjugate.
+    \item[(iv)]The number $n_p$ of Sylow $p$-subgroups satisfies
+        \[n_p\equiv1\pmod p,\qquad n_p|n'\]
+}}
+\end{subsection}
+\end{section}
+
+\begin{section}{Basic Types of Field Extensions}
+\begin{subsection}{Fields}
+A \tf{field} is a commutative ring with identity such that $1\neq0$ and any nonzero element is invertible. For any field $F$, there is a unique ring homomorphism
+\map{\ZZ}{F}{n}{\underbrace{1+\cdots+1}_{n}}
+The isomorphism theorem tells us that the image of this mapping is isomorphic to $\ZZ/p\ZZ$ for some $p\in\ZZ_{\geqs0}$. Also $p$ must be either $0$ or a prime number since $\ZZ/p\ZZ$, as a subring of the field $F$, should not have any zero-divisors. Hence each field $F$ corresponds to a unique integer $p$ that is either $0$ or prime. This integer is called the \tf{characteristic} of the field $F$. The smallest subfield of $F$ is called the \tf{prime field} of $F$.
+
+A \tf{field homomorphism} is a ring homomorphism between fields. A field homomorphism is necessarily injective, i.e. an embedding.
+\end{subsection}
+
+\begin{subsection}{Extensions}
+Let $F\subset E$ be fields. Then $E$ is called an \tf{extension} of $F$.\footnote{When talking about extension, there is a tacit understanding that the smaller field is naturally included in the larger one. But when talking about embeddings no such assumption is made.} The extensions $E,E'$ of $F$ are \tf{$F$-isomorphic} if there is an $F$-isomorphism $E\to E'$. An extension $E$ of $F$ is a vector space over $F$, the dimension is called the \tf{degree} of the extension, denoted by
+\[[E:F]=\dim_FE\]
+\thm{The degree satisfies the tower property. Let $F\subset E\subset L$ be a tower of field extensions. Then
+\[[L:F]=[F:E][E:F]\]}
+
+We can define the intersection and compositum of extensions. Let $F\subset L$ be an extension. Suppose $F\subset E\subset L$ and $F\subset K\subset L$ are subextensions. Then the \tf{intersection} of $E/F$ and $K/F$ is simply the intersection of the sets $E\cap K$. One can verify this is also a field extension of $F$. The \tf{compositum} $EK$ of $E/F$ and $K/F$ is the smallest field extension containing both $E$ and $K$. The following equality is obvious.
+\lem{Suppose $F\subset L$ is an extension and $S\subset L$ is a subset. Let $F(S)$ be the extension of $F$ by adjoining all elements in $S$, i.e. the smallest subextension of $L/F$ containing all elements of $S$. Then for any $K/F$ as a subextension of $L/F$,
+\[K(F(S))=K(S)\]\label{compadj}}
+\prf{$K\subset K(S),\ F(S)\subset K(S)\implies K(F(S))\subset K(S)$. Conversely, $S\subset K(F(S)),\ K\subset K(F(S))\implies K(S)\subset K(F(S))$.}
+\end{subsection}
+
+\begin{subsection}{Algebraic Extensions}
+Given an extension $E/F$, an element $u\in E$ is called \tf{algebraic} over $F$ if $Q(u)=0$ for some nonzero polynomial\footnote{If $u\in F$, then this polynomial has degree $1$; otherwise it has at least degree $2$.} $Q\in F[x]$; otherwise it is called \tf{transcendental}.
+\thm{An algebraic element $u\in E$ over $F$ has a \tf{minimal polynomial} over $F$, in the sense that it divides any other polynomial over $F$ that annihilates $u$. This minimal polynomial can be normalized to be monic. It is also the generator of the annihilator of $u$ (which is an ideal in $F[x]$).}
+\prf{Either one can do this by selecting the polynomial of the smallest degree, or by considering the kernel of $F[x]\to F[u],\ x\mapsto u$.}
+
+We can now talk about what an extension obtained by adjoining a single element looks like. Suppose $E/F$ is an extension, with $u\in E$ algebraic over $F$. Let $P_u\in F[x]$ be its minimal polynomial over $F$.
+\thm{$F[u]\cong F[x]/(P_u(x)),\ F[u]=F(u)$ and $[F(u):F]=\deg P_u$.}
+\prfn{[First proof]The first isomorphism comes from the mapping
+\map{F[x]}{F[u]}{P(x)}{P(u)}
+and then second equality comes from the fact that
+\[F[u]\subset F(u),\ F[u]\cong F[x]/(P_u(x))\ttt{ is a field because $P_u$ is irreducible.}\]
+and $F(u)$ is the smallest field containing $u$.}
+\prfn{[Second proof]One can prove that every element in $F[u]\bs\{0\}$ is invertible.}
+
+Now some properties of algebraic extensions follow.
+\thm{[Closed under a tower]If a tower $F\subset E\subset L$ is algebraic in each step, then the whole tower is algebraic.}
+\prf{See le devoir W1.}
+
+\thm{[Closed under a base field lift]If in a tower $F\subset E\subset L$, $L/F$ is algebraic, then upper step is algebraic.}
+\prf{Let $u\in L$ be algebraic. Then $u$ is algebraic over $F$. A nonzero polynomial over $F$ that annihilates $u$ exists. It is also over $E$, hence $u$ is algebraic over $E$.}
+
+\thm{[Closed under a compositum]Algebraic elements after field operations are still algebraic. Consequently, a compositum of algebraic extensions is algebraic. Moreover, given an extension $E/F$, all algebraic elements over $F$ in $E$ form a subextension.}
+\prf{Suppose $\alpha,\beta\in E$ are algebraic over $F$. Consider the tower
+\[F\subset F(\alpha)\subset F(\alpha,\beta)\]
+which is finite, hence algebraic.}
+
+\thm{[Closed under a lifting]If $E/F$ is algebraic and $K/F$ is arbitrary, then $EK/K$ is algebraic.\label{alglift}}
+\prf{Every $u\in E$ is algebraic over $F$ and hence over $K$. Then $EK/K$ is algebraic.}
+\end{subsection}
+
+\begin{subsection}{Finite Extensions}
+Finite extensions satisfy the following properties.
+\thm{[Closed under a tower]If $F\subset E\subset L$ consists of finite steps, then $L/F$ is also finite.}
+\prf{By the tower property of the degree.}
+
+\thm{[Closed under a base field lift]If in the tower $F\subset E\subset L$, $L/F$ is finite, the so is the upper step.}
+\prf{Clear from the tower property.}
+
+\thm{[Closed under a lifting]If $E/F$ is finite and $K/F$ is arbitrary, then a (finite) basis $\mcl B$ for $E/F$ is a linear spanning set for $EK/K$. In particular, $EK/K$ is finite and $[EK:K]\leqs[E:F]<\infty$.
+\[\cd{EK\ar[dash,r,"\mcl B"]\ar[dash,dd]\&K\ar[dash,dd]\\
+    \&\\
+    E\ar[dash,r,"\mcl B"]\&F}\]}
+\prf{By Lemma \ref{compadj}, $E=F(\mcl B)\implies EK=K(\mcl B)$. By definition $\mcl B$ is finite. Let $\mcl B=\{u_1,\cdots,u_n\}$. Then $EK=K(u_1,\cdots,u_n)$. Each $u_i$ is algebraic over $F$ and hence also over $K$. Then by breaking down
+\[K\subset K(u_1,\cdots,u_n)\]
+into simple steps, with each step finite, we see $K\subset EK=K(u_1,\cdots,u_n)$ is also finite.}
+\thm{[Closed under a compositum]If $E/F$ and $K/F$ are finite, then $EK/F$ is finite.\red{(See also HW-W1-1)}}
+\prf{Consider $F\subset E\subset EK$. We have $K/F$ finite $\implies EK/E$ finite. Then use the tower property.}
+\end{subsection}
+
+\begin{subsection}{Transcendental Extensions}
+Let $E/F$ be an extension. Recall that if $u$ is not annihilated by any nonzero polynomial over $F$, then $u$ is called \tf{transcendental} over $F$. In this case we have
+\thm{$F(u)\cong F[x]$.}
+\prfn{[First proof]Let
+\map{F[x]}{F[u]}{x}{u}
+extend to
+\map{F(x)}{F(u)}{x}{u}}
+\prfn{[Second proof]Consider this mapping
+\map{F(x)}{F(u)}{\frac{Q(x)}{R(x)}}{\frac{Q(u)}{R(u)}}
+One can prove this is well-defined by showing $R=0\iff R(u)=0$. And this is clearly an isomorphism.}
+\thm{Full transcendental implies upper step algebraic. Let $E/F$ be an extension and $x\in E$ transcendental over $F$. Then for any nontrivial subextension $K:F\subsetneq K\subset F(x),\ x$ is algebraic over $K$.}
+\prf{$K$ contains at least one nonconstant rational function over $F$. One may use this rational function to construction a nontrivial polynomial over $K$ that $x$ satisfies.}
+\thm{Let $y=f(x)/g(x)$ be a rational function with relatively prime polynomials $f,g\in F[x]$. Let $n=\max(\deg f,\deg g)$. Suppose $n\geqs1$. Prove that $[F(x):F(y)]=n$.}
+\prf{See MSEQ-3353809 or my homework answer.}
+\end{subsection}
+
+\begin{subsection}{Algebraic Closure and Embeddings}
+The reason why we want an algebraic closure is that we want to have a large enough extensions such that any algebraic extension can be ``contained'' in it. However, since isomorphic extensions may not be identical as sets, we talk about embeddings rather than inclusions.
+
+A field is called \tf{algebraically closed} if it has no algebraic extension other than itself. The algebraically closed property can be characterized in a few different ways.
+\thm{[Equivalent conditions for an algebraically closed field]The following are equivalent for a field $E$.
+\itm{
+    \item[(i)]$E$ is algebraically closed, i.e. has no nontrivial algebraic extensions;
+    \item[(ii)]Every irreducible polynomial over $E$ has degree $1$;
+    \item[(iii)]Any nonconstant polynomial over $E$ factors into linear terms;
+    \item[(iv)]Any nonconstant polynomial has a root in $E$.}}
+\ntg{It is important to remember that algebraic elements correspond to irreducible polynomials.}
+\prf{(i)\tim(ii): If not, then we can use this polynomial to get a nontrivial finite extension of $E$. Then it is also a nontrivial algebraic extension.\\
+(ii)\tim(iii): Any polynomial with degree $\geqs1$ is reducible. Repeat this argument.\\
+(iii)\tim(iv): Every linear term has a root.\\
+(iv)\tim(iii): Any polynomial of degree $\geqs1$ has a linear term. Factor it out.\\
+(iii)\tim(ii): Any polynomial of degree $\geqs2$ is reducible.\\
+(ii)\tim(i): For any algebraic element $u$ over $E$, its minimal polynomial is of degree $1$, hence $u\in E$.}
+
+An \tf{algebraic closure} of a field $F$ is an algebraic extension of $F$ which is algebraically closed. There may be more than one algebraic closure (and in fact, they are $F$-isomorphic). We usually fix an algebraical closure and denote it by $\bar F$. We know the following basic facts about algebraic closures (the lemmas needed are presented in Section \ref{implems} as they are too important).
+
+\thm{For any field $F$ the following are true.
+\itm{
+    \item[(i)]$F$ has an algebraic closure;
+    \item[(ii)]Fixing an algebraic closure $\bar F$ of $F$, any algebraic extension $E/F$ has an $F$-embedding into $\bar F$.
+    \item[(iii)]Fixing an algebraic closure $\bar F$ of $F$, if $K/F$ is algebraic and we have an $F$-embedding
+        \[\sigma:K\into\bar F\]
+         then for any further algebraic extension $E/K$, there is an extension of $\sigma$ into $\bar F$:
+         \[\tau:E\into\bar F\]
+    \item[(iv)]Any two algebraic closures of $F$ are $F$-isomorphic.}\label{thmac}
+}
+\prf{(i): Use Zorn's lemma on the set
+\[\{E:E/F\ttt{ is algebraic}\},\ \ttt{ordered by set inclusion}\]
+and prove that a maximal element leads to an algebraic closure.\\
+(ii): Use Zorn's lemma on the set of pairs
+\[\{(K,\sigma):F\subset K\subset E,\ \sigma:K\into\bar F\ttt{ is an $F$-embedding}\}\]
+ordered by set inclusion and mapping restriction (i.e. $(K,\sigma)\leqs(K',\sigma')$ if $K\subset K',\ \sigma=\sigma'|_K$). And prove that a maximal element is an embedding of $E$ using Lemma \ref{embextlem}.\\
+(iii): Use Zorn's lemma similar to above, on the set of all possible extensions of $\sigma$ and claim that a maximal element leads to an $F$-embedding of $E$.\\
+(iv): One can embed two different algebraic closures into each other and prove that the composite of the two embeddings is an isomorphism. Lemma \ref{endisisom} ensures the second part of the argument.}
+
+\begin{subsubsection}{Two Very Important Lemmas\label{implems}}
+\lem{Fixing an algebraic closure $\bar F$ of $F$, if $K/F$ is algebraic and has an $F$-embedding into $\bar F$:
+\[\sigma:K\into\bar F\]
+then for any $u$ algebraic over $K$, there is an $F$-embedding
+\[\tau:K(u)\into\bar F\]
+that extends $\sigma$.\label{embextlem}}
+\prf{For notational simplicity let $\sigma(P_u)=P_u^\sigma$ and $\sigma(K)=K^\sigma$. Let $P_u$ be the minimal polynomial of $u$ over $K$. Then $P_u^\sigma\in K^\sigma[x]\subset\bar F[x]$. Let $v$ be any root of $P_u^\sigma$ in $\bar F$. Note that
+\[P_u\ttt{ is irreducible in }K[x]\iff P_u^\sigma\ttt{ is irreducible in }K^\sigma[x]\]
+Hence $P_u^\sigma$ is the minimal polynomial of $v$ over $K^\sigma$. We then have this isomorphism
+\[\arr{{ccccccc}K(u)&\isom&\frac{K[x]}{P_u(x)}&\isom&\frac{K^\sigma[x]}{P_u^\sigma(x)}&\isom& K^\sigma(v)\subset \bar F\\
+\\
+u&\mapsto&\bar x&&\bar x&\mapsto&v\\
+\\
+&&\bar{P(x)}&\mapsto&\bar{P^\sigma(x)}&&}\]
+which is also an $F$-embedding and extends $\sigma$.}
+
+\lem{If $E/F$ is algebraic, then
+\[\Hom_F(E,E)=\Aut_F(E)\]
+\label{endisisom}}
+\prf{\ril: Obvious. \lir: For any $u\in E$, let $P_u$ be its minimal polynomial, and let $r_u$ be the set of the roots of $P_u$ in $E$. Then
+\[\sigma|_{r_u}:r_u\to r_u\]
+is an injection from a finite set to itself. It follows that $\sigma|_{r_u}$ is surjective as well. Then there is some $v\in r_u$ for which $\sigma v=u$. Since $u\in E$ is arbitrary, $\sigma:E\to E$ is surjective, and thus an $F$-automorphism of $E$.}
+\end{subsubsection}
+\end{subsection}
+
+\begin{subsection}{The Embeddings $\Hom_F(E,\bar F)$: An Introduction}
+After fixing a base field $F$ and its algebraic closure $\bar F$, we wish to study the structure of an algebraic extension $E/F$ by considering the set of its embeddings into $\bar F$, i.e. we wish to study the set $\Hom_F(E,\bar F)$. There are two questions we can ask:
+\enu{
+    \item Are they embedded into the same ``area'' in $\bar F$? Are $\sigma(E)$ the same for all $\sigma\in\Hom_F(E,\bar F)$?
+    \item How many elements are there in $\Hom_F(E,\bar F)$? How many ways can the extension $E$ be embedded?
+}
+
+The first question leads to the concept of \tf{normal extensions} and \tf{splitting fields}, while the second introduces us to \tf{separability}.
+\end{subsection}
+
+\begin{subsection}{Normal Extensions and Splitting Fields}
+An extension $E/F$ is called \tf{normal} if it is algebraic\footnote{Since we are embedding it into the algebraic closure, it does not make sense to talk about ``normal transcendental extensions''.} and is such that
+\[\sigma_1(E)=\sigma_2(E)\ttt{ for any }\sigma_1,\sigma_2\in\Emb{E}{F}\]
+A polynomial $P\in F[x]$ is said to \tf{split} over $F$ if it can be factored into linear terms in $F$. A \tf{splitting field} $E$ for a polynomial $P\in F[x]$ is an algebraic extension $E/F$ such that $P$ splits over $E$ and $E$ is precisely generated by the roots of $P$ in $E$. Similarly, a \tf{splitting field for a family of polynomials} $\{P_i\in F[x]\}$ is an algebraic extension $E/F$ such that each $P_i$ splits over $E$ and $E$ is precisely generated by all the roots of $P_i$ in $E$.
+
+The following lemma will be useful.
+\lem{[\tf{Existence of certain embeddings}]Let $E/F$ be algebraic. Fix an algebraic closure $\bar F$. If $u\in E$ has the minimal polynomial $P_u\in F[x]$. Then for any $v$ that is a root of $P_u$ in $\bar F$, there is an $F$-embedding $\sigma:E\into\bar F$ with $\sigma(u)=v$.\label{extofemb}}
+\prf{$u\mapsto v$ has a unique extension $F[u]\into\bar F$. Use Theorem \ref{thmac}-(iii) to extend it to an $F$-embedding $E\into\bar F$.}
+An normal extension has a few different characterizations.
+\thm{For $E/F$ algebraic, the following are equivalent.
+\itm{
+    \item[(i)]$E/F$ is normal, i.e. $\sigma(E)$ is the same for all $\sigma\in\Emb{E}{F}$;
+    \item[(ii)]If $P\in F[x]$ is irreducible and has a root in $E$, then $P$ splits over $E$;
+    \item[(iii)]$E$ is a the splitting field of some family $\{P_i\in F[x]\}$.
+}}
+\ntg{Some intuition behind (ii): Note that $P$ splits over $E$ if and only if $P$ splits over $\sigma(E)$. If $P$ does not split over $\sigma(E)$, then $\sigma(E)$ does not contain some roots of $P$ in $\bar F$. And by Lemma \ref{extofemb}, we have an embedding $\tau$ that maps the root of $P$ in $E$ (existence is assured by assumption) to the root of $P$ in $\bar F\bs\sigma(E)$, in which case $\tau(E)\neq\sigma(E)$. Conversely, for any $u\in E$, its minimal polynomial splits. And we can restrict an embedding to the set of its roots to observe its behavior.\label{ntnrml}}
+\prf{(i)$\iff$(ii): See Note \ref{ntnrml}.\\
+(ii)\tim(iii): One can simply prove the claim that $E$ is the splitting field for $\{P_u:u\in E\}$. Note that each $P_u\ (u\in E)$ splits in $E$ by (ii), and $E$ is generated by the roots of all $P_u$. Hence $E$ is the splitting field for $\{P_u\}$.\\
+(iii)\tim(i): Let $S_E$ be the set of all the roots of the polynomials $\{P_i\}$ in $E$, and let $S_{\bar F}$ be the set of all the roots of the polynomials $\{P_i\}$ in $\bar F$. Then $E=F(S_E)$. For any $\sigma\in\Emb{E}{F}$, we have \[\sigma(E)=\sigma(F(S_E))=F(\sigma(S_E))\]
+Note that $\sigma(S_E)\subset S_{\bar F}$. Conversely, since every $P_i$ splits over $E$, we can prove $\sigma(S_E)=S_{\bar F}$. It follows that \[\sigma(E)=F(\sigma(S_E))=F({S_{\bar F}})\]
+where the right hand side does not depend on $\sigma$.}
+
+\cor{Any two splitting fields for the same family are $F$-isomorphic.}
+\prf{Notice that $E\cong\sigma(E)=F(S_{\bar F})$ in the above proof, whereas $(S_{\bar F})$ depends only on the family $\{P_i\}$.}
+
+Now we explore some properties of normal extensions.
+\thm{[Closed under a base field lift]If $F\subset E\subset L$ is such that $L/F$ is normal, then $L/E$ is normal.}
+\prf{Let $L$ be the splitting field of $\{P_u\in F[x]:u\in L\}$. Note that $P_u\in F[x]\subset E[x]$. Then $L/E$ is a splitting field and hence normal.}
+
+\thm{[Closed under a lifting]If $E/F$ is normal and $K/F$ is arbitrary, then $EK/K$ is normal.\label{nrmlift}}
+\prf{Let $E$ be the splitting field for a family of polynomials $\mcl F$ over $F$. Let $R$ be all the roots of the polynomials in $\mcl F$. Then $E=F(R)$ and $EK=K(F(R))=K(R)$, which is a splitting field for $\mcl F$ (viewing $\mcl F$ as a family of polynomials over $K$).}
+
+\thm{[Closed under an arbitrary compositum or intersection]}
+\prf{\red{Omitted. See Roman.}}
+\end{subsection}
+
+\begin{subsection}{Separability and Separable Extensions}
+Let $E/F$ be an extension and fix an algebraic closure $\bar F$. We want to study now how many embeddings there are from $E$ into $\bar F$, i.e. the cardinality of $\Emb{E}{F}$. In the special case where $E=F(u)$ for some $u$ algebraic over $F$, each embedding corresponds to a root of $P_u$ in $\bar F$. And different roots determines different embeddings. Hence the \tf{separable degree} of $E/F$ is defined as the number of distinct embedding of $E$ into $\bar F$, i.e. $\abs{\Emb{E}{F}}$, or the number of distinct roots of $P_u$. In general, the \tf{separable degree} of $E/F$ is defined as
+\[[E:F]_s=\abs{\Emb{E}{F}}\]
+This does not depend on the choice of $\bar F$ because algebraical closures of the same field are $F$-isomorphic.
+
+\begin{subsubsection}{Separability of Polynomials}
+A polynomial $P\in F[x]$ is called \tf{separable} if it has no multiple root in $\bar F$. Otherwise it is called \tf{inseparable}. We may use the \tf{formal derivative} of a polynomial to determine whether the polynomial is separable.
+\thm{The following are true.
+\itm{
+    \item[(i)]For a polynomial $P\in F[x]$, $u\in\bar F$ is a multiple root of $P\iff P'(u)=0$;
+    \item[(ii)]For a polynomial $P\in F[x]$, $P$ is separable $\iff(P,P')=1$;
+    \item[(iii)]For an irreducible polynomial $P\in F[x]$, $P$ is separable $\iff P'\neq0$.
+}\label{seppoly}}
+As one can imagine, an inseparable polynomial should have a very special form.
+\thm{If a monic irreducible polynomial $P(x)\in F[x]$ is inseparable, then the following are true.
+\itm{
+    \item[(i)](On the field) $\chr F=p>0$ is a prime number;
+    \item[(ii)](On the form on $P$) $P$ has the form
+        \[P(x)=Q(x^{p^r})\]
+        for some monic, irreducible and separable $Q(x)\in F[x]$. The degree formula is
+        \[\deg P=p^r\cdot\deg Q\]
+    \item[(iii)](On the factorization) Since $Q$ is separable, let $w_i\ i=1,\cdots,m$ be its distinct roots in $\bar F$, where $m=\deg Q=\frac{\deg P}{p^r}$, and we write
+        \[Q(x)=\prod_{i=1}^{m}\prn{x-w_i}\]
+          Then $P$ has the following factorization over $F(w_1,\cdots,w_m)$:
+        \[P(x)=\prod_{i=1}^{m}\prn{x^{p^r}-w_i}\]
+        and the following factorization in its splitting field
+        \[P(x)=\prod_{i=1}^{m}\prn{x^{p^r}-u_i^{p^r}}=\prod_{i=1}^{m}\prn{x-u_i}^{p^r}\]
+        where $u_i=w_i$ is the unique $p^r$-th root of $w_i$ in $\bar F$.
+    \item[(iv)](On the roots of $P$) If $u$ is a root of $P$, then $u^{p^r}=w_i$ for precisely one $w_i$, i.e. $u$ is a $p^r$-th root of $w_i$. Conversely, each $w_i$ has exactly one $p^r$-th root $u_i$. In particular, $P$ has $\deg Q$ distinct roots, each of which has multiplicity $p^r$.
+}}
+\prf{\udl{(i) and (ii)}: Let $P(x)$ be
+\[P(x)=x^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0\qquad(n\geqs1)\]
+Since $P$ is inseparable, from Theorem \ref{seppoly}
+\[P'(x)=nx^{n-1}+(n-1)a_{n-1}x^{n-2}+\cdots+a_1=0\]
+Each term must be zero. Particularly, $n=0\in F\implies\chr F=p>0$ is a prime number and $p\mid n$. We write $n=m_1p$. For other terms $ka_kx^{k-1}\ (1\leqs k\leqs n-1)$. If $p\nmid k$, then $a_k=0$ in the first place, and $P$ has the form
+\[P(x)=x^{m_1p}+a_{(m_1-1)p}x^{(m_1-1)p}+\cdots+a_px^p+a_0\]
+Write
+\[Q_1(x)=x^{m_1}+a_{(m_1-1)p}x^{m_1-1}+\cdots+a_px+a_0\]
+Then
+\[P(x)=Q_1(x^p)\]
+If $Q_1$ is not yet separable, we can repeat this procedure on $Q_1$ and find $Q_2$ such that
+\[Q_1(x)=Q_2(x^p)\]
+Keep this up we shall end up with some $Q_r$ that is separable and $Q_{r-1}(x)=Q_r(x^p)$ because from $Q_k$ to $Q_{k+1}$, the degree decreases by a factor of $p$, and hence the process cannot go on forever. $P$ can be rewritten as
+\[P(x)=Q_1(x^p)=Q_2((x^p)^p)=Q_2(x^{p^2})=\cdots=Q_r(x^{p^r})\]
+$Q_r$ must be irreducible because $P$ is.\\
+\udl{(iii), (iv)}: These are clear from (ii).}
+
+Through an inseparable polynomial we can study its roots: the inseparable elements. But this discussion is moved to the next paragraph.
+\end{subsubsection}
+\begin{subsubsection}{Separability of Elements and the Separable Degree}
+In an extension $E/F$, an element $u\in E$ is \tf{separable over $F$} if it is algebraic and its minimal polynomial $P_u$ over $F$ is separable. The \tf{separable degree}\footnote{When talking about the separable degree, we always assume the extension is algebraic because we need to embed it into an algebraic closure.} of $E/F$ is
+\[[E:F]_s=\abs{\Emb{E}{F}}\]
+An extension $E/F$ is called a \tf{separable extension} if every $u\in E$ is separable over $F$.
+
+Now we want to see what happens if there is an inseparable element. Let $E/F$ be an extension and $u\in E$ inseparable over $F$. From the last paragraph we know $\chr F=p>0$ must be a prime number, and that $P_u$ must have the form $P_u(x)=Q_u(x^{p^r})$ for some separable $Q$. Now we are going to study the inseparable element $u$ through its minimal polynomial.
+\thm{The following are true when $u\in E$ is inseparable over $F$ as above. Let $p,P_u,Q_u$ be as above.
+\itm{
+    \item[(i)]$w$ has the minimal polynomial $Q_u$ over $F$, and hence is separable over $F$;
+    \item[(ii)]$[F(u):F]=\deg P_u,\ [F(w):F]=\deg Q_u,\ [F(u):F(w)]=\frac{\deg P_u}{\deg Q_u}=p^r$;
+    \item[(iii)]$u$ has the minimal polynomial $x^{p^r}-w$ over $F(w)$, and is the unique root of $x^{p^r}-w$ having multiplicity $p^r$;
+    \item[(iv)]$[F(u):F]_s=\deg Q_u=\frac{\deg P_u}{p^r}$;
+    \item[(v)]$[F(u):F]_s\mid[F(u):F]$. More precisely, $[F(u):F]_s\cdot p^r=[F(u):F]_s$.
+}\label{thminsep}}
+\prf{\itm{
+    \item[(i)]Note that $P_u(u)=Q_u(u^{p^r})=Q_u(w)=0$ and $Q_u$ is irreducible, hence $Q_u$ is the minimal of $w$ over $F$. $w$ is separable because $Q_u$ is.
+    \item[(ii)]Obvious.
+    \item[(iii)]From (ii) $u$ over $F(w)$ has degree $p^r$, and $x^{p^r}-w$ has exactly degree $p^r$, hence is the minimal polynomial of $u$. Note that $\chr F=p\implies$
+        \[x^{p^r}-w=x^{p^r}-u^{p^r}=(x-u)^{p^r}\]
+    \item[(iv)]$[F(u):F]_s=\abs{\Emb{F(u)}{F}}$ by definition. The latter equals the number of distinct roots of $P_u$, which is $\deg Q_u=\frac{P_u}{p^r}$.
+    \item[(v)]$[F(u):F]_s=\deg Q_u,\ [F(u):F]=\deg P_u$. The dividing relation then comes from $P_u(x)=Q_u(x^{p^r})$.
+}}
+The separable degree has a few properties. We can use them to determine how far an extension is from being separable.
+\thm{The following are true.
+\itm{
+    \item[(i)]\tf{(Tower property of the separable degree)} If $F\subset E\subset L$ are algebraic extensions of fields, then
+        \[[L:F]_s=[L:E]_s[E:F]_s\]
+    \item[(ii)]If $E/F$ is finite, then
+        \[[E:F]_s\mid[E:F]\]
+    \item[(iii)]If $E/F$ is finite, then
+        \[E/F\ttt{ is separable}\iff[E:F]_s=[E:F]\]
+    \item[(iv)]If $u$ is separable over $F$, then $F(u)/F$ is separable.
+}}
+\prf{\itm{
+    \item[(i)]By Theorem \ref{thmac}-(iii), for any given $\sigma\in\Emb{E}{F}$, we can find $\tau\in\Emb{\bar E}{F}$ that extends $\sigma$, i.e. the following diagram commutes:
+        \[\cd{\bar E\ar[rd,"\tau"]\&\\
+            E\ar[u,"\iota"]\ar[hook,r,"\sigma"']\&\bar F}\]
+        But note that $F\subset E\subset\bar E\implies\bar E$ is also an algebraic closure of $F\implies\exists\tau'\in\Hom_F(\bar F,\bar E)$ that is an $F$-isomorphism. Since $\tau\tau':\bar F\to\bar F$ must be an $F$-isomorphism, $\tau=(\tau\tau')(\tau')^{-1}$ must also be an $F$-isomorphism. For each given $\sigma\in\Emb{E}{F}$, we denote by $\Hom_\sigma(L,\bar F)$ the embeddings that extend $\sigma$. We claim this is an bijection
+        \map{\Emb{L}{E}}{\Hom_\sigma(L,\bar F)}{\eta}{\tau\comp\eta}
+        First note that $\tau\comp\eta$ is indeed in $\Hom_\sigma(L,\bar F)$:
+        \[(\tau\comp\eta)|_E=\tau\comp\eta|_E=\tau\comp\id_E=\tau|_E=\sigma\]
+        Then we can prove that is indeed has an inverse:
+        \map{\Hom_\sigma(L,\bar F)}{\Emb{L}{E}}{\eta'}{\tau^{-1}\comp\eta'}
+        Clearly we only need to prove $\tau^{-1}\comp\eta'\in\Emb{L}{E}$:
+        \[(\tau^{-1}\comp\eta')|_E=\tau^{-1}\comp\eta'|_E=\tau^{-1}\comp\sigma=\iota\]
+        where $\iota:E\into\bar E$ is the inclusion map (see the commutative diagram above). Hence for any $\sigma\in\Emb{E}{F}$,
+        \[\abs{\Hom_\sigma(L,\bar F)}=\abs{\Emb{L}{E}}\]
+        Now we come back to $\Emb{L}{F}$, note that each $\xi\in\Emb{L}{F}$ restricted to $E$ is
+        \[\xi|_E\in\Emb{E}{F}\implies\xi\in\Hom_{\xi|_E}(L,\bar F)\]
+        This means we can write
+        \[\Emb{L}{F}=\bigcup_{\sigma\in\Emb{E}{F}}\Hom_\sigma(L,\bar F)\]
+        Cardinality-wise we obtain from this relation:
+        \mtha{\abs{\Emb{L}{F}}&=&\abs{\bigcup_{\sigma\in\Emb{E}{F}}\Hom_\sigma(L,\bar F)}\\
+        &=&\abs{\bigcup_{\sigma\in\Emb{E}{F}}\Emb{L}{E}}\\
+        &=&\abs{\Emb{E}{F}}\abs{\Emb{L}{E}}}
+        which is exactly
+        \[[L:F]_s=[L:E]_s[E:F]_s\]
+    \item[(ii)]Since $E/F$ is finite, we write
+        \[E=F(u_1,\cdots,u_n)\]
+        Applying Theorem \ref{thminsep}-(v) and the tower property to $[E:F]$ and $[E:F]_s$ respectively gives the result.
+    \item[(iii)]If $E/F$ is separable, then each step in (ii) is separable, and we may use Theorem \ref{thminsep}-(v) and the tower property. Conversely if $[E:F]_s=[E:F]$, then suppose by contradiction there is an inseparable $u\in E$ over $F$. By the tower property
+        \[[E:F]=[E:F]_s=[E:F(u)]_s[F(u):F]_s\]
+        And $u$ is inseparable $\implies[F(u):F]_s<[F(u):F]\implies$
+        \mtha{&&[E:F]=[E:F(u)]_s[F(u):F]_s\leqs[E:F(u)][F(u):F]_s\\
+            &<&[E:F(u)][F(u):F]=[E:F]}
+        The contradiction finishes the proof.
+    \item[(iv)]This follows from (iii).
+}}
+\end{subsubsection}
+\begin{subsubsection}{Separable Extensions and Separable Closures}
+Recall that a \tf{separable extension} is an extension in which all elements are separable over the base field. Similar to algebraic closures, we would like to find the "largest" separable extension possible, in the sense that any separable extension can be embedded into it. This leads to the concepts of a separable closure. We shall eventually prove all the separable elements from an algebraic closure form a separable closure. But first, some definitions are in order.
+
+A field $E$ is called \tf{separably closed} if any separable element over $E$ must be in $E$. An extension $E/F$ is called \tf{separable closure} of $F$ if $E$ is algebraic and separable over $F$, and is itself separably closed. A separable closure of $F$ is often denoted by $F^\sep$.
+
+There is an equivalent condition for separable closedness   .
+\thm{The following are equivalent.
+\itm{
+    \item[(i)]$E$ is separably closed;
+    \item[(ii)]Any irreducible separable polynomial over $E$ has degree $1$.
+}}
+\prf{(i)\tim(ii): Otherwise there is a separable extension.\\
+(ii)\tim(i): Obvious.}
+
+The following lemma makes sense of a maximal separable subextension and will be useful in proving the existence of a separable closure.
+\lem{Separable elements are closed under field arithmetics. More precisely, let $E/F$ be an algebraic extension and denote by $E_s$ all the elements in $E$ that are separable over $F$. Then $E_s$ is a field.\label{lemsepcls}}
+\prf{Given $u,v$ separable over $F$, the tower $F\subset F(u)\subset F(u,v)$ has separable steps. Hence $F(u,v)/F$ is separable.}
+
+Now we exhibit some properties of separable closures.
+\thm{The following are true about separable closures. Let $F$ be a field.
+\itm{
+    \item[(i)]There exists a separable closure for any $F$. Specifically, $(\bar F)_s$ (all the separable elements in $\bar F$) is a separable closure;
+    \item[(ii)]Separable closures of $F$ are all $F$-isomorphic;
+    \item[(iii)]If we fix a separable closure $F^\sep$, then any separable extension of $F$ can be embedded into $F^\sep$;
+    \item[(iv)]$F^\sep/F$ is normal;
+}}
+\prf{\itm{
+    \item[(i)]Use Lemma \ref{lemsepcls}.
+    \item[(ii)]\red{Q}.
+    \item[(iii)]\red{Q}.
+    \item[(iv)]If $\chr F=0$, then $F^\sep=\bar F$. Hence $F^\sep/F=\bar F/F$ is normal because every polynomial splits. If $\chr F=p>0$, then we take any irreducible polynomial $P$ over $F$. If $P$ has a root in $\bar F$ that is inseparable, say $u$, then $P$ is the minimal polynomial of $u$ over $F$. And $P$ is therefore inseparable. It follows that any other root of $P$ is inseparable over $F$, hence $P$ has no root in $F^\sep$. This is equivalent to if $P$ has a root in $F^\sep$ then all roots of $P$ are in $F^\sep$, whence $F^\sep/F$ is normal.
+}}
+We finish our topic on separable extensions by presenting some properties.
+\thm{[Closed under a compositum]If $E/F$ and $K/F$ are separable extensions, then $EK/F$ is separable.}
+\prf{By Lemma \ref{lemsepcls}.}
+
+\thm{[Closed under a base field lift]If in the tower $F\subset E\subset L$, $L/F$ is separable, then so is the upper step.\label{sepbslift}}
+\prf{Let $u\in L$, and $P_u^E$ (resp. $P_u^F$) the minimal polynomial of $u$ over $E$ (resp. $F$). Then $P_u^F\in E[x]$ as well. Hence $P_u^E\mid P_u^F$. Note that $P_u^F$ is separable, hence $P_u^E$ is also separable.}
+
+\thm{[Closed under a tower]If $L/E$ and $E/F$ are separable extensions, then $L/F$ is separable.}
+\prf{Let $u\in L$, and $P_u$ the minimal polynomial of $u$ over $E$. Suppose $a_1,\cdots,a_n\in E$ are the coefficients of $P_u^E$. We see that $P_u\in F(a_1,\cdots,a_n)[x]$ and is also irreducible and separable. Hence $u$ is separable over $F(a_1,\cdots,a_n)$. Now we restrict our attention to the tower
+\[F\subset F(a_1)\subset\cdots\subset F(a_1,\cdots,a_n)\subset F(a_1,\cdots,a_n,u)\]
+Each step is finite (because $a_i,u$ are algebraic over $F$) and separable. Hence for $i=1,\cdots,n+1$ ($a_{n+1}=u$),
+\[[F(a_1,\cdots,a_{i-1},a_i):F(a_1,\cdots,a_{i-1})]_s=[F(a_1,\cdots,a_{i-1},a_i):F(a_1,\cdots,a_{i-1})]\]
+\[\implies[F(a_1,\cdots,a_n,u):F]_s=[F(a_1,\cdots,a_n,u):F]\]
+Hence $F(a_1,\cdots,a_n,u)/F$ is separable and in particular $u$ is separable.
+}
+
+\thm{[Closed under a lifting]If $E/F$ is separable and $K/F$ is arbitrary, then $EK/K$ is separable.\label{seplift}}
+\prf{Each $u\in E$ is separable over $F$ by assumption. Note that the minimal polynomial over $K$ is a factor of the minimal polynomial over $F$, and is hence also separable. Therefore $u$ is separable over $K$. And apparently all elements in $K$ are separable over $K$. By Lemma \ref{lemsepcls}, the field $EK$ obtained by field operations is also separable over $K$.}
+\end{subsubsection}
+\end{subsection}
+\end{section}
+
+\begin{section}{The Primitive Element Theorem}
+Out goal is to find for a finite\footnote{If $E/F$ is infinite and there is some $u\in E$ for which $E=F(u)$, then $u$ must be transcendental, which is not of our primary concern. Hence we restrict our attention to the finite case here.} extension $E/F$ an element $u\in E$ such that $E=F(u)$. The following factors may determine whether a primitive element exists.
+\itm{
+    \item Number of intermediate fields between $F\subset E$.
+    \item Separability of $E/F$.
+    \item Whether $F$ is infinite.
+}
+We first give a necessary condition for a primitive element.
+\lem{[Necessary condition for a primitive element]If an algebraic extension $E/F$ has a primitive element $u$, then it has finitely many intermediate fields.\label{necpet}}
+\prf{We shall prove this by mapping the intermediate fields (injectively) into a set of polynomials and claim that the latter is a finite set. Let $P_u^K\in K[x]$ be the minimal polynomial of $u$ over $K$ for some $K:F\subset K\subset L$. Then we have a map
+\map{\{K:F\subset K\subset L\}}{E[x]}{K}{P_u^K}
+In particular we have
+\[P_u^K\mid P_u^F\]
+for all intermediate fields $K$. Then we can rewrite the map as
+\map{\{K:F\subset K\subset L\}}{\{Q\in E[x]:Q\mid P_u^F\}}{K}{P_u^K}
+The target domain is clearly finite. It remains to prove injectiveness of this map. For every fixed intermediate field $K$, let $K_0$ be the field generated by all the coefficients of $P_u^K$, hence $P_u^K\in K_0[x]$ and is irreducible $\implies P_u^K$ is the minimal polynomial of $u$ over $K_0\implies[E:K_0]=\deg P_u^K$. On the other hand, by the original definition of $P_u^K$ we have $[E:K]=\deg P_u^K$. Clearly there is a tower $K_0\subset K\subset E$. The degree relation then implies $K_0=K$. This means $K$ is uniquely determined by its corresponding polynomial $P_u^K$. Hence the map is injective,}
+
+It turns out this is also the sufficient condition for a finite extension \red{(Q: Can this be weakened to algebraic?)} to have a primitive element.
+\thm{For a finite extension $E/F$, having a primitive element is equivalent to having finitely many intermediate fields.}
+\prf{\ltr: By Lemma \ref{necpet}.\\
+\rtl: This involves two cases.
+\itm{
+    \item If $F$ is a finite field then so is $E$, and hence $E^\x$ is cyclic. The cyclic generator of $E^\x$ is also a generator of $E/F$.
+    \item If $F$ is an infinite field then so is $E$, which gives us plenty of elements to choose from. We first prove the case $E=F(u_1,u_2)$ for $u_1,u_2$ algebraic over $F$. Consider the extensions
+    \[F(u_1+cu_2)\ c\in F\]
+    Since $F$ is infinite (and we can surely assume $u_2\neq0$), this gives us infinitely many intermediate fields. But by assumption at least two of them (with different $c\in F$) are equal, i.e.
+    \[F(u_1+c_1u_2)=F(u_1+c_2u_2)\ttt{ for some }c_1\neq c_2\in F\]
+    Hence the field above contains $(c_1-c_2)u_2$ and hence $u_2$, and hence $u_1$, meaning
+    \[F(u_1,u_2)=F(u_1+c_1u_2)\]
+    For the general finite case, note that every finite extension is finitely generated by algebraic elements. Hence we can apply this result with induction.
+}}
+\ntg{To remember this proof, just remember that a primitive element should be taken in the form of a linear combination of know generators.}
+
+Still, intermediate fields do not work very nicely in practice, except for finite extensions of finite fields. For infinite fields we have another sufficient condition.
+\thm{If $F$ is infinite, and $E/F$ is finite and separable, then $E=F(u)$ for some $u\in E$.}
+\prf{We still start with $E=F(u_1,u_2)$ and aim to find a primitive element of the form $u_1+cu_2$. But we shall conclude the existence of a primitive element with the help of embeddings. The key is to realize that \red{how large a field is can be described by how many different embeddings it has}, so that $F(u_1+cu_2)$, as a subextension of $F(u_1,u_2)$, if it has the same number of embeddings as $F(u_1,u_2)$, then it must be equal to $F(u_1+cu_2)$, except for a purely inseparable step, which does not exist since the whole step is separable. Also, every embedding of $F(u_1+cu_2)$ is a restriction of an embedding of $F(u_1,u_2)$. So we want to make the restriction of $\Emb{F(u_1,u_2)}{F}$ to $F(u_1+cu_2)$ as ``diverse'' as possible (actually, we want different embeddings to have different restrictions, since we are trying to find $F(u_1+cu_2)=F(u_1,u_2)$). What happens if $\sigma_i\neq\sigma_j\in\Emb{F(u_1,u_2)}{F}$ restricts to the same embedding on $F(u_1+cu_2)$? Since an embedding of $F(u_1+cu_2)$ is completely determined by its action on $u_1+cu_2$, we would have
+\[\sigma_i(u_1+cu_2)=\sigma_j(u_1+cu_2)\iff\sigma_i(u_1)+c\sigma_i(u_2)=\sigma_j(u_1)+c\sigma_j(u_2)\]
+For this not to happen for any $\sigma_i\neq\sigma_j$, we need find a $x=c\in F$ for which
+\[\prod_{i\neq j}\prn{\sigma_i(u_1-u_2)+x\sigma_j(u_1-u_2)}\]
+is not zero. The expression above is a nonzero polynomial in $x$. It can only have finitely many roots in $F$. Since $F$ is infinite we choose any $c\in F$ that is not a root to obtain a subextension $F(u_1+cu_2)$ for which
+\[\abs{\Emb{F(u_1+cu_2)}{F}}\geqs\abs{\Emb{F(u_1,u_2)}{F}}\]
+\[\implies[F(u_1+cu_2):F]_s\geqs[F(u_1,u_2):F]_s\]
+It is actually equality, implying $F(u_1,u_2)/F(u_1+cu_2)$ is purely inseparable, but it is separable by Theorem \ref{sepbslift}, and hence $F(u_1,u_2)=F(u_1+cu_2)$. Use this with induction we can prove the general case when $E/F$ is finite and separable.
+}
+\end{section}
+
+\begin{section}{Galois Theory}
+\begin{subsection}{Introduction: What Are We Trying to Achieve?}
+The central idea around Galois theory is that we are studying intermediate fields of an algebraic extension using its group of automorphisms. More precisely, let $E/F$ be an extension. We consider the following maps\footnote{We write with the tacit understanding that $\{K:F\subset K\subset L\}$ is the set of intermediate fields.}
+\mapgalm{\{K:F\subset K\subset L\}}{\{H:H<\Aut_F(E)\}}{K}{\Aut_K(E)}{H}{E^H}
+where $\Aut_K(E)$ is the \tf{group of $K$-automorphisms} of $E$, and $E^H$ is the subset consisting of $x\in E$ such that $\forall\sigma\in H,\ \sigma x=x$. Clearly $F\subset E^H$, for each $\sigma\in H$ preserves $F$. Also, $E^H$ is closed under field operations and is hence a field. We call $E^H$ the \tf{fixed field} of $H$.
+\end{subsection}
+\begin{subsection}{Galois Extensions and Galois Groups}
+A field extension is called \tf{Galois} if it is normal and separable\footnote{Separable only makes sense for algebraic extensions. So the notion of a Galois extension should be discussed within the scope of algebraic extensions. Although, I am not sure whether there are generalizations to transcendental extensions.}.
+\thm{[Galois group]If $E/F$ is Galois, then the following hold.
+\[\Emb{E}{F}\cong\Hom_F(E,\sigma(E))\cong\Hom_F(E,E)=\Aut_F(E)\]
+where $\sigma$ is any member of $\Emb{E}{F}$.\label{galgp}}
+\prf{The first isomorphism is due to $E/F$ being normal. The second holds  by a composite with $\sigma$. The third holds for any algebraic extension.}
+\ntg{The separable assumption is not reflected here, but one should be noted that the separable assumption makes $\Aut_F(E)$ as ``large'' as possible, so that is tells us enough information about the intermediate fields.}
+If $E/F$ is Galois, we call its groups of $F$-automorphisms the \tf{Galois group} of $E/F$, and denote it by $\Gal(E/F)$.
+
+It makes more sense to study Galois extensions together with their Galois groups.
+\thm{[Order and Degree]If $E/F$ is finite Galois, then
+\[\abs{\Gal(E/F)}=[E:F]\]\label{orddeg}}
+\prf{\[\abs{\Gal(E/F)}=\abs{\Emb{E}{F}}=[E:F]_s=[E:F]\]
+The three equalities comes respectively from $E/F$ being normal (and Theorem \ref{galgp}), the definition of the separable degree and $E/F$ being finite separable.}
+
+We introduce some result regarding intermediate fields of a Galois extension.
+\thm{[Closed under a base field lift]If in a tower $F\subset E\subset L$, $L/F$ is Galois, then $L/E$ is also Galois.\label{galupstp}}
+\prf{$L$ is a splitting field for some polynomials over $F$ and hence over $E$. $L/E$ is then normal. Also $L/E$ is separable because $L/F$ is.}
+
+\thm{[Conjugation of a Galois group]Let $F\subset E\subset L$ be such that $L/F$ is Galois. Then by Theorem \ref{galupstp}, $L/E$ is also Galois, hence it makes sense to talk about $\Gal(L/E)$. For any $\sigma\in\Gal(L/F)$, we have\footnote{Note that $F\subset\sigma(E)\subset L$ since $\sigma\in\Gal(L/F)$.}
+\[\sigma\Gal(L/E)\sigma^{-1}=\Gal(L/\sigma(E))\]}
+\prf{Direct computation.}
+
+\thm{[Conditions for lower step Galois\footnote{The tower property holds naturally for many extensions, for example, algebraic extensions, separable extensions and finite extensions, but not for Galois extensions. More precisely, it does not hold for normal extensions. For a subextension of a Galois extension $L/F$ to be normal, one needs to consider its embeddings, which are certainly restrictions of embeddings (automorphism) of $L$.}]Let $E/F$ be Galois. Then for any intermediate field $K$,
+\[K/F\ttt{ is Galois}\iff\sigma(K)=K,\ \forall\sigma\in\Gal(E/F)\iff\Gal(E/K)\lhd\Gal(E/F)\]}
+\end{subsection}
+
+\begin{subsection}{The Galois Correspondence}
+\lem{[Fixed field]Let $E/F$ be Galois, then $E^{\Gal(E/F)}=F$.\label{galfixfld}}
+\prf{Clearly $F\subset E^{\Gal(E/F)}$. For the converse, we prove that if $u\in E,\ u\notin F$, then there exists $\sigma\in\Gal(E/F)$ such that $\sigma u\neq u$. Now let $u\in E\bs F$. Since $u\notin F$, its minimal polynomial $P_u$ over $F$ has degree $\geqs2$, and hence has at least two roots. Since $u$ is separable, these roots are distinct. Let $v$ be any root other than $u$. We can extend $u\mapsto v$ to a homomorphism:
+\mapn{\sigma}{F(u)}{\bar F}{u}{v}
+and extend it to an $F$-embedding $\sigma:E\to\bar F$. We can use $\bar E$ as $\bar F$, hence the map is actually $E\to\bar E$. Since $E/F$ is normal, the image of the map is actually $E$. Therefore $\sigma\in\Aut_F(E)=\Gal(E/F)$.}
+\lem{[Artin, automorphism group]Let $E$ be a field and let $\Aut(E)$ be the group of its automorphisms. Then for any finite subgroup $H<\Aut(E)$, $E/E^H$ is Galois and
+\[\Gal(E/E^H)=H\]
+This implies further that $E/E^H$ is finite and has a primitive element.\label{artinaut}}
+\prf{For any $u\in E$, consider its orbit under $H$: $O=\{\sigma(u):\sigma\in H\}$
+which is finite and $\abs{O}\leqs\abs{H}$. Let\footnote{The reason that we don't write $P_u(x)=\prod_{\sigma\in H}(x-\sigma u)$ is that this might lead to a root with multiplicity.} $P_u(x)=\prod_{\alpha\in O}(x-\alpha)\in E[x]$. Note that for all $\tau\in H$, $\tau O=O$, hence $\tau(P_u)=P_u$. This means $P_u\in E^H[x]$. Hence any $u\in E$ is separable over $E^H$ and its minimal polynomial $P_u$ satisfies $\deg P_u=\abs{O_{u,H}}=\abs{H}$. And clearly, $E$ is the splitting field for the family $\{P_u\in E^H[x]:u\in E\}$. Hence $E/E^H$ is a Galois extension. It remains to show $H=\Gal(E/E^H)$. Clearly $H\subset\Gal(E/E^H)$ by the definition of $E^H$. And by Theorem \ref{orddeg},
+\[\abs{H}\leqs\abs{\Gal(E/E^H)}=[E:E^H]\]
+On the other hand we wish to prove $[E:E^H]\leqs\abs{H}$. Since $[E^H(u):E^H]\leqs\abs{H}$ for any $u\in E$, we can choose some $u$ with $[E^H(u):E^H]$ maximal. Then $E^H(u)=E$, otherwise a further extension $E^H(u,v)/E^H(u)$ with $v\notin E^H(u)$ is also finite and separable, and therefore has a primitive element $w$. Then $E^H(w)\supsetneq E^H(u)$ has a larger degree over $E^H$. Hence
+\[[E:E^H]=[E^H(u):E^H]\leqs\abs{H}\]
+It follows that $H=\Gal(E/F)$ and $[E:E^H]=\abs{H}<\infty$. Also the $u$ obtained above is a primitive element of $E/E^H$.
+}
+The following lemma is inspired by the proof above.
+\lem{If $E/F$ is separable and such that for all $u\in F,\ [F(u):F]$ is bounded, then $E/F$ is finite and has the same bound on its degree.}
+
+\cor{For a finite extension $E/F$, it is Galois $\iff[E:F]=\abs{\Aut_F(E)}$.\label{galdeg}}
+\prf{(\ltr): By normality and separability. (\rtl): Let $H=\Aut_F(E)$ which is a subgroup of $\Aut(E)$. Then prove $H$ is finite and apply Lemma \ref{artinaut} to the tower $F\subset E^H\subset E$ to prove $F=E^H$. For the finiteness of $H$ we have
+\[\abs{H}=\abs{\Aut_F(E)}\leqs\abs{\Emb{E}{F}}=[E:F]_s\leqs[E:F]<\infty\]
+Then by Lemma \ref{artinaut}, we have $[E:E^H]=\abs{H}=[E:F]$ (the second equality is by assumption). Hence $F=E^H$ and $E/F=E/E^H$ is Galois.}
+
+Now we can move on to the Galois correspondence.
+\thm{[Fundamental theorem of Galois theory, Galois correspondence]For a finite Galois extension $E/F$, the following maps are mutually inverses of each other.
+\mapgalm{\{K:F\subset K\subset L\}}{\{H:H<\Gal(E/F)\}}{K}{\Aut_K(E)}{H}{E^H}
+They give rise to a one-to-one ordering reversing correspondence between the sets $\{K:F\subset K\subset L\}$ and $\{H:H<\Gal(E/F)\}$, called the \tf{Galois correspondence}.
+}
+\prf{First note that by Theorem \ref{galupstp} $\Aut_K(E)=\Gal(E/K)$ for any intermediate field $K$. Also by Theorem \ref{orddeg} $\Gal(E/F)$ is finite. Hence by Lemma \ref{galfixfld} and Lemma \ref{artinaut}, we have the composites
+\[K\mapsto\Gal(E/K)\mapsto E^\Gal(E/K)=K\]
+\[H\mapsto E^H\mapsto\Gal(E/E^H)=H\]
+This means $K\mapsto\Gal(E/K)$ and $H\mapsto E^H$ are mutual inverses, and each of them therefore must be a bijection. The order-reversing property is evident by definition.
+}
+\end{subsection}
+\begin{subsection}{More on Galois Extensions}
+\thm{[Closed under a lifting]Let $E/F$ be finite Galois and $K/F$ arbitrary. Then $EK/K$ is Galois and we have the isomorphism:
+\mapisom{\Gal(EK/K)}{\Gal(E/E\cap K)}{\sigma}{\sigma|_E}}
+An illustration is as follows (assuming all these fields are contained in a larger field $L$):
+\[\cd{
+    \&L\&\\
+    \&EK\ar[u,dash]\&\\
+    E\ar[ur,dash]\&\&K\ar[ul,dash,red,"\ttt{Galois}"',""{name=trdgal}]\\
+    \&E\cap K\ar[ul,dash,red,"\ttt{Galois}"'{name=secgalup},""{name=secgal,near start}]\ar[ur,dash]\&\\
+    \&\&\\
+    \&F\ar[uu,dash]\ar[uuul,dash,"\ttt{Galois}",""'{name=fstgal},red]\ar[uuur,blue,dash,"\ttt{arbitrary}"']\&
+    \arrow[red,Rightarrow,from=fstgal,to=secgal]\arrow[red,Rightarrow,from=secgalup,to=trdgal]}\]
+\prf{By Theorem \ref{nrmlift} and Theorem \ref{seplift}, $EK/K$ is Galois. For the group isomorphism, first note that
+\map{\Gal(EK/K)}{\Gal(E/E\cap K)}{\sigma}{\sigma|_E}
+is well-defined, i.e. $\sigma|_E(E)=E$ and $\sigma|_{E\cap K}=\id_{E\cap K}$. The latter is evident since $\sigma|_K=\id_K$. This also implies that $\sigma|_E\in\Hom_F(E,EK)$\red{(Q: What?)}. Since $E/F$ is normal, we have $\sigma|_E(E)\subset E\implies\sigma|_E(E)=E$. It follows easily that $\sigma\mapsto\sigma|_E$ is a group homomorphism. For injectiveness, if $\sigma|_E=\id_E$, then $\sigma$ fixes both $E$ and $K$ and hence $EK\implies\sigma=\id_{EK}$. For surjectiveness, let $H$ be the image of this group homomorphism. By the finiteness assumption $[E:F]$ we have $\abs{H}<\abs{\Gal(E/E\cap K)}=[E:E\cap K]\leqs[E:F]<\infty$. Applying Lemma \ref{artinaut} to $E^H\subset E$, we have
+\[H=\Gal(E/E^H)\]
+We also have $u\in E^H\subset(EK)^{\Gal(EK/K)}=K\implies u\in E\cap K$. Hence $E^H\subset E\cap K$, while the reverse inclusion is obvious. Hence $E^H=E\cap K\implies H=\Gal(E/E^H)=\Gal(E/E\cap K)$.}
+\ntg{This holds even when $[E;F]=\infty$. The second half part of the proof needs to be modified using the Krull topology and Lemma \ref{artinaut} would not be applicable.}
+\end{subsection}
+\end{section}
+
+\begin{section}{More Interesting Extensions}
+\begin{subsection}{Cyclotomic Extensions}
+The need for cyclotomic extensions arises from the attempt to classify all finite Galois extensions over a base field.
+
+\begin{subsubsection}{Over $\QQ$, and the Cyclotomic Polynomials}
+If $w\in\CC^\x$ satisfies $w^n=1$, then $w$ is called a \tf{$n$-th root of unity}. The extension $\QQ(w)/\QQ$ is called a \tf{cyclotomic extension}. If moreover, $\ord_{\CC^\x}(w)=n$, then $w$ is called a \tf{primitive $n$-th root of unity}. The set of all $n$-th roots of unity is denoted by $\mu_n$.
+
+We have the following theorems for the cyclotomic extension $\QQ(w)/\QQ$.
+
+\thm{Cyclotomic extensions are Galois.}
+\prf{Consider $\QQ(w)$ where $w^n=1$. Let $n=\ord_{\CC^\x}(w)$ without loss of generality. Then $\QQ(w)/\QQ$ is separable because it is over $\QQ$, and normal because it is the splitting field of $x^n-1=(x-1)(x-w)\cdots(x-w^{n-1})$.\footnote{$w$ must be a primitive $n$-th root of unity for this factorization to hold.}}
+
+\lem{Let $\mu_n$ denote the set of all $n$-th roots of unity and let $w$ be a primitive $n$-th root of unity. Then
+\[\Gal(\QQ(w)/\QQ)\into\Aut(\mu_n)\]}
+\ntg{Note that in general we can only say that the Galois group is a subgroup of the symmetric group of the set of the roots of some polynomial. However, in this case, we can further say that is a subgroup of the automorphism group of the roots of $x^n-1$. This is because $\mu_n$ has a group structure while in general the set of the roots of some polynomials does not.}
+\prf{We first observe that each $\sigma\in\Gal(\QQ(w)/\QQ)$ restricted to $\mu_n$ is a well-defined injective (hence surjective) map, i.e. a permutation on $\mu_n$. Moreover, $\sigma$ preserves multiplication and inverses, hence preserve the group structure of $\mu_n$. It follows that each $\sigma$ restricted to $\mu_n$ is a group automorphism. Conversely, each $\sigma$ can be uniquely determined by its action on $\mu_n$ (actually its action on $w$ alone would suffice), hence the map is an embedding (clearly a homomorphism):
+\map{\Gal(\QQ(w)/\QQ)}{\Aut(\mu_n)}{\sigma}{\sigma|_{\mu_n}}
+}
+
+Before continuing to give more theorems about cyclotomic extensions, we introduce the cyclotomic polynomials. Let $\{w_i:1\leqs i\leqs\phi(n)\}$ be all the primitive $n$-th roots of unity. The polynomials
+\[\Psi_n(x)=\prod_{i=1}^{\phi(n)}(x-w_i)\]
+is called the \tf{$n$-th cyclotomic polynomial}.
+\thm{The following are true about the cyclotomic polynomials $\Psi_n(x)$.
+\itm{
+    \item[(i)]$\Psi_n(x)\in\QQ[x]$.
+    \item[(ii)]$\prod_{d\mid n}\Psi_d(x)=x^n-1$.
+    \item[(iii)]$\Psi_n(x)\in\ZZ[x]$ and are monic.
+    \item[(iv)]$\Psi_n$ is irreducible over $\QQ$. And if $w$ is a primitive $n$-th root of unity, then $\Psi_n$ is the minimal polynomial of $w$ over $\QQ$.
+}}
+\prf{\itm{
+    \item[(i)]Let $w$ be a primitive $n$-th root of unity. Note that each $\sigma\in\Gal(\QQ(w)/\QQ)$ restricts to an automorphism of $\mu_n$. $\sigma$ must send generators to generators, and hence primitive roots to primitive roots, this means $\sigma$ permutes all the primitive roots in $\mu_n$. It follows that $\Psi_n$ is invariant under any $\sigma\in\Gal(\QQ(w)/\QQ)$. Hence
+        \[\Psi_n(x)\in(\QQ(w)^{\Gal(\QQ(w)/\QQ)})[x]=\QQ[x]\]
+    \item[(ii)]Let $w$ be an primitive $n$-th root of unity. Then
+        \[x^n-1=(x-1)(x-w)\cdots(x-w^{n-1})\]
+        Each root is of the form $w^i\ (0\leqs i\leqs n-1)$. Let $d=\ord(w^i)$. Then $d\mid n$ and $w^i$ is a primitive $d$-th root. Hence $w^i$ is a root of $\Psi_d$ and hence of $\prod_{d\mid n}\Psi_d$. It follows that every root of $x^n-1$ is also one of $\prod_{d\mid n}\Psi_d$. Note that these roots are distinct, hence $x^n-1\mid\prod_{d\mid n}\Psi_d$. For the converse, obviously each root of $\Psi_d$ with $d\mid n$ is a root of $x^n-1$. Also each $\Psi_d$ has no multiple roots, and $\Psi_{d_1},\Psi_{d_2}$ have no common roots by definition. Hence $\prod_{d\mid n}\Psi_d\mid x^n-1$. It follows that $x^n-1=\Psi_d(x)$.
+    \item[(iii)]By induction. Clearly $\Psi_1(x)=x-1\in\ZZ[x]$. Suppose $n\geqs2$ and $\Psi_1,\cdots,\Psi_{n-1}$ are in $\ZZ[x]$. Then by
+        \[\Psi_n=\frac{x^n-1}{\prod_{d\mid n,\ d\neq n}\Psi_d}\]
+        we know $\Psi_n$ can be obtained by the Euclidean algorithm, whose result must be in $\ZZ[x]$ because $\Psi_d$ with $d<n$ are all monic and in $\ZZ[x]$, and also $x^n-1$ is monic and in $\ZZ[x]$.
+    \item[(iv)]Let $P_w(x)\in\QQ[x]$ be the minimal polynomial of $w$ over $\QQ$. Since $\Psi_n(w)=0$ and $\Psi_n(x)\in\QQ[x]$, $P_w\mid\Psi_n$. Hence it suffices to prove that $\Psi_n$ is irreducible to conclude that $\Psi_n$ is the minimal polynomial of $w$.
+}}
+
+\thm{Let $\mu_n$ denote the set of all $n$-th roots of unity and let $w$ be a primitive $n$-th root of unity. Then
+\[\Gal(\QQ(w)/\QQ)\cong\Aut(\mu_n)\cong(\ZZ/n\ZZ)^\x\]}
+\prf{We have proved that $\Psi_n$ is irreducible over $\QQ$. Then $P_w\mid\Psi_n\implies P_w=\Psi_n$, so that
+\[[\QQ(w):\QQ]=\deg\Psi_n=\phi(n)=\abs{\Aut(\mu_n)}\]
+This implies $\Gal(\QQ(w)/\QQ)\into\Aut(\mu_n)$ must be surjective.}
+\end{subsubsection}
+\end{subsection}
+
+\begin{subsection}{Cyclic Extensions and Abelian Extensions}
+A \tf{cyclic extension} is a Galois extension whose Galois group is cyclic. An \tf{abelian extension} is a Galois extension whose Galois group is abelian.
+\end{subsection}
+
+\begin{subsection}{Kummer Extensions}
+Let $F$ be a field. If $w\in\bar F^\x$ is such that $w^n=1$ then $w$ is called an \tf{$n$-th root of unity}. If moreover, $\ord{\bar F^\x}(w)=n$, then $w$ is a \tf{primitive $n$-th root of unity}.
+\ntg{The existence of a primitive $n$-th root of unity is not guaranteed for a general field $F$. A necessary condition is as follows.}
+
+\lem{[Necessary condition for the existence of a primitive root]If $F$ has a primitive $n$-th root of unity, then $\chr F\nmid n$.}
+\hnt{$x^n-1=(x^m-1)^p$ if $n=pm$.}
+
+\red{We wish to classify all cyclic extensions of degree $n$ of $F$ when $F$ has a primitive $n$-th root of unity}, and the answer would be of the form $F(\sqrt[n]{a})$. And the following questions are to be asked.
+\itm{
+    \item Is $F(\sqrt[n]a)/F$ Galois?
+    \item Is $F(\sqrt[n]a)/F$ cyclic?
+    \item Does $[F(\sqrt[n]a):F]=n$?
+}
+
+\lem{[The polynomial of an $n$-th root]Let $F$ be a field. If there is a primitive $n$-th root of unity $w\in F$, then for any $a\in F$, $x^n-a$ is separable.\label{nrootsep}}
+\prf{Let $\alpha\in\bar F$ be any $n$-th root of $a$. Then $\alpha,w\alpha,\cdots,w^{n-1}\alpha$ are $n$ distinct roots of $x^n-a$. Hence it splits over $\bar F$ as
+\[x^n-a=\prod_{i=0}^{n-1}(x-w^i\alpha)\]}
+
+\thm{Let $F$ be a field. If there is a primitive $n$-th root of unity $w\in F$, then for any $a\in F$, and any $n$-th root $\sqrt[n]a$ of $a$ in $\bar F$, $F(\sqrt[n]a)/F$ is Galois.}
+\prf{By Lemma \ref{nrootsep} $\sqrt[n]a$ is separable. Also since $w\in F$, we have $F(\sqrt[n]a)=F(\sqrt[n]a,w\sqrt[n]a,\cdots,w^{n-1}\sqrt[n]a)$. It follows that it is the splitting field of $x^n-a$.}
+
+\thm{Let $F$ be a field with a primitive $n$-th root of unity $w\in F$. Then for any $a\in F$ and any of its $n$-th root $\alpha$, $F(\alpha)/F$ is cyclic.\label{cycgrp}}
+\hnt{Embed $\Gal(F(\alpha)/F)$ into $\mu_n$ by $\sigma\mapsto\frac{\sigma(\alpha)}{\alpha}$.}
+\prf{Let $\alpha=\alpha$. Consider this map ($\mu_n$ is the group of $n$-th roots, namely, $\mu_n=\{1,w,w^2,\cdots,w^{n-1}\}$):
+\mapn{\phi}{\Gal(F(\alpha)/F)}{\mu_n}{\sigma}{\frac{\sigma(\alpha)}{\alpha}}
+Note that $\frac{\sigma(\alpha)}{\alpha}$ indeed lies in $\mu_n$ because $\sigma$ is a permutation of the set
+\[\{\alpha,w\alpha,\cdots,w^{n-1}\alpha\}\]
+of the roots of $x^n-a$ (cf. Lemma \ref{nrootsep}). Moreover, $\sigma$ is uniquely determined by where $\sigma$ sends $\alpha$, and hence uniquely determined by $\frac{\sigma\alpha}{\alpha}$, i.e. $\phi$ is injective. Also, $\phi$ is a group homomorphism: suppose $\phi(\sigma_1)=w^{i_1},\ \phi(\sigma_2)=w^{i_2}$, then
+\[\phi(\sigma_1\sigma_2)=\frac{\sigma_1\sigma_2\alpha}{\alpha}=\frac{\sigma_1(w^{i_2}\alpha)}{\alpha}=w^{i_2}\frac{\sigma_1(\alpha)}{\alpha}=w^{i_2}w^{i_1}=\phi(\sigma_1)\phi(\sigma_2)\]
+and $\phi(1)=frac{\alpha}{\alpha}=1$. Hence $\Gal(F(\alpha)/F)$ is isomorphic to a subgroup of $\mu_n$. The latter is abelian and it follows that so is the former.}
+
+Finally we consider when $[F(\sqrt[n]a):F]=n$, i.e. when is $x^n-a$ irreducible. We need some preparations. Let $\alpha=\sqrt[n]a$ as above.
+
+\lem{If $\Gal(F(\alpha)/F)$ has order $d$, then $d\mid n$ and $\alpha^d=F$.\label{dpwrinf}}
+\prf{Since $\Gal(F(\alpha)/F)$ is isomorphic to a cyclic subgroup of $\mu_n$ by Theorem \ref{cycgrp}, we have $d\mid n$. Suppose $\tau$ is a generator for $\Gal(F(\alpha)/F)$. Then $\frac{\tau\alpha}{\alpha}$ is a generator of some subgroup of order $d$ of $\mu_n$, i.e. $\prn{\frac{\tau\alpha}{\alpha}}^d$. It suffices to prove $\tau(\alpha^d)=\alpha^d$. Indeed,
+\[\frac{\tau(\alpha^d)}{\alpha^d}=\frac{(\tau\alpha)^d}{\alpha^d}=\prn{\frac{\tau\alpha}{\alpha}}^d=1\]}
+
+\thm{Let $F$ and $\alpha=\sqrt[n]a$ be as before. The following are equivalent.
+\itm{
+    \item[(i)]$[F(\alpha):F]=n$;
+    \item[(ii)]$x^n-a$ is irreducible;
+    \item[(iii)]$a$ has no $m$-th root in $F$ for $m>1,\ m\mid n$.
+    \item[(iv)]$\alpha^d\notin F$ for $d\mid n,\ d<n$.
+    \item[(v)]$\ord_{F^\x/(F^\x)^n}(a)=n$.
+}\label{cycdegcond}}
+\prf{\udl{(i)$\iff$(ii)}: Obvious.\\
+\udl{(ii)\tim(iii)}: Suppose $a$ has an $m$-th root $\beta$ in $F$ for some $m>1,\ m\mid n$. Then $a=\beta^m$. Let $n=md$. We have
+\[x^n-a=x^{md}-\beta^m=(x^d)^m-\beta^m=(x^d-\beta)((x^d)^{m-1}+(x^d)^{m-2}\beta+\cdots+\beta^{m-1})\]
+Hence $x^n-a$ is reducible.\\
+\udl{(iii)\tim(iv)}: If $\alpha^d\in F$ for some $d\mid n,\ d<n$, then let $m=n/d$. We have $m>1,\ m\mid n$ and $\alpha^d\in F$ is an $m$-th root of $a$.\\
+\udl{(iv)\tim(i)}: If $[F(\alpha)/F]=\abs{\Gal(F(\alpha)/F)}=d<n$, then by Lemma \ref{dpwrinf}, $d\mid n$ and $\alpha^d\in F$.\\
+\udl{(iv)\tim(v)}: Let $\ord_{F^\x/(F^\x)^n}(a)=d$. Certainly $d\mid n$. If $d<n$, then $\alpha^{dn}=a^d\in(F^\x)^n\implies$ there is $b\in F^\x$ such that $\alpha^{dn}=b^n\implies\alpha^d=bw^k$ for some $k\implies\alpha^d\in F$. A contradiction.\\
+\udl{(v)\tim(iv)}: If (iv) does not hold, then there is some $d\mid n,\ d<n$, such that $\alpha^d\in F\implies a^d=\alpha^{dn}=(\alpha^d)^n\in(F^\x)^n\implies\ord_{F^\x/(F^\x)^n}(a)=d<n$.}
+
+To conclude, we combine all the results into one theorem.
+\thm{[Extensions by adding an $n$-th root]Let $F$ be a field in which there exists a primitive $n$-th root. For any $a\in F$ and any $n$-th root $\alpha$ of $a$. The extension $F(\alpha)/F$ is Galois and cyclic, whose degree $d$ is a factor of $n$, and is equal to $n$ if and only if $\alpha^k\notin F$ for all $k\mid n,\ k<n$.}
+
+Surprisingly, the converse is also true, i.e. when $F$ has a primitive $n$-th root of unity every finite cyclic extension of degree $n$ can be obtained by adding an $n$-th root of some element.
+
+\lem{[Eigenvector of a root of unity]Let $F$ have a primitive root of unity $w\in F$ and let $E/F$ be a cyclic extension of degree $n$. Suppose $\Gal(E/F)=\brk{\tau}$. Then there exists $\alpha\in E^\x$ for which $\tau\alpha=w\alpha$.\label{gneeg}}
+\prf{Note that $\tau$ has order $n$, hence $\tau^n-1$. We claim $x^n-1$ is the minimal polynomial of $\tau$. If not, then its minimal polynomial must be of a smaller degree, i.e.
+\[P(\tau)=\sum_{k=0}^ma_k\tau^k=0\]
+for $a_k\in F$ and $m<n$. Note that $1,\tau,\cdots,\tau^m$ are distinct characters of $E$ in $E$ (\red{maybe they are called ``on $E$''?}). Hence $P=0$ as a polynomial, contradicting $\deg P=m$. Now we think of $\tau$ as an $F$-linear transformation on $E$. Then its eigenvalues are precisely the roots of $x^n-1$. Since $w^n=1$, $w$ is an eigenvalue, which has then an eigenvector $\alpha\in E$, i.e. $\tau\alpha=w\alpha$.}
+
+\thm{[Finite cyclic extensions]Let $F$ have a primitive root of unity $w\in F$ and let $E/F$ be a cyclic extension of degree $n$. Then $E=F(\alpha)$ for some $\alpha\in E$ with $\alpha^n\in F$.\label{cycsurfrgp}}
+\prf{Let $\tau$ generate $\Gal(E/F)$. By Lemma \ref{gneeg}, there is some $\alpha\in E^\x$ with $\tau\alpha=w\alpha$. Note that the upper step in the tower
+\[F\subset F(\alpha)\subset E\]
+is also Galois. And we have
+\[\Gal(E/F(\alpha))=\{\tau^k:\tau^k\alpha=\alpha\}=\{\tau^k:w^k\alpha=\alpha\}=\{\tau^k:k=0\}=\{1\}\]
+Hence $E=F(\alpha)$. Finally, $\tau(\alpha^n)=w^n\alpha^n=\alpha^n\implies\alpha^n\in F$.
+}
+
+The last part of this section will be dedicated to giving a classification theorem for finite cyclic extension of degree $n$. For this purpose we need to think of $F^\x$ as a multiplication group and also think of
+\[(F^\x)^n=\{y^n:y\in F^\x\}\]
+as a multiplicative subgroup of $F^\x$.
+
+\lem{Let $F$ be a field with a primitive $n$-th root of unity $w\in F$. If $a,b\in F^\x$, then $F(\sqrt[n]a)=F(\sqrt[n]{ab^n})$. It follows that the map is well-defined:
+\map{F^\x/(F^\x)^n}{\{\ttt{cyclic extensions}\}}{a}{F(\sqrt[n]a)/F}\label{equicycext}}
+\prf{We see that $\sqrt[n]{ab^n}$ is a root of $x^n-ab^n$, all of whose roots are then $\sqrt[n]{ab^n}w^i\ (0\leqs i\leqs n-1)$. On the other hand, $\sqrt[n]{a}b$ is also an $n$-th root of $ab^n$, hence $\sqrt[n]{a}b=\sqrt[n]{ab^n}w^i$. Note that $b,w\in F$, so that
+\[F(\sqrt[n]{ab^n})=F(\sqrt[n]{a}bw^{-i})=F(\sqrt[n]a)\]}
+
+In view of Lemma \ref{equicycext}, we may talk about $F(\sqrt[n]a)$ while thinking of $a$ as an element of $F^\x/(F^\x)^n$ (this subgroup has order $d\mid n$).
+
+\lem{If $a\in F^\x/(F^\x)^n$, then $F(\sqrt[n]{\brk{a}})=F(\sqrt[n]a)$, where $\brk{a}$ is the subgroup generated by $a$ in $F^\x/(F^\x)^n$.}
+\prf{Certainly, $F(\sqrt[n]a)\subset F(\sqrt[n]{\brk{a}})$. Conversely, \[F(\sqrt[n]{\brk{a}})=F(\sqrt[n]{a},\sqrt[n]{a^2},\cdots,\sqrt[n]{a^{n-1}})\]
+Note that $\sqrt[n]{a^k}=(\sqrt[n]a)^kw^{j_k}$. So that
+\[F(\sqrt[n]{\brk{a}})=F(\sqrt[n]{a},(\sqrt[n]{a})^2,\cdots,(\sqrt[n]{a})^{n-1})\subset F(\sqrt[n]a)\]
+}
+
+\lem{For a cyclic subgroup $\Delta=\brk{a}$ of $F^\x/(F^\x)^n$ of order $n$, we have the following isomorphism:
+\mapisom{\Delta}{\Hom(\Gal(F(\sqrt[n]\Delta)/F),\mu_n)\cong\ZZ/n\ZZ}{a}{\prn{\sigma\mapsto\frac{\sigma\sqrt[n]a}{\sqrt[n]a}}}
+}
+\prf{Note that $\frac{\sigma\sqrt[n]a}{\sqrt[n]a}$ is independent of which root of $a$ we chose, hence we may assume $\sqrt[n]{a^k}=\sqrt[n]a^k$. $\Hom(\Gal(F(\sqrt[n]\Delta)/F),\mu_n)$ can be made into a group in the following way: $\phi_1,\phi_2\in\Hom(\Gal(F(\sqrt[n]\Delta)/F),\mu_n)$, we define $(\phi_1\phi_2)(\sigma)=\phi_1(\sigma)\phi_2(\sigma)$ and $\phi_1^{-1}(\sigma)=(\phi_1(\sigma))^{-1}$. \red{Unfinished, not sure what $\Hom(\Gal(F(\sqrt[n]\Delta)/F),\mu_n)$ is.}\label{dualgalgpisom}}
+
+\thm{[Classification theorem for cyclic extensions of order $n$]Let $F$ be a field with a primitive $n$-th root $w\in F$. There is a bijection:
+\map{\{\ttt{cyclic subgroups of order $n$ in $F^\x/(F^\x)^n$}\}}{\{\ttt{cyclic $E/F$ of order $n$}\}}{\Delta}{F(\sqrt[n]{\Delta})}}
+\prf{\tit{Surjectiveness}: By Theorem \ref{cycsurfrgp}, we can find $\alpha\in E$ such that $\alpha^n\in F$ and $E=F(\alpha)$. Let $a=\alpha^n$ (so that $\alpha=\sqrt[n]a$), and let $\Delta$ be the subgroup generated by $a$ in $F^\x/(F^\x)^n$. Then $E=F(\sqrt[n]a)=F(\sqrt[n]\Delta)$. It suffices to prove that $\Delta$ has order $n$, i.e. $a$ has order $n$ in $F^\x/(F^\x)^n$. Suppose not, then $\ord_{F^\x/(F^\x)^n}(a)=d\mid n$ but $d<n$. Hence $a^d=\alpha^{dn}\in(F^\x)^n$. We can find some $b\in F^\x$ such that $\alpha^{dn}=b^n\implies \alpha^d=bw^k$ for some $k$. But $b,w\in F$, hence $\alpha^d\in F$, contradicting $[E:F]=n$ by Theorem \ref{cycdegcond}.\\
+\tit{Injectiveness}: Let $\Delta_1,\Delta_2$ be two cyclic subgroups of $F^\x/(F^\x)^n$ of order $n$, and $F(\sqrt[n]{\Delta_1})=F(\sqrt[n]{\Delta_2})$. By Lemma \ref{dualgalgpisom},
+\[\Delta_1\cong\Hom(\Gal(F(\sqrt[n]\Delta_1)/F),\mu_n)=\Hom(\Gal(F(\sqrt[n]\Delta_2)/F),\mu_n)\cong\Delta_2\]
+This means for every $a_1\in\Delta_1$, there exists $a_2\in\Delta_2$, such that
+\[\sigma\mapsto\frac{\sigma\sqrt[n]{a_1}}{\sqrt[n]{a_1}}\ttt{ and }\sigma\mapsto\frac{\sigma\sqrt[n]{a_2}}{\sqrt[n]{a_2}}\ttt{ are identical in }\Hom(\Gal(F(\sqrt[n]\Delta_1)/F),\mu_n)\]
+\[\implies\forall\sigma\in\Gal(F(\sqrt[n]{\Delta_1})/F),\ \frac{\sigma\sqrt[n]{a_1}}{\sqrt[n]{a_1}}=\frac{\sigma\sqrt[n]{a_2}}{\sqrt[n]{a_2}}\]
+\[\implies\frac{\sqrt[n]{a_1}}{\sqrt[n]{a_2}}\in F\implies\frac{a_1}{a_2}\in(F^\x)^n\implies a_1=a_2\ttt{ in }F^\x/(F^\x)^n\]
+This actually implies $\Delta_1\subset\Delta_2$. The converse is true, by symmetry.}
+
+The \tf{exponent} of a group $G$ is defined as $e(G)=\lcm\prn{\ord_G(g):g\in G}$. An \tf{$n$-Kummer extension} is an abelian extension $E/F$ where the base field has a primitive $n$-th root of unity and $e(\Gal(E/F))\mid n$.
+
+\thm{[Classification theorem for $n$-Kummer extensions]Let $F$ be a field with a primitive $n$-th root of unity. There is a bijection:
+\map{\{\ttt{finite subgroups of $F^\x/(F^\x)^n$}\}}{\{\ttt{finite $n$-Kummer extension of $F$}\}}{\Delta}{F(\sqrt[n]\Delta)}}
+\prf{\red{None provided.}}
+\end{subsection}
+\end{section}
+\end{document}

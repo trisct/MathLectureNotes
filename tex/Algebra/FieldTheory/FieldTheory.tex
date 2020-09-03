@@ -1,0 +1,348 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{geometry,xcolor,layout,amssymb,amsthm,amsmath,mathrsfs,graphicx,centernot,textcomp,galois,extarrows,bbm,dsfont,makeidx,empheq}
+\usepackage[normalem]{ulem}
+\usepackage[all]{xy}
+
+\newtheorem{prp}{Proposition}[section]
+\newtheorem{theom}{Theorem}[section]
+\newtheorem{coro}{Corollary}[section]
+
+\theoremstyle{definition}
+\newtheorem{eg}{Example}[section]
+\newtheorem{ct}{\textcolor{cyan}{Counterexample}}[section]
+\newtheorem*{pf}{\blue{Proof}}
+\newtheorem{question}{Q}[section]
+\newtheorem{dfn}{Definition}[section]
+\newtheorem{probl}{Problem}[section]
+\newtheorem{nt}{\cg{Note}}[section]
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}[section]
+
+\newcommand*\widefbox[1]{\fbox{\vspace{2em}\hspace{2em}#1\hspace{2em}}}
+\setlength\fboxsep{0.2cm}
+
+\newcommand{\tick}{\textcolor{red}{\checkmark}}
+\newcommand{\bs}{\backslash}
+\newcommand{\udots}{\mathinner{\mskip 1mu\raise 1pt\vbox{\kern 7pt\hbox{.}}
+\mskip 2mu\raise 4pt\hbox{.}\mskip 2mu\raise 7pt\hbox{.}\mskip 1mu}}
+\newcommand{\geqs}{\geqslant}
+\newcommand{\leqs}{\leqslant}
+\newcommand{\Var}{{\rm Var}}
+\newcommand{\sdd}{\sigma}
+\newcommand{\ga}{\got a}
+\newcommand{\gb}{\got b}
+\newcommand{\gp}{\got p}
+\newcommand{\gq}{\got q}
+\newcommand{\EE}{\mathbb{E}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\rsa}{\sigma(f;\pi,\xi)}
+\newcommand{\wlg}{{\rm w.l.o.g.}}
+\newcommand{\spn}{{\rm span}}
+\newcommand{\rank}{{\rm rank}}
+\newcommand{\nul}{{\rm null}}
+\newcommand{\disc}{{\rm disc}}
+\newcommand{\im}{{\rm Im}}
+\newcommand{\coker}{{\rm Coker}}
+\newcommand{\coim}{{\rm Coim}}
+\newcommand{\ud}{{\rm d}}
+\newcommand{\lub}{{\rm lub}}
+\newcommand{\glb}{{\rm glb}}
+\newcommand{\dx}{\ud x}
+\newcommand{\dy}{\ud y}
+\newcommand{\dz}{\ud z}
+\newcommand{\dmu}{\ud\mu}
+\newcommand{\x}{\times}                     %乘号
+\newcommand{\ox}{\otimes}
+\newcommand{\op}{\oplus}
+\newcommand{\p}{\prime}
+\newcommand{\fctr}{\Rightarrow}
+\newcommand{\unito}{\rightrightarrows}
+\newcommand{\lbint}{\int\!\!\!\int}      %二重积分号
+\newcommand{\bint}{\int\!\!\!\!\int}      %二重积分号
+\newcommand{\tint}{\int\!\!\!\!\int\!\!\!\!\int}      %三重积分号
+\newcommand{\apr}{\approx}
+\newcommand{\prdn}{\prod\limits_{n=1}^\infty}
+\newcommand{\sumn}{\sum\limits_{n=1}^\infty}
+\newcommand{\sump}{\sum\limits_{n=0}^\infty}
+\newcommand{\limn}{\lim\limits_{n\to\infty}}
+\newcommand{\limx}{\lim\limits_{x\to+\infty}}
+\newcommand{\operp}{\stackrel{\perp}{\oplus}}
+\newcommand{\const}{{\rm const}}
+\newcommand{\codim}{{\rm codim}}
+\newcommand{\sgn}{{\rm sgn}}
+\newcommand{\ann}{{\rm Ann}}
+\newcommand{\chr}{{\rm char}}
+\newcommand{\tr}{{\rm Tr}}
+\newcommand{\sym}{{\rm Sym}}
+\newcommand{\centr}{{\rm Centr}}
+\newcommand{\Sp}{{\rm Sp}}              %symplectic
+\newcommand{\id}{{\rm id}}
+\newcommand{\Obj}{\mf{Obj}}
+\newcommand{\Mor}{\mf{Mor}}
+\newcommand{\Perm}{{\rm Perm}}
+\newcommand{\Hom}{{\rm Hom}}
+\newcommand{\Aut}{{\rm Aut}}
+\newcommand{\Inn}{{\rm Inn}}
+\newcommand{\End}{{\rm End}}
+\newcommand{\re}{{\rm Re}}
+\newcommand{\diag}{{\rm diag}}
+\newcommand{\grad}{{\rm grad\,}}
+\newcommand{\dive}{{\rm div\,}}
+\newcommand{\rot}{{\rm rot\,}}
+\newcommand{\curl}{{\rm curl\,}}
+\newcommand{\free}{{\rm free}}
+\newcommand{\tor}{{\rm tor}}
+\newcommand{\rad}{{\rm rad}}
+\newcommand{\nilrad}{{\rm nilrad}}
+\newcommand{\ord}{{\rm ord}}
+\newcommand{\irr}{{\rm Irr}}
+\newcommand{\cl}{{\rm cl}}
+\newcommand{\Cl}{{\rm Cl}}
+\newcommand{\fix}{{\rm fix}}
+\newcommand{\boun}{\partial}
+\newcommand{\into}{\hookrightarrow}
+\newcommand{\varn}{\varnothing}
+\newcommand{\vare}{\varepsilon}
+\newcommand{\vphi}{\varphi}
+\newcommand{\diam}{{\rm diam}}
+\newcommand{\vect}{{\rm Vect}}
+\newcommand{\isom}{\stackrel{\cong}{\longrightarrow}}
+\newcommand{\dfas}{\triangleq}
+\newcommand{\st}{{\rm\quad s.t.\quad}}
+\newcommand{\lapla}{\Delta}
+\newcommand{\divd}{\big|}
+\makeatletter
+\newcommand{\lambdabar}{{\mathchoice
+  {\smash@bar\textfont\displaystyle{0.25}{1.2}\lambda}
+  {\smash@bar\textfont\textstyle{0.25}{1.2}\lambda}
+  {\smash@bar\scriptfont\scriptstyle{0.25}{1.2}\lambda}
+  {\smash@bar\scriptscriptfont\scriptscriptstyle{0.25}{1.2}\lambda}}}
+\newcommand{\smash@bar}[4]{%
+  \smash{\rlap{\raisebox{-#3\fontdimen5#10}{$\m@th#2\mkern#4mu\mathchar'26$}}}}
+\makeatother
+
+
+\newcommand{\res}[2]{\left.#1\right|_{#2}}
+\newcommand{\rsb}[3]{\sigma(#1;#2,#3)}      %Riemann sum with arguments
+\newcommand{\derv}[2]{\frac{\ud#1}{\ud#2}}
+\newcommand{\parf}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\secpf}[3]{\frac{\partial^2 #1}{\partial #2\partial #3}}
+\newcommand{\comb}[2]{\binom{#1}{#2}}       %组合数
+\newcommand{\norm}[1]{\left\lVert #1\right\rVert}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\brc}[1]{\left\{#1\right\}}
+\newcommand{\brk}[1]{\left\langle#1\right\rangle}
+\newcommand{\prn}[1]{\left(#1\right)}
+\newcommand{\sqb}[1]{\left\lbrack#1\right\rbrack}
+\newcommand{\dbk}[1]{\langle\!\langle#1\rangle\!\rangle}
+\newcommand{\inprod}[1]{\langle#1\rangle}
+\newcommand{\itr}[1]{#1^\circ}           %内部,interior
+\newcommand{\cmp}[1]{#1^c}               %补集,complement
+\newcommand{\cnts}[3]{#1#3\cdots#3#2}
+\newcommand{\inds}[3]{#1_{1}#3\cdots#3#1_{#2}}
+\newcommand{\dindx}[4]{#1{#2}#4\cdots#4#1{#3}}
+\newcommand{\dinds}[4]{#1_{#2}#4\cdots#4#1_{#3}}
+\newcommand{\vct}[1]{\overrightarrow{#1}}
+\newcommand{\simlr}[2]{#2^{-1}#1#2}     %相似
+\newcommand{\congt}[2]{\ts{#2}#1#2}     %相合
+\newcommand{\ccong}[2]{\cts{#2}#1#2}    %共轭相合
+\newcommand{\rcong}[2]{\ts{#2}#1\orl{#2}}    %右共轭相合
+\newcommand{\ts}[1]{#1^{\rm T}}
+\newcommand{\cts}[1]{\orl{#1}^{\rm T}}   %共轭转置
+\newcommand{\wt}[1]{\widetilde{#1}}
+\newcommand{\bss}[2]{\inds{#1}{#2}{,}}
+\newcommand{\unitob}[1]{\mathop{\rightrightarrows}\limits_{#1}}
+\newcommand{\limb}[1]{\lim\limits_{#1}}
+\newcommand{\limp}[2]{\lim\limits_{#1\to#2}}
+\newcommand{\mapn}[5]{\arr{{ccrcl}#1&:&#2&\to&#3\\&&#4&\mapsto&#5}}
+\newcommand{\map}[4]{\arr{{rcl}#1&\to&#2\\#3&\mapsto&#4}}
+
+\newcommand{\mth}[1]{\begin{displaymath}#1\end{displaymath}}
+\newcommand{\mtha}[1]{\begin{eqnarray*}#1\end{eqnarray*}}
+\newcommand{\arr}[1]{\begin{array}#1\end{array}}
+\newcommand{\prf}[1]{\begin{pf}\blue{#1}\end{pf}}
+\newcommand{\ques}[1]{\begin{question}#1\end{question}}
+\newcommand{\sprf}[1]{\begin{pf}\cb{#1}\end{pf}}
+\newcommand{\df}[1]{\begin{dfn}#1\end{dfn}}
+\newcommand{\ntg}[1]{\begin{nt}\cg{#1}\end{nt}}
+\newcommand{\matp}[1]{\prn{\begin{matrix}#1\end{matrix}}}
+\newcommand{\itm}[1]{\begin{itemize}#1\end{itemize}}
+\newcommand{\enu}[1]{\begin{enumerate}#1\end{enumerate}}
+\newcommand{\desc}[1]{\begin{description}#1\end{description}}
+\newcommand{\tmth}[1]{\begin{displaymath}\ttt{#1}\end{displaymath}}
+\newcommand{\thm}[1]{\begin{theom}#1\end{theom}}
+\newcommand{\emp}[1]{\begin{eg}#1\end{eg}}
+\newcommand{\rmk}[1]{\begin{remark}#1\end{remark}}
+\newcommand{\pbl}[1]{\begin{probl}#1\end{probl}}
+\newcommand{\prop}[1]{\begin{prp}#1\end{prp}}
+\newcommand{\cor}[1]{\begin{coro}#1\end{coro}}
+\newcommand{\eqn}[1]{\begin{equation}#1\end{equation}}
+\newcommand{\eqna}[1]{\begin{eqnarray}#1\end{eqnarray}}
+
+
+\newcommand{\clr}[1]{\textcolor{red}{#1}}   %红色
+\newcommand{\cb}[1]{\textcolor{blue}{#1}}   %蓝色
+\newcommand{\cg}[1]{\textcolor{magenta}{#1}}%紫色
+\newcommand{\hlg}[1]{\cg{\udl{#1}}}
+\newcommand{\hlb}[1]{\cb{\udl{#1}}}
+\newcommand{\hlr}[1]{\clr{\udl{#1}}}
+
+\newcommand{\mf}{\mathbf}
+\newcommand{\tf}{\textbf}
+\newcommand{\hlt}[1]{\textbf{\red{#1}}}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+
+\newcommand{\nm}[1]{{\rm#1}}                %竖体
+\newcommand{\ttt}{\textrm}
+\newcommand{\mhb}[1]{\mathbb{#1}}
+\newcommand{\mcl}[1]{\mathcal{#1}}
+\newcommand{\flr}[1]{\mathscr{#1}}
+\newcommand{\got}[1]{\mathfrak{#1}}
+\newcommand{\orl}[1]{\overline{#1}}
+\newcommand{\udl}[1]{\underline{#1}}
+\newcommand{\uudl}[1]{\uuline{#1}}
+\newcommand{\wudl}[1]{\uwave{#1}}
+
+%%%%%%%%%%%%%PHYSICS CONSTANTS
+\newcommand{\cstk}{\frac{1}{4\pi\vare_0}}
+\newcommand{\cstm}{\frac{\mu_0}{4\pi}}
+
+\makeindex
+\title{Field Theory}
+\author{TRISCT}
+\date{}
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+\begin{part}{Field Theory}
+\begin{section}{Field Extensions}
+\begin{subsection}{Definitions and Properties}
+\begin{description}
+\item[Poset\index{poset}]A \tf{poset} is a nonempty set $P$ together with a binary relation $\leqs$ satisfying reflexivity, antisymmetry and transitivity. An \tf{upper bound} (resp. \tf{lower bound}) $a\in P$ for a subset $S\subset P$ is such that $\forall x\in S,\ x\leqs a$ (resp. $a\leqs x$). The \tf{least upper bound} is an upper bound which is also the lower bound of all upper bounds, and the \tf{greatest lower bound} is defined similarly. A \tf{maximal element} (resp. \tf{minimal}) in $P$ is one such that there is no other element strictly large (resp. smaller) than it. A \tf{top element} (resp. bottom) is such that every element is smaller (resp. larger) than or equal to it, which is usually denoted by $1$, and the bottom element is usually denoted by $0$.
+\item[Lattice\index{lattice}]A poset $L$ becomes a \tf{lattice} if we require that any pair of elements $a,b$ has a least upper bound, called \tf{join}, denoted by $\alpha\vee\beta$, in $P$, and a greatest lower bound, called \tf{meet}, denoted by $\alpha\wedge\beta$, in $P$. If every nonempty subset of $L$ has a join and a meet, then $L$ is called a complete lattice. A \tf{sublattice} is a subset of a lattice which is closed under the taking of join and meet in the sense that the join and meet are the same if taken in the original lattice.
+    \ntg{An illustration is as follows (arrows mean ``going to the larger element''). In short, $\vee$ always denotes something like ``larger'' or ``union''.
+        \[\xymatrix{
+            &&1\ar@{~>}@[blue][rr]&&\ttt{\blue{Top}}\\
+            &&&&\ttt{\blue{Join}}\\
+            &&\alpha\vee\beta\ar[uu]\ar@{~>}@[blue][urr]&&\\
+            \cdots\ar[uuurr]&\alpha\ar[ur]&&\beta\ar[ul]&\cdots\ar[uuull]\\
+            &&\alpha\wedge\beta\ar[ul]\ar[ur]\ar@{~>}@[blue][drr]&&\\
+            &&&&\ttt{\blue{Meet}}\\
+            &&0\ar[uu]\ar[uuull]\ar[uuurr]\ar@{~>}@[blue][rr]&&\ttt{\blue{Bottom}}\\
+        }\]}
+    The following criterion tells us when a subset becomes a complete lattice. Let $L$ be a complete lattice and $\vare\neq S\subset L$. If $1\in S$ and $S$ is closed under arbitrary intersection, then $S$ is itself a complete lattice, but not necessarily a sublattice because the join of a subset in $S$ may not be identical if taken in $L$.
+\item[Lattice of subfields]Let $K$ be a field. For the subfields $E,F<K$, we can define the operations
+    \itm{
+        \item[(i)](\tf{Intersection}) The intersection $E\cap F$ of $E,F$ is also a subfield of $K$. More generally, the intersection of an arbitrary family of subfields is a subfield. One can see that the intersection is the meet.
+        \item[(ii)](\tf{Composite}) The composite $EF$ of $E,F$ is the smallest subfield containing $E,F$, i.e., the intersection of all subfields containing $E,F$, or again, the field generated by $E,F$. More generally, the composite $\bigvee E_i$ of a family of subfields is the smallest subfield containing every $E_i$. One can see that the composite is the join.
+    }
+    The collection of all subfields of a field form a complete lattice, with the join being composite and the meet being intersection. It has top $1=K$ and bottom $0=K_p$ (the prime subfield of $K$, either $\ZZ_p$ or $\QQ$).
+\item[Types of extensions]Let $F<E$ be a field extension. We shall define some descriptors for elements in $E$ first. An element $a\in E$ is called
+    \itm{
+        \item[(i)]\tf{algebraic}\index{element!algebraic} over $F$ if $a$ satisfies some polynomial over $F$.
+        \item[(ii)]\tf{transcendental}\index{element!transcedental} if it is not algebraic.
+        \item[(iii)]\tf{separable}\index{element!separable} if it is algebraic, and its minimal polynomial is separable.
+    }
+    A field extension $F<E$ is called
+    \itm{
+        \item[(i)]\tf{algebraic}\index{extension!algebraic} if every $a\in E$ is algebraic over $F$.
+        \item[(ii)]\tf{transcendental}\index{extension!transcedental} if some $a\in E$ is transcendental over $F$.
+        \item[(iii)]\tf{simple}\index{extension!simple} if $E=F(a)$ for some $a\in E$, and such $a$ is called a \tf{primitive element}\index{element!primitive} of $E$.
+        \item[(iv)]\tf{finite}\index{extension!finite} if $[E:F]$ is finite.
+        \item[(v)]\tf{finitely generated}\index{extension!finitely generated} if $E=F(S)$ for some finite set $S\subset E$.
+        \item[(vi)]\tf{separable}\index{extension!separable} if every $s\in E$ is separable.
+        \item[(vii)]\tf{normal}\index{extension!normal} if $E$ is the splitting field of a family of polynomials over $F$.
+        \item[(viii)]\tf{Galois}\index{extension!Galois} if it is both separable and normal.
+        \item[(ix)]\tf{distinguished}\index{extension!distinguished} if it satisfies the \tf{tower property}, the \tf{lifting property} and is \tf{closed under finite compositions}.
+    }
+    The following illustrations show the mutual implications of different kinds of extensions.
+    \[\xymatrix{
+        \ttt{finitely generated algebraic}\ar@{<=>}[d]\\
+        \ttt{finite}\ar@<2ex>@{-^>}^{\chr=0}[d]\\
+        \ttt{simple algebraic}\ar@{=>}[u]
+    }\]
+\item[Embedding\index{embedding}]An \tf{embedding} of a field $F$ into a ring $R$ is ring monomorphism $f:F\into R$. Since $F$ contains no nontrivial ideal, $f$ is an embedding as long as it is nonzero. Let $F<E$ be an extension and let $\sigma:F\into L$ and $\orl\sigma:E\into L$ be two embeddings. If $\res{\orl\sigma}{F}=\sigma$, then $\orl\sigma$ is called an \tf{extension}\index{extension!embedding} of $\sigma$. If $\orl\sigma$ is an extension of $\id_F$, the $\orl\sigma$ is called an \tf{embedding over $F$} or an \tf{$F$-embedding}. The set of all embeddings form $E$ to $L$ is denoted by $\Hom(E,F)$. We also use the following notations as well.
+    \itm{
+        \item[(i)]Let $\sigma:F\into L$ be an embedding and $F<E$. Define $\Hom_\sigma(E,L)=\{\tau\in\Hom(E,L):\res{\tau}{F}=\sigma\}$ to be all possible extensions of $\sigma$.
+        \item[(ii)]Let $F<E$. Define $\Hom_F(E,L)=\{\tau\in\Hom(E,L):\res{\tau}{F}=\id_F\}$ to be all embeddings over $F$.
+    }
+    An embedding $\sigma:F\into L$ naturally gives rise to a mapping between polynomials. If $p(x)=a_0+a_1x+\cdots+a_nx^n\in F[x]$, then $(\sigma p)(x)=p^\sigma(x)=(\sigma a_0)+(\sigma a_1)x+\cdots+(\sigma a_n)x^n$ is a polynomial in $L[x]$. If $x$ is an indeterminant, then $\sigma$ does not have any effect on it; if $x$ is an element in $F$, then we have $\sigma(p(x))=p^\sigma(x^\sigma)$. Embeddings have the following properties.
+    \itm{
+        \item[(i)](\tf{Preserving factorization and roots}) Let $\sigma:F\into L$ be an embedding, $f,p,q\in F[x]$ and $\alpha\in F$.
+            \[f(x)=p(x)q(x)\iff f^\sigma(x)=p^\sigma(x)q^\sigma(x)\]
+            \[f(\alpha)=0\iff f^\sigma(\alpha^\sigma)=0\]
+        \item[(ii)](\tf{Preserving the lattice structure})
+        \item[(iii)](\tf{Preserving the adjoining})
+        \item[(iv)](\tf{Preserving algebraicness})
+        \item[(v)](\tf{Preserving algebraic closures})
+    }
+\end{description}
+\end{subsection}
+\end{section}
+
+\begin{section}{Topics}
+\begin{subsection}{Embeddings}
+The question to find all possible extensions of an embedding from a field is of vital importance in the field theory, for these embeddings provide a good view of the structure of the field. Let $\sigma:F\into L$ be an embedding. In order not to let the possibilities be limited by $L$, we assume that $L$ is algebraically closed.
+
+\begin{paragraph}{Simple case}
+First we consider the simple case. Let $\sigma:F\into L$ be an embedding where $L$ is algebraically closed. From some extension $E$ of $F$ we choose an algebraic element $\alpha\in E$. The following theorem describes all possible extensions of $\sigma:F\into L$ to $F(\alpha)$.
+
+\thm{\label{fext}Let $\sigma:F\into L$ be an embedding. Choose an algebraic element $\alpha$ over $F$ and denote its minimal polynomial by $p_\alpha=\min(\alpha,F)$. Then
+\[\tau\in\Hom_\sigma(F(\alpha),L)\iff\tau(\alpha)\ttt{ is a root of }p_\alpha^\sigma(x)\]
+And therefore there are exact as many extensions of $\sigma$ to $F(\alpha)$ as the number of distinct roots of $\min(\alpha,F)$.}
+\sprf{A more precise way to state the theorem is that, any mapping $\tau:F\cup\{\alpha\}\to L$ such that
+    \[\res{\tau}{F}=\sigma,\quad\tau(\alpha)\ttt{ is a root of }p_\alpha^\sigma(x)\]
+    can be extended to an embedding $\tau:F(\alpha)\into L$. Conversely, any embedding that extends $\sigma$ is such an extension of mapping. We shall prove this now.
+    \itm{
+        \item[(i)]Since $\alpha$ is algebraic, we have
+            \[F(\alpha)=\{a_0+a_1\alpha+\cdots+a_{n-1}\alpha^{n-1}:p_\alpha(\alpha)=0\}\cong F[x]/(p_\alpha(x))\]
+            where $n=\deg p_\alpha$. If $\beta$ is any root of $p_\alpha^\sigma$, and we set $\tau(\alpha)=\beta$, then for any $a_0+a_1\alpha+\cdots+a_{n-1}\alpha^{n-1}\in F(\alpha)$, its image under $\tau$ is uniquely determined (by the tentative property of $\tau$ being a homomorphism):
+            \mtha{\tau(a_0+a_1\alpha+\cdots+a_{n-1}\alpha^{n-1})&=&\tau(a_0)+\tau(a_1)\tau(\alpha)+\cdots+\tau(a_{n-1})\tau(\alpha^{n-1})\\
+                &=&\sigma(a_0)+\sigma(a_1)\beta+\cdots+\sigma(a_{n-1})\beta^{n-1}}
+            For this to be well-defined, $\tau$ must not contradict with the only other restriction that $p_\alpha(\alpha)=0$, i.e., it must hold that
+            \[0=\tau(0)=\tau(p_\alpha(\alpha))=p_\alpha^\tau(\alpha^\tau)=p_\alpha^\sigma(\beta)\]
+            But this is true by our assumption that $\beta$ is a root of $p_\alpha^\sigma$.
+            \ntg{Another way to see why this is the only other restriction is to think of $\tau$ as an embedding from $F[x]/(p_\alpha(x))$ such that $\tau(\orl x)=\beta$. The embedding, defined on the quotient ring of polynomials, is well-defined if the image of an equivalence class does not depend on the choice of the representative, i.e., $\tau$ maps $p_\alpha(x)$ to $0$.}
+        \item[(ii)]Conversely, any embedding $\tau\in\Hom_\sigma(F(\alpha),L)$ satisfies
+            \[0=\tau(0)=\tau(p_\alpha(\alpha))=p_\alpha^\sigma(\alpha^tau)\]
+            i.e., $\alpha^\tau$ is a root of $p_\alpha^\sigma$.
+    }
+    The proof above says that there is a one-to-one correspondence from all extensions $\Hom_\sigma(F(\alpha),L)$ of $\sigma:F\into L$ to all distinct roots of $\min(\alpha,F)$, hence the two sets have the same cardinality.
+}
+The following is an illustration of extending an embedding. Let $\sigma:F\into L$ be an embedding. Let $p(x)$ be the minimal irreducible polynomial of $\alpha$ over $F$, and write $p^\sigma(x)=(x-\beta_1)^{m_1}\cdots(x-\beta_k)^{m_k}$ where $\beta_1,\cdots,\beta_k$ are distinct (if $p^\sigma$ is separable, then $m_i=1$).
+\[\xymatrix{
+    &&F\ar[d]&&&\\
+    &&\alpha\ar'[d][dd]\ar'[rd][rdd]\ar'[rrrd][rrrdd]&&&\\
+    p^\sigma(x)&=&(x-\beta_1)^{m_1}&(x-\beta_2)^{m_2}&\cdots&(x-\beta_k)^{m_k}\\
+    &&\tau_1&\tau_2&\cdots&\tau_k\\
+}\]
+\end{paragraph}
+
+\begin{paragraph}{Embeddings of an algebraic number field}
+In the algebraic number theory, we are most concerned about embeddings of an algebraic number field. Such embeddings are of the form $\sigma:K\into\CC$ where $K/\QQ$ is an algebraic number field. Any embedding, as a ring homomorphism, must preserve $1$ and hence the prime field ($\QQ$ in this case). Therefore, we may think of $\sigma$ as an extension of the identity mapping $\id_\QQ$ on $\QQ$. We can then apply Theorem.\ref{fext}. to this.
+
+
+Let $\sigma:K\into\CC$ be an embedding of an algebraic number field $K$. Since $\chr\QQ=0$, the primitive element theorem says $K=\QQ(\alpha)$ for some algebraic element $\alpha\in K$. We suppose $\alpha$ has the minimal polynomial $p_\alpha(x)=\min(\alpha,\QQ)(x)\in\QQ[x]$ with $\deg p_\alpha=n=[K:\QQ]$. Also, $\chr\QQ=0$ implies that $p_\alpha$ is separable, hence it has exactly $n$ roots in $\CC$, and Theorem.\ref{fext}. says there are exactly $n$ embeddings $\sigma:K\into L$ over $\QQ$, mapping $\alpha$ to the $n$ distinct roots of $p_\alpha$.
+
+\emp{Consider the field extension $\QQ<\QQ(\zeta)$ where $\zeta=e^{2\pi i/3}$. We have $p(x)=\min(\zeta,\QQ)=x^2+x+1=(x-\zeta)(x-\zeta^2)$. Then the only possible embeddings are
+    \[\sigma_1:\QQ(\zeta)\to\CC,\ \zeta\mapsto\zeta\ttt{\quad and\quad}\sigma_2:\QQ(\zeta)\to\CC,\ \zeta\mapsto\zeta^2\]\qed}
+
+Note that the complex roots of $p_\alpha(x)$ appear in pairs. Suppose
+\[p_\alpha(x)=(x-r_1)\cdots(x-r_s)(x-r_{s+1})(x-\orl r_{s+1})\cdots(x-r_{s+t})(x-\orl r_{s+t})\]
+where $r_i\ (1\leqs i\leqs s)$ are real roots and $r_{s+j},\orl r_{s+j}\ (1\leqs j\leqs t)$ are nonreal complex roots. Let $\sigma_i:K\into\CC$ be the embedding such that $\alpha\mapsto r_i\ (1\leqs i\leqs s+t)$ and $\orl\sigma_i:K\into\CC$ the embedding such that $\alpha\mapsto\orl r_i\ (s+1\leqs i\leqs s+t)$. We claim that $\sigma_1,\cdots,\sigma_s$ are \tf{real embeddings}, i.e., $\sigma_i(K)\subset\RR$, because they map the primitive elements to a real number, and hence the image of $K=\QQ(\alpha)$ under each $\sigma_i\ (1\leqs i\leqs s)$ is contained in $\RR$. Similarly, the other embeddings are \tf{complex embeddings}.
+
+For further applications of these embeddings see the algebraic number theory part.
+\end{paragraph}
+\end{subsection}
+\end{section}
+\end{part}
+\printindex
+\end{document}

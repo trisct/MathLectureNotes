@@ -1,0 +1,798 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{geometry,layout,amssymb,amsthm,amsmath,mathrsfs,graphicx,centernot,textcomp,galois,extarrows,bbm,dsfont,makeidx,empheq,xcolor,tikz-cd}
+\usepackage[all]{xy}
+
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{prp}{Proposition}[section]
+\newtheorem{theom}{Theorem}[section]
+\newtheorem*{theom*}{Theorem}
+\newtheorem{coro}{Corollary}[section]
+
+\theoremstyle{definition}
+\newtheorem{eg}{Example}[section]
+\newtheorem{ct}{\textcolor{cyan}{Counterexample}}[section]
+\newtheorem*{pf}{\blue{Proof}}
+\newtheorem{question}{Q}[section]
+\newtheorem{dfn}{Definition}[section]
+\newtheorem{probl}{Problem}[section]
+\newtheorem{nt}{\cg{Note}}[section]
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}[section]
+
+\newcommand*\widefbox[1]{\fbox{\vspace{2em}\hspace{2em}#1\hspace{2em}}}
+\setlength\fboxsep{0.2cm}
+
+\newcommand{\tim}{$\implies$}
+\newcommand{\rtl}{\udl{``$\Leftarrow$''}}
+\newcommand{\ltr}{\udl{``$\Rightarrow$''}}
+\newcommand{\ril}{\udl{``$\supset$''}}
+\newcommand{\lir}{\udl{``$\subset$''}}
+\newcommand{\tick}{\textcolor{red}{\checkmark}}
+\newcommand{\bs}{\backslash}
+\newcommand{\udots}{\mathinner{\mskip 1mu\raise 1pt\vbox{\kern 7pt\hbox{.}}
+\mskip 2mu\raise 4pt\hbox{.}\mskip 2mu\raise 7pt\hbox{.}\mskip 1mu}}
+\newcommand{\wot}{\backslash}
+\newcommand{\geqs}{\geqslant}
+\newcommand{\leqs}{\leqslant}
+\newcommand{\Var}{{\rm Var}}
+\newcommand{\sdd}{\sigma}
+\newcommand{\esssup}{{\rm esssup}}
+\newcommand{\gD}{\got D}
+\newcommand{\ga}{\got a}
+\newcommand{\gb}{\got b}
+\newcommand{\gc}{\got c}
+\newcommand{\gp}{\got p}
+\newcommand{\gq}{\got q}
+\newcommand{\gm}{\got m}
+\newcommand{\lst}{L^{s,t}}
+\newcommand{\DD}{\mathbb{D}}
+\newcommand{\EE}{\mathbb{E}}
+\newcommand{\HH}{\mathbb{H}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\rsa}{\sigma(f;\pi,\xi)}
+\newcommand{\wlg}{{\rm w.l.o.g.}}
+\newcommand{\alg}{{\rm alg}}
+\newcommand{\sep}{{\rm sep}}
+\newcommand{\spn}{{\rm span}}
+\newcommand{\rank}{{\rm rank}}
+\newcommand{\nul}{{\rm null}}
+\newcommand{\disc}{{\rm disc}}
+\newcommand{\im}{{\rm Im}}
+\newcommand{\coker}{{\rm Coker}}
+\newcommand{\coim}{{\rm Coim}}
+\newcommand{\ud}{{\rm d}}
+\newcommand{\Log}{{\rm Log}}
+\newcommand{\lub}{{\rm lub}}
+\newcommand{\glb}{{\rm glb}}
+\newcommand{\loc}{{\rm loc}}
+\newcommand{\supp}{{\rm supp}}
+\newcommand{\dw}{\ud w}
+\newcommand{\dbw}{\ud\orl w}
+\newcommand{\dx}{\ud x}
+\newcommand{\dy}{\ud y}
+\newcommand{\dz}{\ud z}
+\newcommand{\dbz}{\ud\orl z}
+\newcommand{\bz}{\orl z}
+\newcommand{\dmu}{\ud\mu}
+\newcommand{\x}{\times}                     %乘号
+\newcommand{\ox}{\otimes}
+\newcommand{\op}{\oplus}
+\newcommand{\p}{$\prime$}
+\newcommand{\fctr}{\Rightarrow}
+\newcommand{\unito}{\rightrightarrows}
+\newcommand{\bwto}{\rightharpoonup}
+\newcommand{\bwsto}{\stackrel{*}{\rightharpoonup}}
+\newcommand{\wto}{\rightharpoondown}
+\newcommand{\lbint}{\int\!\!\!\int}      %二重积分号
+\newcommand{\bint}{\int\!\!\!\!\int}      %二重积分号
+\newcommand{\tint}{\int\!\!\!\!\int\!\!\!\!\int}      %三重积分号
+\newcommand{\apr}{\approx}
+\newcommand{\prdn}{\prod\limits_{n=1}^\infty}
+\newcommand{\sumn}{\sum\limits_{n=1}^\infty}
+\newcommand{\sump}{\sum\limits_{n=0}^\infty}
+\newcommand{\limn}{\lim\limits_{n\to\infty}}
+\newcommand{\limx}{\lim\limits_{x\to+\infty}}
+\newcommand{\operp}{\stackrel{\perp}{\oplus}}
+\newcommand{\const}{{\rm const}}
+\newcommand{\codim}{{\rm codim}}
+\newcommand{\sgn}{{\rm sgn}}
+\newcommand{\ann}{{\rm Ann}}
+\newcommand{\chr}{{\rm \,char\,}}
+\newcommand{\tr}{{\rm Tr}}
+\newcommand{\sym}{{\rm Sym}}
+\newcommand{\Alt}{{\rm Alt}}
+\newcommand{\drh}[1]{H^{#1}_{\rm dR}}
+\newcommand{\centr}{{\rm Centr}}
+\newcommand{\Sp}{{\rm Sp}}              %symplectic
+\newcommand{\id}{{\rm id}}
+\newcommand{\Obj}{\mf{Obj}}
+\newcommand{\Mor}{\mf{Mor}}
+\newcommand{\Perm}{{\rm Perm}}
+\newcommand{\Hom}{{\rm Hom}}
+\newcommand{\Aut}{{\rm Aut}}
+\newcommand{\Gal}{{\rm Gal}}
+\newcommand{\Inn}{{\rm Inn}}
+\newcommand{\End}{{\rm End}}
+\newcommand{\PSL}{{\rm PSL}}
+\newcommand{\Area}{{\rm Area}}
+\newcommand{\re}{{\rm Re}}
+\newcommand{\diag}{{\rm diag}}
+\newcommand{\grad}{{\rm grad\,}}
+\newcommand{\dive}{{\rm div\,}}
+\newcommand{\rot}{{\rm rot\,}}
+\newcommand{\curl}{{\rm curl\,}}
+\newcommand{\free}{{\rm free}}
+\newcommand{\tor}{{\rm tor}}
+\newcommand{\rad}{{\rm rad}}
+\newcommand{\nilrad}{{\rm nilrad}}
+\newcommand{\ord}{{\rm ord}}
+\newcommand{\irr}{{\rm Irr}}
+\newcommand{\cl}{{\rm cl}}
+\newcommand{\Cl}{{\rm Cl}}
+\newcommand{\fix}{{\rm fix}}
+\newcommand{\boun}{\partial}
+\newcommand{\into}{\hookrightarrow}
+\newcommand{\varn}{\varnothing}
+\newcommand{\vare}{\varepsilon}
+\newcommand{\vphi}{\varphi}
+\newcommand{\diam}{{\rm diam}}
+\newcommand{\vect}{{\rm Vect}}
+\newcommand{\isom}{\stackrel{\cong}{\longrightarrow}}
+\newcommand{\dfas}{\triangleq}
+\newcommand{\st}{{\rm\quad s.t.\quad}}
+\newcommand{\lapla}{\Delta}
+\newcommand{\divd}{\big|}
+\newcommand{\strinc}{\subset\subset}
+
+\makeatletter
+\newcommand{\lambdabar}{{\mathchoice
+  {\smash@bar\textfont\displaystyle{0.25}{1.2}\lambda}
+  {\smash@bar\textfont\textstyle{0.25}{1.2}\lambda}
+  {\smash@bar\scriptfont\scriptstyle{0.25}{1.2}\lambda}
+  {\smash@bar\scriptscriptfont\scriptscriptstyle{0.25}{1.2}\lambda}}}
+\newcommand{\smash@bar}[4]{%
+  \smash{\rlap{\raisebox{-#3\fontdimen5#10}{$\m@th#2\mkern#4mu\mathchar'26$}}}}
+\makeatother
+
+
+\newcommand{\res}[2]{\left.#1\right|_{#2}}
+\newcommand{\rsb}[3]{\sigma(#1;#2,#3)}      %Riemann sum with arguments
+\newcommand{\derv}[2]{\frac{\ud#1}{\ud#2}}
+\newcommand{\parf}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\secpf}[3]{\frac{\partial^2 #1}{\partial #2\partial #3}}
+\newcommand{\comb}[2]{\binom{#1}{#2}}       %组合数
+\newcommand{\norm}[1]{\left\lVert #1\right\rVert}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\brc}[1]{\left\{#1\right\}}
+\newcommand{\brk}[1]{\left\langle#1\right\rangle}
+\newcommand{\prn}[1]{\left(#1\right)}
+\newcommand{\sqb}[1]{\left\lbrack#1\right\rbrack}
+\newcommand{\dbk}[1]{\langle\!\langle#1\rangle\!\rangle}
+\newcommand{\inprod}[1]{\langle#1\rangle}
+\newcommand{\itr}[1]{#1^\circ}           %内部,interior
+\newcommand{\cosp}[1]{\prescript}
+\newcommand{\coo}[1]{\prescript{\circ}{}{#1}}
+\newcommand{\cmp}[1]{#1^c}               %补集,complement
+\newcommand{\cnts}[3]{#1#3\cdots#3#2}
+\newcommand{\inds}[3]{#1_{1}#3\cdots#3#1_{#2}}
+\newcommand{\dindx}[4]{#1{#2}#4\cdots#4#1{#3}}
+\newcommand{\dinds}[4]{#1_{#2}#4\cdots#4#1_{#3}}
+\newcommand{\vct}[1]{\overrightarrow{#1}}
+\newcommand{\simlr}[2]{#2^{-1}#1#2}     %相似
+\newcommand{\congt}[2]{\ts{#2}#1#2}     %相合
+\newcommand{\ccong}[2]{\cts{#2}#1#2}    %共轭相合
+\newcommand{\rcong}[2]{\ts{#2}#1\orl{#2}}    %右共轭相合
+\newcommand{\ts}[1]{#1^{\rm T}}
+\newcommand{\cts}[1]{\orl{#1}^{\rm T}}   %共轭转置
+\newcommand{\wt}[1]{\widetilde{#1}}
+\newcommand{\bss}[2]{\inds{#1}{#2}{,}}
+\newcommand{\unitob}[1]{\mathop{\rightrightarrows}\limits_{#1}}
+\newcommand{\limb}[1]{\lim\limits_{#1}}
+\newcommand{\limp}[2]{\lim\limits_{#1\to#2}}
+%\newcommand{\mapn}[5]{\arr{{ccrcl}#1&:&#2&\to&#3\\&&#4&\mapsto&#5}}
+\newcommand{\mapn}[5]{\mtha{#1:#2&\to&#3\\#4&\mapsto&#5}}
+\newcommand{\map}[4]{\arr{{rcl}#1&\to&#2\\#3&\mapsto&#4}}
+\newcommand{\mapgal}[6]{\arr{{rcl}#1&\leftrightarrow&#2\\#3&\mapsto&#4\\#6&\mapsfrom&#5}}
+\newcommand{\mapgalm}[6]{\mtha{#1&\leftrightarrow&#2\\#3&\mapsto&#4\\#6&\mapsfrom&#5}}
+\newcommand{\mapisom}[4]{\arr{{rcl}#1&\isom&#2\\#3&\mapsto&#4}}
+
+\newcommand{\mth}[1]{\begin{displaymath}#1\end{displaymath}}
+\newcommand{\mtha}[1]{\begin{eqnarray*}#1\end{eqnarray*}}
+\newcommand{\arr}[1]{\begin{array}#1\end{array}}
+\newcommand{\lem}[1]{\begin{lemma}#1\end{lemma}}
+\newcommand{\lemn}[1]{\begin{lemma*}#1\end{lemma*}}
+\newcommand{\prf}[1]{\begin{proof}[Proof]#1\end{proof}}
+\newcommand{\prfn}[1]{\begin{proof}#1\end{proof}}
+\newcommand{\sol}[1]{\begin{proof}[Solution]#1\end{proof}}
+\newcommand{\ans}[1]{\begin{proof}[Answer]#1\end{proof}}
+\newcommand{\ques}[1]{\begin{question}#1\end{question}}
+\newcommand{\sprf}[1]{\begin{pf}\cb{#1}\end{pf}}
+\newcommand{\df}[1]{\begin{dfn}#1\end{dfn}}
+\newcommand{\ntg}[1]{\begin{nt}\cg{#1}\end{nt}}
+\newcommand{\mat}[1]{\begin{matrix}#1\end{matrix}}
+\newcommand{\matp}[1]{\prn{\begin{matrix}#1\end{matrix}}}
+\newcommand{\cd}[1]{\begin{tikzcd}[ampersand replacement=\&]#1\end{tikzcd}}
+\newcommand{\itm}[1]{\begin{itemize}#1\end{itemize}}
+\newcommand{\enu}[1]{\begin{enumerate}#1\end{enumerate}}
+\newcommand{\desc}[1]{\begin{description}#1\end{description}}
+\newcommand{\tmth}[1]{\begin{displaymath}\ttt{#1}\end{displaymath}}
+\newcommand{\thm}[1]{\begin{theom}#1\end{theom}}
+\newcommand{\thmn}[1]{\begin{theom*}#1\end{theom*}}
+\newcommand{\emp}[1]{\begin{eg}#1\end{eg}}
+\newcommand{\rmk}[1]{\begin{remark}#1\end{remark}}
+\newcommand{\pbl}[1]{\begin{probl}#1\end{probl}}
+\newcommand{\prop}[1]{\begin{prp}#1\end{prp}}
+\newcommand{\cor}[1]{\begin{coro}#1\end{coro}}
+\newcommand{\eqn}[1]{\begin{equation}#1\end{equation}}
+\newcommand{\eqna}[1]{\begin{eqnarray}#1\end{eqnarray}}
+
+\newcommand{\clr}[1]{\textcolor{red}{#1}}   %红色
+\newcommand{\cb}[1]{\textcolor{blue}{#1}}   %蓝色
+\newcommand{\cg}[1]{\textcolor{magenta}{#1}}%紫色
+\newcommand{\cy}[1]{\textcolor{cyan}{#1}}
+\newcommand{\hlg}[1]{\cg{\udl{#1}}}
+\newcommand{\hlb}[1]{\cb{\udl{#1}}}
+\newcommand{\hlr}[1]{\clr{\udl{#1}}}
+
+\newcommand{\mf}{\mathbf}
+\newcommand{\tf}{\textbf}
+\newcommand{\tit}{\textit}
+\newcommand{\hlt}[1]{\textbf{\red{#1}}}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+
+\newcommand{\nm}[1]{{\rm#1}}                %竖体
+\newcommand{\ttt}{\textrm}
+\newcommand{\mhb}[1]{\mathbb{#1}}
+\newcommand{\mcl}[1]{\mathcal{#1}}
+\newcommand{\flr}[1]{\mathscr{#1}}
+\newcommand{\got}[1]{\mathfrak{#1}}
+\newcommand{\orl}[1]{\overline{#1}}
+\newcommand{\udl}[1]{\underline{#1}}
+\newcommand{\uudl}[1]{\uuline{#1}}
+\newcommand{\wudl}[1]{\uwave{#1}}
+
+%%%%%%%%%%%%%PHYSICS CONSTANTS
+\newcommand{\cstk}{\frac{1}{4\pi\vare_0}}
+\newcommand{\cstm}{\frac{\mu_0}{4\pi}}
+
+\renewcommand{\ker}{{\rm Ker}}
+\renewcommand{\Re}{{\rm Re}}
+\renewcommand{\Im}{{\rm Im}}
+\renewcommand{\S}{S^{-1}}
+\renewcommand{\bar}{\orl}
+\renewcommand{\subset}{\subseteq}
+\renewcommand{\supset}{\supseteq}
+\renewcommand{\subsetneq}{\subsetneqq}
+\renewcommand{\supsetneq}{\supsetneqq}
+
+\title{Functional Analysis}
+\author{TRISCT}
+\date{}
+\makeindex
+\date{}
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\maketitle
+\tableofcontents
+\newpage
+\begin{section}{Basic Facts}
+\begin{subsection}{The Baire Category Theorem}
+\thm{In a complete metric space, if there is a countable family of closed sets with no interior, then their union has no interior.}
+\cor{If a complete metric space is a countable union of closed sets, then one of them has a nonempty interior.}
+\end{subsection}
+\begin{subsection}{Basic Facts about Normed Vector Spaces}
+\thm{The following are true about finite dimensional spaces.
+\itm{
+    \item[(i)]All norms are equivalent in a finite dimensional space.
+    \item[(ii)]A finite dimensional normed vector space is complete.
+    \item[(iii)]A finite dimensional subspace of a normed vector space is closed.
+    \item[(iv)]In a finite dimensional normed vector space a closed and bounded set is sequentially compact\footnote{In a general topological space, compact implies sequentially compact but not conversely. However, in a metric space, sequentially compact and compact are equivalent. But we will only use the term ``sequentially compact'' so as to remind the reader what we are proving.}
+    \item[(v)]If in a normed vector space, the unit sphere is compact, then the space is finite dimensional.
+}}
+\prf{Let each space in question be denoted by $E$.
+\itm{
+    \item[(i)]Let $e_1,\cdots,e_d$ be a basis for $E$. We define for every $\sum_{i=1}^dx_ie_i$ the norm
+        \[\norm x_1=\sum_{i=1}^d\abs{x_i}\]
+        Then for any other norm $\norm\ $ we have
+        \[\norm x=\norm{\sum_{i=1}^dx_ie_i}\leqs\prn{\max\norm{e_j}}\sum_{i=1}^d\abs{x_i}=\prn{\max\norm{e_j}}\norm x_1\]
+        So $\norm\ $ is weaker than $\norm\ _1$.
+        On the other hand, if $\norm\ _1$ is not weaker than $\norm\ $, then there is some sequence $x_n$ such that
+        \[\frac{\norm{x_n}}{\norm{x_n}_1}\to0\]
+        Of course we may assume $\norm{x_n}_1=1$. In this case, each coordinate $x_i$ is bounded, and there is a subsequence $x_{n_k}$ converging in coordinates (and hence in the norm $\norm\ _1$) to some $x$. Since $\norm\ _1$ is stronger than $\norm\ $, $x$ is also the limit of $x_{n_k}$ under $\norm\ $, but $\norm{x_n}\to0$, hence $x=0$. But it follows that $\norm{x_{n_k}}_1\to0$ as well; a contradiction.
+    \item[(ii)]Let the space be $E$ with $\dim E=d$. Define for any basis the corresponding $2$-norm. Then it is equivalent to the previously given norm and hence induces the same topology as the previous one. Completeness is then equivalent under these two norms. Note that under the $2$-norm, there is an isometry $E\cong\RR^d$. And the completeness follows from that of $\RR^d$.
+    \item[(iii)]Let $M$ be the subspace of $E$ and has finite dimension. Restrict the norm to $M$ so that it becomes a Banach space by (ii). Hence any limit point lies in itself and $M$ is therefore closed.
+    \item[(iv)]Choose a basis and define the corresponding $1$-norm. Since it is equivalent to the previously given norm, closedness and boundedness are equivalent under both norms. And under the new norm, each coordinate of a bounded sequence is bounded and hence a subsequence converges in coordinates. It follows that the same subsequence converges with respect to the old norm as well.
+    \item[(v)]\red{Q}
+}}
+\end{subsection}
+\begin{subsection}{Basic Facts about Linear Functionals}
+Let $E$ be a vector space over $\RR$. A \tf{functional} $f$ on $E$ is a function $f:E\to\RR$. If $f$ is in addition linear, then it is called a \tf{linear functional}. If instead, $f$ satisfies $f(\alpha x)=\alpha f(x)$ and $f(x+y)\leqs f(x)+f(y)$, then $f$ is called a \tf{sublinear} or \tf{Minkowski functional}. If $E$ is normed with $\norm{\cdot}$, then we can define the \tf{norm} of a linear functional $f$ on $E$ as follows:
+\[\norm{f}=\sup_{x\neq0}\frac{|f(x)|}{\norm{x}}=\sup_{\norm{x}=1}|f(x)|=\sup_{\norm{x}\leqs1}|f(x)|\]
+The first and the second definitions are clearly equivalent. And obviously \[\sup_{\norm{x}\leqs1}|f(x)|\geqs\sup_{\norm{x}=1}|f(x)|\]
+Conversely we have
+\[\sup_{\norm{x}\leqs1}|f(x)|\leqs\sup_{\substack{\norm{x}\leqs1\\x\neq0}}\frac{|f(x)|}{\norm{x}}=\sup_{\norm{x}=1}|f(x)|\]
+Hence all the definitions are equivalent.
+\thm{The following are equivalent for a linear functional $f:E\to\RR$ on a normed vector space $E$.
+\itm{
+    \item[(i)]$\norm{f}<\infty$;
+    \item[(ii)]$|f(x)|<M\norm{x}$ for some $M<\infty$, such an $f$ is called \tf{bounded};
+    \item[(iii)]$f$ is continuous;
+    \item[(iv)]$f$ is continuous at $0$.
+}}
+\prf{We only prove (iii)$\implies$(i); others are obvious.\footnote{We cannot use $\norm{x}=1$ is compact because this is not trivial.} \tf{Hint:} what happens if $\norm{f}=\infty$, i.e. there is a sequence $x_n$ with $\norm{x_n}=1$ but $|f(x_n)|\to\infty$? Consider $f\prn{\frac{x_n}{f(x_n)}}$}
+
+Let $E^*$ be the space of all bounded/continuous/finite-norm linear functionals. $E^*$ is called the \tf{dual space} of $E$. About the structure of $E^*$, we have
+\thm{\itm{
+    \item[(i)]$E^*$ is a normed vector space;
+    \item[(ii)]$E^*$ is a Banach space.
+}}
+\prf{\itm{
+    \item[(i)]Easy;
+    \item[(ii)]One can prove that a Cauchy sequence in $E^*$ has a pointwise limit. One can show this limit is linear and then bounded.
+}}
+
+\thm{Let $f:E\to\RR$ be a linear functional on a normed vector space (not necessarily continuous). Then $H=[f=\alpha]$ is closed $\iff f$ is continuous.}
+\prf{(\rtl): Obvious. (\ltr): We can directly show that $f(x)$ is bounded when $x$ belongs to a ball centered at $0$.}
+\end{subsection}
+\begin{subsection}{Vector Operations of Subsets in a Normed Vector Space}
+\thm{Let $E$ be a normed vector space and $A,B\subset E$ nonempty subsets.
+\itm{
+    \item[(i)]If one of $A,B$ is open, then $A+B$ is open.
+    \item[(ii)]If $A$ is closed and $B$ is compact, then $A+B$ is closed.
+    \item[(iii)]If both sets are convex, then $A+B$ is convex.
+    \item[(iv)]If $A$ is convex, then $A+A=2A$.
+    \item[(v)]If $A$ is closed, then for $\lambda>0$, $\lambda A$ is closed.
+    \item[(vi)]For $\lambda>0$, $\lambda\bar A=\bar{\lambda A}$.
+}\label{vecop}}
+\prf{\itm{
+    \item[(i)]
+    \item[(ii)]
+    \item[(iii)]
+    \item[(iv)]Apparently $2A\subset A+A$. Conversely, if $x,y\in A$, then $\frac{x+y}{2}\in A$ and $x+y=\frac{x+y}{2}+\frac{x+y}{2}\in 2A$. Hence $A+A\subset2A$.
+    \item[(v)]Let $x_n\to x$ with $x_n\in\lambda A$. Then $\frac{x_n}{\lambda}\in A\implies\frac{x}{\lambda}\in\bar A=A\implies x\in\lambda A$.
+    \item[(vi)]If $x\in\lambda\bar A$, then let $x=\lambda y$ with $y\in\bar A$. Let $y_n\to y$ with $y_n\in A$. Then $x_n=\lambda y_n\in\lambda A$ and $x_n\to x\implies x\in\bar{\lambda A}$. This means
+        \[\lambda\bar A\subset\bar{\lambda A}\]
+        Also, $\lambda A\subset\lambda\bar A$ and thus
+        \[\bar{\lambda A}\subset\bar{\lambda\bar A}=\lambda\bar A\]
+}}
+\end{subsection}
+\end{section}
+
+\begin{section}{The Hahn-Banach Theorems}
+\begin{subsection}{Lemmas}
+Let $E$ be a normed vector space and $C\subset E$ an open convex subset with $0\in C$.\footnote{One must require that $C$ contains a neighborhood of $0$ for the gauge to be defined. Although convexity is not necessary, without it the definition may be useless.} Then the function is defined on $E$:
+\[p(x)=\inf\{\alpha>0:\frac{x}{\alpha}\in C\}\]
+and is called the \tf{gauge} or the \tf{Minkowski functional} of $C$.
+\lem{[Gauge, the Minkowski functional of a set]Let $E$ be a normed vector space and $C$ an open convex subset of $E$ with $0\in C$. Then the gauge $p(x)$ of $C$ satisfies
+\itm{
+    \item[(i)]$p$ is a Minkowski functional;
+    \item[(ii)]$p$ is weaker than $\norm\ _E$, in the sense that $0\leqs p(x)\leqs M\norm x_E$ for some $M$;
+    \item[(iii)]$x\in C\iff p(x)<1$.
+}\label{setmink}}
+\lem{[Separation by pivot]In a normed vector space $E$, if $C$ is an open and convex subset, then for any $x_0\notin C$, there exists $f\in E^*$ such that
+\[\forall x\in C,\ f(x)<f(x_0)\]\label{lemhbfgf}}
+\prf{First assume $0\in C$, then we can define the gauge $p$ of $C$, which is a Minkowski functional by Lemma \ref{setmink}. Then define on $\RR x_0$ the linear functional
+\mapn{f}{\RR x_0}{\RR}{tx_0}{t}
+and see that it is dominated from above by $p$ because $p(x_0)\geqs 1=f(x_0)\implies f(tx_0)\leqs p(tx_0)$ for all $t>0$ and the case $t<0$ is trivial. Then $f$ can be extended to $\bar f:E\to\RR$ with $f(x)\leqs p(x),\ \forall x\in E$. Then we have $\forall x\in C,\ f(x)\leqs p(x)<1=f(x_0)$.\\
+For the case in which $0\notin C$, we choose any $x_1\in C$, then $0\in(C-x_1)$ and there exists $f\in E^*$ such that
+\[f(C-x_1)<f(x_0-x_1)\implies f(C)<f(x_0)\]
+by linearity.}
+\end{subsection}
+\begin{subsection}{The Theorems}
+\thm{[Helly, Hahn-Banach analytic form]Let $E$ be a vector space and $G\subset E$ a subspace. The following are true.
+\itm{
+    \item[(i)]A linear functional $g:G\to\RR$ dominated from above by a Minkowski     functional $p:E\to\RR$ has an extension to $E$ that is still dominated from above by $p$.
+    \item[(ii)]A continuous linear functional $g:G\to\RR$ has an extension $f:E\to\RR$ with $\norm{f}_{E^*}=\norm{g}_{G^*}$.
+}}
+\prf{First prove that there is an extension to a subspace of at least one more dimension. (The constant on the new dimension needs to be chosen carefully.) Then use Zorn's lemma.}
+\thm{[Hahn-Banach, first geometric form]Let $E$ be a normed vector space. Then for any two disjoint nonempty convex subsets, if one is open then they can be separated by a closed hyperplane.\label{hbfgf}}
+\prf{Let $A,B$ be these two sets with $A$ open. Let $C=A-B$ (minus sign denotes vector subtraction here). Then $C=\bigcup_{y\in B}(A-y)$ is open and $0\notin C$. $A-B$ is also convex, for if $x-y\in A-B$ and $x'-y'\in A-B$ (with $x,x'\in A,\ y,y'\in B$), then
+\[(1-t)(x-y)+t(x'-y')=(1-t)x+tx'-((1-t)y+ty')\in A-B\]
+By Lemma \ref{lemhbfgf}, we can find $f\in E^*$ such that
+\[\forall x\in A,y\in B,\ f(x-y)<0\implies f(x)<f(y)\]
+}
+\thm{[Hahn-Banach, second geometric form]Let $E$ be a normed vector space. Then for any two disjoint nonempty convex subsets, if one is compact and another is closed, then they can be strictly separated by a closed hyperplane.}
+\prf{Let $A,B$ be these sets with $A$ closed and $B$ compact. Let $C=A-B$. Then $C$ is convex (see the proof of Theorem \ref{hbfgf}). $C$ is also closed for if there is a sequence $x_n-y_n$ with $x_n\in A,\ y_n\in B$ that converges to $z\in E$, then a subsequence of $y_n$ converges to some $y\in B$ because $B$ is compact, then the corresponding subsequence of $x_n$ converges to $x=z+y\in A$ because $A$ is closed. Hence $z\in A-B$ and $C$ is closed. Note that $0\notin C$, hence we can find $B(0,r)\cap C=\varn$. By Theorem
+\ref{hbfgf} there is some $f\in E^*$ such that
+\[f(w)<f(z),\ \forall w\in B(0,r),\ z\in C=A-B\]
+\[\implies f(y)+f(w)<f(x),\ \forall w\in B(0,r),\ x\in A,\ y\in B\]
+$f|_{B(0,r)}\neq0$ otherwise $f$ is identically $0$. Hence we can find $w_0\in B(0,r)$ such that $f(w_0)\neq0$. We may assume $f(w_0)=2\vare>0$ by replacing $w_0$ with $-w_0$. Then $f(y)+2\vare< f(x)$, i.e. $f(y)+\vare<f(x)-\vare$.}
+\thm{[Hahn-Banach, finite dimensional case]Let $E$ be a finite dimensional normed vector space. Then any two disjoint nonempty convex subsets can be separated by a closed hyperplane.}
+\prf{\red{Exercise 1.9.}}
+\end{subsection}
+\begin{subsection}{Corollaries}
+\thm{[The duality map]Let $E$ be a normed vector space. Then for every $x\in E$ the set \[F(x)=\{f\in E^*:\norm f_{E^*}=\norm x_E,\ \brk{f,x}=\norm x^2_E\}\]
+is nonempty. The (multi-valued) map
+\[\map{E}{E^*}{x}{F(x)}\]
+is called the \tf{duality map}.}
+\thm{[Dense subspace]If a subspace does not admit a nonzero linear functional that annihilates it, then it is dense.\label{densesbsp}}
+\prf{We shall prove this using the second form from Note \ref{ntdensesbsp}.Let $F$ be a subspace of $E$. If $\bar F\neq E$, then we find $x_0\notin\bar F$ and use the second geometric form of the Hahn-Banach theorem. We obtain some $f\in E^*$ and some $\vare>0$ such that
+\[f(x)+\vare<f(x_0),\ \forall x\in\bar F\]
+$f(x)$ is bounded for $x\in\bar F$, which indicates $f(x)=0,\ \forall x\in\bar F$. But this also implies $f(x_0)$.}
+\ntg{There are more ways to state Theorem \ref{densesbsp}.
+\itm{
+    \item[(i)]For a subspace, if every linear functional that annihilates it must be zero, then it is dense.
+    \item[(ii)]If a subspace is not dense, then there is a nonzero linear functional that annihilates it.
+}\label{ntdensesbsp}}
+\end{subsection}
+\end{section}
+\begin{section}{Orthogonality}
+Let $E$ be a normed vector space. For a subspace $M\subset E$, we define the \tf{orthogonal space} (the term ``space'' is to be justified later) or the \tf{annihilator}\footnote{Sometimes a single element of this set is called an annihilator.} of $M$ to be
+\[M^\perp=M^\circ=\{f\in E^*:f(M)=0\}\]
+For a subspace $N\subset E^*$, we define the \tf{orthogonal space} of $N$ in $E$ or the \tf{annihilator} of $N$ in $E$ to be
+\[N^\perp=\coo N=\{x\in E:\brk{f,x}=0,\ \forall f\in N\}\]
+Unless $E$ is reflexive, the \tf{orthogonal space} of $N$ in $E^{**}$ might be different (larger, actually):
+\[N^\circ=\{\xi\in E^{**}:\xi(f)=0,\ \forall f\in N\}\]
+\thm{$M^\perp,\ N^\perp$ are closed subspaces.}
+\prf{They are clearly subspaces. For closedness, observe that for a given $x\in M$, the set
+\[\{f\in E^*:f(x)=0\}\]
+is closed because if $g\in E^*$ is a limit point, then for $f\in\{f\in E^*:f(x)=0\}$ $\norm{g(x)}=\norm{g(x)-f(x)}\leqs\norm{g-f}\norm{x}$ Since $\norm{g-f}$ can be arbitrarily small we have $g(x)=0$. Then we have
+\[M^\perp=\bigcap_{x\in M}\{f\in E^*:f(x)=0\}\]
+which is therefore closed. The proof that $N^\perp$ is similar.
+}
+\ntg{We may also use the following lemma (whose converse is not true) for the proof above.}
+\lem{In $E^*$, converging in norm implies pointwise convergence.}
+\prf{Let $f_n\to f$ in $E^*$. Then for any $x\in E$, we have
+\[\norm{f_n(x)-f(x)}\leqs\norm{f-f_n}\norm{x}\to0\]}
+\thm{[Orthogonal operations]Let $E$ be a normed vector space. Let $M\subset E,\ N\subset E^*$ be subspaces and $G,L\subset E$ closed subspaces. The following are true.
+\itm{
+    \item[(i)]$\bar M=(M^\perp)^\perp$
+    \item[(ii)]$\bar N=(N^\perp)^\perp$
+    \item[(iii)]$G\cap L=(G^\perp+L^\perp)^\perp$
+    \item[(iii\p)]$(G\cap L)^\perp\supset\bar{(G^\perp+L^\perp)}$
+    \item[(iv)]$G^\perp\cap L^\perp=(G+L)^\perp$
+    \item[(iv\p)]$(G^\perp\cap L^\perp)^\perp=\bar{G+L}$
+}}
+\thm{[Closedness and orthogonality]Let $E$ be a Banach space. and $G,L$ two closed subspaces of $E$. The following are equivalent.
+\itm{
+    \item[(i)]$G+L$ is closed in $E$
+    \item[(ii)]$G^\perp+L^\perp$ is closed in $E^*$
+    \item[(iii)]$G+L=(G^\perp+L^\perp)^\perp$
+    \item[(iv)]$G^\perp+L^\perp=(G\cap L)^\perp$
+}}
+\prf{\udl{(i)$\iff$(iii)}: Obvious. \udl{(ii)$\iff$(iv)}: Obvious.\\
+\udl{(ii)$\Rightarrow$(i)}: By Theorem \ref{decompest}, there exists $C$ such that
+\[\forall f\in E^*,\ d(f,G^\perp\cap L^\perp)\leqs C(d(f,G^\perp)+d(f,L^\perp))\]
+We claim
+\[d(f,G^\perp)=\sup_{\substack{x\in G\\\norm x\leqs1}}\brk{f,x}\]
+Indeed, $\forall g\in G^\perp$, then
+\[\sup_{\substack{x\in G\\\norm x\leqs1}}\brk{f,x}=\sup_{\substack{x\in G\\\norm x\leqs1}}\brk{f-g,x}\leqs\sup_{\substack{x\in E\\\norm x\leqs1}}\brk{f-g,x}=\norm{f-g}=d(f,g)\]
+By taking the infimum over $g\in G^\perp$,
+\[\sup_{\substack{x\in G\\\norm x\leqs1}}\brk{f,x}\leqs d(f,G^\perp)\]
+\red{Q: Conversely?}
+}
+\end{section}
+\begin{section}{The Uniform Boundedness Principle}
+\thm{[Banach-Steinhaus, uniform boundedness principle]If $E$ is a Banach space and $F$ is a normed vector space, then any subset $\mcl F$ of $\mcl L(E,F)$ that is pointwise bounded\footnote{In the sense that for each given $x\in E$, $\norm{Tx}$ is bounded for all $T\in\mcl L(E,F)$.} is also bounded in norm.}
+\prf{Use the Baire category theorem on the sequence
+\[X_n=\{x\in E:\norm{Tx}\leqs n,\ \forall T\in\mcl F\}\]
+Then one of them has an interior. Consider the values of $T\in\mcl F$ on some ball inside this interior and we are done.}
+\cor{[Pointwise convergent sequence of functionals]Let $E$ be a Banach space and $F$ a normed vector space. Then a pointwise convergent sequence $T_n\in\mcl L(E,F)$ is bounded in norm, and the limit $T$ is also in $\mcl L(E,F)$ with a norm estimate given by
+\[\norm{T}\leqs\liminf_{n\to\infty}\norm{T_n}\]}
+\cor{[Weak boundedness]In a Banach space $E$, weak boundedness is equivalent to strong boundedness. That is to say, if the image of a subset under every continuous linear functional is bounded, then the subset itself is bounded.}
+However, for its dual $E^*$, we don't need $E^{**}$ but merely $E$ for the same argument. I guess this is because the norm of elements in $E^*$ depends sorely on $E$.
+\thm{[Weak boundedness, dual version]Let $E$ be a Banach space. Then if the image of a subset of $E^*$ under every $x\in E\subset E^{**}$ is bounded, then the subset itself is bounded.}
+\end{section}
+\begin{section}{The Open Mapping Theorem and the Closed Graph Theorem}
+\begin{subsection}{The Theorems}
+\thm{Let $E,\ F$ be a Banach spaces. Then
+\itm{
+    \item[(i)]A surjective continuous linear map $E\to F$ maps $B_E(0,1)$ to a neighborhood\footnote{The word ``neighborhood'' here does not necessarily mean an open neighborhood.} of $0\in F$.
+    \item[(ii)]A surjective continuous linear map is an open map.
+    \item[(iii)]A continuous linear map is open in its image, in the sense that it is open if we restrict the codomain to its range.
+}}
+\prf{First we use the Baire category theorem on the sequence of closed sets:
+\[X_n=n\bar{T(B(0,1))}=\bar{T(B(0,n))}\]
+Since $T$ is surjective, $\bigcup_{n=1}^\infty X_n=F$. Then for some $n_0$ we can find $y_0',\ r>0$,
+\[B(y_0',r)\subset X_{n_0}=\bar{T(B(0,n_0))}\implies B(y_0'/n_0,r/n_0)\subset\bar{T(B(0,1))}\]
+Let $y_0=y_0'/n_0$ and $4c=r/n_0$. Then
+\[B(y_0,4c)\subset\bar{T(B(0,1))}\]
+Also, by symmetry,
+\[-y_0\subset\bar{T(B(0,1))}\]
+\[\implies B(0,4c)=B(y_0,4c)-y_0\subset\bar{T(B(0,1))}+\bar{T(B(0,1))}=2\bar{T(B(0,1))}\]
+by Theorem \ref{vecop}. Then
+\eqn{B(0,2c)\subset\bar{T(B(0,1))}\implies B(0,2c/m)\subset\bar{T(B(0,1/m))}\label{2cincls}}
+We shall prove now that $B(0,c)\subset T(B(0,1))$. For any $y\in B_F(0,c)$, by (\ref{2cincls}) we can find $x_1\in B_E(0,1)$ with
+\[\norm{y-Tx_1}<\frac{c}{2}\]
+Apply (\ref{2cincls}) to $y-Tx_1\in B_F(0,c/2)$ we can find $x_2\in B_E(0,1/2)$ such that
+\[\norm{y-Tx_1-Tx_2}<\frac{c}{2^2}\]
+Suppose we have found $x_1,\cdots,x_n$ such that
+\[\norm{y-Tx_1-\cdots-Tx_n}<\frac{c}{2^n}\]
+Then we can find $x_{n+1}\in B(0,1/2^{n+1})$ such that
+\[\norm{y-Tx_1-\cdots-Tx_n-Tx_{n+1}}<\frac{c}{2^{n+1}}\]
+Since $\sum_{i=1}^k x_i$ is a Cauchy sequence, its limit exists: $x=\sum_{i=1}^\infty x_i$ and $\norm{y-Tx}=0$. Hence $y=Tx$ and also $\norm x<\sum_{i=1}^\infty\frac{c}{2^i}=c$. This means $B_F(0,c)\subset T(B_E(0,1))$.
+}
+\cor{[Homeomorphism between Banach spaces, inverse map theorem]A continuous bijective linear map from a Banach space to another is a homeomorphism.}
+\cor{If $E$ is Banach under two norms, then the two norms are equivalent whenever one is weaker than the other.}
+\thm{[Closed graph theorem]Let $E$ and $F$ be two Banach spaces. For a linear $T:E\to F$, if $G(T)$ is closed in $E\x F$, then $T\in\mcl L(E,F)$.}
+\end{subsection}
+\begin{subsection}{Complements and One-sided Inverses}
+We first introduce something about decomposition.
+\thm{[Decomposition]In a Banach space $E$, if two closed subspaces $G,\ L$ have a closed sum $G+L$, then is some constant $C>0$ such that each $z\in G+L$ admits a decomposition of the form
+\[z=x+y,\ x\in G,\ y\in L,\ \norm x,\norm y\leqs C\norm z\]
+and for all $x\in E$ we have
+\[d(x,G\cap L)\leqs C(d(x,G)+d(x,L))\]\label{decompest}}
+
+Let $G\subset E$ be a closed subspace of a Banach space $E$. A subspace $L\subset E$ is called a \tf{topological complements} or a \tf{complement} of $G$ if $L$ is closed and $E=G\op L$.
+\thm{[Complemented spaces]In a Banach space $E$, the following are true.
+\itm{
+    \item[(i)]Every finite dimensional subspace admits a complement.
+    \item[(ii)]Every closed subspace of finite codimension admits a complement.
+    \item[(iii)]If $N\subset E^*$ is a finite dimensional subspace, $N^\perp$ is complemented.
+    \item[(iv)]In a Hilbert space every closed subspace admits a complement.
+}}
+\thm{[Complements and one-sided inverses]Let $E,\ F$ be Banach spaces. The following are true.
+\itm{
+    \item[(i)]For a surjective $T\in\mcl L(E,F)$, we have
+    \[T\ttt{ has a right inverse}\iff\ker(T)\ttt{ is complemented}\]
+    \item[(ii)]For an injective $T\in\mcl L(E,F)$, we have
+    \[T\ttt{ has a left inverse}\iff\im(T)\ttt{ is closed and complemented}\]
+}}
+\end{subsection}
+\end{section}
+
+\begin{section}{Adjoint Operators}
+Let $E$ and $F$ be Banach spaces. An \tf{unbounded linear operator} from $E$ to $F$ is a linear map $A:D(A)\subset E\to F$, where $D(A)$ is a subspace, called the \tf{domain} of $A$. An unbounded linear operator $A$ is called \tf{bounded} or \tf{continuous} if $D(A)=E$ and $\exists C\geqs0,\ \forall u\in E,\ \norm{Au}\leqs C\norm{u}$. We define the \tf{norm} of a bounded operator by
+\[\norm{A}_{\mcl L(E,F)}\sup_{u\neq0}\frac{\norm{Au}}{u}\]
+which exists since $A$ is bounded.
+
+A map is called \tf{closed} if its graph is closed.
+
+Now we come to adjoints. Let $A:D(A)\subset E\to F$ be an unbounded linear operator, where $D(A)$ is dense in $E$. We shall define another linear operator $A^*:D(A^*)\subset F^*\to E^*$. For the domain of $A^*$, we define
+\[D(A^*)=\{v\in F^*:\exists C_v>0,\ \forall u\in D(A),\ \abs{\brk{v,Au}}\leqs C_v\norm u,\}\]
+Then $D(A^*)$ is a linear subspace of $F^*$ \red{Q: Why? A: The constant $C$ is not uniform for all $v$} We then send each $v\in F^*$ to $A^*v$, where $A^*v$ is the (unique) extension of
+\[\brk{v,A(\cdot)}\in(D(A))^*\]
+The existence of the extension comes from the Hahn-Banach theorem. The uniqueness comes from $D(A)$ being dense \red{Q: Check!}. We can check that
+\[A^*:D(A^*)\subset F^*\to E^*\]
+is linear.
+
+Some properties of $A^*$ are as follows.
+\thm{The following are true.
+\itm{
+    \item[(i)]For any $u\in D(A),\ v\in D(A^*)$,
+        \[\brk{A^*v,u}_{E^*,E}=\brk{v,Au}_{F^*,F}\]
+    \item[(ii)]If $\norm A_{\mcl L(E,F)}<\infty$, then
+        \[\norm{A^*}_{\mcl L(F^*,E^*)}=\norm A_{\mcl L(E,F)}\]
+    \item[(iii)]$A^*$ is always closed.
+    \item[(iv)]The graphs $G(A^*)$ is isomorphic to $G(A)^\perp$ under the relation:
+}}
+\prf{\itm{
+    \item[(i)]By definition.
+    \item[(ii)]First of all $D(A)=E\implies D(A^*)=F^*$. Then we have
+        \[\abs{\brk{A^*v,u}}=\abs{\brk{v,Au}}\leqs\norm{v}\norm{Au}\leqs\norm{v}\norm{A}\norm u\]
+        \[\implies\abs{\brk{A^*v,\cdot}}\leqs\norm A\norm v\norm\cdot\implies\norm{A^*v}\leqs\norm A\norm v\implies\norm{A^*}\leqs\norm A\]
+        Hence $A^*$ is bounded. On the other hand,
+        \[\abs{\brk{v,Au}}=\abs{\brk{A^*v,u}}\leqs\norm{A^*v}\norm u\leqs\norm{A^*}\norm u\norm v\]
+        \[\implies\abs{\brk{\cdot,Au}}\leqs\norm{A^*}\norm u\norm\cdot\implies\norm{Au}\leqs\norm{A^*}\norm u\implies\norm{A}\leqs\norm{A^*}\]
+    \item[(iii)]Let $(v,f)\in F^*\x E^*$ be a limit point of $G(A^*)$. Then we can find a sequence $v_n\in D(A^*)$ such that
+        \[v_n\to v,\ A^*v_n\to f\]
+        We can check $v\in D(A^*)$ and $A^*v=f$.
+}}
+\end{section}
+
+\begin{section}{Weak Topology}
+\begin{subsection}{The Coarsest Topology Associated to a Family of Mappings}
+Given a set $X$ and a family of mappings $(\vphi_i:X\to Y_i)_{i\in I}$ from $X$ to a family of topological spaces $(Y_i)_{i\in I}$, we want to find the \tit{coarsest} or \tit{weakest} topology that makes all of $(\vphi_i)$ continuous.\footnote{The product topology is a special case of this, at least when it is a finite product.}
+\thm{[Coarsest topology and its basis]Let $X$ and $\vphi_i$ be as above. First we consider the family
+\[\mcl F=\brc{U\subset X:U=\vphi^{-1}_i(\omega_i)\ttt{ for some open }\omega_i\subset Y_i}\]
+Let $\Phi$ be the family of sets that are finite intersections of members in $\mcl F$. Let $\tau$ be the smallest topology containing $\mcl F$. Then $\Phi$ is a basis for $\tau$.}
+\prf{By the construction, we see that $X\in\Phi$ and $\Phi$ is closed under finite intersections. Hence $\Phi$ is eligible for a basis of some topology. Suppose $\tau_\Phi$ is the topology generated by $\Phi$. Then $\mcl F\subset\Phi\implies\tau\subset\tau_\Phi$. Conversely, $\mcl F\subset\tau_\phi$ and $\tau_\Phi$ is a topology, hence $\tau\subset\tau_\Phi$. Hence $\tau=\tau_\Phi$ and $\Phi$ is a topology for $\tau$.}
+Recall that in any topological space, a \tf{basis of neighborhoods} $\mcl B_x$ of $x$  is a family of neighborhoods of $x$ such that any neighborhood of $x$ contains a neighborhood from the family. In particular, the basis $\mcl B_x$ satisfies
+\itm{
+    \item[(i)]$\forall B\in\mcl B_x,\ B\neq\varn$.
+    \item[(ii)]$\forall B_1,B_2\in\mcl B_x,\ \exists B_3\in\mcl B_x,\ B_3\subset B_1\cap B_2$.
+}
+So that we can talk about the limit $\lim_{x'\to x}f(x')$ of a map $f:X\to Y$. However we won't be needing this now.
+
+\thm{[Basis of neighborhoods]Let $x\in X$, where $X$ is equipped with the coarsest topology associated to $(\vphi_i:X\to Y_i)$. Then the family
+\[\brc{\bigcap_{i\in I}\vphi^{-1}_i(V_i):V_i\ni\vphi_i(x)\ttt{ is open; only finitely many }V_i\neq Y_i}\]
+is a basis of topology for $x$.}
+\prf{Each $\bigcap_{i\in I}\vphi^{-1}_i(V_i)$ as above is actually a finite intersection of open sets, and is hence a neighborhood. For any neighborhood $U_x$ of $x$, since $\Phi$ is a basis for the topology, we can write $U_x$ as a union of the basic open sets in $\Phi$:
+\[U_x=\bigcup_jB_j,\ B_j\in\Phi\]
+One of the $B_j$ must contain $x$. Let it be $B_0$. Recall that $B_0$ has the form $B_0=\bigcap_{i\in\Gamma}\vphi^{-1}(V_i)$ where $\Gamma$ is finite and $V_i$ is open in $Y_i$. Since $x\in B_0$, we have $\vphi_i(x)\in V_i$ for all $i\in\Gamma$. Also by setting $V_i=Y_i$ for $i\notin\Gamma$, we have $X=\vphi_i(V_i)$ for $i\notin\Gamma$. And we can write $B_0=\bigcap_{i\in I}\vphi^{-1}_i(V_i)$. Also $B_0\subset U_x$ as desired.}
+
+\thm{[Convergence]The convergence in the coarsest topology is equivalent to convergence in coordinates\footnote{By the ``coordinates'' of $x$ I means the family $(\vphi_i(x))$.}}
+\prf{If $x_n\to x$ in this topology, then $\vphi_i(x_n)\to\vphi_i(x)$ because each $\vphi_i$ is continuous with respect to this topology. \red{I haven't thought this through. What is the relation between convergence and continuity?} Conversely, for any neighborhood $U$ of $x$, we wish to prove $x_n\in U$ for all sufficiently large $n$. As it turns out it suffices to prove this for some member in the basis of neighborhoods that is contained in $U$. Let $\bigcap_{i\in\Gamma}\vphi^{-1}_i(V_i)$ be as above, where $\Gamma$ is finite and $\vphi_i(x)\in V_i$. Since $\vphi_i(x_n)\to\vphi_i(x)$, for each $i\in\Gamma$, there is some $N_i$ such that $n\geqs N_i\implies\vphi_i(x_n)\in V_i$. This means
+\[n\geqs\max_{i\in\Gamma}(N_i)\implies x_n\in\bigcap_{i\in I}\vphi^{-1}_i(V_i)\]
+The proof is then complete.}
+
+\thm{[Continuity, of maps to $X$]A map into $X$ is continuous $\iff$ its coordinates are continuous.}
+\prf{\red{Compare this with the product topology. The proof shall be delayed.}}
+\end{subsection}
+\begin{subsection}{The Weak Topology $\sigma(E,E^*)$.}
+The \tf{weak topology}\footnote{The terms in topology under the weak topology is usually preceded by ``weak/weakly''. The weak convergence is denoted by $\bwto$.} $\sigma(E,E^*)$ on $E$ is the coarsest topology on $E$ associated to $E^*$. Let $\tau$ be the usual (strong) topology (induces by its norm), since each $f\in E^*$ is already continuous, we must have
+\[\sigma(E,E^*)\subset\tau\]
+\thm{Due to the inclusion, the following implications are immediate:
+\itm{
+    \item[(i)]$O$ is weakly open $\implies O$ is open.
+    \item[(ii)]$F$ is weakly closed $\implies F$ is closed.
+    \item[(iii)]$x_n\to x\implies x_n\bwto x$.
+}}
+\thm{[Hausdorff]The weak topology is Hausdorff.}
+\prf{For $x_1\neq x_2$, by the Hahn-Banach theorem, we find $f\in E^*$ to separate them:
+\[f(x_1)<\alpha<f(x_2)\]
+Then $x_1\in f^{-1}((-\infty,\alpha)),\ x_2\in f^{-1}((\alpha,+\infty))$ are disjoint neighborhoods of them.}
+
+\thm{[Improved basis]The collection of sets of the form
+\[V(f_1,\cdots,f_k;\vare;x_0)=\bigcap_{i=1}^kf_i^{-1}(\brk{f_i,x_0}-\vare,\brk{f_i,x_0}+\vare)\]
+with varying $f_i\in E^*,\ x_0\in E,\ \vare>0$ is a basis for the weak topology.\label{ipwtopbs}}
+\prf{Each set of the form is weakly open. Conversely, it suffices to prove that if $O_W$ is weakly open, then $\forall x_0\in O_W$, we can find a set of the form that is contained in $O_W$.}
+
+The following are some conditions related to weak convergence.
+\thm{The following are true for $\sigma(E,E^*)$.
+\itm{
+    \item[(i)]$x_n\bwto x\iff\forall f\in E^*,\ f(x_n)\to f(x)$.
+    \item[(ii)]Weakly convergent $\implies$ bounded.
+    \item[(iii)]$x_n\bwto x\implies\norm{x}\leqs\liminf_{n\to\infty}\norm{x_n}$.
+    \item[(iv)]$x_n\bwto x,\ f_n\to f\implies\brk{f_n,x_n}\to\brk{f,x}$.
+}}
+\prf{\ \itm{
+    \item[(i)](\ltr): By definition.\\
+        (\rtl): Consider the basic open sets.
+    \item[(ii)]By uniform boundedness principle.
+    \item[(iii)]For any $f\in E^*$, $\abs{\brk{f,x_n}}\leqs\norm f\norm{x_n}\implies\abs{\brk{f,x}}\leqs\norm f\liminf_n\norm{x_n}$. Recall that $\norm x=\sup_{\norm f\leqs1}\abs{\brk{f,x}}$.
+    \item[(iv)]Easy.
+}}
+\end{subsection}
+\begin{subsection}{Between the Weak Topology and the Strong Topology}
+This lemma is to estimate the norm in a finite dimensional Banach space.
+\lem{Let $E$ be a Banach space and $n=\dim E<\infty$. If $e_1,\cdots,e_n$ is a basis for $E$ and its dual basis is $e_1^*,\cdots,e_n^*$, then for any $x=\sum_{i=1}^nx_ie_i$, we have
+\[\norm x\leqs\sum_{i=1}^n\abs{x_i}\norm{e_i}=\sum_{i=1}^n\abs{e^*_i(x)}\norm{e_i}\]
+Moreover, we can assume $\norm{e_i}=1$ so that
+\[\norm x\leqs\sum_{i=1}^n\abs{e^*_i(x)}\]
+}
+\thm{Let $E$ be a Banach space.
+\itm{
+    \item[(i)]$\dim E<\infty\implies$ the weak topology on $E$ coincides with the original.
+    \item[(ii)]$\dim E=\infty\implies$ the weak topology on $E$ is strictly coarser than the original.
+}}
+\prf{\itm{
+    \item[(i)]Let $n=\dim E<\infty$. Choose $e_1,\cdots,e_n$ as a basis for $E$ and let $e_1^*,\cdots,e_n^*$ be its dual basis. Assume $\norm{e_i}=1$. Then for any open set $U\subset E$, and any $x_0\in E$, we have
+        \[\norm{x-x_0}\leqs\sum_{i=1}^n\abs{\brk{e^*_i,x-x_0}}\]
+        Then by Theorem \ref{ipwtopbs} we can find a weakly open neighborhood that is contained in $U$.
+    \item[(ii)]Let $E$ be infinite dimensional. We shall prove that
+        \[S=\{x\in E:\norm x=1\}\]
+        is not weakly closed, and that
+        \[B_E(0,1)=\{x\in E:\norm x<1\}\]
+        is not weakly open.
+}}
+
+\thm{[Unit ball]Let $E$ be a Banach space and $\dim E=\infty$. Then
+\[\ttt{ the strongly closed unit sphere }\{x\in E:\norm x\leqs1\}\ttt{ is never weakly closed;}\]
+\[\ttt{ the strongly open unit ball }\{x\in E:\norm x<1\}\ttt{ is never weakly open;}\]\label{ballineww}}
+\end{subsection}
+
+\begin{subsection}{The Weak* Topology $\sigma(E^*,E)$}
+The definition is the same.
+\thm{$\sigma(E^*,E)$ is Hausdorff.}
+\prf{No need for the Hahn-Banach theorem, but only that $f_1\neq f_2\implies$ they don't agree on some point.}
+
+\thm{A basic open set near $f_0$ is of the form
+\[V(x_1,\cdots,x_k,\vare)=\{f\in E^*:\abs{\brk{f-f_0,x_i}}<\vare\}\]}
+
+\thm{If $\tau$ denotes the strong topology on $E^*$, then
+\[\sigma(E^*,E)\subset\sigma(E^*,E^{**})\subset\tau\]
+and the following implications are immediate.
+\itm{
+    \item[(i)]Weakly* open $\implies$ weakly open $\implies$ strongly open.
+    \item[(ii)]Strong convergence $\implies$ weak convergence $\implies$ weak*convergence.
+}}
+
+\thm{[On the weak* convergence]\
+\itm{
+    \item[(i)]$f_n\bwsto f\iff\forall x\in E,\ \brk{f_n,x}\to\brk{f,x}$.
+    \item[(ii)]$f_n\bwsto f\implies\norm{f_n}$ is bounded, $\norm{f}\leqs\liminf_{n\to\infty}\norm{f_n}$.
+    \item[(iii)]$f_n\bwsto f,\ x_n\to x\implies\brk{f_n,x_n}\to\brk{f,x}$.
+}}
+
+We now introduce a representation theorem, with a preceding lemma.
+\lem{[Linear combination of functionals]Let $X$ be a vector space and let $\vphi,\ \vphi_1,\cdots,\vphi_k$ be linear functionals on $X$. If
+\[\bigcap_{i=1}^k\ker\vphi_i\subset\ker\vphi\]
+then $\vphi$ is a linear combination of $\vphi_i\ (1\leqs i\leqs k)$.}
+\prf{Consider the embedding
+\mapn{F}{X}{\RR^{k+1}}{x}{(\vphi(x),\vphi_1(x),\cdots,\vphi_2(x))}
+The assumption says $(1,0,\cdots,0)\notin\im F$. Note that $\im F$ is convex and closed (being a finite dimensional subspace), hence by the Hahn-Banach theorem, we find a closed hyperplane $[G=\alpha]$ in $\RR^{k+1}$ to strictly separate $(1,0,\cdots,0)$ and $\im F$. Also we assume $G(e_i)=\lambda_{i-1}\ (1\leqs i\leqs k+1)$. Then \[G(1,0,\cdots,0)=\lambda_0<\alpha<G(x)=\lambda_0\vphi(x)+\sum_{i=1}^k\lambda_i\vphi_i(x)\]
+Since $X$ is a vector space, then right hand side is $0$,
+\[\lambda_0\vphi+\sum_{i=1}^k\lambda_i\vphi_i=0\]
+Moreover, note that $\lambda_0<\alpha<0$, so that we divide $\lambda_0$ for the result.
+}
+
+\thm{[Representation theorem for $E^{**}_{\sigma(E^*,E)}$ by $E$]Let $E^{**}_{\sigma(E^*,E)}$ denote the set of all linear functionals on $E^*$ that is continuous with respect to $\sigma(E^*,E)$. Then
+\[E^{**}_{\sigma(E^*,E)}=E\]}
+\prf{(\ril): Obvious. (\lir): Let $\vphi\in E^{**}_{\sigma(E^*,E)}$. The idea is to find a bunch of $x_i$, such that
+\[\bigcap_i\ker x_i\subset\ker\vphi\]
+Naturally the inclusion should happen near $0$. Let $U=\{f\in E^*,\ \abs{\vphi(f)}<1\}$. Then $U$ is a neighborhood of $0$ in $(E^*,\sigma(E^*,E))$. Hence we can find $V$ of the form $V(x_1,\cdots,x_n;0;\vare)$. Then prove that these $x_i$ satisfies the condition in the lemma above.}
+
+\thm{[Representation for closed hyperplanes in $(E^*,\sigma(E^*,E))$]A closed hyperplanes in $(E^*,\sigma(E^*,E))$ is of the form
+\[\{f\in E^*:\brk{f,x_0}=\alpha\}\]
+for some $x_0\neq0,\ \alpha\in\RR$.}
+\prf{A hyperplane closed in $\sigma(E^*,E)$ is closed in the strong topology, hence has the form
+\[H=\{f\in E^*:\vphi(f)=\alpha\}\]
+for some $0\neq\vphi\in E^{**}$. Now since it is closed in the weak* topology, for any $f_0\notin H$, we find a weak* neighborhood $V$ of $f_0$ of the form
+\[V=V(x_1,\cdots,x_k;f_0;\vare)\]
+such that $V\cap H=\varn$, i.e. $\forall f\in V$, $\vphi(f)\neq\alpha$.
+}
+
+\thm{[Banach-Alaoglu-Bourbaki]The closed unit ball $\{f\in E^*:\norm f\leqs1\}$ in $E^*$ is compact in $\sigma(E^*,E)$.}
+\ntg{Compare with Theorem \ref{ballineww}.}
+\prf{First embed the ball $\{f\in E^*:\norm f\leqs1\}$ into $\RR^E$. Then prove the embedding is a homeomorphism onto its image and prove the image is a compact set by rewriting it.}
+\end{subsection}
+\end{section}
+
+\begin{section}{Reflexive Spaces and Separable Spaces}
+Let $E$ be a Banach space. If the canonical injection $E\into E^{**}$ is surjective we say $E$ is \tf{reflexive}. In this case we have $E\cong E^{**}$ as Banach spaces (in the sense that it is a linear isometry).
+\ques{Non-Banach reflexive space?
+\ans{Impossible, as $E\cong E^{**}$, which is Banach.}}
+Here are some examples of reflexive spaces:
+\itm{
+    \item $E$ with $\dim E<\infty$.
+    \item $L^p$ for $1<p<\infty$.
+    \item Hilbert spaces.
+}
+There are also nonreflexive spaces:
+\itm{
+    \item $L^1$ and $L^\infty$.
+    \item $C(K)$, the space of continuous functions on an infinite compact metric space $K$.
+}
+
+We will use the following two lemmas to prove an equivalent condition for reflexivity.
+\lem{[Helly]Let $E$ be a Banach space and $f_1,\cdots,f_k\in E^*,\ \gamma_1,\cdots,\gamma_k\in\RR$. Then the following are equivalent.
+\itm{
+    \item[(i)]$\forall\vare>0,\ \exists x_\vare\in E$ such that $\norm{x_\vare}\leqs1$, and $\forall i,\ \abs{\brk{f_i,x_\vare}-\gamma_i}<\vare$.
+    \item[(ii)]$\forall\beta_1,\cdots,\beta_k\in\RR,\ \abs{\sum_{i=1}^k\beta_i\gamma_i}\leqs\norm{\sum_{i=1}^k\beta_if_i}$.
+}}
+\ntg{Another interpretation of (i) is the weak neighborhood
+\[\bigcap_{i=1}^kf_i^{-1}(\gamma_i-\vare,\gamma_i+\vare)\]
+has a nonempty intersection with $B_E=\{x\in E:\norm x\leqs1\}$.}
+\prf{\udl{(i)\tim(ii)}: By directly computing $\abs{\sum_{i=1}^k\beta_i(\brk{f_i,x}_\vare-\gamma_i)}$.\\
+\udl{(ii)\tim(i)}: Consider the map
+\mapn{\vphi}{E}{\RR^k}{x}{(\brk{f_1,x},\cdots,\brk{f_k,x})}
+We see that
+\[\ttt{(i)}\iff(\gamma_1,\cdots,\gamma_k)\in\bar{\vphi(B_E)}\]
+If (i) does not hold then we use a hyperplane in $\RR^k$ to strictly separate $\gamma$ and $\bar{\vphi(B_E)}$. Suppose this hyperplane is determined by $f=\sum_i\beta e^*_i$ where $e^*_i$ is the dual basis of the standard basis.A direct computation yields a contradiction.}
+
+\lem{[Goldstine]Let $E$ be a Banach space. Then the following are true.
+\itm{
+    \item[(i)]$J(B_E)$ is dense in $B_{E^{**}}$ with respect to $\sigma(E^{**},E^*)$.
+    \item[(ii)]$J(B_E)$ is strongly closed in $B_{E^{**}}$.
+    \item[(iii)]$J(B_E)$ is not strongly dense in $B_{E^{**}}$ unless they are equal.
+}}
+\prf{\itm{
+    \item[(i)]Let $\xi\in B_{E^{**}}$. We wish to prove that in every neighborhood $V$ of $B_{E^{**}}$ there is a point of $J(B_E)$. We assume $V$ to be of the form
+        \[V=\{\eta\in E^{**}:\forall i:1\leqs i\leqs k,\ \abs{\brk{\eta,f_i}-\brk{\xi,f_i}}<\vare\}\]
+        To show that $J(B_E)$ intersects $V$ is to show that there is some $x\in B_E$ such that we can replace $\brk{\eta,f_i}$ as above can be replaced by $\brk{f_i,x}$. To use Helly's lemma, we put $\gamma_i=\brk{\xi,f_i}$. We can check that in Helly's lemma (ii) holds and hence (i) holds, and hence $J(x_\vare)\in V$ with $x_\vare\in B_E$.
+    \item[(ii)]\red{Q}.
+    \item[(iii)]By (ii).
+}}
+
+\cor{$J(E)$ is dense in $E^{**}$ with respect to $\sigma(E^{**},E^*)$.}
+
+\thm{[Kakutani]For a Banach space $E$, $E$ is reflexive $\iff\{x\in E:\norm x\leqs\}$ is compact in $\sigma(E,E^*)$.}
+
+The following theorem states the relation between weakly sequentially compact and being reflexive.
+\thm{Let $E$ be a Banach space.
+\itm{
+    \item[(i)]$E$ is reflexive $\implies$ any bounded sequence has a weakly convergent subsequence.
+    \item[(ii)](Eberlein-\u Smulian)Every bounded sequence in $E$ has a weakly convergent subsequence $\implies E$ is reflexive.
+}}
+\prf{The proof of (i) is postponed; that of (ii) is out of reach.}
+
+\thm{A closed subspace of a reflexive space is reflexive.}
+\prf{Let $M$ be a closed subspace of a reflexive space $E$. In view of Kakutani's theorem, we only need to show $B_M$ is closed in $\sigma(M,M^*)$. Step 1 is to prove that $\sigma(M,M^*)$ is the same as the topology induced by $\sigma(E,E^*)$. Since each $f\in E^*$ restricts to $f|_M\in M^*$, we know $\sigma(M,M^*)$ is stronger than the induced topology. On the other hand, the Hahn-Banach theorem says we can extend each $g\in M^*$ to some $\wt g\in E^*$. Hence $\sigma(M,M^*)$ is also weaker.
+\ques{Make precise these arguments.}
+Then we have $B_M=M\cap B_E$. Since $M$ is convex and closed, it is also weakly closed. Also, $B_E$ is weakly compact. Hence $B_M$ is weakly compact in $\sigma(E,E^*)$. Note that since $\sigma(M,M^*)$ is induced by $\sigma(E,E^*)$, any open cover of $B_M$ in the sense of $\sigma(M,M^*)$ lifts to one in the sense of $\sigma(E,E^*)$, and admits a finite subcover. By restricting to $M$ again we have a finite subcover of $B_M$ in the sense of $\sigma(M,M^*)$.}
+
+\cor{$E$ is reflexive $\iff E^*$ is reflexive.}
+\cor{In a reflexive space, bounded, closed, convex $\implies$ weakly compact.}
+
+\thm{If $E,F$ are Banach spaces, then for an densely defined, closed unbounded operator $A:D(A)\subset E\to F$, it holds that $A^{**}=A$.}
+\end{section}
+\end{document}

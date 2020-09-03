@@ -1,0 +1,421 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{geometry,xcolor,layout,amssymb,amsthm,amsmath,mathrsfs,graphicx,centernot,textcomp,galois,extarrows,bbm,dsfont,makeidx,empheq}
+\usepackage[normalem]{ulem}
+\usepackage[all]{xy}
+
+\newtheorem{prp}{Proposition}[section]
+\newtheorem{theom}{Theorem}[section]
+\newtheorem{eg}{Example}[section]
+\newtheorem{nt}{Note}[section]
+\newtheorem{coro}{Corollary}[section]
+
+\theoremstyle{definition}
+\newtheorem{cte}{Counterexample}[section]
+\newtheorem*{pf}{Proof}
+\newtheorem{dfn}{Definition}[section]
+\newtheorem{probl}{Problem}[section]
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}[section]
+
+\newcommand*\widefbox[1]{\fbox{\vspace{2em}\hspace{2em}#1\hspace{2em}}}
+\setlength\fboxsep{0.2cm}
+
+\newcommand{\tick}{\textcolor{red}{\checkmark}}
+\newcommand{\bs}{\backslash}
+\newcommand{\udots}{\mathinner{\mskip 1mu\raise 1pt\vbox{\kern 7pt\hbox{.}}
+\mskip 2mu\raise 4pt\hbox{.}\mskip 2mu\raise 7pt\hbox{.}\mskip 1mu}}
+\newcommand{\geqs}{\geqslant}
+\newcommand{\leqs}{\leqslant}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\C}{\mcl C}
+\newcommand{\D}{\mcl D}
+\newcommand{\rsa}{\sigma(f;\pi,\xi)}
+\newcommand{\wlg}{{\rm w.l.o.g.}}
+\newcommand{\spn}{{\rm span}}
+\newcommand{\rank}{{\rm rank}}
+\newcommand{\nul}{{\rm null}}
+\newcommand{\img}{{\rm im}}
+\newcommand{\ud}{{\rm d}}
+\newcommand{\lub}{{\rm lub}}
+\newcommand{\glb}{{\rm glb}}
+\newcommand{\dx}{\ud x}
+\newcommand{\dy}{\ud y}
+\newcommand{\dz}{\ud z}
+\newcommand{\x}{\times}                     %乘号
+\newcommand{\ox}{\otimes}
+\newcommand{\op}{\oplus}
+\newcommand{\p}{\prime}
+\newcommand{\fctr}{\Rightarrow}
+\newcommand{\unito}{\rightrightarrows}
+\newcommand{\lbint}{\int\!\!\!\int}      %二重积分号
+\newcommand{\bint}{\int\!\!\!\!\int}      %二重积分号
+\newcommand{\tint}{\int\!\!\!\!\int\!\!\!\!\int}      %三重积分号
+\newcommand{\apr}{\approx}
+\newcommand{\prdn}{\prod\limits_{n=1}^\infty}
+\newcommand{\sumn}{\sum\limits_{n=1}^\infty}
+\newcommand{\sump}{\sum\limits_{n=0}^\infty}
+\newcommand{\limn}{\lim\limits_{n\to\infty}}
+\newcommand{\limx}{\lim\limits_{x\to+\infty}}
+\newcommand{\operp}{\stackrel{\perp}{\oplus}}
+\newcommand{\const}{{\rm const}}
+\newcommand{\codim}{{\rm codim}}
+\newcommand{\sgn}{{\rm sgn}}
+\newcommand{\ann}{{\rm ann}}
+\newcommand{\chr}{{\rm \,char\,}}
+\newcommand{\tr}{{\rm tr}}
+\newcommand{\sym}{{\rm Sym}}
+\newcommand{\centr}{{\rm Centr}}
+\newcommand{\Sp}{{\rm Sp}}              %symplectic
+\newcommand{\id}{{\rm id}}
+\newcommand{\dom}{{\rm dom}}
+\newcommand{\cod}{{\rm codom}}
+\newcommand{\Obj}{\mf{Obj}}
+\newcommand{\Mor}{\mf{Mor}}
+\newcommand{\Perm}{{\rm Perm}}
+\newcommand{\Hom}{{\rm Hom}}
+\newcommand{\Aut}{{\rm Aut}}
+\newcommand{\Inn}{{\rm Inn}}
+\newcommand{\End}{{\rm End}}
+\newcommand{\re}{{\rm Re}}
+\newcommand{\diag}{{\rm diag}}
+\newcommand{\grad}{{\rm grad\,}}
+\newcommand{\dive}{{\rm div\,}}
+\newcommand{\rot}{{\rm rot\,}}
+\newcommand{\curl}{{\rm curl\,}}
+\newcommand{\rad}{{\rm rad}}
+\newcommand{\ord}{{\rm ord}}
+\newcommand{\irr}{{\rm Irr}}
+\newcommand{\cl}{{\rm cl}}
+\newcommand{\Cl}{{\rm Cl}}
+\newcommand{\fix}{{\rm fix}}
+\newcommand{\boun}{\partial}
+\newcommand{\into}{\hookrightarrow}
+\newcommand{\varn}{\varnothing}
+\newcommand{\vare}{\varepsilon}
+\newcommand{\vphi}{\varphi}
+\newcommand{\diam}{{\rm diam}}
+\newcommand{\vect}{{\rm Vect}}
+\newcommand{\isom}{\stackrel{\cong}{\longrightarrow}}
+\newcommand{\dfas}{\triangleq}
+\newcommand{\st}{{\rm\quad s.t.\quad}}
+\newcommand{\lapla}{\Delta}
+\newcommand{\divd}{\big|}
+\makeatletter
+\newcommand{\lambdabar}{{\mathchoice
+  {\smash@bar\textfont\displaystyle{0.25}{1.2}\lambda}
+  {\smash@bar\textfont\textstyle{0.25}{1.2}\lambda}
+  {\smash@bar\scriptfont\scriptstyle{0.25}{1.2}\lambda}
+  {\smash@bar\scriptscriptfont\scriptscriptstyle{0.25}{1.2}\lambda}}}
+\newcommand{\smash@bar}[4]{%
+  \smash{\rlap{\raisebox{-#3\fontdimen5#10}{$\m@th#2\mkern#4mu\mathchar'26$}}}}
+\makeatother
+
+
+\newcommand{\res}[2]{\left.#1\right|_{#2}}
+\newcommand{\rsb}[3]{\sigma(#1;#2,#3)}      %Riemann sum with arguments
+\newcommand{\derv}[2]{\frac{\ud#1}{\ud#2}}
+\newcommand{\parf}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\secpf}[3]{\frac{\partial^2 #1}{\partial #2\partial #3}}
+\newcommand{\comb}[2]{\binom{#1}{#2}}       %组合数
+\newcommand{\norm}[1]{\left\lVert #1\right\rVert}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\brk}[1]{\big(#1\big)}
+\newcommand{\Brk}[1]{\left(#1\right)}
+\newcommand{\bkt}[1]{\langle#1\rangle}
+\newcommand{\dbk}[1]{\langle\!\langle#1\rangle\!\rangle}
+\newcommand{\inprod}[1]{\langle#1\rangle}
+\newcommand{\atr}[1]{\lbrack#1\rbrack}
+\newcommand{\itr}[1]{#1^\circ}           %内部,interior
+\newcommand{\cmp}[1]{#1^c}               %补集,complement
+\newcommand{\cnts}[3]{#1#3\cdots#3#2}
+\newcommand{\inds}[3]{#1_{1}#3\cdots#3#1_{#2}}
+\newcommand{\dindx}[4]{#1{#2}#4\cdots#4#1{#3}}
+\newcommand{\dinds}[4]{#1_{#2}#4\cdots#4#1_{#3}}
+\newcommand{\vct}[1]{\overrightarrow{#1}}
+\newcommand{\simlr}[2]{#2^{-1}#1#2}     %相似
+\newcommand{\congt}[2]{\ts{#2}#1#2}     %相合
+\newcommand{\ccong}[2]{\cts{#2}#1#2}    %共轭相合
+\newcommand{\rcong}[2]{\ts{#2}#1\orl{#2}}    %右共轭相合
+\newcommand{\ts}[1]{#1^{\rm T}}
+\newcommand{\cts}[1]{\orl{#1}^{\rm T}}   %共轭转置
+\newcommand{\wt}[1]{\widetilde{#1}}
+\newcommand{\bss}[2]{\inds{#1}{#2}{,}}
+\newcommand{\unitob}[1]{\mathop{\rightrightarrows}\limits_{#1}}
+\newcommand{\limb}[1]{\lim\limits_{#1}}
+\newcommand{\limp}[2]{\lim\limits_{#1\to#2}}
+
+\newcommand{\mth}[1]{\begin{displaymath}#1\end{displaymath}}
+\newcommand{\mtha}[1]{\begin{eqnarray*}#1\end{eqnarray*}}
+\newcommand{\arr}[1]{\begin{array}#1\end{array}}
+\newcommand{\prf}[1]{\begin{pf}#1\end{pf}}
+\newcommand{\sprf}[1]{\begin{pf}\cb{#1}\end{pf}}
+\newcommand{\df}[1]{\begin{dfn}#1\end{dfn}}
+\newcommand{\ntg}[1]{\begin{nt}\cg{#1}\end{nt}}
+\newcommand{\mat}[1]{\left(\arr{#1}\right)}
+\newcommand{\itm}[1]{\begin{itemize}#1\end{itemize}}
+\newcommand{\enu}[1]{\begin{enumerate}#1\end{enumerate}}
+\newcommand{\desc}[1]{\begin{description}#1\end{description}}
+\newcommand{\tmth}[1]{\begin{displaymath}\ttt{#1}\end{displaymath}}
+\newcommand{\thm}[1]{\begin{theom}#1\end{theom}}
+\newcommand{\rmk}[1]{\begin{remark}#1\end{remark}}
+\newcommand{\pbl}[1]{\begin{probl}#1\end{probl}}
+\newcommand{\prop}[1]{\begin{prp}#1\end{prp}}
+\newcommand{\cor}[1]{\begin{coro}#1\end{coro}}
+\newcommand{\eqn}[1]{\begin{equation}#1\end{equation}}
+\newcommand{\eqna}[1]{\begin{eqnarray}#1\end{eqnarray}}
+
+
+\newcommand{\clr}[1]{\textcolor{red}{#1}}   %红色
+\newcommand{\cb}[1]{\textcolor{blue}{#1}}   %蓝色
+\newcommand{\cg}[1]{\textcolor{magenta}{#1}}%紫色
+\newcommand{\hlg}[1]{\cg{\udl{#1}}}
+\newcommand{\hlb}[1]{\cb{\udl{#1}}}
+\newcommand{\hlr}[1]{\clr{\udl{#1}}}
+
+\newcommand{\mf}{\mathbf}
+\newcommand{\tf}{\textbf}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+
+\newcommand{\nm}[1]{{\rm#1}}                %竖体
+\newcommand{\ttt}{\textrm}
+\newcommand{\mhb}[1]{\mathbb{#1}}
+\newcommand{\mcl}[1]{\mathcal{#1}}
+\newcommand{\flr}[1]{\mathscr{#1}}
+\newcommand{\got}[1]{\mathfrak{#1}}
+\newcommand{\orl}[1]{\overline{#1}}
+\newcommand{\udl}[1]{\underline{#1}}
+\newcommand{\uudl}[1]{\uuline{#1}}
+\newcommand{\wudl}[1]{\uwave{#1}}
+
+%%%%%%%%%%%%%PHYSICS CONSTANTS
+\newcommand{\cstk}{\frac{1}{4\pi\vare_0}}
+\newcommand{\cstm}{\frac{\mu_0}{4\pi}}
+
+\title{Definitions in Topology and Geometry}
+\author{TRISCT}
+\date{}
+
+\makeindex
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+\begin{part}{General Topology}
+\begin{section}{Topological Spaces}
+\begin{subsection}{Definitions}
+\begin{description}
+\item[Topology\index{topology}]See topological space.
+\item[Topological space\index{space!topological}]Let $X$ be a set and $\mcl T\subset 2^X$. If $\mcl T$ satisfies the following axioms:
+    \itm{
+        \item $\varn\in\mcl T,\ X\in\mcl T$;
+        \item for any finitely many sets $\{U_i\}_{i=1}^n$ in $\mcl T$, $\bigcap_{i=1}^nU_i\in\mcl T$;
+        \item for arbitrarily many sets $\{U_i\}_{i\in I}$ in $\mcl T$, $\bigcup_{i\in I}U_i\in\mcl T$,
+    }
+    then we say $\mcl T$ is a \tf{topology on $X$} and that $(X,\mcl T)$ (or simply $X$) is a \tf{topological space}.
+\item[Open set\index{open}\index{set!open}]In a topological space $(X,\mcl T)$, a subset $U$ of $X$ is called \tf{open} if $U\in\mcl T$.
+\item[Interior]Let $A$ be a set in a topological space $(X,\mcl T)$. The \tf{interior} $A^\circ$ of $A$ is the union of all open sets contained in $A$.
+\item[Closure\index{closure!set}]Let $A$ be a set in a topological space $(X,\mcl T)$. The \tf{closure} $\orl{A}$ of $A$ is the intersection of all closed sets containing $A$.
+\item[Neighborhood\index{neighborhood}]Let $A$ be a set and $x$ a point in a topological space $(X,\mcl T)$. $A$ is said to be a \tf{neighborhood} of $x$ if there exists an open set $U$ such that $x\in U\subset A$.
+\item[Limit point\index{point!limit}]Let $A$ be a set in a topological space $(X,\mcl T)$. $x\in X$ is called a \tf{limit point} of $A$ if any of these equivalent conditions hold:
+    \itm{
+        \item each neighborhood of $x$ contains infinitely many points of $A$;
+        \item each neighborhood of $x$ contains a point of $A$ other than itself.
+    }
+    A limit point is also called a \tf{cluster point} or \tf{accumulation point}.
+\item[Derived set\index{derived set}\index{set!derived}]Let $A$ be a set in a topological space $(X,\mcl T)$. The \tf{derived set} $A'$ of $A$ is the set of all limit points of $A$.
+\item[Boundary point\index{point!boundary}]Let $A$ be a set in a topological space $(X,\mcl T)$. A boundary point of $A$ is a point of which each neighborhood intersects with both the interior and complement of $A$.
+\item[Boundary\index{boundary}]Let $A$ be a set in a topological space $(X,\mcl T)$. The \tf{boundary} $\boun{A}$ of $A$ is defined by any one of the following equivalent conditions:
+    \itm{
+        \item $\boun{A}=$the set of all boundary points of $A$;
+        \item $\boun{A}=\orl{A}\cap\orl{X\backslash A}$.
+    }
+\item[Exterior\index{exterior}]Let $A$ be a set in a topological space $(X,\mcl T)$. The \tf{exterior} of $A$ is $X\backslash(A^\circ\cup\boun{A})$.
+\item[Dense set]\index{set!dense}\index{dense}A set $A$ is said to be \tf{dense} in $B$, if each point of $B$ is either in $A$ or a limit point of $A$, or equivalently, any neighborhood of any point in $B$ contains one point of $A$.
+\item[Isolated point]\index{point!isolated}\index{isolated}A point of $A$ is \tf{isolated} if some neighborhood of it contains only itself.
+\item[Perfect set]\index{set!perfect}\index{perfect}A \tf{perfect set} is a closed set without any isolated point.
+\item[Connected topological space\index{topological space!connected}]A topological space is \tf{connected} if it is not the disjoint union of nonempty open subsets.
+\item[Connected set\index{connected}]A set $E$ in a topological space $X$ is said to be \tf{connected} if any one of these equivalent conditions is satisfied.
+    \itm{
+        \item If $E=A\cup B$ is a disjoint decomposition, and $A\cap\bar B=\varn,\ \bar A\cap B=\varn$, then either $E\subset A$ or $E\subset B$;
+        \item If $E=A\cup B$ is a disjoint decomposition, and $E$ intersect both $A$ and $B$, then at least one of $A\cap\bar B,\ \bar A\cap B$ is nonempty;
+        \item $E$ is cannot be covered by two disjoint open sets while intersecting both of them;
+    }
+\item[Not connected set\index{set!not connected}]A set $E$ in a topological space $X$ is said to be \tf{not connected} if any one of the equivalent conditions is satisfied.
+    \itm{
+        \item $E$ is the union of two nonempty sets $A$ and $B$ such that
+            \[\bar{A}\cap B=\varn=A\cap\bar B\]
+        \item $E$ can be covered by two disjoint open sets, and $E$ intersect each of them.
+    }
+    \ntg{Connectedness can be described by decomposition into open sets or any sets, but in the latter case, one needs to describe the disconnectedness by considering
+        \[A\cap\bar B,\ \bar A\cap B\]}
+    \ntg{An important application of this notion is to divide a connected set into two open parts satisfying contradictory properties, and then by contradiction one concludes that one property holds in the whole set.}
+\item[Base\index{base}]Let $X$ be a set and $\mcl F\subset 2^X$. A subfamily $\mcl B$ of $\mcl F$ is said to be a \tf{base} of $\mcl F$ if $x\in F\in\mcl F\implies\exists B\in\mcl B,\ x\in B\subset F$.
+\item[Basis\index{basis}]Let $X$ be a set. A family $\mcl B\subset 2^X$ is called a \tf{basis} if the following hold:
+    \itm{
+        \item $X=\bigcup_{B\in\mcl B}B$;
+        \item $B_1,B_2\in\mcl B,\ x\in B_1\cap B_2\implies\exists B\in\mcl B,\ x\in B\subset B_1\cap B_2$.
+    }
+\ntg{Actually they are the same.}
+\item[Covering\index{covering}]A family $\mcl C\subset 2^X$ is said to be a \tf{covering} of $X$ if $\forall x\in X,\ \exists E\in\mcl C,\ x\in E$. And $\mcl C$ is called \tf{finite}\index{covering!finite} (resp. \tf{countable}\index{covering!countable}) if it contains finite (resp. countable) members. A covering is \tf{locally finite}\index{covering!locally finite} if for every $x\in X$, there exists a neighborhood of $x$ that intersects only a finite number of this covering. A covering consisting of open sets is called an \tf{open covering}\index{covering!open}. For two coverings $\mcl C$ and $\mcl D$, if $\mcl D$ is a subset of $\mcl C$, then $\mcl D$ is said to be a \tf{subcovering}\index{subcovering}\index{covering!sub-} of $\mcl C$ and that $\mcl C$ is \tf{reducible}\index{reducible} to $\mcl D$; if each member of $\mcl D$ is contained in some member of $\mcl C$, then $\mcl D$ is called a \tf{refinement}\index{refinement}\index{covering!refinement} of $\mcl C$.
+\item[Lindel\"of topological space]A topological space $(X,\mcl T)$ is called \tf{Lindel\"of}\index{Lindel\"of}\index{topological space!Lindel\"of}\index{space!Lindel\"of} if every open covering is reducible to a countable open subcovering.
+\item[Compact topological space]A topological space is called \tf{compact}\index{compact}\index{space!compact}\index{topological space!compact} if every open covering is reducible to a finite open subcovering.
+\item[Paracompact topological space]A topological space is called \tf{paracompact}\index{paracompact}\index{space!paracompact}\index{topological space!paracompact} if every open covering has a refinement which is a locally finite covering.
+\item[First countable space]A topological space $(X,\mcl T)$ is said to be \tf{first countable}\index{first countable}\index{countable!first} if for each $x\in X$, the system of neighborhoods $\{U_x\}$ of $x$ has a countable base.
+\item[Second countable]A topological space $(X,\mcl T)$ is said to be \tf{second countable}\index{second countable}\index{countable!second} if $\mcl T$ has a countable base.
+    \ntg{Second countable $\implies$ Lindel\"of}
+\end{description}
+\end{subsection}
+\end{section}
+
+\begin{section}{Maps}
+\begin{subsection}{Definitions}
+\begin{description}
+\item[Continuous Mapping\index{continuous}\index{continuous mapping}\index{mapping!continuous}]Let $(E,u)$ and $(F,v)$ be two topological spaces. A mapping $f:E\to F$ is said to be \tf{continuous} if $\forall V\in v,\ f^{-1}(V)\in u$.
+\item[Continuous (at a point)\index{continuous!point}]Let $(E,u)$ and $(F,v)$ be two topological spaces. A mapping $f:E\to F$ is said to be \tf{continuous} at $x_0\in E$ if for each neighborhood $V$ of $f(x_0)$, $f^{-1}(V)$ is a neighborhood of $x_0$.
+\item[Open mapping\index{mapping!open}]Let $(E,u)$ and $(F,v)$ be two topological spaces. A mapping $f:E\to F$ is said to be \tf{open}\index{open}\index{mapping!open} if $\forall U\in u,\ f(U)\in v$.
+\item[Closed mapping\index{mapping!closed}]Let $(E,u)$ and $(F,v)$ be two topological spaces. A mapping $f:E\to F$ is said to be \tf{closed}\index{closed}\index{mapping!closed} if $f$ maps closed sets to closed sets.
+\item[Homeomorphism\index{homeomorphism}\index{homeomorphic}]Let $(E,u)$ and $(F,v)$ be two topological spaces. A mapping $f:E\to F$ is called a \tf{homeomorphism}\index{homeomorphism} if it is bijective, continuous and open (or equivalently, $f^{-1}$ is continuous).
+\item[Curve\index{curve}]Let $X$ be a topological space. A \tf{curve} or \tf{path} in $X$ is a continuous mapping $\gamma:[\alpha,\beta]\to X$ where $[\alpha,\beta]$ is an interval in $\RR$ called the \tf{parameter interval}\index{interval!parameter}. If $\gamma(\alpha)=\gamma(\beta)$, then $\gamma$ is called a \tf{closed curve}\index{curve!closed}.
+\end{description}
+\end{subsection}
+\end{section}
+
+\begin{section}{Separation Axioms}
+\begin{subsection}{Definitions}
+\begin{description}
+\item[Separation axioms\index{axiom!separation}]The following are the separation axioms.
+    \desc{
+        \item[A$_0$]For any two distinct points of a topological space, at least one of them has an open neighborhood which does not contain the other point.
+        \item[A$_1$]For any two distinct points of a topological space, each has an open neighborhood not containing the other point.
+        \item[A$_2$]For any two distinct points of a topological space, each has an open neighborhood which does not intersect the other point.
+        \item[A$_3$]For any point $x$ and any closed set $F$ such that $x\notin F$ in a topological space there exist disjoint open sets $U_i,\ i=1,2$ such that $x\in U_1$ and $F\subset U_2$.
+        \item[A$_4$]For any closed subset $F$ of $(E,u)$ and any element $x\in E\backslash F$, there exists a continuous function from $E$ into the closed unit interval $[0,1]$ such that $f(x)=0$ and $f(y)=1$ for all $y\in F$, or $f(x)=0$ and $f(F)=1$.
+        \item[A$_5$]Let $C_1$ and $C_2$ be any two disjoint closed subsets of a topological space $(E,u)$. Then there exist two disjoint open subsets such that $C_i\subset U_i,\ i=1,2$.
+        \item[A$_6$]Let $M_1$ and $M_2$ be any two subsets of a topological space $(E,u)$ such that $(M_1\cap\orl{M}_2)\cup(\orl{M}_1\cap M_2)=\varn$. Then there exist disjoint open subsets $U_i$ such that $M_i\subset U_i,\ i=1,2$.
+    }
+\item[$T_i$-space\index{space!$T_i$-}]A topological space satisfying $A_i$ for $i=0,1,2,3,5,6$ is called a $T_i$-space.
+\item[Hausdorff space\index{Hausdorff}\index{space!Hausdorff}]A $T_2$-space.
+\item[Separated space\index{separated}\index{space!separated}]A Hausdorff space.
+\end{description}
+\end{subsection}
+\end{section}
+\end{part}
+
+
+\begin{part}{Differential Geometry}
+\begin{section}{Manifolds}
+\begin{subsection}{Definitions}
+\begin{description}
+\item[Topological manifold\index{manifold!toppological}]An $n$-dimensional \tf{topological manifold} is a set $M$ such that:
+    \itm{
+        \item $M$ is a paracompact Hausdorff topological space;
+        \item $\forall p\in M,\ \exists\ttt{ open }U_p\ni p$, $U_p$ is homeomorphic to some open set $U\subset\RR^n$.
+    }
+\item[Dimension of a topological manifold\index{dimension!topological manifold}]The $n$ mentioned above.
+\item[Closed Euclidean half-space]The \tf{$n$-dimensional closed Euclidean half-space}\index{half-space!Euclidean} is defined as $\mhb{H}^n=\{x=(x_1,\cdots,x_n)\in\RR^n|a_n\geqs0\}$. The \tf{boundary} of $\mhb{H}^n$ is $\boun\mhb{H}^n=\{x=(x_1,\cdots,x_n)\in\RR^n|a_n=0\}$. The \tf{interior} of $\mhb{H}^n$ is $\mhb{H}^n\backslash\boun\mhb{H}^n$.
+\item[Chart\index{chart}]Let $M$ be a set. A \tf{chart} on $M$ is a bijection of a subset $U\subset M$ onto an open subset of some $\RR^d$, in which case we call these charts $\RR^d$-valued.
+    \ntg{Some authors define charts as homeomorphism from the coordinate space to the manifold and some define the converse. Either is okay because the inverse of a homeomorphism is still a homeomorphism.}
+\item[Atlas\index{atlas}]Let $M$ be a set. An \tf{atlas} of class $C^r$ on $M$ is a collection of pairs $\{(U_i,\vphi_i)\}_{i\in I}$ of subsets $U_i$ in $M$ and $\RR^d$-valued charts $\vphi_i$ from these subsets, satisfying the following conditions:
+    \enu{
+        \item $\bigcup_{i\in I}U_i=X$.
+        \item Sets of the form $\vphi_i(U_i\cap U_j)$ are open in $\RR^d$.
+        \item The coordinate transfer map \mth{\vphi_j\comp\vphi_i^{-1}:\vphi_i(U_i\cap U_j)\to\vphi_j(U_i\cap U_j)} is a $C^r$-diffeomorphism whenever $U_i\cap U_j\neq\varn$.
+    }
+\ntg{$\RR^d$ above above may be replaced by any Banach space (complete normed vector space), in which dimension and differential operation are defined.}
+\item[Equivalent atlases\index{atlas!equivalent}]Two $C^r$ atlases are said to be \tf{equivalent} if their union is also a $C^r$ atlas.
+\item[Structure\index{structure}]A \tf{structure} is an equivalence class of atlases.
+\item[Differentiable structure\index{structure!differentiable}]A $C^r$ \tf{differentiable structure} on $M$ is an equivalence class of $C^r$ atlases.
+\item[Smooth structure\index{structure!smooth}]A \tf{smooth structure} is a $C^\infty$ differentiable structure.
+\item[Differentiable manifold\index{manifold!differentiable}]A \tf{differentiable manifold} of class $C^r$ is a set $M$ together with a specified $C^r$ structure on $M$ such that the topology induced by the structure is Hausdorff and paracompact. If the charts are $\RR^d$-valued, then we say the manifold has \tf{dimension} $d$, denoted by $\dim(M)$.
+\item[Tangent vector\index{tangent vector}\index{vector!tangent}]Let $M$ be a differentiable manifold of class $C^r$. Let $x$ be a point of $M$. We consider triples $(U_x,\vphi,v)$ where $(U_x,\vphi)$ is a chart at $x$ and $v$ is an element of the vector space in which $\vphi(U_x)$ lies. We say that two such triples $(U_x,\vphi,v)$ and $(V_x,\phi,w)$ are \tf{equivalent} if the derivative of $\phi\comp\vphi^{-1}$ at $\vphi(x)$ maps $v$ to $w$. The formula reads:
+    \mth{[d(\phi\comp\vphi^{-1})(\vphi(x))]v=w}
+    An equivalence class of such triples is called a \tf{tangent vector} of $M$ at $x$.
+\item[Tangent space\index{tangent space}\index{space!tangent}]The set of all tangent vectors of a manifold $M$ at a point $x$ is a linear space called the \tf{tangent space of $M$ at $x$} and is denoted by $T_xM$.
+\item[Tangent space \atr{Arnol'd}]The set of velocity vectors of motions leaving point $x$ of a domain $M$ is a vector space attached to $x$. Its dimension is the dimension of $M$. This space is called the \tf{tangent space} to the domain $M$ at the point $x$ and is denoted $T_xM$.
+\item[Tangent bundle\index{tangent bundle}\index{bundle!tangent}]Let $M$ be a differentiable manifold. The disjoint union of all tangent spaces
+    \[TM=\coprod_{x\in M}T_xM\]
+    is called the \tf{tangent bundle} of $M$. We have the following \tf{natural projection}:
+    \[\arr{{ccrcl}\pi&:&TM&\to&M\\&&v&\mapsto&x\ (v\in T_xM)}\]
+    The mapping is surjective and has a right inverse $X:M\to TM,\ x\mapsto X(x)\in T_xM$, such that the diagram commutes:
+    \[\xymatrix{
+        M\ar^{X}[r]\ar_{\id_M}[rd]&TM\ar^{\pi}[d]\\
+        &M\\
+    }\]
+\item[Tangent vector field]A mapping $X:M\to TM,\ x\mapsto X(x)\in T_xM$ is called a \tf{tangent vector field}.
+\item[Differential]
+\end{description}
+\end{subsection}
+\end{section}
+
+\begin{section}{*Manifolds in $\RR^n$}
+\begin{subsection}{Definitions}
+These definitions are essentially the restrictions of more general definitions to sets in $\RR^n$.
+\begin{description}
+\item[Topological manifold in $\RR^n$\index{manifold!topological}\index{manifold!in $\RR^n$}]A \tf{topological manifold} of dimension $d$ in $\RR^n$ is a subset $S\subset\RR^n$ each point of which has a neighborhood in $S$ homeomorphic to $\RR^d$. The local homeomorphism is called a \tf{local chart}\index{chart!local}. If a manifold can be defined by a single chart, it is called a \tf{elementary manifold}\index{manifold!elementary}. A family of charts that covers the manifold is called an \tf{atlas}\index{atlas!surface in $\RR^n$} of the manifold.
+\item[Smooth manifold in $\RR^n$\index{manifold!smooth}\index{manifold!in $\RR^n$}]A \tf{$d$-dimensional smooth manifold of class $C^r$} in $\RR^n$ is a subset $S\in\RR^n$ that is a topological manifold, and has an atlas whose charts are $C^r$-diffeomorphisms and have $d$ at each point.
+\item[Orientation of a manifold]Two charts are call \tf{consistent}\index{chart!consistent} if either they do not intersect, or the transition mapping has a positive Jacobian. An \tf{orienting atlas}\index{atlas!orienting} of a manifold is an atlas consisting of pairwise consistent charts. If such an atlas exists, the manifold is called \tf{orientable}, otherwise \tf{nonorientable}\index{nonorientable}. Two atlases are called \tf{equivalent}\index{atlas!equivalent} if their union is also an orienting atlas. An equivalence class of orienting atlases is called an \tf{orientation class}\index{class!orientation} or simply an \tf{orientation}\index{orientation} of the manifold. An \tf{oriented manifold}\index{manifold!oriented} is a manifold fixed with an orientation.
+\item[Manifold with boundary in $\RR$\index{manifold!with boundary}]A \tf{topological manifold of dimension $d$ with boundary} in $\RR^n$ is a subset $S\subset\RR^n$ each point of which has a neighborhood in $S$ homeomorphic either to $\RR^d$ or $\mhb H^d$. A point in $S$ whose neighborhood in $S$ is homeomorphic to $\mhb H^d$ is called a \tf{boundary point} of $S$. The set of all boundary points is called the \tf{boundary} of $S$. If the manifold has a smooth atlas whose charts are $C^r$-diffeomorphisms, then it is called a \tf{smooth manifold of class $C^r$}.
+\item[\fbox{*NOT A DEFINITION} Consistent orientation]If the Jacobian of transition from the frame $(n,\xi_2,\cdots,\xi_d)$ to $(\xi_1,\xi_2,\cdots,\xi_d)$ is positive, where $n$ is the exterior normal vector on the boundary, we say the boundary has a \tf{consistent orientation} with the original manifold.
+\item[Tangent space]\index{space!tangent}\index{plane!tangent}If a $d$-dimensional surface $S\subset\RR^n$, is defined parametrically in a neighborhood of $x_0\in S$ by means of a smooth mapping $(\inds{t}{d}{,})=t\mapsto x=(\inds{x}{n}{,})$ such that $x_0=x(0)$ and the matrix $x'(0)$ has rank $d$, then the $d$-dimensional surface in $\RR^n$ defined parametrically by the matrix equality
+    \mth{x-x_0=x'(0)t}
+    is called the \tf{tangent plane} or \tf{tangent space} to the surface $S$ at $x_0\in S$. The coordinate form is
+    \mtha{x_1-x_1^0&=&\parf{x_1}{t_1}(0)t_1+\cdots+\parf{x_1}{t_d}(0)t_d\\
+    &\vdots&\\
+    x_n-x_n^0&=&\parf{x_n}{t_1}(0)t_1+\cdots+\parf{x_n}{t_d}(0)t_d}
+\end{description}
+\end{subsection}
+\end{section}
+
+\begin{section}{Differential Forms}
+\begin{subsection}{Definitions}
+\begin{description}
+\item[Differential form\index{form!differential}]A \tf{real-valued differential $p$-form} $\omega$ on $D\subset\RR^n$ is a family of skew-symmetric forms $\{\omega(x):(T_xD)^p\to\RR\}_{x\in D}$. $p$ is called the \tf{degree}\index{degree!of a form} or \tf{order}\index{order!of a form} of $\omega$, and a $p$-form is usually denoted $\omega^p$.
+\item[Exterior differential]Let $\omega(x)=a_{i_1\cdots i_p}(x)\dx^{i_1}\land\cdots\land\dx^{i_p}$ has differentiable coefficients, then its \tf{exterior differential} is
+    \[\ud\omega(x)=\ud a_{i_1\cdots i_p}(x)\land\dx^{i_1}\land\cdots\land\dx^{i_p}\]
+\end{description}
+\end{subsection}
+\end{section}
+
+\begin{section}{Integration of a Differential Form}
+\begin{subsection}{Theorems}
+\begin{description}
+\item[The General Stokes Formula]Let $S$ be an oriented piecewise smooth $d$-dimensional compact surface with boundary $\boun S$ in $G\subset\RR^n$, in which a smooth $(d-1)$-form $\omega$ is defined. Then
+    \[\int_S\ud\omega=\int_{\boun S}\omega\]
+    Special cases are as follows:
+    \itm{
+        \item[(i)](\tf{Green's theorem, in $\RR^2$}) Let $\orl D\subset\RR^2$ be a domain that satisfy the condition above and $P,Q$ smooth functions in $\orl D$. Then we have
+            \begin{subequations}\begin{empheq}[box=\widefbox]{align}
+                \omega&=P\dx+Q\dy\nonumber\\
+                &\implies\nonumber\\
+                &\int_{\boun\orl D}P\dx+Q\dy=\int_{\orl D}\Brk{\parf{Q}{x}-\parf{P}{y}}\dx\land\dy\nonumber
+                \end{empheq}
+            \end{subequations}
+        \item[(ii)](\tf{Gauss-Ostrogradskii's Formula, in $\RR^3$}) Let $\orl D\subset\RR^3$ be a domain that satisfy the condition above and $P,Q,R$ smooth functions in $\orl D$. Then we have
+            \begin{subequations}\begin{empheq}[box=\widefbox]{align}
+                \omega&=P\dy\land\dz+Q\dz\land\dx+R\dx\land\dy\nonumber\\
+                &\implies\nonumber\\
+                &\int_{\boun\orl D}P\dy\land\dz+Q\dz\land\dx+R\dx\land\dy\nonumber\\
+                &=\int_{\orl D}\Brk{\parf{P}{x}+\parf{Q}{y}+\parf{R}{z}}\dx\land\dy\land\dz\nonumber
+                \end{empheq}
+            \end{subequations}
+        \item[(iii)](\tf{Stokes' Formula, in $\RR^3$}) Let $S\subset\RR^3$ be a $2$-dimensional manifold that satisfy the condition above and $P,Q,R$ smooth functions on $S$. Then we have
+            \begin{subequations}\begin{empheq}[box=\widefbox]{align}
+                \omega&=P\dx+Q\dy+R\dz\nonumber\\
+                &\implies\nonumber\\
+                &\int_{\boun S}P\dx+Q\dy+R\dz=\int_{S}\Brk{\parf{R}{y}-\parf{Q}{z}}\dy\land\dz\nonumber\\
+                &+\Brk{\parf{P}{z}-\parf{R}{x}}\dz\land\dx+\Brk{\parf{Q}{x}-\parf{P}{y}}\dx\land\dy\nonumber
+                \end{empheq}
+            \end{subequations}
+    }
+\end{description}
+\end{subsection}
+\end{section}
+\end{part}
+\printindex
+\end{document}

@@ -1,0 +1,444 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{geometry,layout,amssymb,amsthm,amsmath,mathrsfs,graphicx,centernot,textcomp,galois,extarrows,bbm,dsfont,makeidx,empheq,xcolor,tikz-cd}
+\usepackage[all]{xy}
+
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{prp}{Proposition}[section]
+\newtheorem{theom}{Theorem}[section]
+\newtheorem*{theom*}{Theorem}
+\newtheorem{coro}{Corollary}[section]
+
+\theoremstyle{definition}
+\newtheorem{eg}{Example}[section]
+\newtheorem{ct}{\textcolor{cyan}{Counterexample}}[section]
+\newtheorem*{pf}{\blue{Proof}}
+\newtheorem{question}{Q}[section]
+\newtheorem{dfn}{Definition}[section]
+\newtheorem{probl}{Problem}[section]
+\newtheorem{nt}{\cg{Note}}[section]
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}[section]
+
+\newcommand*\widefbox[1]{\fbox{\vspace{2em}\hspace{2em}#1\hspace{2em}}}
+\setlength\fboxsep{0.2cm}
+
+\newcommand{\tim}{$\implies$}
+\newcommand{\rtl}{\udl{``$\Leftarrow$''}}
+\newcommand{\ltr}{\udl{``$\Rightarrow$''}}
+\newcommand{\ril}{\udl{``$\supset$''}}
+\newcommand{\lir}{\udl{``$\subset$''}}
+\newcommand{\tick}{\textcolor{red}{\checkmark}}
+\newcommand{\bs}{\backslash}
+\newcommand{\udots}{\mathinner{\mskip 1mu\raise 1pt\vbox{\kern 7pt\hbox{.}}
+\mskip 2mu\raise 4pt\hbox{.}\mskip 2mu\raise 7pt\hbox{.}\mskip 1mu}}
+\newcommand{\wot}{\backslash}
+\newcommand{\geqs}{\geqslant}
+\newcommand{\leqs}{\leqslant}
+\newcommand{\Var}{{\rm Var}}
+\newcommand{\sdd}{\sigma}
+\newcommand{\esssup}{{\rm esssup}}
+\newcommand{\gD}{\got D}
+\newcommand{\ga}{\got a}
+\newcommand{\gb}{\got b}
+\newcommand{\gc}{\got c}
+\newcommand{\gp}{\got p}
+\newcommand{\gq}{\got q}
+\newcommand{\gm}{\got m}
+\newcommand{\lst}{L^{s,t}}
+\newcommand{\DD}{\mathbb{D}}
+\newcommand{\EE}{\mathbb{E}}
+\newcommand{\HH}{\mathbb{H}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\rsa}{\sigma(f;\pi,\xi)}
+\newcommand{\wlg}{{\rm w.l.o.g.}}
+\newcommand{\alg}{{\rm alg}}
+\newcommand{\sep}{{\rm sep}}
+\newcommand{\spn}{{\rm span}}
+\newcommand{\rank}{{\rm rank}}
+\newcommand{\nul}{{\rm null}}
+\newcommand{\disc}{{\rm disc}}
+\newcommand{\im}{{\rm Im}}
+\newcommand{\coker}{{\rm Coker}}
+\newcommand{\coim}{{\rm Coim}}
+\newcommand{\ud}{{\rm d}}
+\newcommand{\Log}{{\rm Log}}
+\newcommand{\lub}{{\rm lub}}
+\newcommand{\glb}{{\rm glb}}
+\newcommand{\loc}{{\rm loc}}
+\newcommand{\supp}{{\rm supp}}
+\newcommand{\dw}{\ud w}
+\newcommand{\dbw}{\ud\orl w}
+\newcommand{\dx}{\ud x}
+\newcommand{\dy}{\ud y}
+\newcommand{\dz}{\ud z}
+\newcommand{\dbz}{\ud\orl z}
+\newcommand{\bz}{\orl z}
+\newcommand{\dmu}{\ud\mu}
+\newcommand{\x}{\times}                     %乘号
+\newcommand{\ox}{\otimes}
+\newcommand{\op}{\oplus}
+\newcommand{\p}{\prime}
+\newcommand{\fctr}{\Rightarrow}
+\newcommand{\unito}{\rightrightarrows}
+\newcommand{\wto}{\rightharpoondown}
+\newcommand{\lbint}{\int\!\!\!\int}      %二重积分号
+\newcommand{\bint}{\int\!\!\!\!\int}      %二重积分号
+\newcommand{\tint}{\int\!\!\!\!\int\!\!\!\!\int}      %三重积分号
+\newcommand{\apr}{\approx}
+\newcommand{\prdn}{\prod\limits_{n=1}^\infty}
+\newcommand{\sumn}{\sum\limits_{n=1}^\infty}
+\newcommand{\sump}{\sum\limits_{n=0}^\infty}
+\newcommand{\limn}{\lim\limits_{n\to\infty}}
+\newcommand{\limx}{\lim\limits_{x\to+\infty}}
+\newcommand{\operp}{\stackrel{\perp}{\oplus}}
+\newcommand{\const}{{\rm const}}
+\newcommand{\codim}{{\rm codim}}
+\newcommand{\sgn}{{\rm sgn}}
+\newcommand{\ann}{{\rm Ann}}
+\newcommand{\chr}{{\rm \,char\,}}
+\newcommand{\tr}{{\rm Tr}}
+\newcommand{\sym}{{\rm Sym}}
+\newcommand{\Alt}{{\rm Alt}}
+\newcommand{\drh}[1]{H^{#1}_{\rm dR}}
+\newcommand{\centr}{{\rm Centr}}
+\newcommand{\Sp}{{\rm Sp}}              %symplectic
+\newcommand{\id}{{\rm id}}
+\newcommand{\Obj}{\mf{Obj}}
+\newcommand{\Mor}{\mf{Mor}}
+\newcommand{\Perm}{{\rm Perm}}
+\newcommand{\Hom}{{\rm Hom}}
+\newcommand{\Aut}{{\rm Aut}}
+\newcommand{\Gal}{{\rm Gal}}
+\newcommand{\Inn}{{\rm Inn}}
+\newcommand{\End}{{\rm End}}
+\newcommand{\PSL}{{\rm PSL}}
+\newcommand{\Area}{{\rm Area}}
+\newcommand{\re}{{\rm Re}}
+\newcommand{\diag}{{\rm diag}}
+\newcommand{\grad}{{\rm grad\,}}
+\newcommand{\dive}{{\rm div\,}}
+\newcommand{\rot}{{\rm rot\,}}
+\newcommand{\curl}{{\rm curl\,}}
+\newcommand{\free}{{\rm free}}
+\newcommand{\tor}{{\rm tor}}
+\newcommand{\rad}{{\rm rad}}
+\newcommand{\nilrad}{{\rm nilrad}}
+\newcommand{\ord}{{\rm ord}}
+\newcommand{\irr}{{\rm Irr}}
+\newcommand{\cl}{{\rm cl}}
+\newcommand{\Cl}{{\rm Cl}}
+\newcommand{\fix}{{\rm fix}}
+\newcommand{\boun}{\partial}
+\newcommand{\into}{\hookrightarrow}
+\newcommand{\varn}{\varnothing}
+\newcommand{\vare}{\varepsilon}
+\newcommand{\vphi}{\varphi}
+\newcommand{\diam}{{\rm diam}}
+\newcommand{\vect}{{\rm Vect}}
+\newcommand{\isom}{\stackrel{\cong}{\longrightarrow}}
+\newcommand{\dfas}{\triangleq}
+\newcommand{\st}{{\rm\quad s.t.\quad}}
+\newcommand{\lapla}{\Delta}
+\newcommand{\divd}{\big|}
+\newcommand{\strinc}{\subset\subset}
+
+\makeatletter
+\newcommand{\lambdabar}{{\mathchoice
+  {\smash@bar\textfont\displaystyle{0.25}{1.2}\lambda}
+  {\smash@bar\textfont\textstyle{0.25}{1.2}\lambda}
+  {\smash@bar\scriptfont\scriptstyle{0.25}{1.2}\lambda}
+  {\smash@bar\scriptscriptfont\scriptscriptstyle{0.25}{1.2}\lambda}}}
+\newcommand{\smash@bar}[4]{%
+  \smash{\rlap{\raisebox{-#3\fontdimen5#10}{$\m@th#2\mkern#4mu\mathchar'26$}}}}
+\makeatother
+
+
+\newcommand{\res}[2]{\left.#1\right|_{#2}}
+\newcommand{\rsb}[3]{\sigma(#1;#2,#3)}      %Riemann sum with arguments
+\newcommand{\derv}[2]{\frac{\ud#1}{\ud#2}}
+\newcommand{\parf}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\secpf}[3]{\frac{\partial^2 #1}{\partial #2\partial #3}}
+\newcommand{\comb}[2]{\binom{#1}{#2}}       %组合数
+\newcommand{\norm}[1]{\left\lVert #1\right\rVert}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\brc}[1]{\left\{#1\right\}}
+\newcommand{\brk}[1]{\left\langle#1\right\rangle}
+\newcommand{\prn}[1]{\left(#1\right)}
+\newcommand{\sqb}[1]{\left\lbrack#1\right\rbrack}
+\newcommand{\dbk}[1]{\langle\!\langle#1\rangle\!\rangle}
+\newcommand{\inprod}[1]{\langle#1\rangle}
+\newcommand{\itr}[1]{#1^\circ}           %内部,interior
+\newcommand{\cosp}[1]{\prescript}
+\newcommand{\coo}[1]{\prescript{\circ}{}{#1}}
+\newcommand{\cmp}[1]{#1^c}               %补集,complement
+\newcommand{\cnts}[3]{#1#3\cdots#3#2}
+\newcommand{\inds}[3]{#1_{1}#3\cdots#3#1_{#2}}
+\newcommand{\dindx}[4]{#1{#2}#4\cdots#4#1{#3}}
+\newcommand{\dinds}[4]{#1_{#2}#4\cdots#4#1_{#3}}
+\newcommand{\vct}[1]{\overrightarrow{#1}}
+\newcommand{\simlr}[2]{#2^{-1}#1#2}     %相似
+\newcommand{\congt}[2]{\ts{#2}#1#2}     %相合
+\newcommand{\ccong}[2]{\cts{#2}#1#2}    %共轭相合
+\newcommand{\rcong}[2]{\ts{#2}#1\orl{#2}}    %右共轭相合
+\newcommand{\ts}[1]{#1^{\rm T}}
+\newcommand{\cts}[1]{\orl{#1}^{\rm T}}   %共轭转置
+\newcommand{\wt}[1]{\widetilde{#1}}
+\newcommand{\bss}[2]{\inds{#1}{#2}{,}}
+\newcommand{\unitob}[1]{\mathop{\rightrightarrows}\limits_{#1}}
+\newcommand{\limb}[1]{\lim\limits_{#1}}
+\newcommand{\limp}[2]{\lim\limits_{#1\to#2}}
+%\newcommand{\mapn}[5]{\arr{{ccrcl}#1&:&#2&\to&#3\\&&#4&\mapsto&#5}}
+\newcommand{\mapn}[5]{\mtha{#1:#2&\to&#3\\#4&\mapsto&#5}}
+\newcommand{\map}[4]{\arr{{rcl}#1&\to&#2\\#3&\mapsto&#4}}
+\newcommand{\mapgal}[6]{\arr{{rcl}#1&\leftrightarrow&#2\\#3&\mapsto&#4\\#6&\mapsfrom&#5}}
+\newcommand{\mapgalm}[6]{\mtha{#1&\leftrightarrow&#2\\#3&\mapsto&#4\\#6&\mapsfrom&#5}}
+\newcommand{\mapisom}[4]{\arr{{rcl}#1&\isom&#2\\#3&\mapsto&#4}}
+
+\newcommand{\mth}[1]{\begin{displaymath}#1\end{displaymath}}
+\newcommand{\mtha}[1]{\begin{eqnarray*}#1\end{eqnarray*}}
+\newcommand{\arr}[1]{\begin{array}#1\end{array}}
+\newcommand{\lem}[1]{\begin{lemma}#1\end{lemma}}
+\newcommand{\lemn}[1]{\begin{lemma*}#1\end{lemma*}}
+\newcommand{\prf}[1]{\begin{proof}[Proof]#1\end{proof}}
+\newcommand{\prfn}[1]{\begin{proof}#1\end{proof}}
+\newcommand{\ques}[1]{\begin{question}#1\end{question}}
+\newcommand{\sprf}[1]{\begin{pf}\cb{#1}\end{pf}}
+\newcommand{\df}[1]{\begin{dfn}#1\end{dfn}}
+\newcommand{\ntg}[1]{\begin{nt}\cg{#1}\end{nt}}
+\newcommand{\mat}[1]{\begin{matrix}#1\end{matrix}}
+\newcommand{\matp}[1]{\prn{\begin{matrix}#1\end{matrix}}}
+\newcommand{\cd}[1]{\begin{tikzcd}[ampersand replacement=\&]#1\end{tikzcd}}
+\newcommand{\itm}[1]{\begin{itemize}#1\end{itemize}}
+\newcommand{\enu}[1]{\begin{enumerate}#1\end{enumerate}}
+\newcommand{\desc}[1]{\begin{description}#1\end{description}}
+\newcommand{\tmth}[1]{\begin{displaymath}\ttt{#1}\end{displaymath}}
+\newcommand{\thm}[1]{\begin{theom}#1\end{theom}}
+\newcommand{\thmn}[1]{\begin{theom*}#1\end{theom*}}
+\newcommand{\emp}[1]{\begin{eg}#1\end{eg}}
+\newcommand{\rmk}[1]{\begin{remark}#1\end{remark}}
+\newcommand{\pbl}[1]{\begin{probl}#1\end{probl}}
+\newcommand{\prop}[1]{\begin{prp}#1\end{prp}}
+\newcommand{\cor}[1]{\begin{coro}#1\end{coro}}
+\newcommand{\eqn}[1]{\begin{equation}#1\end{equation}}
+\newcommand{\eqna}[1]{\begin{eqnarray}#1\end{eqnarray}}
+
+\newcommand{\clr}[1]{\textcolor{red}{#1}}   %红色
+\newcommand{\cb}[1]{\textcolor{blue}{#1}}   %蓝色
+\newcommand{\cg}[1]{\textcolor{magenta}{#1}}%紫色
+\newcommand{\cy}[1]{\textcolor{cyan}{#1}}
+\newcommand{\hlg}[1]{\cg{\udl{#1}}}
+\newcommand{\hlb}[1]{\cb{\udl{#1}}}
+\newcommand{\hlr}[1]{\clr{\udl{#1}}}
+
+\newcommand{\mf}{\mathbf}
+\newcommand{\tf}{\textbf}
+\newcommand{\tit}{\textit}
+\newcommand{\hlt}[1]{\textbf{\red{#1}}}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+
+\newcommand{\nm}[1]{{\rm#1}}                %竖体
+\newcommand{\ttt}{\textrm}
+\newcommand{\mhb}[1]{\mathbb{#1}}
+\newcommand{\mcl}[1]{\mathcal{#1}}
+\newcommand{\flr}[1]{\mathscr{#1}}
+\newcommand{\got}[1]{\mathfrak{#1}}
+\newcommand{\orl}[1]{\overline{#1}}
+\newcommand{\udl}[1]{\underline{#1}}
+\newcommand{\uudl}[1]{\uuline{#1}}
+\newcommand{\wudl}[1]{\uwave{#1}}
+
+%%%%%%%%%%%%%PHYSICS CONSTANTS
+\newcommand{\cstk}{\frac{1}{4\pi\vare_0}}
+\newcommand{\cstm}{\frac{\mu_0}{4\pi}}
+
+\renewcommand{\ker}{{\rm Ker}}
+\renewcommand{\Re}{{\rm Re}}
+\renewcommand{\Im}{{\rm Im}}
+\renewcommand{\S}{S^{-1}}
+\renewcommand{\bar}{\orl}
+\renewcommand{\subset}{\subseteq}
+\renewcommand{\supset}{\supseteq}
+\renewcommand{\subsetneq}{\subsetneqq}
+\renewcommand{\supsetneq}{\supsetneqq}
+
+\interfootnotelinepenalty=10000
+
+\title{Topology}
+\author{TRISCT}
+\date{}
+
+\makeindex
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\maketitle
+\tableofcontents
+\begin{section}{Topological Spaces}
+\begin{subsection}{The Definition of a Topological Space}
+A \tf{topological space} is a nonempty set $X$, together with a family $\tau$ of subsets of $X$, satisfying
+\itm{
+    \item[(i)]$\varn,X\in\tau$;
+    \item[(ii)]$\tau$ is closed under finite intersections;
+    \item[(iii)]$\tau$ is closed under arbitrary unions.
+}
+The subsets in $\tau$ are called \tf{open sets}. A \tf{closed set} is one whose complement is open. $\tau$ itself is called a \tf{topology} on $X$. Any subset $Y$ of a topological space $X$ inherits naturally a topology. In this case, $Y$ is called a \tf{subspace} of $X$.
+\end{subsection}
+
+\begin{subsection}{Limit Points}
+Let $X$ be a topological space. Given a subset $A\subset X$, a \tf{limit point} of the subset $A$ is a point $p\in X$ such that any neighborhood $U$ of $x$ contains at least one point in $A$ distinct from $p$, i.e. $U\cap(A\bs\{p\})=U\bs\{p\}\cap A\neq\varn$. For a subset $A$, let $A'$ be the set of all the limit points of $A$. This $A'$ is called the \tf{derived set} of $A$. $\bar A=A\cup A'$ is called the \tf{closure} of $A$. A subset $A\subset X$ is said to be \tf{dense} in $X$ if $\bar A=X$.
+
+Let $A\subset X$. An \tf{interior point} of $A$ is a point for which there exists a neighborhood of it contained in $A$. The \tf{interior} of $A$ is the collection of all the interior points of $A$. A \tf{boundary point} of $A$ is a point that is neither in the interior of $A$, nor in that of $X\bs A$.
+
+Using limit points, we can characterize these concepts in a different manner. In the following theorems, let $A$ be a subset of a topological space $X$.
+\thm{[\tf{Equivalent conditions for an open set}]TFAE.
+\itm{
+    \item[(i)]$A$ is open;
+    \item[(ii)]Every point in $A$ has a neighborhood contained in $A$.
+}}
+\prf{\ \\(i)\tim(ii): $A$ itself is the neighborhood.\\
+(ii)\tim(i): Let $x\in A$. Then there is an open set $U_x$ with $x\in U_x\subset A$. Hence $A=\bigcup_{x\in A}U_x$ is open.}
+\thm{[\tf{Equivalent conditions for a closed set}]TFAE.
+\itm{
+    \item[(i)]$A$ is closed, i.e. has an open complement;
+    \item[(ii)]$A'\subset A$, i.e. all limit points of $A$ lie in $A$;
+    \item[(iii)]$A=\bar A$.
+}}
+\prf{\ \\(i)\tim(ii): The complement $X\bs A$ is open, hence contains no limit points of $A$.\\
+(ii)\tim(i): Any point in $X\bs A$ is not a limit point of $A$, hence has a deleted neighborhood that does not intersect $A$, but the point itself is not in $A$ either. It follows that this neighborhood is contained in $X\bs A$.\\
+(ii)\tim(iii): $A\subset\bar A$ is obvious. $\bar A\subset A$ since $A'\subset A$.\\
+(iii)\tim(ii): Trivial.}
+\thm{[\tf{Equivalent conditions for the closure}]TFAE.
+\itm{
+    \item[(i)]$K=\bar A$, i.e. $K=A\cup A'$;
+    \item[(ii)]$K=\bigcap\limits_{\substack{A\subset F\\F\ttt{ is closed}}}F$;
+    \item[(iii)]$K\supset A$ is closed and is such that for any closed set $F\supset A$, it holds $K\subset F$.
+}}
+\prf{\ \\
+(i)$\iff$(ii): We first prove that $\bar A$ is closed. This is easily done by showing that $X\bs\bar A$ is open. Hence
+\[\bigcap\limits_{\substack{A\subset F\\F\ttt{ is closed}}}F\subset\bar A\]
+Conversely if $A\subset F$ and $F$ is closed, then every limit point of $A$ is also one of $F$, and hence lies in $F\implies A'\subset F\implies\bar A\subset F$. It follows that
+\[\bar A\subset\bigcap\limits_{\substack{A\subset F\\F\ttt{ is closed}}}F\]
+(ii)\tim(iii): Obvious.\\
+(iii)\tim(ii): Obviously $K\subset\bigcap_{\substack{A\subset F\\F\ttt{ is closed}}}F$ if $K$ satisfies (iii). However, $K$ itself appears in the intersection, hence the incluson is actually equality.}
+\end{subsection}
+
+\begin{subsection}{Topological Bases}
+Let $X$ be a topological space equipped with the topology $\tau$. A \tf{topological basis} for $\tau$ is a subset $\beta\subset\tau$ (i.e. a subcollection of open sets) for which every element $O\in\tau$ can be written in the form
+\[O=\bigcup_{B_i\in\beta,\ i\in I}B_i\]
+The open sets in $\beta$ are called \tf{basic open sets}. A \tf{topological subbasis} for $\tau$ is a subset $\sigma\subset\tau$ such that $\tau$ is the smallest topology on $X$ containing $\sigma$.
+\ntg{Note that we cannot necessarily write an open set in $\tau$ in the form of a union of members in a subbasis.}
+\ntg{You might want to compare this with the weak topology.}
+
+Now we want to determine for a collection $\beta$ of subsets in a set $X$ (with no topology previously specified), whether the topology $\tau$ generated by $\beta$ has $\beta$ as its basis. We have the following theorem.
+\thm{Let $X$ be a set. Let $\beta$ be a nonempty collection of subsets in $X$. Let $\tau_\beta$ be the topology generated by $\beta$. Suppose $\beta$ satisfies:
+\itm{
+    \item[(i)]$X=\bigcup_{A\in\beta}A$.
+    \item[(ii)]For any finitely many members $A_1,\cdots,A_k\in\beta$ and any $x\in\bigcap_{i=1}^kA_i$, there exists $A\in\beta$ with $x\in A\subset\bigcup_{i=1}^kA_i$.
+}
+Then $\beta$ is a basis for $\tau_\beta$.\footnote{Another equivalent statement is: if $\beta$ satisfies (i) and (ii), then the family $\mcl F_\beta$ of subsets, obtained by adjoining all arbitrary unions of members of $\beta$ and the empty set, is a topology.}}
+\prf{We shall show the family $F_\beta$ (as in the footnote) is a topology on $X$. First of all $\varn\in\mcl F_\beta$ by assumption and $X=\bigcup_{A\in\beta}A$ by property (i). Then let $\{O_\alpha\}_{\alpha\in\Lambda}$ be such a family that each $O_\alpha$ has the form
+\[O_\alpha=\bigcup_{i\in I_\alpha}A_i,\ttt{ with }A_i\in\beta\]
+Suppose $\Lambda$ is an arbitrary index set, we have
+\[\bigcup_{\alpha\in\Lambda}O_\alpha=\bigcup_{\alpha\in\Lambda}\bigcup_{i\in I_\alpha}A_i\]
+which is a union of members in $\beta$, and lies in $\mcl F_\beta$ by the definition of $\mcl F_\beta$. This proves $\mcl F_\beta$ is closed under arbitrary unions. Now suppose on the other hand that $\Lambda=\{\alpha_1,\alpha_2\}$ has two indexes, then
+\[\bigcap_{\alpha\in\Lambda}O_\alpha=\prn{\bigcup_{i\in I_{\alpha_1}}A_i}\cap\prn{\bigcup_{j\in I_{\alpha_2}}A_j}\]
+Let $x\in\prn{\bigcup_{i\in I_{\alpha_2}}A_i}\cap\prn{\bigcup_{j\in I_{\alpha_1}}A_j}$. Then there exists $A_{i_x}$ with $i_x\in I_{\alpha_1}$ and $A_{j_x}$ with $j_x\in I_{\alpha_2}$ such that $x\in A_{i_x}\cap A_{j_x}$. By (ii), there exists $A_x\in\beta$ such that
+\[x\in A_x\subset A_{i_x}\cap A_{j_x}\subset\prn{\bigcup_{i\in I_{\alpha_2}}A_i}\cap\prn{\bigcup_{j\in I_{\alpha_1}}A_j}\]
+Then taking the union over $x\in\prn{\bigcup_{i\in I_{\alpha_2}}A_i}\cap\prn{\bigcup_{j\in I_{\alpha_1}}A_j}$ we get
+\mtha{&&\prn{\bigcup_{i\in I_{\alpha_2}}A_i}\cap\prn{\bigcup_{j\in I_{\alpha_1}}A_j}=\bigcup_x\{x\}\\
+&\subset&\bigcup_{x}A_x\subset\prn{\bigcup_{i\in I_{\alpha_2}}A_i}\cap\prn{\bigcup_{j\in I_{\alpha_1}}A_j}}
+\[\implies\prn{\bigcup_{i\in I_{\alpha_2}}A_i}\cap\prn{\bigcup_{j\in I_{\alpha_1}}A_j}=\bigcup_xA_x\in\mcl F_\beta\]
+By induction we can conclude that $\mcl F_\beta$ is closed under finite intersections. It follows that $\mcl F_\beta$ is a topology. Apparently any topology containing $\beta$ must contain $\mcl F_\beta$ as well. Hence $\tau_\beta=\mcl F_\beta$ and $\beta$ is a basis for $\tau_\beta$.
+}
+\end{subsection}
+\end{section}
+
+\begin{section}{Maps}
+\begin{subsection}{Continuity}
+Let $f:X\to Y$ be a map between topological spaces. We have the following equivalent conditions for the continuity of $f$.
+\thm{[Equivalent conditions for continuity]The following are equivalent
+\itm{
+    \item[(i)]$f$ is continuous, i.e. the preimage of an open set in $Y$ under $f$ is open in $X$.
+    \item[(ii)]The preimage of a closed set in $Y$ under $f$ is closed in $Y$.
+    \item[(iii)]Given a basis for the topology in $Y$, the preimage of any basic open set in $Y$ under $f$ is open in $X$.
+    \item[(iv)]$f(\bar A)\subset\bar{f(A)}$ for all $A\subset X$.
+    \item[(v)]$\bar{f^{-1}(B)}\subset f^{-1}(\bar B)$ for all $B\subset Y$.
+    \item[(vi)]For an arbitrary open cover of $X$, $f$ is continuous on every covering member\footnote{In the sense that the restriction of $f$ to that set is continuous.}.
+    \item[(vii)]For a finite closed cover of $X$, $f$ is continuous on every covering member.
+}}
+\end{subsection}
+
+\begin{subsection}{Basis for a Set and Limits over a Basis}
+Let $X$ be a set and $\beta$ a collection of subsets of $X$. Then $\beta$ is a \tf{basis} for $X$ if the two conditions are met:
+\itm{
+    \item[(i)]$\varn\notin\beta$
+    \item[(ii)]$\forall B_1,B_2\in\beta,\ \exists B_3\in\beta,\ B_3\subset B_1\cap B_2$.
+}
+Let $X$ be a set with a basis $\beta$ as above and $Y$ a topological space. If $f$ is a map $X\to Y$, then \tf{limit of $f$ over $\beta$} is defined to be some point $y\in Y$ satisfying: for any neighborhood $U_y$ of $y$ there exists a member $B\in\beta$ such that $f(B)\subset U_y$. We can prove that in a Hausdorff space the limit is unique, and we shall denote it by $y=\lim_{\beta}f(x)$.
+\end{subsection}
+
+\begin{subsection}{Extension of Maps in Metric Spaces}
+Let $X$ be a metric space and $A\subset X$. We define the \tf{distance} of a point $x\in X$ to $A$ to be
+\[d(x,A)=\inf_{y\in A}d(x,A)\]
+\lem{[Distance to a set is continuous]$d(x,A)$ as above is continuous in $x$.}
+\thm{[Tietze, extension theorem]A continuous function defined on a closed subset of a metric space has a continuous extension to the whole space.}
+\prf{If $f$ is bounded, we find a uniformly convergent series with continuous terms defined on the whole space to approach $f$ on $C$. If $f$ is not bounded, we use compose $f$ with $\arctan$ first.}
+\end{subsection}
+\end{section}
+
+\begin{section}{Compact Spaces and the Hausdorff Separation Axiom}
+\begin{subsection}{Definitions}
+A space is \tf{compact} is any open cover admits a finite subcover. Note we can also define compactness for a subset using an open cover with sets open in the whole space. A space is \tf{Hausdorff} if any two distinct points have disjoint neighborhood.
+\end{subsection}
+\begin{subsection}{Properties of Compact Sets}
+\thm{The image of a compact set under a continuous map is compact.}
+\thm{A closed subset of a compact set is compact.}
+\thm{[Compact implies sequentially compact]An infinite subset of a compact set has a limit point in the set. Equivalently, a sequence in a compact set has a convergent subsequence.}
+\end{subsection}
+\begin{subsection}{Properties of a Hausdorff space}
+\thm{A limit in a Hausdorff space is unique.}
+\thm{A compact set in a Hausdorff space is closed.}
+\thm{[Inverse theorem for continuous functions]If $f:X\to Y$ is continuous and bijective, where $X$ is compact and $Y$ is Hausdorff, then $f$ is closed\footnote{In the sense that $f$ maps a closed set to a closed set.} and hence $f^{-1}$ is continuous. Hence $f$ is a homeomorphism.}
+\thm{[Pullback of the Hausdorff property]If $f:X\to Y$ is continuous and injective, then $Y$ is Hausdorff $\implies X$ is Hausdorff.}
+\prf{Let $x\neq x'\in X$. Then $f(x)\neq f(x')\in Y$. Since $Y$ is Hausdorff, we can find disjoint neighborhoods $V,V'$ of $f(x),f(x')$ respectively. Hence $f^{-1}(V)$ and $f^{-1}(V')$ are respectively disjoint neighborhoods of $x$ and $x'$.}
+\end{subsection}
+\begin{subsection}{Compact Sets in $\RR^n$}
+\thm{[Lebesgue number]Let $\{U_\alpha\}$ be an open cover of a compact metric space. Then there exists a number $\delta>0$ subordinate to $\{U_\alpha\}$ such that for any set $A:\diam(A)<\delta$, $A$ can be covered by a single member of $\{U_\alpha\}$.}
+\end{subsection}
+\end{section}
+
+\begin{section}{Product Topology and More on Compactness}
+\end{section}
+
+\begin{section}{Identification Spaces}
+Let $X$ be topological space, a \tf{partition} of $X$ is a decomposition of $X$ into a disjoint union of nonempty subsets:
+\[X=\bigcup_iP_i\]
+We put on $X$ the equivalence relation $\sim$ that two points are equivalent if they are in the same set of the partition, and let $Y=X/\sim$. Let $\pi:X\to Y=X/\sim$ be the canonical projection. We define a set $A$ in $Y$ to be open if $\pi^{-1}(A)$ is open in $X$. We see that the gives a topology on $Y$, called the \tf{identification topology}, and $Y$ is made into a topological space, called the \tf{identification space} (associated to the partition $X=\bigcup_iP_i$).
+
+The following result provides a criterion for the continuity of a function from an identification space.
+\thm{[Continuity test, from an identification space]Let $Y$ be an identification space of $X$, with $\pi:X\to Y$ the canonical projection. Then for a map $f:Y\to Z$ where $Z$ is a topological space, $f$ is continuous $\iff f\comp\pi$ is continuous.
+\[\cd{X\ar[rr,"\pi"]\ar[rrddd,"f\comp\pi"',""{pos=.6,name=comps}]\&\&Y\ar[ddd,"f",""'{pos=.3,name=f}]\\
+    \&\&\\
+    \&\&\\
+    \&\&Z\ar[blue,Leftrightarrow,from = f,to = comps,bend right,"\ttt{continuity}"'{very near start}]}\]}
+\prf{Let $O$ be an open subset of $Z$, $f^{-1}(O)$ is open in $Y\iff\pi^{-1}f^{-1}(O)=(f\comp\pi)^{-1}(O)$ is open in $X$.}
+
+Now we generalize the concept of identification spaces by introducing its category definition. A map $f:X\to Y$ is called an \tf{identification map} if it is surjective, continuous, and satisfies $O$ is open in $Y\iff f^{-1}(O)$ is open in $X$.\footnote{Or equivalently, if $f$ is surjective and $Y$ is equipped with the largest topology for which $f$ is continuous.} This definition is to be justified as follows.
+\thm{[Category definition, identification map]Let $f:X\to Y$ be an identification map in the category sense. Then $f$ induce on $X$ an equivalence relation that $x\sim x'$ if and only if $f(x)=f(x')$. Let $Y_*=X/\sim$ and $\pi_*:X\to Y_*=X/\sim$ the canonical projection. Then the map\footnote{$[x]$ denotes the equivalence class $x$ is in.}
+\mapn{\bar f}{Y_*}{Y}{\sqb x}{f(x)}
+is well-defined and is a homeomorphism. Moreover, if $Z$ is another topological space, then $g:Y\to Z$ is continuous $\iff g\comp f$ is continuous.
+\[\cd{\&X\ar[rddd,"f"]\ar[lddd,"\pi_*"']\ar[pos=0.6,rr,"g\comp f"'{name=gf}]\&\&Z\\
+    \&\&\&\\
+    \&\&\&\\
+    Y_*\ar[rr,"\bar f"]\&\&Y\ar[ruuu,"g"{name=g}]\&\ar[from=g,to=gf,Leftrightarrow,blue,"continuity"{very near end}]}\]
+}
+\prf{The definition of the equivalence on $X$ shows that $\bar f$ is well-defined and injective. $\bar f$ is surjective because $f$ is. Then it suffices to show $f,f^{-1}$ are continuous. Let $A\subset Y$. Then $A$ is open in $Y\iff f^{-1}(A)=(\bar f\comp\pi_*)^{-1}(A)=\pi_*^{-1}\comp\bar f^{-1}(A)$ is open in $X\iff \bar f^{-1}(A)$ is open in $Y_*$. The proof is then complete.}
+\end{section}
+\end{document}

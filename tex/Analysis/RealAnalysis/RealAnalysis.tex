@@ -1,0 +1,994 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{geometry,xcolor,layout,amssymb,amsthm,amsmath,mathrsfs,graphicx,centernot,textcomp,galois,extarrows,bbm,dsfont,makeidx,empheq}
+\usepackage[normalem]{ulem}
+\usepackage[all]{xy}
+\usepackage[english]{babel}
+
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{prp}{Proposition}[section]
+\newtheorem{theom}{Theorem}[section]
+\newtheorem{coro}{Corollary}[section]
+
+\theoremstyle{definition}
+\newtheorem{eg}{Example}[section]
+\newtheorem{ct}{\textcolor{cyan}{Counterexample}}[section]
+\newtheorem*{pf}{\blue{Proof}}
+\newtheorem{question}{Q}[section]
+\newtheorem{dfn}{Definition}[section]
+\newtheorem{probl}{Problem}[section]
+\newtheorem{nt}{\cg{Note}}[section]
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}[section]
+
+\newcommand*\widefbox[1]{\fbox{\vspace{2em}\hspace{2em}#1\hspace{2em}}}
+\setlength\fboxsep{0.2cm}
+
+\newcommand{\tick}{\textcolor{red}{\checkmark}}
+\newcommand{\bs}{\backslash}
+\newcommand{\udots}{\mathinner{\mskip 1mu\raise 1pt\vbox{\kern 7pt\hbox{.}}
+\mskip 2mu\raise 4pt\hbox{.}\mskip 2mu\raise 7pt\hbox{.}\mskip 1mu}}
+\newcommand{\geqs}{\geqslant}
+\newcommand{\leqs}{\leqslant}
+\newcommand{\Var}{{\rm Var}}
+\newcommand{\sdd}{\sigma}
+\newcommand{\ga}{\got a}
+\newcommand{\gb}{\got b}
+\newcommand{\gc}{\got c}
+\newcommand{\gp}{\got p}
+\newcommand{\gq}{\got q}
+\newcommand{\gm}{\got m}
+\newcommand{\lst}{L^{s,t}}
+\newcommand{\EE}{\mathbb{E}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\rsa}{\sigma(f;\pi,\xi)}
+\newcommand{\wlg}{{\rm w.l.o.g.}}
+\newcommand{\spn}{{\rm span}}
+\newcommand{\rank}{{\rm rank}}
+\newcommand{\nul}{{\rm null}}
+\newcommand{\disc}{{\rm disc}}
+\newcommand{\im}{{\rm Im}}
+\newcommand{\coker}{{\rm Coker}}
+\newcommand{\coim}{{\rm Coim}}
+\newcommand{\ud}{{\rm d}}
+\newcommand{\Log}{{\rm Log}}
+\newcommand{\lub}{{\rm lub}}
+\newcommand{\glb}{{\rm glb}}
+\newcommand{\loc}{{\rm loc}}
+\newcommand{\supp}{{\rm supp}}
+\newcommand{\dx}{\ud x}
+\newcommand{\dy}{\ud y}
+\newcommand{\dz}{\ud z}
+\newcommand{\dmu}{\ud\mu}
+\newcommand{\x}{\times}                     %乘号
+\newcommand{\ox}{\otimes}
+\newcommand{\op}{\oplus}
+\newcommand{\p}{\prime}
+\newcommand{\fctr}{\Rightarrow}
+\newcommand{\unito}{\rightrightarrows}
+\newcommand{\lbint}{\int\!\!\!\int}      %二重积分号
+\newcommand{\bint}{\int\!\!\!\!\int}      %二重积分号
+\newcommand{\tint}{\int\!\!\!\!\int\!\!\!\!\int}      %三重积分号
+\newcommand{\apr}{\approx}
+\newcommand{\prdn}{\prod\limits_{n=1}^\infty}
+\newcommand{\sumn}{\sum\limits_{n=1}^\infty}
+\newcommand{\sump}{\sum\limits_{n=0}^\infty}
+\newcommand{\limn}{\lim\limits_{n\to\infty}}
+\newcommand{\limx}{\lim\limits_{x\to+\infty}}
+\newcommand{\operp}{\stackrel{\perp}{\oplus}}
+\newcommand{\const}{{\rm const}}
+\newcommand{\codim}{{\rm codim}}
+\newcommand{\sgn}{{\rm sgn}}
+\newcommand{\ann}{{\rm Ann}}
+\newcommand{\chr}{{\rm \,char\,}}
+\newcommand{\tr}{{\rm Tr}}
+\newcommand{\sym}{{\rm Sym}}
+\newcommand{\centr}{{\rm Centr}}
+\newcommand{\Sp}{{\rm Sp}}              %symplectic
+\newcommand{\id}{{\rm id}}
+\newcommand{\Obj}{\mf{Obj}}
+\newcommand{\Mor}{\mf{Mor}}
+\newcommand{\Perm}{{\rm Perm}}
+\newcommand{\Hom}{{\rm Hom}}
+\newcommand{\Aut}{{\rm Aut}}
+\newcommand{\Inn}{{\rm Inn}}
+\newcommand{\End}{{\rm End}}
+\newcommand{\re}{{\rm Re}}
+\newcommand{\diag}{{\rm diag}}
+\newcommand{\grad}{{\rm grad\,}}
+\newcommand{\dive}{{\rm div\,}}
+\newcommand{\rot}{{\rm rot\,}}
+\newcommand{\curl}{{\rm curl\,}}
+\newcommand{\free}{{\rm free}}
+\newcommand{\tor}{{\rm tor}}
+\newcommand{\rad}{{\rm rad}}
+\newcommand{\nilrad}{{\rm nilrad}}
+\newcommand{\ord}{{\rm ord}}
+\newcommand{\irr}{{\rm Irr}}
+\newcommand{\cl}{{\rm cl}}
+\newcommand{\Cl}{{\rm Cl}}
+\newcommand{\fix}{{\rm fix}}
+\newcommand{\boun}{\partial}
+\newcommand{\into}{\hookrightarrow}
+\newcommand{\varn}{\varnothing}
+\newcommand{\vare}{\varepsilon}
+\newcommand{\vphi}{\varphi}
+\newcommand{\diam}{{\rm diam}}
+\newcommand{\vect}{{\rm Vect}}
+\newcommand{\isom}{\stackrel{\cong}{\longrightarrow}}
+\newcommand{\dfas}{\triangleq}
+\newcommand{\st}{{\rm\quad s.t.\quad}}
+\newcommand{\lapla}{\Delta}
+\newcommand{\divd}{\big|}
+\makeatletter
+\newcommand{\lambdabar}{{\mathchoice
+  {\smash@bar\textfont\displaystyle{0.25}{1.2}\lambda}
+  {\smash@bar\textfont\textstyle{0.25}{1.2}\lambda}
+  {\smash@bar\scriptfont\scriptstyle{0.25}{1.2}\lambda}
+  {\smash@bar\scriptscriptfont\scriptscriptstyle{0.25}{1.2}\lambda}}}
+\newcommand{\smash@bar}[4]{%
+  \smash{\rlap{\raisebox{-#3\fontdimen5#10}{$\m@th#2\mkern#4mu\mathchar'26$}}}}
+\makeatother
+
+
+\newcommand{\res}[2]{\left.#1\right|_{#2}}
+\newcommand{\rsb}[3]{\sigma(#1;#2,#3)}      %Riemann sum with arguments
+\newcommand{\derv}[2]{\frac{\ud#1}{\ud#2}}
+\newcommand{\parf}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\secpf}[3]{\frac{\partial^2 #1}{\partial #2\partial #3}}
+\newcommand{\comb}[2]{\binom{#1}{#2}}       %组合数
+\newcommand{\norm}[1]{\left\lVert #1\right\rVert}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\brc}[1]{\left\{#1\right\}}
+\newcommand{\brk}[1]{\left\langle#1\right\rangle}
+\newcommand{\prn}[1]{\left(#1\right)}
+\newcommand{\sqb}[1]{\left\lbrack#1\right\rbrack}
+\newcommand{\dbk}[1]{\langle\!\langle#1\rangle\!\rangle}
+\newcommand{\inprod}[1]{\langle#1\rangle}
+\newcommand{\itr}[1]{#1^\circ}           %内部,interior
+\newcommand{\cmp}[1]{#1^c}               %补集,complement
+\newcommand{\cnts}[3]{#1#3\cdots#3#2}
+\newcommand{\inds}[3]{#1_{1}#3\cdots#3#1_{#2}}
+\newcommand{\dindx}[4]{#1{#2}#4\cdots#4#1{#3}}
+\newcommand{\dinds}[4]{#1_{#2}#4\cdots#4#1_{#3}}
+\newcommand{\vct}[1]{\overrightarrow{#1}}
+\newcommand{\simlr}[2]{#2^{-1}#1#2}     %相似
+\newcommand{\congt}[2]{\ts{#2}#1#2}     %相合
+\newcommand{\ccong}[2]{\cts{#2}#1#2}    %共轭相合
+\newcommand{\rcong}[2]{\ts{#2}#1\orl{#2}}    %右共轭相合
+\newcommand{\ts}[1]{#1^{\rm T}}
+\newcommand{\cts}[1]{\orl{#1}^{\rm T}}   %共轭转置
+\newcommand{\wt}[1]{\widetilde{#1}}
+\newcommand{\bss}[2]{\inds{#1}{#2}{,}}
+\newcommand{\unitob}[1]{\mathop{\rightrightarrows}\limits_{#1}}
+\newcommand{\limb}[1]{\lim\limits_{#1}}
+\newcommand{\limp}[2]{\lim\limits_{#1\to#2}}
+\newcommand{\mapn}[5]{\arr{{ccrcl}#1&:&#2&\to&#3\\&&#4&\mapsto&#5}}
+\newcommand{\map}[4]{\arr{{rcl}#1&\to&#2\\#3&\mapsto&#4}}
+
+\newcommand{\mth}[1]{\begin{displaymath}#1\end{displaymath}}
+\newcommand{\mtha}[1]{\begin{eqnarray*}#1\end{eqnarray*}}
+\newcommand{\arr}[1]{\begin{array}#1\end{array}}
+\newcommand{\lem}[1]{\begin{lemma}#1\end{lemma}}
+\newcommand{\prf}[1]{\begin{pf}\blue{#1}\end{pf}}
+\newcommand{\ques}[1]{\begin{question}#1\end{question}}
+\newcommand{\sprf}[1]{\begin{pf}\cb{#1}\end{pf}}
+\newcommand{\df}[1]{\begin{dfn}#1\end{dfn}}
+\newcommand{\ntg}[1]{\begin{nt}\cg{#1}\end{nt}}
+\newcommand{\mat}[1]{\begin{matrix}#1\end{matrix}}
+\newcommand{\matp}[1]{\prn{\begin{matrix}#1\end{matrix}}}
+\newcommand{\itm}[1]{\begin{itemize}#1\end{itemize}}
+\newcommand{\enu}[1]{\begin{enumerate}#1\end{enumerate}}
+\newcommand{\desc}[1]{\begin{description}#1\end{description}}
+\newcommand{\tmth}[1]{\begin{displaymath}\ttt{#1}\end{displaymath}}
+\newcommand{\thm}[1]{\begin{theom}#1\end{theom}}
+\newcommand{\emp}[1]{\begin{eg}#1\end{eg}}
+\newcommand{\rmk}[1]{\begin{remark}#1\end{remark}}
+\newcommand{\pbl}[1]{\begin{probl}#1\end{probl}}
+\newcommand{\prop}[1]{\begin{prp}#1\end{prp}}
+\newcommand{\cor}[1]{\begin{coro}#1\end{coro}}
+\newcommand{\eqn}[1]{\begin{equation}#1\end{equation}}
+\newcommand{\eqna}[1]{\begin{eqnarray}#1\end{eqnarray}}
+
+
+\newcommand{\clr}[1]{\textcolor{red}{#1}}   %红色
+\newcommand{\cb}[1]{\textcolor{blue}{#1}}   %蓝色
+\newcommand{\cg}[1]{\textcolor{magenta}{#1}}%紫色
+\newcommand{\cy}[1]{\textcolor{cyan}{#1}}
+\newcommand{\hlg}[1]{\cg{\udl{#1}}}
+\newcommand{\hlb}[1]{\cb{\udl{#1}}}
+\newcommand{\hlr}[1]{\clr{\udl{#1}}}
+
+\newcommand{\mf}{\mathbf}
+\newcommand{\tf}{\textbf}
+\newcommand{\hlt}[1]{\textbf{\red{#1}}}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+
+\newcommand{\nm}[1]{{\rm#1}}                %竖体
+\newcommand{\ttt}{\textrm}
+\newcommand{\mhb}[1]{\mathbb{#1}}
+\newcommand{\mcl}[1]{\mathcal{#1}}
+\newcommand{\flr}[1]{\mathscr{#1}}
+\newcommand{\got}[1]{\mathfrak{#1}}
+\newcommand{\orl}[1]{\overline{#1}}
+\newcommand{\udl}[1]{\underline{#1}}
+\newcommand{\uudl}[1]{\uuline{#1}}
+\newcommand{\wudl}[1]{\uwave{#1}}
+
+%%%%%%%%%%%%%PHYSICS CONSTANTS
+\newcommand{\cstk}{\frac{1}{4\pi\vare_0}}
+\newcommand{\cstm}{\frac{\mu_0}{4\pi}}
+
+\renewcommand{\ker}{{\rm Ker}}
+\renewcommand{\Re}{{\rm Re}}
+\renewcommand{\Im}{{\rm Im}}
+\renewcommand{\S}{S^{-1}}
+\makeindex
+
+\title{DEFINITIONS, PROPOSITIONS\\
+AND THEOREMS\\\ \\
+\normalsize Real Analysis}
+\date{}
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+\begin{section}{Algebras of Sets}
+\begin{subsection}{Definitions}
+\begin{description}
+\item[(Boolean) algebra\index{algebra!boolean}]Omitted.
+\item[$\sigma$-algebra\index{algebra!$\sigma$-}]Omitted.
+\item[Borel algebra\index{algebra!Borel}]Defined only for topological spaces. The \tf{Borel algebra} is the $\sigma$-algebra generated by all open sets, or equivalently, the intersection of all $\sigma$-algebra containing all open sets, or also, the smallest algebra containing all open sets. Note that for a topological space $(X,\tau)$ and its Borel sets $\flr B$, $\tau\subset\flr B$.
+    \ntg{This definition relies on the fact that any intersection of $\sigma$-algebras is still a $\sigma$-algebra.}
+\item[Tensor product of $\sigma$-algebras]Let $(X_1,\mcl A_1)$ and $(X_2,\mcl A_2)$ be measurable spaces. Define $\mcl R=\{\ttt{All rectangles in }X_1\x X_2\}=\{A_1\x A_2:A_1\in\mcl A_1,A_2\in\mcl A_2\}$ and $\wt{\mcl R}=\{\ttt{Finite union of disjoint rectangles in }\mcl R\}$. \emph{\red{Then $\wt{\mcl R}$ is an algebra on $X_1\x X_2$}.} Then let $\mcl A_1\ox\mcl A_2$ denote the $\sigma$-algebra generated by $\mcl R$ (or $\wt{\mcl R}$), and call it the \tf{tensor product} of $\mcl A_1$ and $\mcl A_2$.
+    \ntg{Need to verify that $\wt{\mcl R}$ is an algebra. Let $A=\bigcup_{i=1}^n(A_i\x A_i'),\ B=\bigcup_{j=1}^m(B_j\x B_j')\in\wt{\mcl R}$. Then
+        \itm{
+            \item Union:
+                \[A\cup B=\bigcup_{i=1}^n\bigcup_{j=1}^m((A_i\x A_i')\cup(B_j\x B_j'))\]
+                As long as you deal with the union of two rectangles you can verify this. This is done by breaking it down to $7$ disjoint parts.
+            \item Intersection: this is much easier.
+                \mtha{A\cap B&=&(\bigcup_{i=1}^n(A_i\x A_i'))\cap(\bigcup_{i=1}^m(B_j\x B_j'))\\
+                    &=&\bigcup_{i=1}^n\bigcup_{j=1}^m((A_i\x A_i')\cap(B_j\x B_j'))\\
+                    &=&\bigcup_{i=1}^n\bigcup_{j=1}^m((A_i\cap B_j)\x(A_i'\cap B_j'))}
+            \item Complement:
+                \[A^c=\prn{\bigcup_{i=1}^nA_i\x A_i'}^c=\bigcap_{i=1}^n(A_i\x A_i')^c\]
+                It remains to break $A_i\x A_i'$ down into 8 disjoint parts.
+        }
+    }
+    \ques{Why do I have to verify this? Why not just generate it?}
+\end{description}
+\end{subsection}
+\end{section}
+
+\begin{section}{Measures on $\RR^n$ and Measurability of Sets}
+\begin{subsection}{Definitions}
+\begin{description}
+\item[Content of elementary sets]Elementary sets in $\RR$ are of the form
+    \[R=[a_1,b_1]\x\cdots\x[a_n,b_n]\]
+    Its \tf{content}\index{content} or \tf{volume}\index{volume} is defined to be
+    \[\abs{R}=(b_1-a_1)\cdots(b_n-a_n)\]
+\item[Exterior measure]For any subset $E\subset\RR^n$, the \tf{exterior measure}\index{measure!exterior} or \tf{outer measure}\index{measure!outer} of $E$ is
+    \[m^*(E)=\inf_{\{Q_j\}}\sum_{j=1}^\infty\abs{Q_j}\]
+    where the infimum is taken over all countable coverings $\{Q_j\}$ of $E$.
+\item[Lebesgue measure\index{measure!Lebesgue}]There are two equivalent conditions for Lebesgue measurability.
+    \itm{
+        \item[(i)](\tf{Approximation by open sets}) A set $E$ is measurable if
+            \[\forall\vare>0,\ \exists\ttt{ open set }\mcl O\supset E,\ m^*(\mcl O-E)\leqs\vare\]
+        \item[(ii)](\tf{The Carath\'eodory condition}\index{condition!Carath\'eodory}\index{Carath\'eory}) A set $E$ is measurable if
+            \[m^*(T)=m^*(T\cap E)+m^*(T\cap E^c),\ \forall T\subset\RR^n\]
+    }
+    The exterior measure restricted to Lebesgue measurable sets is call the \tf{Lebesgue measure}.
+    \ntg{The notion of exterior measure and measurability can be generalized to any set. See Sect.\ref{extm}. But for now we restrict ourselves to the $\RR^n$ case.}
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Propositions}
+\begin{description}
+\item[Properties of the exterior measure]\
+    \itm{
+        \item[(i)](\tf{Monotonicity}\index{monotonicity})
+            \[E_1\subset E_2\implies M^*(E_1)\leqs m^*(E_2)\]
+        \item[(ii)](\tf{Subadditivity})\index{subadditivity}
+            \[m^*(\bigcup_{j=1}^\infty E_j)\leqs\sum_{j=1}^\infty m^*(E_j)\]
+        \item[(iii)](\tf{Isolated additivity}\index{additivity!isolated})
+            \[d(E_1,E_2)>0\implies m^*(E_1\cup E_2)=m^*(E_1)+m^*(E_2)\]
+        \item[(iv)](\tf{Countable additivity on almost disjoint cubes})
+            \[\{Q_j\}_{j=1}^\infty\ttt{ are almost disjoint cubes}\implies m^*(\bigcup_{j=1}^\infty Q_j)=\sum_{j=1}^\infty\abs{Q_j}\]
+        \item[(v)](\tf{Approximation by open sets})
+            \[m^*(E)=\inf_{\substack{E\subset\mcl O\\\mcl O\ttt{ is open}}}m^*(\mcl O)\]
+    }
+\item[Basic properties of measurable sets]\
+    \itm{
+        \item[(0)]Null sets are measurable.
+        \item[(i)]Open sets are measurable.
+        \item[(ii$'$)]Compact sets are measurable.
+        \item[(ii)]Closed sets are measurable.
+        \item[(iii)]Measurable sets is closed under the taking of complement.
+        \item[(iv)]Measurable sets is closed under countable union.
+        \item[(v)]Measurable sets is closed under countable intersection.
+        \item[(vi)]The Lebesgue measure enjoys countable additivity.
+        \item[(vii)]Continuity on monotonic sequences.
+    }
+    The relations are illustrated in this diagram.
+    \[\xymatrix{
+        &\ttt{\cg{null sets}}&\ttt{\red{C's lemma}\footnote{Carath\'eodory's lemma}}\ar@{=>}@[red][ldd]\\
+        \ttt{\blue{Cond. $O$}}\ar@{=>}@[blue][ru]\ar@{=>}@[blue][r]\ar@{=>}@[blue][d]\ar@{=>}@[blue][rdd]&\ttt{\cg{open sets}}&\ttt{\red{Cond. C}}\ar@{=>}@[red][lu]\ar@{=>}@[red][u]\ar@{=>}@[red][d]\ar@{=>}@[red][ldd]\\
+        \ttt{\cg{compact sets}}\ar@{=>}@[blue][r]&\ttt{\cg{closed sets}}\ar@{=>}@[blue][r]\ar@{=>}@[red][u]&\ttt{\cy{complement}}\ar@{=>}@[red][lu]\ar@[red][d]\ar@{=>}@[blue][d]\\
+        &\ttt{\cy{$\sigma$-union}}\ar@{=>}[d]\ar@{=>}@[blue][r]\ar@[red][r]\ar@{=>}@[blue][u]&\ttt{\cy{$\sigma$-intersection}}\\
+        &\ttt{$\sigma$-additivity}\ar@{=>}[d]&\\
+        &\ttt{continuity}&\\
+    }\]
+\item[More properties of measurable sets]I wanted to show the regularity, but got lazy.
+\end{description}
+\end{subsection}
+\end{section}
+
+\begin{section}{Abstract Measure}
+\begin{subsection}{Definitions}
+\label{extm}
+\begin{description}
+\item[Exterior measure and measurability]Let $X$ be a set. An \tf{exterior measure}\index{measure!exterior} is a function $\mu^*:2^X\to[0,\infty]$ that satisfies
+    \itm{
+        \item[(i)]$\mu^*(\varn)=0$
+        \item[(ii)]$E_1\subset E_2\implies\mu^*(E_1)\leqs\mu^*(E_1)\leqs\mu^*(E_2)$
+        \item[(iii)]$\mu^*(\bigcup_{j=1}^\infty E_j)\leqs\sum_{j=1}^\infty\mu^*(E_j)$
+    }
+    A set $E$ is called \tf{Carath\'eodory measurable} if
+    \[\mu^*(E)=\mu^*(E\cap T)+\mu^*(E^c\cap T),\ \forall T\in 2^X\]
+\item[Simple function\index{function!simple}]A function $f:X\to\RR$ is \tf{simple} if $f(X)$ is a finite set.
+\item[Measurable space\index{space!measurable}]A \tf{measurable space} is a set $X$ equipped with a $\sigma$-algebra $\mcl F$. More precisely, we call the tuple $(X,\mcl F)$ a \tf{measurable space}. The sets in $\mcl F$ are called \tf{measurable sets\index{set!measurable}}.
+\item[Measure\index{measure}\index{space!measure}\index{measure!positive}]Let $(X,\mcl F)$ be a set $X$ equipped with an algebra $\mcl F$. An \tf{additive function}\index{function!additive} $\mu:\mcl F\to[0,\infty]$ on $\mcl F$ is a function that satisfies
+    \itm{
+        \item[(i)]$\mu(\varn)=0$;
+        \item[(ii)]finite additivity on disjoint sets in $\mcl A$.
+    }
+    If furthermore, the algebra is a $\sigma$-algebra and the additive function is $\sigma$-additive (countably additive). Then we have a \tf{measure}, formalized as follows.
+    \itm{
+        \item[(i)]A \tf{positive measure} is a function $\mu:\mcl F\to[0,\infty]$ which is \tf{countably additive}, and $\mu(A)<\infty$ for at least one set $A$.
+        \item[(ii)]A \tf{measure space} is a measurable space equipped with a positive measure on its measurable sets. More precisely, the triple $(X,\mcl F,\mu)$ is called the \tf{measure space}.
+    }
+    \ntg{Note that requiring $\mu(A)<\infty$ for some $A$ is equivalent to saying $\mu(\varn)=0$.}
+    If a measure space $(X,\mcl F,\mu)$ is such that $\mu(X)<\infty$, we say $\mu$ is \tf{finite}\index{measure!finite}. If there exists an ascending chain $A_n$ of measurable sets such that $A_n\nearrow E,\ \mu(A_n)<\infty$, we say $\mu$ is \tf{$\sigma$-finite}.\index{measure!$\sigma$-finite}
+
+    The following are some important examples of measures.
+    \itm{
+        \item[(i)](\tf{Counting measure}\index{measure!counting}) Let $X$ be any set. The \tf{counting measure} $\mu$ on $(X,2^X)$ is defined by $\mu(E)=\abs{E},\ E\subset X$.
+            \ntg{The counting measure, when appearing in an integral, means ``sum''. For example, let $\mu$ be the counting measure on $(\NN,2^\NN)$, and we may consider a sequence $\{a_n\}$ as a measurable function $a:n\mapsto a_n$, the integral over a subset is then the sum over those indexes
+            \[\int_{E\subset\NN}a\,\dmu=\sum_{i\in E}a_i\]}
+        \item[(ii)](\tf{probability measure}\index{measure!probability}) Let $\mu$ be a measure on $X$. $\mu$ is a \tf{probability measure} if we require in extra $\mu(X)=1$.
+    }
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Propositions}
+\begin{description}
+\item[Simple function]Let $f:X\to\RR$ be a simple function on a measurable space $X$. $f$ is measurable $\iff$ for any $y\in f(X)$, $f^{-1}(y)$ is measurable.
+\item[Positive measure]Let $\mu$ be a positive measure on $(X,\mcl F)$. Then satisfies the following without any other restrictions than its definition.
+    \itm{
+        \item[(i)]\tf{On the empty set}: $\mu(\varn)=0$;
+        \item[(ii)]\tf{Finite additivity}: $A_1,\cdots,A_n\in\mcl F$ are disjoint $\implies\mu(\bigcup_{i=1}^nA_i)=\sum_{i=1}^n\mu(A_i)$;
+        \item[(iii)]\tf{Monotonicity}: $A\subset B\implies\mu(A)\leqs\mu(B)$;
+        \item[(iv)]\tf{Continuity on monotone sequences}:
+            \[A_n\nearrow A\implies\mu(A_n)\to\mu(A)\]
+            \[A_n\searrow A,\ \mu(A_1)<\infty\implies\mu(A_n)\to\mu(A)\]
+    }
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Theorems}
+\begin{description}
+\item[Carath\'eodory's Extension Theorem]Let $(X,\mcl A,\mu_0)$ be a set equipped with an algebra and an $\sigma$-finite additive function on that algebra.
+    \itm{
+        \item[(i)]\tf{Uniqueness, should an extension exist.} If there exists an extension $\mu$ of $\mu_0$ that is a measure on $(X,\sigma(\mcl A))$, then $\mu$ is unique.
+        \item[(ii)]\tf{Existence.} First we define two conditions.
+            \itm{
+                \item \tf{Condition $C$}: for all chains $\{A_n\}\subset\mcl A$ such that $\mu_0(A_1)<\infty,\ A_n\searrow\varn$, we have $\mu_0(A_n)\to0$;
+                \item \tf{Condition $C_\infty$}: there exists an ascending chain $\{A_n\}\subset\mcl A$ such that $A_n\nearrow X$, and that
+                    \[A\in\mcl A,\ \mu_0(A)=\infty\implies\mu_0(A\cap A_n)\to\infty\]
+            }
+            The existence of an extension are considered in two cases.
+            \itm{
+                \item If $\mu_0$ is finite, then $C$ is sufficient.
+                \item If $\mu_0(X)=\infty$, then both $C$ and $C_\infty$ are required.
+            }
+    }
+    \ntg{The idea of the proof is to show that the set on which two extensions agree is a monotone class.}
+    \sprf{Let $\mu,\nu$ be two extensions of $\mu_0$. If $\mu_0$ is finite, let
+        \[\mcl M=\{M\in\sigma(\mcl A):\mu(M)=\nu(M)\}\]
+        Then $\mcl M$ is a monotone class containing $\mcl A$ (The ``finite'' condition is used to verify the descending condition of a monotone class, or one can also show that $\mcl M$ is closed under the taking of complement). Hence $\mcl M\subset\sigma(\mcl A)\implies\mcl M=\sigma(\mcl A)\implies\mu=\nu$ on $\sigma(\mcl A)$.\\
+        If $\mu_0$ is not finite, the measure of the complement of a set may be infinity. Thus we need intermediate sets. Let
+        \[\mcl M=\{M\in\sigma(\mcl A):\forall A\in\mcl A,\ \nu_0(A)<\infty,\ \mu(A\cap M)=\nu(A\cap M)\}\]
+        It is still a monotone class containing $\mcl A$. One can then choose a chain $\{A_n\}$ ascending to $X$ in place of $A$ and reach the conclusion.}
+    \ntg{Note that any probability measure is finite.}
+    \ques{What about condition $C$. Wu never mentioned it.}
+\item[Littlewood's Three Principles\index{Principle!Littlewood}]In $\RR^n$, we have
+    \itm{
+        \item[(i)]\emph{Every set of finite measure is nearly a finite union of intervals}. If $E\subset\RR^n$ is such that $m(E)<\infty$, there exists a finite union $F=\bigcup_{i=1}^NQ_i$ of closed cubes such that $m(E\Delta F)\leqs\vare$.
+        \item[(ii)](\tf{Egorov})\index{Theorem!Egorov} \emph{Every convergent sequence of measurable functions is nearly uniform convergent}. Let $\{f_k:E\to\orl\RR\}_{k=1}^\infty$ is a sequence of measurable functions defined on a measurable set $E$ with $m(E)<\infty$, and $f:E\to\RR$ also a measurable function. Assume that $f_k\to f$ a.e. on $E$. Given $\vare>0$, we can find a closed set $A_\vare\subset E$ such that $m(E-A_\vare)\leqs\vare$ and $f_k\unito f$ on $A_\vare$.
+            \ntg{One proof is to consider the sets
+                \[E_s(p)=\bigcup_{k\geqs s}\{\abs{f_k-f}\geqs1/p\}\]
+                and prove that $\forall p\geqs1$, $\lim_sm(E_s(p))=0$. In this way for each $p$ there is a $s_p$ such that $m(E_{s_p}(p))\leqs\vare/2^p$. Then $f_k$ converges uniformly on its complement in $E$. Note that the uniformity lies in the fact that $n_p$ is independent of $x$.
+            }
+        \item[(iii)](\tf{Lusin})\index{Theorem!Lusin} \emph{Every measurable function is nearly continuous}. If $f$ is measurable and $\abs{f}<\infty$ on a measurable set $E$. Then $\forall\vare>0,\ \exists F_\vare$ that is closed such that $F_\vare\subset E,\ m(E-F_\vare)\leqs\vare$ and that $\res{f}{F_\vare}$ is continuous.
+            \ntg{If $m(E)<\infty$, you may use Egorov's theorem.}
+    }
+\item[The Borel-Cantelli Lemma\index{Lemma!Borel-Cantelli}]Let $(X,\mcl F,\mu)$ be a measure space and $\{A_n\in\mcl F\}$ a sequence of measure sets. Then
+    \[\sum_{n=1}^\infty\mu(A_n)<\infty\implies\mu\prn{\limsup_nA_n}=0\]
+\end{description}
+\end{subsection}
+\end{section}
+
+\begin{section}{Modes of Convergence}
+\begin{subsection}{Definitions}
+We may assume the following measure spaces are complete in order to use null sets.
+\begin{description}
+\item[$L^p$ space]Let $(X,\mcl F,\mu)$ be a measure space.
+    \itm{
+        \item[(i)]If $0<p<\infty$ and $f:X\to\CC$ is measurable, then we define
+            \[\norm{f}_p=\prn{\int_X\abs{f}^p\,\dmu}^{1/p}\]
+            to be the \tf{$L^p$-norm} of $f$.
+        \item[(ii)]Let
+            \[L^p(X,\mcl F,\mu)=\left\{f:X\to\CC\ \Big|\ \int_X\abs{f}^p\dmu<\infty\right\}\]
+            and call it the $L^p$-space of $(X,\mcl F,\mu)$.
+    }
+\item[Convergence: pointwise\index{convergence!pointwise}]Let $X$ be a set and $(Y,\tau)$ a topological space. Let $\{f_n:X\to Y\}$ and $f:X\to Y$ be functions from $X$ to $Y$. Then we say $f_n$ \tf{converges pointwise} to $f$ if
+    \[\forall x\in X,\ \lim_nf_n(x)=f(x)\]
+\item[Convergence: uniform\index{convergence!uniform}]Let $X$ be a set and $(Y,d)$ a metric space. Let $\{f_n:X\to Y\}$ and $f:X\to Y$ be functions from $X$ to $Y$. Then we say $f_n$ \tf{converges uniformly} to $f$ if the convergence is uniform with respect to $x$. In formal language:
+    \[\forall\vare>0,\exists N\in\NN,\ \forall x\in X,\ \forall n>N,\ d(f_n(x),f(x))<\vare\]
+\item[Convergence: pointwise, almost everywhere\index{convergence!almost everywhere}]Let $(X,\mcl F,\mu)$ be a measure space and $(Y,\tau)$ a topological space. Let $\{f_n:X\to Y\}$ and $f:X\to Y$ be functions from $X$ to $Y$. Then we say $f_n$ \tf{converges (pointwise) to $f$ almost everywhere} if
+    \[\exists \mcl N\in\mcl F:\mu(\mcl N)=0,\ \forall x\in X\backslash\mcl N,\ \lim_nf_n(x)=f(x)\]
+\item[Convergence: uniform, almost everywhere\index{convergence!almost everywhere}]Let $(X,\mcl F,\mu)$ be a measure space and $(Y,d)$ a metric space. Let $\{f_n:X\to Y\}$ and $f:X\to Y$ be functions from $X$ to $Y$. Then we say $f_n$ \tf{converges uniformly almost everywhere} if after removing a null set in $X$, $f_n$ converges uniformly to $f$. In formal language:
+    \[\exists \mcl N\in\mcl F:\mu(\mcl N)=0,\ \forall\vare>0,\ \exists N\in\NN,\]
+    \[\forall n>N,\ \forall x\in X\backslash\mcl N,\ d(f_n(x),f(x))<\vare\]
+\item[Convergence: almost uniform\index{convergence!almost uniform}]Let $(X,\mcl F,\mu)$ be a measure space and $(Y,d)$ a metric space. Let $\{f_n:X\to Y\}$ and $f:X\to Y$ be functions from $X$ to $Y$. Then we say $f_n$ \tf{converges almost uniformly} if one can remove a set of arbitrarily small measure such that $f_n$ converges uniformly in the remaining part. In formal language:
+    \[\forall\vare>0,\ \exists F_\vare\subset X,\ \mu(X-F_\vare)<\vare, f_n\unito f\ttt{ on }F_\vare\]
+\item[Convergence: in $L^p$ norm\index{convergence!in norm}\index{convergence!in $L^p$}]That is, convergence in $L^p$ as a metric space. Let $f_n,f\in L^p(X,\mcl F,\mu)$. We say that $f_n$ \tf{converges to $f$ in $L^p$} if
+    \[\lim_n\norm{f_n-f}_p=0\]
+\item[Convergence: in $L^\infty$ norm\index{convergence!in norm}\index{convergence!in $L^\infty$}]That is, uniformly almost everywhere when $Y=\CC$.
+\item[Convergence: in measure\index{convergence!in measure}]Let $(X,\mcl F,\mu)$ be a measure space and $(Y,d)$ a metric space. Let $\{f_n:X\to Y\}$ and $f:X\to Y$ be functions from $X$ to $Y$. Then we say $f_n$ \tf{converges to $f$ in measure ($\mu$)} if
+    \[\forall\vare>0,\ \lim_n\mu(\{d(f_n,f)\geqs\vare\})=0\]
+    \ntg{Note that for a sequence of functions to converge, $Y$ must be a topological space no matter what; for we to use ``almost'', ``in measure'', $X$ must be a measure space; for we to use ``uniform'', ``norm'', $Y$ must be a metric space.}
+\end{description}
+\end{subsection}
+\end{section}
+
+\begin{section}{Abstract Integration}
+\begin{subsection}{Definitions}
+\begin{description}
+\item[Lebesgue integral\index{integral!Lebesgue}]Let $(X,\mcl F,\mu)$ be a measure space. The definition of the Lebesgue integral for functions $X\to[-\infty,\infty]$ are defined through the following stages.
+    \itm{
+        \item[(i)]\tf{Simple, positive, measurable}: Let $s:X\to[0,\infty)$ be a simple function that is measurable. We may write
+            \[s(x)=\sum_{i=1}^na_i\chi_{A_i}(x)\]
+            with the $a_i$'s distinct. The \tf{Lebesgue integral of $s$ over $E\in\mcl F$ with respect to $\mu$} is defined as
+            \[\int_Es\,\dmu=\sum_{i=1}^na_i\mu(A_i\cap E)\]
+            \ntg{We need the convention that $0\cdot\infty=0$ in case $\mu(A_i\cap E)=\infty$ and $a_i=0$.}
+            \ntg{The basic idea is \[\ttt{\rm integral}=\ttt{\rm value}\x\ttt{\rm measure of its preimage}\]}
+            \ntg{Note that the integral is defined for all positive, measurable functions, we have not yet encountered situations in which functions are measurable but not integrable.}
+        \item[(ii)]\tf{Positive, measurable}: Let $f:X\to[0,\infty]$ be measurable. The \tf{Lebesgue integral of $f$ over $E\in\mcl F$ with respect to $\mu$} is defined as
+            \[\int_Ef\,\dmu=\sup_{\substack{0\leqs s\leqs f\\s \ttt{ is simple}}}\int_Es\,\dmu\]
+            \ntg{One need to verify that the second definition is consistent with the first for simple functions.}
+        \item[(iii)]\tf{Measurable}: Let $f:X\to[-\infty,\infty]$ be measurable. The \tf{Lebesgue integral of $f$ over $E\in\mcl F$ with respect to $\mu$} is defined as
+            \[\int_Ef\,\dmu=\int_Ef^+\,\dmu-\int_Ef^-\,\dmu\]
+            if at least one term on the right is finite. Otherwise the integral does not exist.
+    }
+\item[$L^1$\index{$L^1$}: Lebesgue integrable\index{integrable!Lebesgue}, summable\index{function!summable}]Let $(X,\mcl F,\mu)$ be a measure space. $L^1(X,\mcl F,\mu)$ is the set of functions $f:X\to\RR$ (or more generally $X\to\CC$) satisfying $\int_X\abs{f}\,\dmu<\infty$.
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Propositions}
+\begin{description}
+\item[Integration of positive functions]The following are immediate consequences of the definitions. The functions and sets occurring below are assumed to be measurable.
+    \itm{
+        \item[(i)]\tf{Monotonicity on functions}: $0\leqs f\leqs g\implies\int_Ef\,\dmu\leqs\int_Eg\,\dmu$;
+        \item[(ii)]\tf{Monotonicity on domains}: $0\leqs f,\ A\subset B\implies\int_Af\,\dmu\leqs\int_Bf\,\dmu$;
+        \item[(iii)]\tf{Scalar multiplication}: $0\leqs f,\ 0\leqs c<\infty\implies\int_Ecf\,\dmu=c\int_Ef\,\dmu$;
+        \item[(iv)]\tf{Integral of $0$}: $\int_E0\,\dmu=0$;
+        \item[(v)]\tf{integral on a null set}: $\mu(E)=0\implies\int_Ef\,\dmu=0$;
+        \item[(vi)]\tf{Zero extension}: $0\leqs f\implies\int_Ef\,\dmu=\int_Xf\chi_E\,\dmu$.
+        \item[(vii)]\tf{Weighted new measure}: Let $s$ be nonnegative, measurable, simple. Then $\vphi:\mcl F\to[0,\infty]$ defined by
+            \[\vphi(E)=\int_Es\,\dmu\]
+            is a measure on $\mcl F$.
+        \item[(viii)]\tf{$\sigma$-additivity on sets}: Let $s$ be nonnegative, measurable, simple. Let $A_n$ be countably many disjoint measurable sets. Then
+            \[\int_{\cup_i A_i}s\,\dmu=\sum_{i=1}^n\int_{A_i}s\,\dmu\]
+        \item[(ix)]\tf{Continuity on sets}: Let $s$ be nonnegative, measurable, simple. Let $A_n$ be an ascending or descending chain of measurable sets (in the second case we require $\mu(A_1)<\infty$) converging to $A$. Then
+            \[\lim_n\int_{A_n}s\,\dmu=\int_As\,\dmu\]
+        \item[(x)]\tf{Linearity on simple functions}: Let $s$ and $t$ be nonnegative, measurable, simple. Then
+            \[\int_X(s+t) \dmu=\int_Xs\,\dmu+\int_Xt\,\dmu\]
+        \item[(xi)]\tf{Continuity of functions, linearity on general positive measurable functions}: See convergence theorems and their corollaries.
+    }
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Theorems}
+\begin{description}
+\item[Lebesgue's Monotone Convergence Theorem\index{convergence!monotone}\index{theorem!monotone convergence}]Let $(X,\mcl F,\mu)$ be a measure space. Let $\{f_n\}$ be a sequence of measurable functions on $X$ such that $\forall x\in X,\ 0\leqs f_1(x)\leqs f_2(x)\leqs\cdots\leqs\infty$. Then $f=\lim_nf_n$ exists and is measurable, and
+    \[\lim_n\int_Xf_n\,\dmu=\int_Xf\,\dmu\]
+    In brief, \tf{nonnegative, monotone, pointwise convergence implies the convergence of integral}.
+    \ntg{The fact that $f$ is measurable (and hence integrable for being positive) and one direction of the equality are easy to prove. The other direction is by exhibiting that the integral of $f_n$ can be arbitrarily close to that of $f$.}
+    \sprf{$\int_Xf_n\,\dmu$ converges to some $\alpha$ because it is monotone. Meanwhile $\int_Xf_n \dmu\leqs\int_Xf\,\dmu\implies\alpha\leqs\int_Xf\,\dmu$. For the converse, let $E_n(c)=\{f_n\geqs cf\}$ for $0<c<1$. Then we have $E_n\nearrow X$ and $\int_Xf_n\,\dmu\geqs\int_{E_n}f_n\,\dmu\geqs c\int_{E_n}f\,\dmu$. Pass to the limit $n\to\infty$ and the $c\to1$ and we obtain $\alpha\geqs\int_Xf\,\dmu$, whence $\alpha=\lim_n\int_Xf_n\,\dmu=\int_Xf\,\dmu$.}
+\item[Corollary 1: additivity on functions]If $f_1,f_2$ are nonnegative, measurable, then
+    \[\int_X(f_1+f_2)\,\dmu=\int_Xf_1\,\dmu+\int_Xf_2\,\dmu\]
+    \sprf{Take two sequences of simple functions $\{s_i\},\{s_j'\}$ that converge monotonically and pointwise to $f_1,f_2$ respectively. Notice that $s_i+s_i'\to f_1+f_2$ and use linearity for simple functions.}
+\item[Corollary 2]If $a_{ij}\geqs0$, then $\sum_{i=1}^\infty\sum_{j=1}^\infty a_{ij}=\sum_{j=1}^\infty\sum_{i=1}^\infty a_{ij}$.
+\item[Fatou's Lemma\index{lemma!Fatou}]Let $(X,\mcl F,\mu)$ be a measure space. Let $f_n:X\to[0,\infty]$ be measurable and nonnegative. Then
+    \[\int_X\prn{\liminf_n f_n}\dmu\leqs\liminf_n\int_X f_n\ \dmu\]
+    \sprf{Use the inequality $(\inf_{k\geqs n}f_k)\leqs f_m$ for $m\geqs n$. Integrate it.}
+\item[Lebesgue's Dominated Convergence Theorem\index{convergence!dominated}\index{theorem!dominated convergence}]Let $(X,\mcl F,\mu)$ be a measure space. Let $\{f_n\}$ be a sequence of measurable functions on $X$ such that $\lim_nf_n=f$ for some $f$. If there exists $g\in L^1(X,\mcl F,\mu)$, such that
+    \[\abs{f_n}\leqs g,\]
+    then $f\in L^1$, and
+    \[\lim_n\int_Xf_n\,\dmu=\int_Xf\,\dmu\]
+\item[Fubini's Theorem]Let $(X,\mcl S,\mu)$ and $(Y,\mcl T,\lambda)$ be $\sigma$-finite measure spaces, and let $f$ be an $(\mcl S\x\mcl T)$-measurable function on $X\x Y$.
+    \itm{
+        \item[(i)](\tf{Real, positive case}) If $0\leqs f\leqs\infty$, and if
+            \[\vphi(x)=\int_Yf_x\,\ud\lambda,\quad\psi(y)=\int_Xf^y\,\dmu\quad(x\in X,y\in Y)\]
+            then they are respectively $\mcl S$-measurable and $\psi$-measurable, and
+            \[\int_X\vphi\,\dmu=\int_{X\x Y}f\,\ud(\mu\x\lambda)=\int_Y\psi\,\ud\lambda\]
+        \item[(ii)](\tf{Complex case})
+        \item[(iii)](\tf{$L^1$ case})
+    }
+\end{description}
+\end{subsection}
+\end{section}
+
+\begin{section}{Topics}
+\begin{subsection}{The Cantor Set}
+In this section we talk about various kinds of Cantor sets and functions on them.
+\desc{
+    \item[Cantor set of constant dissection\index{set!Cantor}]Starting from $[0,1]$, at each step remove the central part (open) of \emph{relative length} $\xi$ of each remaining interval. What is left in the end is the Cantor set $\mcl C_\xi$. The case in which $\xi=1/3$ is the most common one. The Cantor set has the following properties.
+        \itm{
+            \item[(i)]Its complement is a countable union of open intervals with total length $1$.
+            \item[(ii)]$\mcl C_\xi$ is compact.
+            \item[(iii)]$\mcl C_\xi$ is totally disconnected.
+            \item[(iv)]$\mcl C_\xi$ is perfect.
+            \item[(v)]$m^*(\mcl C_\xi)=0$
+            \item[(vi)]$\mcl C_\xi$ is uncountable.
+        }
+    \item[Cantor-like sets\index{set!Cantor-like}\index{set!Cantor-Smith-Volterra}]Construct a closed set $\hat{\mcl C}$ by starting from $[0,1]$ and removing at the $k$th stage $2^{k-1}$ centrally located open intervals of length $l_k$ of each remaining interval (assuming $l_k$ are small enough). The Cantor-like set has the following properties.
+        \itm{
+            \item[(i)]If $\sum_{k=1}^\infty2^{k-1}l_k<1$, then $m(\hat{\mcl C})=1-\sum_{k=1}^\infty2^{k-1}l_k>0$.
+            \item[(ii)]$\hat{\mcl C}$ is totally disconnected.
+            \item[(iii)]$\hat{\mcl C}$ is perfect.
+        }
+}
+
+An important property that a Cantor set has is that each point of corresponds to a binary sequence (the $k$th digit in the sequence denotes ``left'' or ``right'' of the choice at the $k$th stage). This allows us to define functions on Cantor sets. The standard \tf{Cantor-Lebesgue function} on $\mcl C=\mcl C_{1/3}$ is defined by expanding each $x\in\mcl C$ into a ternary form with coefficients $=0,2$:
+\[x=\sum_{k=1}a_k3^{-k},\quad a_k=0,2\]
+and then setting
+\[F(x)=\sum_{k=1}^\infty\frac{a_k}{2}2^{-k}\]
+The function $F:\mcl C\to[0,1]$ is surjective, increasing. at each point $x\in[0,1]\backslash\mcl C$, let $(a,b)$ denote the maximal open interval not intersecting $\mcl C$ but containing $x$, then we have $F(a)=F(b)$, and by defining $F$ to be constant on that interval we can extend $F$ to $F:[0,1]\to[0,1]$ that is monotonically increasing, surjective.
+
+In the above example, the reason why $F(a)=F(b)$ is that $a,b$ corresponds to binary sequences of the form
+\[a\sim\cdots01111111111111\cdots\]
+\[b\sim\cdots10000000000000\cdots\]
+by interpreting them as the fraction part of a number they are equal. However, if we preserve this information we may obtain a bijective function from $\mcl C$ to $2^\NN$, and hence to any other Cantor set $\mcl C'$. The latter function $\mcl C\to\mcl C'$ is strictly increasing, hence for any maximal interval $(a,b)$ in the complement of $\mcl C$ in $[0,1]$, we have $F(a)<F(b)$. Then by setting $F$ to be linear on that interval, we have a strictly increasing, continuous, bijective function $F:[0,1]\to[0,1]$ such that $F(\mcl C)=\mcl C'$.
+\end{subsection}
+
+\begin{subsection}{Non-measurable Sets}
+The set $\mcl N$ constructed by choosing exactly one\footnote{Acknowledging the axiom of choice} representative from each equivalence class in $[0,1]/\QQ$ is non-measurable. To see this, first note that each translate of $\mcl N$ by a rational number is unique. Then we may take the union (countable, because rational numbers are numerable) of some translations close enough to get a set of reasonable size. This union is then countable and disjoint, to which we can apply the $\sigma$-additivity such and obtain a contradiction.
+
+For any measurable subset $E$ of $\mcl N$ we use the same technique to show that $m(E)=0$. First we enumerate all rationals in $[0,1]$ by $r_k$ and let $E_k=\mcl N+r_k$, then we have
+\[\bigcup_{k=1}^\infty E_k\subset[0,2]\]
+as a countable, disjoint union of measurable sets $E_k$. Then
+\[0\leqs m(\bigcup_{k=1}^\infty E_k)=\sum_{k=1}^\infty(E_k)=\sum_{k=1}^\infty(E)\leqs 2\implies m(E)=0\]
+
+The existence of non-measurable sets is more common than one might think. Actually, in any set of positive (exterior) measure there is a non-measurable subset. The construction is exactly like before. For details see the lecture notes by Xuguang Lu, or read the text by Minqiang Zhou.
+\end{subsection}
+
+\begin{subsection}{Construction of the Integration and Convergence Theorems}
+\begin{subsubsection}{Stein's Way}
+The construction requires approximation by simple functions. We begin by giving some propositions on these approximations.
+\itm{
+    \item If $f$ is nonnegative and measurable, then one can choose an increasing sequence of nonnegative, simple functions converging to $f$.
+    \item If $f$ is measurable, then one can choose a sequence of simple functions converging to $f$ while increasing in its absolute value.
+    \item If $f$ is measurable, then there exists a sequence of step functions converging to $f$ a.e..
+}
+
+Stein constructs the integration for different functions in the following order:
+\itm{
+    \item Simple functions (\tf{bounded convergence for simple functions} is introduced here).
+    \item Bounded functions supported on a set of finite measure (\tf{bounded convergence for functions supported on a set of finite measure} and the \tf{consistency with the proper Riemann integral} are introduced here).
+    \item Nonnegative functions (\tf{Fatou's lemma}, \tf{Beppo-Levi's theorem} and the \tf{monotone convergence theorem} are introduced here).
+    \item General complex-valued functions (\tf{absolute continuity} is introduced here).
+}
+
+At each step, one needs to verify the well-definedness and the following properties of the integral.
+\itm{
+    \item Linearity on the integrand.
+    \item Additivity on the domain of integration.
+    \item Monotonicity.
+    \item Triangle inequality.
+}
+Along the construction, the following convergence theorems arise.
+\desc{
+    \item[Bounded convergence theorem for simple functions]Let $\{\vphi_n\}$ be simple functions, bounded by $M$, supported on $E$ with $m(E)<\infty$. Then
+        \[\vphi_n\to f\ttt{ a.e.}\implies f\ttt{ is measurable, bounded by $M$, supported on $E$}\]
+        \[\vphi_n\to f\ttt{ a.e.}\implies\lim_{n\to\infty}\int\vphi_n\ttt{ exists.}\]
+        \[\vphi_n\to 0\ttt{ a.e.}\implies\lim_{n\to\infty}\int\vphi_n=0\]
+    \item[Bounded convergence theorem]Let $\{f_n\}$ be measurable functions, bounded by $M$, supported on $E$ with $m(E)<\infty$. Then
+        \[f_n\to f\ttt{ a.e.}\implies f\ttt{ is measurable, bounded by $M$, supported on $E$}\]
+        \[f_n\to f\ttt{ a.e.}\implies\norm{f_n-f}_{L^1}=\int\abs{f_n-f}\to0\implies\lim_{n\to\infty}\int f_n\to\int f\]
+    \item[Fatou's lemma]For nonnegative measurable functions $\{f_n\},\ f_n\geqs0$,
+        \[\int\liminf_{n\to\infty}f_n\leqs\liminf_{n\to\infty}\int f_n\]
+    \item[Dominated convergence theorem for nonnegative functions]For nonnegative measurable functions $\{f_n\}$ and $f$, if $f_n\leqs f$ and $f_n\to f$ a.e., then
+        \[\lim_{n\to\infty}\int f_n=\int f\]
+    \item[Monotone convergence theorem for nonnegative functions]For nonnegative measurable functions $\{f_n\}$, if $f_n\nearrow f$ a.e., then
+        \[\lim_{n\to\infty}\int f_n=\int f\]
+    \item[Dominated convergence theorem for general functions]For measurable functions $\{f_n\}$, if $f_n\to f$ a.e. and $\abs{f_n}\leqs g$ with $g$ integrable, then
+        \[\norm{f_n-f}=\int\abs{f_n-f}\to0\]
+        and
+        \[\lim_{n\to\infty}\int f_n=\int f\]
+}
+Having known our objectives, we shall begin to construct the integration.
+
+\begin{paragraph}{Simple functions}
+The integral of a simple function $\vphi$ is defined as the sum of its possible values weighted by the measures of the sets corresponding to those values. In other words, the integral of a simple function must be explicitly written in terms of its \tf{canonical representation}. However, one can prove that we can use any representation of $\vphi$ to calculate $\int\vphi$. This done by decomposing the sets in the arbitrary representation into disjoint ones. \red{(Q: how?)} As to the properties of the integral, note that the integral of a simple function is essentially a sum, and the equalities and inequalities can be easily obtained.
+\end{paragraph}
+\begin{paragraph}{Bounded functions supported on a set of finite measure}
+The integral of a bounded function $f$ supported on a set $E$ of finite measure is defined as the limit of any simple sequence $\{\vphi_n\}$ converging to it, while having the same bound and supported on $E$ themselves. One needs to verify that such sequence exists, this limit exists, and is independent of the choice of the sequence.
+\prf{$\{\vphi_n\}$ exists as a consequence of $f$ begin measurable. $\lim_{n\to\infty}\int\vphi_n$ exists by Egorov's theorem. The ``almost uniform'' convergence allows us to apply the Cauchy's criterion to the sequence $\{\int\vphi_n\}$. The limit being independent of the sequence follows from $\vphi_n\to0\implies\int\vphi_n\to0$, which also can be obtained by using Egorov's theorem.}
+\end{paragraph}
+\begin{paragraph}{Nonnegative functions}
+The integral of a nonnegative measurable function $f$ is defined as the supremum of $\int g$ taken over all measurable $0\leqs g\leqs f$ with $g$ bounded and $m(\supp(g))<\infty$.
+\end{paragraph}
+\red{TBA.}
+\end{subsubsection}
+\end{subsection}
+\end{section}
+
+\begin{section}{Integration over $\RR^n$}
+\begin{subsection}{Properties}
+\begin{description}
+\item[Arithmetic properties]Linearity on the integrand, additivity on the domain, monotonicity, triangle inequality.
+\item[Integrable and finiteness]$f\geqs0,\ \int f<\infty\implies f<\infty$ a.e.
+\item[Having norm zero]$f\geqs0,\ \int f=0\implies f=0$ a.e.
+\item[Absolute continuity]Let $f:\RR^n\to\orl\RR$ be measurable.
+    \itm{
+        \item[(i)](\tf{At infinity}) If $f$ is integrable, then $\forall\vare>0,\ \exists R>0$ such that
+            \[\int_{B(0,R)^c}\abs{f}<\vare\]
+        \item[(i$'$)]If $f$ is integrable, then
+            \[\lim_{\alpha\to\infty}\int_{\abs{f}\geqs\alpha}\abs{f}=0\]
+        \item[(i$''$)]If $f$ is integrable, then
+            \[\lim_{\alpha\to\infty}\int_{\abs{x}\geqs\alpha}\abs{f}=0\]
+        \item[(ii)](\tf{Within $\RR^n$}) If $f$ is integrable, then $\forall\vare>0,\ \exists\delta<0$ such that
+            \[m(E)<\delta\implies\int_E\abs{f}<\vare\]
+        \prf{Truncate $f$ in the proper way and apply MCT. For the second, the trouble is that $\abs{f}$ may not be bounded, so we use a bounded function to approximate it (truncating the range).}
+    }
+\item[Invariance properties]If $f\in L^1(\RR^n)$, $\delta=(\delta_1,\cdots,\delta_n)$ with $d_i>0$, then
+    \itm{
+        \item[(i)](Translation)
+            \[\int f(x-h)\dx=\int f(x)\dx\]
+        \item[(ii)](Dilation)
+            \[\int f(\delta x)\dx=\frac{1}{\delta_1\cdots\delta_n}\int f(x)\dx\]
+        \item[(iii)](Reflection)
+            \[\int f(-x)\dx=\int f(x)\dx\]
+    }
+    \prf{First prove for simple functions and then generalize to all functions.}
+\item[Continuity under translation]Let $f\in L^1$ and $f_h(x)=f(x-h)$. Then
+    \[\lim_{h\to0}\norm{f_h-f}=0\]
+    \prf{Prove this for $C_K$ first and approximate any integrable function $f$ using some $g\in C_K$.}
+\end{description}
+\end{subsection}
+\begin{subsection}{Convergence Theorems}
+\begin{description}
+\item[Bounded convergence theorem for simple functions]Let $\{\vphi_n\}$ be simple functions, bounded by $M$, supported on $E$ with $m(E)<\infty$. Then
+    \[\vphi_n\to f\ttt{ a.e.}\implies f\ttt{ is measurable, bounded by $M$, supported on $E$}\]
+    \[\vphi_n\to f\ttt{ a.e.}\implies\lim_{n\to\infty}\int\vphi_n\ttt{ exists.}\]
+    \[\vphi_n\to 0\ttt{ a.e.}\implies\lim_{n\to\infty}\int\vphi_n=0\]
+    \prf{Egorov's theorem and Cauchy's criterion.}
+\item[Bounded convergence theorem]Let $\{f_n\}$ be measurable functions, bounded by $M$, supported on $E$ with $m(E)<\infty$. Then
+    \[f_n\to f\ttt{ a.e.}\implies f\ttt{ is measurable, bounded by $M$, supported on $E$}\]
+    \[f_n\to f\ttt{ a.e.}\implies\norm{f_n-f}_{L^1}=\int\abs{f_n-f}\to0\implies\lim_{n\to\infty}\int f_n\to\int f\]
+    \prf{Same as above.}
+\item[Fatou's lemma]For nonnegative measurable functions $\{f_n\},\ f_n\geqs0$,
+    \[\int\liminf_{n\to\infty}f_n\leqs\liminf_{n\to\infty}\int f_n\]
+    \prf{You know.}
+\item[Dominated convergence theorem for nonnegative functions]For measurable functions $\{f_n\}$ and $f$, if $0\leqs f_n\leqs f$ and $f_n\to f$ a.e., then
+    \[\lim_{n\to\infty}\int f_n=\int f\]
+    \prf{An obvious direction + Fatou's lemma.}
+\item[Monotone convergence theorem for nonnegative functions]For nonnegative measurable functions $\{f_n\}$, if $f_n\nearrow f$ a.e., then
+    \[\lim_{n\to\infty}\int f_n=\int f\]
+    \prf{This is either a special case of the above, or can be proved using Beppo-Levi's method.}
+\item[Dominated convergence theorem for general functions]For measurable functions $\{f_n\}$, if $f_n\to f$ a.e. and $\abs{f_n}\leqs g$ with $g$ integrable, then
+    \[\norm{f_n-f}=\int\abs{f_n-f}\to0\]
+    and
+    \[\lim_{n\to\infty}\int f_n=\int f\]
+    \prf{Note that $\abs{f_n}\leqs g$ a.e. $\implies\abs{f}\leqs g$ a.e. $\implies\abs{f_n-f}\leqs 2g$. Then use the absolute continuity of $\int g$ at infinity and BCT.}
+\end{description}
+\end{subsection}
+\end{section}
+
+\begin{section}{The space $L^1$}
+The space $\mcl L^1$ is defined as follows.
+\[\mcl L^1=\{f:\RR^n\to\orl\CC\}\]
+Then $\mcl L^1$ is a vector space over $\CC$. If moreover, $\mcl L^1$ is given the norm $\norm{f}=\int\abs{f}$, then $\mcl L^1$ is a normed vector space. Consider its subspace \[N=\{f\in\mcl L^1:f=0\ttt{ a.e.}\}\]
+and the quotient
+\[L^1=\mcl L^1/N\]
+Then the latter is a Banach space with a linear structure and a well-defined norm inherited from $\mcl L^1$. The well-definedness follows from $f=g$ a.e. $\iff\norm{f-g}=0$. Other properties that need to be verified are listed as follows.
+\itm{
+    \item $\norm{\cdot}$ is a norm.
+    \item (\tf{Riesz-Fischer}) $L^1$ is complete under that norm.
+}
+\begin{subsection}{Properties}
+\desc{
+    \item[Banach space]$L^1$ is a Banach space.
+    \item[Dense families]Simple functions, step functions and continuous functions of compact support are dense families in $L^1$.
+    \item[Cvg in $L^1$ and a.e.]Convergence in $L^1$ implies convergence a.e. along a subsequence.
+}
+\end{subsection}
+\end{section}
+
+\begin{section}{Fubini's Theorem}
+\begin{subsection}{The Theorem}
+The Fubini theorem and its extended form are as follows.
+\desc{
+    \item[Fubini's theorem]Let $f(x,y)$ be integrable on $\RR^{d_1}\x\RR^{d_2}$. Then
+        \itm{
+            \item[(i)]For a.e. $y$, $f^y$ is\footnote{The slice $f^y$ means to fix some $y$ and see it as a function of $x$.} integrable on $\EE^{d_1}$.
+            \item[(ii)]For a.e. $y$, $\int f^y(x)\dx$ is integrable on $\RR^{d_2}$.
+            \item[(iii)]\[\int_{\RR^{d_2}}\prn{\int_{\RR^{d_1}}f(x,y)\dx}\dy=\int_{\RR^{d_1+d_2}}f(x,y)\dx\dy\]
+            \item[(iv)]Everything above holds if we swap $x,y$ by symmetry.
+        }
+        \prf{Let $\mcl F$ be the set of functions that satisfy all the results above. The proof consists of the following steps.
+            \itm{
+                \item[(0)]$\mcl F$ is nonempty for $0\in\mcl F$.
+                \item[(C1)]$\mcl F$ is closed under linear combinations.
+                \item[(C2)]$\mcl F$ is closed under a monotonic limit (which is integrable).
+                \item[(P3)]$E\subset\RR^{d_1+d_2}$ is a $G_\delta$-set and $m(E)<\infty\implies\chi_E\in\mcl F$.
+                \item[(P4)]$E\subset\RR^{d_1+d_2}$ has $m(E)=0\implies\chi_E\in\mcl F$.
+                \item[(G5)]$E\subset\RR^{d_1+d_2}$ is measurable $\implies\chi_E\in\mcl F$.
+                \item[(G6)]$L^1(\RR^{d_1+d_2})\subset\mcl F$.
+            }}
+        \ntg{The process is to show two kinds of \tf{c}losedness of $\mcl F$ and that two \tf{p}articular types of functions belongs to $\mcl F$, and finally to use these functions and closedness to \tf{g}eneralize to any integrable function. I call this process the \tf{CPG} (closed, particular, generalize) process.}
+    \item[Fubini's theorem (extended form, Tonelli)]Let $f(x,y)$ be nonnegative and measurable on $\RR^{d_1}\x\RR^{d_2}$. Then
+        \itm{
+            \item[(i)]For a.e. $y$, $f^y$ is measurable on $\EE^{d_1}$.
+            \item[(ii)]For a.e. $y$, $\int f^y(x)\dx$ is integrable on $\RR^{d_2}$.
+            \item[(iii)]In the sense that both sides may be $\infty$,
+                \[\int_{\RR^{d_2}}\prn{\int_{\RR^{d_1}}f(x,y)\dx}\dy=\int_{\RR^{d_1+d_2}}f(x,y)\dx\dy\]
+            \item[(iv)]Everything above holds if we swap $x,y$ by symmetry.
+        }
+        \prf{Consider the truncation
+            \[f_k=\left\{\arr{{lll}f(x,y)&,&\abs{(x,y)}<k,\ f(x,y)<k\\
+                k&,&\abs{(x,y)}<k,\ f(x,y)\geqs k\\
+                0&,&\ttt{elsewhere}}\right.\]
+            Then $f_k\nearrow f$ and each $f_k$ is integrable. By Fubini's theorem and its monotonicity we arrive at the following.
+            \itm{
+                \item[(1)] $f_k^y$ is integrable for a.e. $y$
+                \item[(2)] $f_k^y\nearrow f^y$
+                \item[(3)] $\int f^y_k(x)\dx$ is integrable for a.e. $y$
+                \item[(4)] $\int f^y_k(x)\dx\nearrow\int f^y(x)\dx$
+                \item[(5)] $\int f\leftarrow\int f_k=\int\prn{\int f^y_k(x)\dx}\dy\to\int\prn{\int f\dx}\dy$
+            }
+            Note that by consecutively applying Fubini's theorem we obtain $(2)\implies(4)\implies(5)$, and the rest comes from the monotonicity.
+        }
+}
+\ntg{I still need a quick way to memorize this.
+    \itm{
+        \item Integrable $\implies$ a.e. integrable, a.e. integrable and equal in $\RR$.
+        \item Nonnegative measurable $\implies$ a.e. measurable, a.e. measurable and equal in $\orl\RR$.
+    }}
+\end{subsection}
+
+\begin{subsection}{Applications}
+\begin{description}
+\item[Slice of a measurable set]Let $E\subset\RR^{d_1}\x\RR^{d_2}$ be measurable, then for a.e. $y$ the slice
+    \[E^y=\{x\in\RR^{d_1}:(x,y)\in E\}\]
+    is measurable in $\RR^{d_1}$, and
+    \[m(E)=\int\chi_E=\int\prn{\int\chi_E^y(x,y)\dx}\dy=\int m(E^y)\dy\]
+    To put it simply, almost every slice of a measurable set is measurable, and the measure is the integral of the measures of slices.
+\item[Measurable product set]$E=E_1\x E_2$ measurable in $\RR^{d_1+d_2}$, $m_*(E_2)>0$ in $\RR^{d_2}\implies E_1$ measurable.
+    \prf{Notice that for a product set we have $\chi_{E_1\x E_2}^y(x)=\chi_{E_1}(x)\chi_{E_2}(y)$. And it suffices to prove there exists $y\in E_2$ such that $\chi_{E_1\x E_2}^y(x)=\chi_{E_1}(x)$ is measurable.}
+\item[General product set]For any product set $E_1\x E_2$,
+    \itm{
+        \item[(i)]$m_*(E_1\x E_2)\leqs m_*(E_1)m_*(E_2)$
+        \item[(ii)]If moreover, $E_1,E_2$ are measurable, then $E_1\x E_2$ is measurable and
+            \[m(E_1\x E_2)=m(E_1)m(E_2)\]
+    }
+\item[Transdimensional orthogonal extension]Let $f:\RR^{d_1}\to\orl\RR$ be measurable and the extension $\wt{f}$ of $f$ to $\RR^{d_1+d_2}$ is measurable.
+\item[Volume under a function]Let $f:\RR^d\to\orl\RR$ be nonnegative. The part ``under'' $f$ is
+    \[\mcl A=\{(x,y)\in\RR^d\x\RR:0\leqs y\leqs f(x)\}\]
+    Then
+    \itm{
+        \item[(i)]$f$ is measurable on $\RR^d\iff\mcl A$ is measurable on $\RR^{d+1}$.
+        \item[(ii)]If (i) holds, then $m(\mcl A)=\int f$.
+    }
+\end{description}
+\end{subsection}
+\end{section}
+
+\begin{section}{Functions Constructed Using the Integral}
+\begin{subsection}{Integral with Variable Upper Limit}
+If $f$ is integrable on $\RR^d$ then $F(x)=\int_{-\infty}^xf(t)\ud t$ is uniformly continuous. This follows from the absolutely continuity of the integral.
+\end{subsection}
+\begin{subsection}{Convolution}
+Let $f,g:\RR^d\to\orl\RR$. Let $F(x,y)=f(x-y)g(y)$
+\itm{
+    \item[(i)]$f,g$ are measurable $\implies F$ is measurable on $\RR^{2d}$.
+    \item[(ii)]$f,g$ are integrable $\implies F$ is integrable on $\RR^{2d}$.
+    \item[(iii)]$f,g$ are integrable $\implies F_x$ is integrable with respect to $y\in\RR^d$ for a.e. $x$. And the convolution
+        \[(f*g)(x)=\int_{\RR^d}F_x\dy\]
+        is defined for a.e. $x$.
+    \item[(iv)]$f,g$ are integrable $\implies(f*g)(x)$ is integrable.
+    \item[(iv$'$)]$f,g$ are integrable and nonnegative $\implies\norm{f*g}\leqs\norm{f}\norm{g}$.
+    \item[(v)]$f$ is integrable and $g$ is bounded $\implies f*g$ is uniformly continuous.
+    \item[(vi)]$f,g$ are integrable and $g$ is bounded $\implies\lim_{\abs{x}\to\infty}(f*g)(x)=0$.
+}
+\end{subsection}
+\end{section}
+
+\begin{section}{Differentiation}
+\begin{subsection}{The Maximal Function and the Lebesgue Differentiation Theorem}
+If without further specification, $B$ denotes a ball in this section.
+
+If $f\in L^1(\RR^d)$, its \tf{(Hardy-Littlewood) maximal function} $f^*$ is defined as
+\[f^*(x)=\sup_{x\in B}\int_B\abs{f(y)}\dy\]
+The maximal function has the following properties.
+\thm{$f\in L^1(\RR^d)\implies$
+    \itm{
+        \item[(i)]$f^*$ is measurable.
+        \item[(ii)]$f^*<\infty$ a.e.
+        \item[(iii)]$f^*$ satisfies the \tf{weak-type} inequality
+            \[m\{f^*>\alpha\}\leqs\frac{A}{\alpha}\norm{f}\]
+            where $A$ can be chosen as $A=3^d$.
+        }}
+\prf{\itm{
+    \item[(i)]$\{f^*>\alpha\}$ is open.
+    \item[(ii)]This follows from (iii).
+    \item[(iii)]One needs the Vitali covering argument.
+    }}
+
+The properties of the maximal functions lead to the Lebesgue differentiation theorem.
+\thm{If $f\in L^1(\RR^d)$, then
+    \[\lim_{\substack{m(B)\to0\\x\in B}}\frac{1}{m(B)}\int_Bf(y)\dy=f(x)\ttt{ a.e.}\]
+    If $f\in L^1_\loc(\RR^d)$, then
+    \[\lim_{\substack{m(B)\to0\\x\in B}}\frac{1}{m(B)}\int_Bf(y)\dy=f(x)\ttt{ a.e.}\]
+    }
+
+The following concept is a useful substitute for pointwise continuity. If $f\in L^1_\loc(\RR^d)$, then we define the \tf{Lebesgue set} of $f$ to be
+\[L(f)=\brc{x\in\RR^d:\lim_{\substack{m(B)\to0\\x\in B}}\frac{1}{m(B)}\int_B\abs{f(y)-f(x)}\dy=0}\]
+We have the following properties of the Lebesgue set.
+\thm{Let $f\in L^1_\loc(\RR^d)$.
+    \item[(i)]If $x$ is a continuity of $f$, then $x$ is in the Lebesgue set.
+    \item[(ii)]If $x$ is in the Lebesgue set, then the differentiation formula holds.
+        \[\lim_{\substack{m(B)\to0\\x\in B}}\frac{1}{m(B)}\int_Bf(y)\dy=f(x)\]
+    \item[(iii)]Almost every point is in the Lebesgue set.
+    }
+\end{subsection}
+
+\begin{subsection}{Good Kernels and Approximation to the Identity}
+In this part we consider good kernels that ``flattens'' a function. A family of \tf{good kernels} is a family $\{K_\delta\}_{\delta>0}$ of integrable functions such that
+\itm{
+    \item[(i)]$\int K_\delta=1$\quad(\blue{normalization condition})
+    \item[(ii)]$\int \abs{K_\delta}\leqs A$\quad(\blue{uniformly bounded condition})
+    \item[(iii)]$\forall\eta>0,\ \lim\limits_{\delta\to0}\int_{\abs{x}\geqs\eta}\abs{K_\delta}\dx=0$\quad(\blue{converging condition})
+}
+Even better kernels, called \tf{approximations to the identity}, are defined to be a family $\{K_\delta\}_{\delta>0}$ of integrable functions that satisfies
+\itm{
+    \item[(i)]$\int K_\delta=1$\quad(\blue{normalization condition})
+    \item[(ii$'$)]$\abs{K_\delta}\leqs A\delta^{-d}$\quad(\blue{peak bound condition})
+    \item[(iii$'$)]$\abs{K_\delta}\leqs A\delta/\abs{x}^{d+1}$\quad(\blue{decreasing rate condition})
+}
+
+These kernels are approximations to the identity element in the convolution. Note that the convolution
+\[(f*K_\delta)(x)=\int f(x-y)K_\delta(y)\dy\]
+means to assigns a weight function $K_\delta(y)$ with its mass centered at $0$. The smaller the $\delta$, the most concentrated the mass at $0$. By translating $f(x)$ by $y$, we are actually considering the value of $f$ near $x$. The precise formulation is as follows.
+\thm{If $\{K_\delta\}_{\delta>0}$ is family of good kernels and $f\in L^1(\RR^d)$, then $(f*K_\delta)$ is integrable and $(f*K_\delta)\to f$ in $L^1$. Moreover, if $\{K_\delta\}_{\delta>0}$ is an approximation to the identity, then $(f*K_\delta)\to f$ a.e.}
+\end{subsection}
+
+\begin{subsection}{Covering Arguments}
+A collection $\mcl B=\{B\}$ of balls is called a \tf{Vitali covering} of a set $E$ if for any $x\in E$ and any $\eta>0$ there exists $B\in\mcl B$ such that $x\in B$, i.e., each point $x$ of $E$ is covered by a ball $B$ in $\mcl B$ of arbitrarily small measure. The covering arguments are as follows.
+\thm{Let $\mcl A=\{A_1,\cdots,A_N\}$ be a finite collection of open balls. Let $\mcl B=\{B\}$ be a Vitali covering of a set $E$ with $m(E)<\infty$. Then
+    \itm{
+        \item[(i)]For $\mcl A$, there exists a disjoint sub-collection $A_{k_1},\cdots,A_{k_l}$ such that
+            \[m\prn{\bigcup_{i=1}^NA_i}\leqs3^d\sum_{j=1}^lm(A_{k_j})\]
+        \item[(ii)]For $\mcl B$, we can find for any $\delta>0$ a disjoint, finite sub-collection $B_1,\cdots,B_m$ such that
+            \[\sum_{i=1}^lm(B_i)\geqs m(E)-\delta,\quad m(E-\bigcup_{i=1}^lB_i)<2\delta\]
+        \item[(iii)]For $\mcl B$, if $m(E)>0$, then we can find for any $\eta>0$ a disjoint, countable sub-collection $\{B_j\}_{j=1}^\infty$ such that
+            \[m_*\prn{E\backslash\bigcup_{j=1}^\infty B_j}=0,\quad\sum_{j=1}^\infty\abs{B_j}\leqs(1+\eta)m_*(E)\]
+    }}
+\end{subsection}
+
+\begin{subsection}{Rising Sun Lemma}
+The rising sun lemma deals with continuous functions.
+\thm{Let $G:\RR\to\RR$ be a continuous function. Let
+    \[E=\{x\in\RR:\exists h_x>0,\ G(x+h_x)>G(x)\}\]
+    Then
+    \itm{
+        \item[(i)]$E$ is open.
+        \item[(ii)]$E=\bigcup_k(a_k,b_k)$ if nonempty, where $(a_k,b_k)$ are disjoint.
+        \item[(iii)]If $-\infty<a_k<b_k<\infty$, then $G(a_k)=G(b_k)$.
+    }
+    In particular, if
+    \[\Omega=\{x\in(a,b):\exists h_x:0<h_x<b-x,\ G(x+h_x)>G(x)\}\]
+    then
+    \itm{
+        \item[(i)]$\Omega$ is open.
+        \item[(ii)]$\Omega=\bigcup_k(c_k,d_k)$ if nonempty, where $(c_k,d_k)$ are disjoint.
+        \item[(iii)]If $c_k>a$, then $G(c_k)=G(d_k)$; if $c_k=a$, then $G(c_k)\leqs G(d_k)$.
+    }}
+\ntg{How to tell if a point is in the set $E$ or $\Omega$? Draw a horizontal line across the point under consideration. And see if it gets the sunshine.}
+\end{subsection}
+
+\begin{subsection}{Operators on Functions and Weak-type Inequalities}
+Suppose we are given some operator $\wt{(\cdot)}$ such that it takes an integrable function $f$ to a measurable function $\wt f$. Then a \tf{weak-type inequality} is an inequality of the form
+\[m\{\wt f>\alpha\}\leqs\frac{A\norm{f}}{\alpha}\]
+It is called a \tf{weak-type} inequality because it is weaker than the Chebyshev inequality. The following are some examples.
+\begin{description}
+\item[Absolute value]For an integrable function $f:\RR^d\to\orl\RR$,
+    \[m\{\abs{f}>\alpha\}\leqs\frac{\norm{f}}{\alpha}\]
+\item[Maximal operator associated to balls]For an integrable function $f:\RR^d\to\orl\RR$,
+    \[m\{f^*>\alpha\}\leqs\frac{3^d\norm{f}}{\alpha}\]
+\item[Maximal operator associated to rectangles]For an integrable function $f:\RR^d\to\orl\RR$, $f^*_{\mcl R}$ \tf{does not} satisfy
+    \[m\{f^*_{\mcl R}>\alpha\}\leqs\frac{A\norm{f}}{\alpha}\]
+\end{description}
+
+Now we talk about the two maximal operators. the (ball) maximal operator $f\mapsto f^*$ is defined by
+\[f^*(x)=\sup_{x\in B}\frac{1}{m(B)}\int_B\abs{f(y)}\dy\]
+where $B$ ranges over all balls containing $x$. And the (rectangle) maximal operator $f\mapsto f^*_{\mcl R}$ (where $\mcl R$ is the set of all rectangles containing $0$) is defined by
+\mtha{f^*_{\mcl R}(x)&=&\sup_{R\in \mcl R}\frac{1}{m(R)}\int_R\abs{f(x-y)}\dy\\
+    &=&\sup_{R\in \mcl R}\frac{1}{m(R)}\int_{R+x}\abs{f(y)}\dy\\
+    &=&\sup_{x\in R}\frac{1}{m(R)}\int_R\abs{f(y)}\dy}
+Now we see that these two maximal operators differ in the families that they are associated to. I guess the reason why $f\mapsto f^*_{\mcl R}$ does not satisfy the weak-type inequality is that the family $\mcl R^*$ does not have a bounded eccentricity.
+\end{subsection}
+
+\begin{subsection}{Variation of a Function}
+Let $\mcl P$ be the set of all partitions of the interval $[a,b]$ and let $P=\{a=x_0<x_1<\cdots<x_n=b\}$ denote some specific partition. The \tf{total variation} of $f$ on $[a,b]$ is
+\[T_f(a,b)=\sup_{P\subset\mcl P}\sum_{j=1}^n\abs{f(x_i)-f(x_{i-1})}\]
+The \tf{positive} and \tf{negative variations} are defined as follows.
+\[P_f(a,b)=\sup_{P\subset\mcl P}\sum_{f(x_i)\geqs f(x_{i-1})}(f(x_i)-f(x_{i-1}))\]
+\[N_f(a,b)=\sup_{P\subset\mcl P}\sum_{f(x_i)<f(x_{i-1})}(f(x_{i-1})-f(x_i))\]
+Without assuming that any of them is finite, we have the following properties. And for the simplicity of statement, we let $V(f,P)$ denote the variation of $f$ with respect to the partition $P$ and let $V^+(f,P),V^-(f,P)$ denote respectively the positive and negative variations with respect to $P$.
+\thm{For a function $f:[a,b]\to\RR$, the following are true.
+    \itm{
+        \item[(i)]$T_f(a,b),P_f(a,b),N_f(a,b)\geqs0$
+        \item[(ii)]$V(f,P)=V^+(f,P)+V^-(f,P)$
+        \item[(iii)]$V(f,P),V^+(f,P),V^-(f,P)$ only go larger under refinement.
+        \item[(iv)]$T_f(a,b)=P_f(a,b)+N_f(a,b)$
+        \item[(v)]$T_f(a,b)=T_f(a,c)=T_f(c,b)$ for $a<c<b$.
+    }}
+\prf{\itm{
+    \item[(i)]Obvious.
+    \item[(ii)]Obvious.
+    \item[(iii)]See what happens if the refinement has only one point.
+    \item[(iv)]We start from the very beginning.
+        \[V(f,P)=V^+(f,P)+V^-(f,P)\]
+        It follows from this simple fact that
+        \[\sup_{P\in\mcl P}V(f,P)\geqs V(f,P)=V^+(f,P)+V^-(f,P)\]
+        \[\sup_{P\in\mcl P}V(f,P)=\sup_{P\in\mcl P}(V^+(f,P)+V^-(f,P))\leqs\sup_{P\in\mcl P}V^+(f,P)+\sup_{P\in\mcl P}V^-(f,P)\]
+        Hence
+        \[P_f+N_f\geqs T_f\geqs V^+(f,P)+V^-(f,P)\]
+        Now suppose $f$ has bounded variation, then $T_f<\infty\implies P_f,N_f\leqs\infty$, hence we can find partitions to approximate $P_f,N_f$ by $V^+,V^-$. By a refinement we have a common partition that approximates $P_f,N_f$. If $T_f=\infty$, then $P_f+N_f\geqs T_f\implies$ at least one of $P_f,N_f$ is $\infty$, hence $T_f=P_f+N_f=\infty$.
+    \item[(v)]Choose approximations.
+    }}
+
+The applications of variations are in the next section.
+\end{subsection}
+
+\begin{subsection}{Differentiable Functions}
+The differentiation problem is simplified if we use the following decompositions.
+\thm{The following are true.
+    \itm{
+        \item[(i)]If $F$ is of bounded variation on $[a,b]$, then $F(x)=F(a)+P_F(a,x)-N_F(a,x)$, where both $P_F(a,x),N_F(a,x)$ are increasing.
+        \item[(ii)]If $F$ is of bounded variation and continuous, then $F(x)=F_1(x)-F_2(x)$ are increasing and continuous functions.
+        \item[(iii)]If $F$ is increasing on $[a,b]$, then $F(x)=(F(x)-J(x))+J(x)$ where $F(x)-J(x)$ is increasing and continuous, and $J(x)$ is the jump function.
+    }}
+The following functions are differentiable.
+\thm{
+    \itm{
+        \item[(i)]If $F$ is increasing and continuous, then $F'$ exists a.e., $F'$ is measurable, nonnegative,
+            \[\int_a^bF'(x)\dx\leqs F(b)-F(a)\]
+            Moreover, $F$ is bounded on $\RR\implies F'$ is integrable on $\RR$.
+        \item[(ii)]If $F$ is absolutely continuous on $[a,b]$, then $F'$ exists a.e., $F'$ is integrable on $[a,b]$,
+            \[\int_a^xF'(y)\dy=F(x)-F(a)\]
+        \item[(iii)]If $J$ is a jump function, then $J'$ exists a.e. and vanishes a.e..
+    }}
+\end{subsection}
+\end{section}
+\printindex
+\end{document}
