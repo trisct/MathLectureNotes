@@ -1,0 +1,180 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{ctex,geometry,layout,amssymb,amsmath,mathrsfs,graphicx,centernot,textcomp,galois}
+\usepackage[all]{xy}
+\newtheorem{df}{Def}[section]
+\newtheorem{prop}{Prop}[section]
+\newtheorem{thm}{Thm}[section]
+\newtheorem{eg}{Example}[section]
+\newtheorem{nt}{Note}[section]
+
+\newcommand{\bs}{\backslash}
+\newcommand{\udots}{\mathinner{\mskip 1mu\raise 1pt\vbox{\kern 7pt\hbox{.}}
+\mskip 2mu\raise 4pt\hbox{.}\mskip 2mu\raise 7pt\hbox{.}\mskip 1mu}}
+\newcommand{\geqs}{\geqslant}
+\newcommand{\leqs}{\leqslant}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\rsa}{\sigma(f;\pi,\xi)}
+\newcommand{\spn}{{\rm span}}
+\newcommand{\rank}{{\rm rank}}
+\newcommand{\nul}{{\rm nul}}
+\newcommand{\img}{{\rm Im}}
+\newcommand{\ud}{{\rm d}}
+\newcommand{\dx}{\ud x}
+\newcommand{\dy}{\ud y}
+\newcommand{\dz}{\ud z}
+\newcommand{\x}{\times}                     %乘号
+\newcommand{\ox}{\otimes}
+\newcommand{\op}{\oplus}
+\newcommand{\lbint}{\int\!\!\!\int}      %二重积分号
+\newcommand{\bint}{\int\!\!\!\!\int}      %二重积分号
+\newcommand{\tint}{\int\!\!\!\!\int\!\!\!\!\int}      %三重积分号
+\newcommand{\apr}{\approx}
+\newcommand{\const}{{\rm const}}
+\newcommand{\ann}{{\rm ann}}
+\newcommand{\tr}{{\rm tr}}
+\newcommand{\sym}{{\rm Sym}}
+\newcommand{\id}{{\rm id}}
+\newcommand{\homo}{{\rm Hom}}
+\newcommand{\End}{{\rm End}}
+\newcommand{\re}{{\rm Re}}
+\newcommand{\diag}{{\rm diag}}
+\newcommand{\grad}{{\rm grad}}
+\newcommand{\dive}{{\rm div}}
+\newcommand{\rot}{{\rm rot}}
+\newcommand{\varn}{\varnothing}
+\newcommand{\vare}{\varepsilon}
+\newcommand{\vphi}{\varphi}
+\newcommand{\diam}{{\rm diam}}
+\newcommand{\vect}{{\rm Vect}}
+\newcommand{\isom}{\stackrel{\apr}{\longrightarrow}}
+\newcommand{\st}{{\rm\quad s.t.\quad}}
+\newcommand{\lapla}{\Delta}         %对应nabla所以叫lapla哈哈哈哈哈哈
+\makeatletter
+\newcommand{\lambdabar}{{\mathchoice
+  {\smash@bar\textfont\displaystyle{0.25}{1.2}\lambda}
+  {\smash@bar\textfont\textstyle{0.25}{1.2}\lambda}
+  {\smash@bar\scriptfont\scriptstyle{0.25}{1.2}\lambda}
+  {\smash@bar\scriptscriptfont\scriptscriptstyle{0.25}{1.2}\lambda}}}
+\newcommand{\smash@bar}[4]{%
+  \smash{\rlap{\raisebox{-#3\fontdimen5#10}{$\m@th#2\mkern#4mu\mathchar'26$}}}}
+\makeatother
+
+
+\newcommand{\rsb}[3]{\sigma(#1;#2,#3)}      %Riemann sum with arguments
+\newcommand{\derv}[2]{\frac{\ud#1}{\ud#2}}
+\newcommand{\parf}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\secpf}[3]{\frac{\partial^2 #1}{\partial #2\partial #3}}
+\newcommand{\comb}[2]{\binom{#1}{#2}}       %组合数
+\newcommand{\norm}[1]{\lVert #1\rVert}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\brk}[1]{\big(#1\big)}
+\newcommand{\Brk}[1]{\left(#1\right)}
+\newcommand{\bkt}[1]{\langle#1\rangle}
+\newcommand{\dbk}[1]{\langle\!\langle#1\rangle\!\rangle}
+\newcommand{\inprod}[1]{\langle#1\rangle}
+\newcommand{\itr}[1]{#1^\circ}           %内部,interior
+\newcommand{\cmp}[1]{#1^c}               %补集,complement
+\newcommand{\cnts}[3]{#1#3\cdots#3#2}
+\newcommand{\inds}[3]{#1_{1}#3\cdots#3#1_{#2}}
+\newcommand{\dindx}[4]{#1{#2}#4\cdots#4#1{#3}}
+\newcommand{\dinds}[4]{#1_{#2}#4\cdots#4#1_{#3}}
+\newcommand{\vct}[1]{\overrightarrow{#1}}
+\newcommand{\simlr}[2]{#2^{-1}#1#2}     %相似
+\newcommand{\congt}[2]{\ts{#2}#1#2}     %相合
+\newcommand{\ccong}[2]{\cts{#2}#1#2}    %共轭相合
+\newcommand{\rcong}[2]{\ts{#2}#1\orl{#2}}    %右共轭相合
+\newcommand{\ts}[1]{#1^{\rm T}}
+\newcommand{\cts}[1]{\orl{#1}^{\rm T}}   %共轭转置
+\newcommand{\wt}[1]{\widetilde{#1}}
+\newcommand{\bss}[2]{\inds{#1}{#2}{,}}
+\newcommand{\boun}[1]{\partial{#1}}
+
+\newcommand{\mth}[1]{\begin{displaymath}#1\end{displaymath}}
+\newcommand{\mtha}[1]{\begin{eqnarray*}#1\end{eqnarray*}}
+\newcommand{\arr}[1]{\begin{array}#1\end{array}}
+\newcommand{\ntg}[1]{\begin{nt}\cg{#1}\end{nt}}
+\newcommand{\mat}[1]{\left(\arr{#1}\right)}
+\newcommand{\itm}[1]{\begin{itemize}#1\end{itemize}}
+\newcommand{\enu}[1]{\begin{enumerate}#1\end{enumerate}}
+\newcommand{\desc}[1]{\begin{description}#1\end{description}}
+\newcommand{\tmth}[1]{\begin{displaymath}\ttt{#1}\end{displaymath}}
+
+\newcommand{\clr}[1]{\textcolor{red}{\udl{#1}}}   %红色
+\newcommand{\cb}[1]{\textcolor{blue}{#1}}   %蓝色
+\newcommand{\cg}[1]{\textcolor{magenta}{#1}}%紫色
+
+\newcommand{\nm}[1]{{\rm#1}}                %竖体
+\newcommand{\ttt}{\textrm}
+\newcommand{\ns}[1]{\mathbb{#1}}
+\newcommand{\mcl}[1]{\mathcal{#1}}
+\newcommand{\flr}[1]{\mathscr{#1}}
+\newcommand{\got}[1]{\mathfrak{#1}}
+\newcommand{\orl}[1]{\overline{#1}}
+\newcommand{\udl}[1]{\underline{#1}}
+
+
+\begin{document}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+English&\multicolumn{2}{|c|}{Greek}&mathbb&mathcal&mathscr&mathfrak\\
+\hline
+a,A&$\alpha$&alpha&$\ns{A}$&$\mcl{A}$&$\flr{A}$&$\got{a},\got{A}$\\
+\hline
+b,B&$\beta$&beta&$\ns{B}$&$\mcl{B}$&$\flr{B}$&$\got{b},\got{B}$\\
+\hline
+c,C&$\chi$&chi&$\ns{C}$&$\mcl{C}$&$\flr{C}$&$\got{c},\got{C}$\\
+\hline
+d,D&$\delta,\Delta$&delta&$\ns{D}$&$\mcl{D}$&$\flr{D}$&$\got{d},\got{D}$\\
+\hline
+e,E&$\epsilon,\vare$&epsilon&$\ns{E}$&$\mcl{E}$&$\flr{E}$&$\got{e},\got{E}$\\
+\hline
+f,F&$\phi,\vphi,\Phi,\psi,\Psi$&phi,psi&$\ns{F}$&$\mcl{F}$&$\flr{F}$&$\got{f},\got{F}$\\
+\hline
+g,G&$\gamma,\Gamma$&gamma&$\ns{G}$&$\mcl{G}$&$\flr{G}$&$\got{g},\got{G}$\\
+\hline
+h,H&&&$\ns{H}$&$\mcl{H}$&$\flr{H}$&$\got{h},\got{H}$\\
+\hline
+i,I&$\iota$&iota&$\ns{I}$&$\mcl{I}$&$\flr{I}$&$\got{i},\got{I}$\\
+\hline
+j,J&&&$\ns{J}$&$\mcl{J}$&$\flr{J}$&$\got{j},\got{J}$\\
+\hline
+k,K&$\kappa$&kappa&$\ns{K}$&$\mcl{K}$&$\flr{K}$&$\got{k},\got{K}$\\
+\hline
+l,L&$\lambda,\Lambda$&lambda&$\ns{L}$&$\mcl{L}$&$\flr{L}$&$\got{l},\got{L}$\\
+\hline
+m,M&$\mu$&mu&$\ns{M}$&$\mcl{M}$&$\flr{M}$&$\got{m},\got{M}$\\
+\hline
+n,N&$\nu$&nu&$\ns{N}$&$\mcl{N}$&$\flr{N}$&$\got{n},\got{N}$\\
+\hline
+o,O&$o,\omega,\Omega$&o,omega&$\ns{O}$&$\mcl{O}$&$\flr{O}$&$\got{o},\got{O}$\\
+\hline
+p,P&$\pi,\varpi,\Pi$&pi&$\ns{P}$&$\mcl{P}$&$\flr{P}$&$\got{p},\got{P}$\\
+\hline
+q,Q&&&$\ns{Q}$&$\mcl{Q}$&$\flr{Q}$&$\got{q},\got{Q}$\\
+\hline
+r,R&$\rho,\varrho$&rho&$\ns{R}$&$\mcl{R}$&$\flr{R}$&$\got{r},\got{R}$\\
+\hline
+s,S&$\sigma,\varsigma,\Sigma$&sigma&$\ns{S}$&$\mcl{S}$&$\flr{S}$&$\got{s},\got{S}$\\
+\hline
+t,T&$\tau,\theta,\vartheta,\Theta$&tau,theta&$\ns{T}$&$\mcl{T}$&$\flr{T}$&$\got{t},\got{T}$\\
+\hline
+u,U&$\upsilon,\Upsilon$&upsilon&$\ns{U}$&$\mcl{U}$&$\flr{U}$&$\got{u},\got{U}$\\
+\hline
+v,V&&&$\ns{V}$&$\mcl{V}$&$\flr{V}$&$\got{v},\got{V}$\\
+\hline
+w,W&&&$\ns{W}$&$\mcl{W}$&$\flr{W}$&$\got{w},\got{W}$\\
+\hline
+x,X&$\xi,\Xi$&xi&$\ns{X}$&$\mcl{X}$&$\flr{X}$&$\got{x},\got{X}$\\
+\hline
+y,Y&$\eta$&eta&$\ns{Y}$&$\mcl{Y}$&$\flr{Y}$&$\got{y},\got{Y}$\\
+\hline
+z,Z&$\zeta$&zeta&$\ns{Z}$&$\mcl{Z}$&$\flr{Z}$&$\got{z},\got{Z}$\\
+\hline
+\end{tabular}
+
+\ \\
+
+psi: $\psi$, phi: $\phi$, varphi: $\varphi$, Phi: $\Phi$, Psi: $\Psi$
+\end{document}
