@@ -1,0 +1,405 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{geometry,xcolor,layout,amssymb,amsthm,amsmath,mathrsfs,graphicx,centernot,textcomp,galois,extarrows}
+\usepackage[all]{xy}
+
+\newtheorem{prop}{Prop}[section]
+\newtheorem{theom}{Theorem}[section]
+\newtheorem{eg}{Example}[section]
+\newtheorem{nt}{Note}[section]
+\newtheorem{coro}{Corollary}[section]
+
+\theoremstyle{definition}
+\newtheorem{pf}{Proof}[section]
+\newtheorem{dfn}{Def}[section]
+
+\newcommand{\bs}{\backslash}
+\newcommand{\udots}{\mathinner{\mskip 1mu\raise 1pt\vbox{\kern 7pt\hbox{.}}
+\mskip 2mu\raise 4pt\hbox{.}\mskip 2mu\raise 7pt\hbox{.}\mskip 1mu}}
+\newcommand{\geqs}{\geqslant}
+\newcommand{\leqs}{\leqslant}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\rsa}{\sigma(f;\pi,\xi)}
+\newcommand{\wlg}{{\rm w.l.o.g.}}
+\newcommand{\spn}{{\rm span}}
+\newcommand{\rank}{{\rm rank}}
+\newcommand{\nul}{{\rm null}}
+\newcommand{\img}{{\rm im}}
+\newcommand{\ud}{{\rm d}}
+\newcommand{\dx}{\ud x}
+\newcommand{\dy}{\ud y}
+\newcommand{\dz}{\ud z}
+\newcommand{\x}{\times}                     %乘号
+\newcommand{\ox}{\otimes}
+\newcommand{\op}{\oplus}
+\newcommand{\unito}{\rightrightarrows}
+\newcommand{\lbint}{\int\!\!\!\int}      %二重积分号
+\newcommand{\bint}{\int\!\!\!\!\int}      %二重积分号
+\newcommand{\tint}{\int\!\!\!\!\int\!\!\!\!\int}      %三重积分号
+\newcommand{\apr}{\approx}
+\newcommand{\operp}{\stackrel{\perp}{\oplus}}
+\newcommand{\const}{{\rm const}}
+\newcommand{\codim}{{\rm codim}}
+\newcommand{\ann}{{\rm ann}}
+\newcommand{\tr}{{\rm tr}}
+\newcommand{\sym}{{\rm Sym}}
+\newcommand{\Sp}{{\rm Sp}}              %symplectic
+\newcommand{\id}{{\rm id}}
+\newcommand{\mor}{{\rm Mor}}
+\newcommand{\Hom}{{\rm Hom}}
+\newcommand{\Aut}{{\rm Aut}}
+\newcommand{\End}{{\rm End}}
+\newcommand{\re}{{\rm Re}}
+\newcommand{\diag}{{\rm diag}}
+\newcommand{\grad}{{\rm grad\,}}
+\newcommand{\dive}{{\rm div\,}}
+\newcommand{\rot}{{\rm rot\,}}
+\newcommand{\rad}{{\rm rad}}
+\newcommand{\ord}{{\rm ord}}
+\newcommand{\varn}{\varnothing}
+\newcommand{\vare}{\varepsilon}
+\newcommand{\vphi}{\varphi}
+\newcommand{\diam}{{\rm diam}}
+\newcommand{\vect}{{\rm Vect}}
+\newcommand{\isom}{\stackrel{\apr}{\longrightarrow}}
+\newcommand{\st}{{\rm\quad s.t.\quad}}
+\newcommand{\lapla}{\Delta}
+\newcommand{\divd}{\big|}
+\makeatletter
+\newcommand{\lambdabar}{{\mathchoice
+  {\smash@bar\textfont\displaystyle{0.25}{1.2}\lambda}
+  {\smash@bar\textfont\textstyle{0.25}{1.2}\lambda}
+  {\smash@bar\scriptfont\scriptstyle{0.25}{1.2}\lambda}
+  {\smash@bar\scriptscriptfont\scriptscriptstyle{0.25}{1.2}\lambda}}}
+\newcommand{\smash@bar}[4]{%
+  \smash{\rlap{\raisebox{-#3\fontdimen5#10}{$\m@th#2\mkern#4mu\mathchar'26$}}}}
+\makeatother
+
+
+\newcommand{\rsb}[3]{\sigma(#1;#2,#3)}      %Riemann sum with arguments
+\newcommand{\derv}[2]{\frac{\ud#1}{\ud#2}}
+\newcommand{\parf}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\secpf}[3]{\frac{\partial^2 #1}{\partial #2\partial #3}}
+\newcommand{\comb}[2]{\binom{#1}{#2}}       %组合数
+\newcommand{\norm}[1]{\lVert #1\rVert}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\brk}[1]{\big(#1\big)}
+\newcommand{\Brk}[1]{\left(#1\right)}
+\newcommand{\bkt}[1]{\langle#1\rangle}
+\newcommand{\dbk}[1]{\langle\!\langle#1\rangle\!\rangle}
+\newcommand{\inprod}[1]{\langle#1\rangle}
+\newcommand{\itr}[1]{#1^\circ}           %内部,interior
+\newcommand{\cmp}[1]{#1^c}               %补集,complement
+\newcommand{\cnts}[3]{#1#3\cdots#3#2}
+\newcommand{\inds}[3]{#1_{1}#3\cdots#3#1_{#2}}
+\newcommand{\dindx}[4]{#1{#2}#4\cdots#4#1{#3}}
+\newcommand{\dinds}[4]{#1_{#2}#4\cdots#4#1_{#3}}
+\newcommand{\vct}[1]{\overrightarrow{#1}}
+\newcommand{\simlr}[2]{#2^{-1}#1#2}     %相似
+\newcommand{\congt}[2]{\ts{#2}#1#2}     %相合
+\newcommand{\ccong}[2]{\cts{#2}#1#2}    %共轭相合
+\newcommand{\rcong}[2]{\ts{#2}#1\orl{#2}}    %右共轭相合
+\newcommand{\ts}[1]{#1^{\rm T}}
+\newcommand{\cts}[1]{\orl{#1}^{\rm T}}   %共轭转置
+\newcommand{\wt}[1]{\widetilde{#1}}
+\newcommand{\bss}[2]{\inds{#1}{#2}{,}}
+\newcommand{\boun}[1]{\partial{#1}}
+\newcommand{\unitob}[1]{\mathop{\rightrightarrows}\limits_{#1}}
+
+\newcommand{\mth}[1]{\begin{displaymath}#1\end{displaymath}}
+\newcommand{\mtha}[1]{\begin{eqnarray*}#1\end{eqnarray*}}
+\newcommand{\arr}[1]{\begin{array}#1\end{array}}
+\newcommand{\prf}[1]{\begin{pf}#1\end{pf}}
+\newcommand{\sprf}[1]{\begin{pf}\cb{#1}\end{pf}}
+\newcommand{\df}[1]{\begin{dfn}#1\end{dfn}}
+\newcommand{\ntg}[1]{\begin{nt}\cg{#1}\end{nt}}
+\newcommand{\mat}[1]{\left(\arr{#1}\right)}
+\newcommand{\itm}[1]{\begin{itemize}#1\end{itemize}}
+\newcommand{\enu}[1]{\begin{enumerate}#1\end{enumerate}}
+\newcommand{\desc}[1]{\begin{description}#1\end{description}}
+\newcommand{\tmth}[1]{\begin{displaymath}\ttt{#1}\end{displaymath}}
+\newcommand{\thm}[1]{\begin{theom}#1\end{theom}}
+\newcommand{\cor}[1]{\begin{coro}#1\end{coro}}
+\newcommand{\eqn}[1]{\begin{equation}#1\end{equation}}
+\newcommand{\eqna}[1]{\begin{eqnarray}#1\end{eqnarray}}
+
+
+\newcommand{\clr}[1]{\textcolor{red}{#1}}   %红色
+\newcommand{\cb}[1]{\textcolor{blue}{#1}}   %蓝色
+\newcommand{\cg}[1]{\textcolor{magenta}{#1}}%紫色
+\newcommand{\hlg}[1]{\cg{\udl{#1}}}
+\newcommand{\hlb}[1]{\cb{\udl{#1}}}
+\newcommand{\hlr}[1]{\clr{\udl{#1}}}
+
+\newcommand{\nm}[1]{{\rm#1}}                %竖体
+\newcommand{\ttt}{\textrm}
+\newcommand{\ns}[1]{\mathbb{#1}}
+\newcommand{\mcl}[1]{\mathcal{#1}}
+\newcommand{\flr}[1]{\mathscr{#1}}
+\newcommand{\got}[1]{\mathfrak{#1}}
+\newcommand{\orl}[1]{\overline{#1}}
+\newcommand{\udl}[1]{\underline{#1}}
+
+%%%%%%%%%%%%%PHYSICS CONSTANTS
+\newcommand{\cstk}{\frac{1}{4\pi\vare_0}}
+\newcommand{\cstm}{\frac{\mu_0}{4\pi}}
+
+\title{Theorems in Ordinary Differential Equations\\\Large Version 1}
+\author{TRISCT}
+\date{}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\begin{section}{Basic Concepts}
+\begin{subsection}{Description of Evolutionary Processes}
+\begin{description}
+\item[Solution of a differential equation]A necessary and sufficient condition for the graph of a function $\vphi:\RR\supset I\to\RR^n$ to be an integral curve of $(1,v(t,x))$ is that the following relation holds for all $t$ in $I$:
+    \mth{\dot{\vphi}(t)=v(t,\vphi(t))}
+    that is,
+    \mth{\ttt{The graph of }\vphi:\RR\supset I\to\RR^n\ttt{ is an integral curve of }(1,v(t,x))}
+    \mth{\iff\vphi\ttt{ satisfies the differential equation }\dot{\vphi}(t)=v(t,\vphi(t)),\,\forall t\in I}
+    \ntg{The theorem states that the problem of solving a differential equation is exactly the problem of finding the integral curves of the corresponding direction field, and is also exactly the problem of finding the phase curves (motions) the velocity at a point of which matches the corresponding preassigned velocity vector.}
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Simple Differential Equations}
+\begin{description}
+\item[Vector field on the line]Let $v:U\to\RR$ be a differentiable function defined on an interval $U=\{x\in\RR:\alpha<x<\beta\},\quad-\infty\leqs\alpha<\beta\leqs+\infty$ of the real-axis. Then
+    \enu{
+        \item For every $t_0\in\RR,\,x_0\in U$ there exists a solution $\vphi$ of the equation $\dot{x}=v(x)$ satisfying the initial condition $\vphi(t_0)=x_0$;
+        \item Any two solutions $\vphi_1,\,\vphi_2$ of the equation satisfying the initial condition coincide in some neighborhood of the point $t=t_0$;
+        \item The solution $\vphi$ of the equation satisfying the initial condition is such that
+            \mtha{t-t_0\int_{x_0}^{\vphi(t)}\frac{\ud\xi}{v(\xi)},\quad v(x_0)\neq0\\\\
+                \vphi(t)\equiv x_0,\quad v(x_0)=0}
+    }
+\item[Comparison theorem]Let $v_1,\,v_2$ be real functions continuous on an interval $U$ of $\RR$ such that $v_1<v_2$ and let $\vphi_1,\,\vphi_2$ be solutions of the differential equations
+    \mth{\dot{x}=v_1(x),\quad\dot{x}=v_2(x)}
+    respectively, satisfying the same initial condition $\vphi_1(t_0)=\vphi_2(t_0)=x_0$, where $\vphi_1,\,\vphi_2$ are both defined on the interval $a<t<b,\,(-\infty\leqs a<b\leqs+\infty)$. Then the inequality
+    \mth{\vphi_1(t)\leqs\vphi_2(t)}
+    holds for all $t\geqs t_0$.
+\item[Barrow's formula]The solution of $\dot{x}=v(t)$ with initial condition $(t_0,x_0)$ is given by:
+    \mth{\vphi(t)=x_0+\int_{t_0}^tv(\tau)\ud\tau}
+\item[Barrow's formula]Let $v$ be a smooth function defined on an interval $U\subset\RR$. The solution $\vphi$ of the equation $\dot{x}=v(x)$ with initial condition $(t_0,x_0)$ exists for all possible initial conditions $t_0\in\RR,\,x_0\in U$ and is given by:
+    \mtha{t-t_0\int_{x_0}^{\vphi(t)}\frac{\ud\xi}{v(\xi)},\quad v(x_0)\neq0\\\\
+        \vphi(t)\equiv x_0,\quad v(x_0)=0}
+    The solution is unique in the sense that any two solutions with the same initial condition coincide in some neighborhood of the point $t_0$.
+\item[Equation with separable variables]Let $f,g$ be smooth functions that do not vanish in the domain under consideration. The phase curves of the system
+    \mth{\dot{x}=g(x),\quad \dot{y}=f(y)}
+    are integral curves of the equation
+    \mth{\derv{y}{x}=\frac{f(y)}{g(x)}}
+    The converse is also true.
+    \ntg{Notice that for the equation we talk about \udl{integral curves} while for the system we talk about \udl{phase curves}. This is because the system of equations implies that $x,y$ are both functions of another parameter while we only care about how $y$ evolves with $x$ when we try to solve the equation.}
+\item[Solution of an equation with separable variables]The solution of
+    \mth{\derv{y}{x}=\frac{f(y)}{g(x)}}
+    is given by:
+    \mth{\int_{x_0}^x\frac{\ud\xi}{g(\xi)}=\int_{y_0}^y\frac{\ud\eta}{f(\eta)}}
+\item[First-order homogenous linear equation]Every solution of the first-order homogenous linear equation
+    \mth{\derv{y}{x}=f(x)y}
+    can be extended to the entire interval on which $f$ is defined. The solution with initial condition $(x_0,y_0)$ is given by:
+    \mth{y=y_0e^{\int_{x_0}^xf(\xi)\ud\xi}}
+    The solutions form a vector space (closed under addition and scalar multiplication).
+\item[First-order inhomogeneous linear equation]If the first-order inhomogeneous equation
+    \mth{\derv{y}{x}=f(x)y+g(x)}
+    has a known particular solution $\vphi(x)$, then all other solutions have the form $\vphi(x)+\vphi_0(x)$ where $\vphi_0(x)$ is a solution of
+    \mth{\derv{y}{x}=f(x)y}
+    The solution with initial condition $(x_0,0)$ exists and is unique, and is given by:
+    \mth{y(x)=\int_{x_0}^xe^{\int_\xi^xf(\zeta)\ud\zeta}g(\xi)\ud\xi}
+    \ntg{$\Brk{\derv{}{x}-f(x)}$ is a linear operator on the vector space of differentiable functions.}
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Action of diffeomorphisms}
+\begin{description}
+\item[General description of the action of a diffeomorphism]\quad
+    \enu{
+        \item Tangent vectors \udl{move forward} under the mapping $g:M\to N$, that is, $v(x)\in T_xM$ is mapped to a vector $w(y)=w(g(x))=g_{*x}v(x)=\ud g(x)v(x)\in T_{f(x)}N$.
+        \item Functions \udl{move backward} under the mapping $g:M\to N$, that is, a function $f$ of $N$ generates a function $g^*f=gf$ of $M$.
+    }
+\item[Action of a diffeomorphism on a vector field]The diffeomorphism $g:M\to N$ maps a vector field $v(x)$ on $M$ to a vector field on $N$ by assigning to each point $y\in N$ the tangent vector
+    \mth{w(y)=\ud g(g^{-1}(y))v(g^{-1}(y))=\ud g(x)v(x),\quad y=g(x)}
+\item[Action of a diffeomorphism on an equation (change of variables)]Let $g:M\to N$ be a diffeomorphism and $v$ a vector field on $M$, and let there be defined a smooth vector field $v$ on $M$. Denote the image of $v$ under $g$ by $w=\ud g\cdot v$. Then the differential equations
+    \mth{\dot{x}=v(x),\quad x\in M}
+    \mth{\dot{y}=w(y),\quad y\in N}
+    are equivalent. In other words, if $\vphi:I\to M$ is a solution of $\dot{x}=v(x)$, then $g\comp\vphi:I\to N$ is a solution of $\dot{y}=w(y)$ and conversely.
+\item[Action of a diffeomorphism on a direction field]A diffeomorphism $g:M\to N$ transforms the direction field in $M$ to a direction field in $N$ as follows:
+    \mtha{&&\ttt{a line (direction) in $M$ at $x$}\\
+        &\mapsto&\ttt{a parallel nonzero vector $v(x)$ in $T_xM$}\\
+        &\mapsto&\ttt{a tangent vector $w(y)=\ud g(x)\cdot v(x)$ in $T_yN$}\\
+        &\mapsto&\ttt{a line (direction) in $N$}}
+    Under the action of a diffeomorphism the integral curves of the original direction field on $M$ maps into integral curves of the direction field on $N$ obtain by the action of $g$ on the original field.
+\item[Action of a diffeomorphism on a phase flow]Let $\{g^t\in\Aut(M)\}$ be a one-parameter diffeomorphism group, and let $f:M\to N$ also be a diffeomorphism. Then the \udl{image of the flow $\{g^t\}$ under the action of $f$} is the flow $\{h^t\in\Aut(N)\}$, where $h^t=fg^tf^{-1}$. In other words, the diagram commutes:
+    \mth{\xymatrix{
+        M\ar[r]^{g^t}\ar[d]_{f}&	M\ar[d]^{f}\\
+        N\ar[r]^{h^t}&	N}}
+\item[Theorem]Let $v$ be the phase velocity vector field of the one-parameter group $\{g^t\}$ and $w$ that of the group $\{h^t\}$, then
+    \enu{
+        \item if a diffeomorphism $f$ maps $\{g^t\}$ to $\{h^t\}$, then $f$ maps $v$ to $w$;
+        \item if a diffeomorphism $f$ maps $v$ to $w$, then $f$ maps $\{g^t\}$ to $\{h^t\}$.
+    }
+    In other words, the relation between a phase flow and its phase velocity vector field is invariant under the action of a diffeomorphism.
+\end{description}
+\end{subsection}
+\end{section}
+
+\begin{section}{Basic Theorems}
+\begin{subsection}{Rectification, Existence and Uniqueness Theorems}
+\begin{description}
+\item[Rectification of a direction field]The local rectifiability of a direction field is stated in the following equivalent ways:
+    \enu{
+        \item (Fundamental) Every smooth direction field is rectifiable in a neighborhood of each point. If the field is $r$ times continuously differentiable (of class $C^r,\;1\leqs r\leqs\infty$), then the rectifying diffeomorphism can also be taken from the class $C^r$.
+        \item All smooth direction fields in domains of the same dimensions are locally diffeomorphic (can be mapped into each other by a diffeomorphism).
+        \item The differential equation $\dot{x}=v(t,x)$ with smooth right-hand side $v$ is locally equivalent to the very simple equation $\dy/\ud\tau=0$. In other words, in a neighborhood of each point of the extended phase space of $(t,x)$ there exists an admissible coordinate system $(\tau,y)$ (transition to which is a diffeomorphic change of variables) in which the equation can be written in the very form $\dy/\ud\tau=0$.
+    }
+\item[Corollary 1.]Through each point of a domain in which a smooth direction field is defined there passes an integral curve.
+\item[Corollary 2.]Two integral curves of a smooth direction field having a point in common coincide in a neighborhood of that point.
+\item[Corollary 3.]A solution of the differential equation $\dot{x}=v(t,x)$ with the initial condition $(t_0,x_0)$ in the domain of smoothness of the right-hand side exists and is unique (in the sense that any two solutions with a common initial condition coincide in some neighborhood of the point $t_0$).
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Continuous and Differentiable Dependence of the Solutions}
+\begin{description}
+\item[Corollary 4.](Dependence on the initial condition) The solution of an equation with smooth right-hand side depends smoothly on the initial conditions. In formal language, if we consider the function $\Phi(\tau,\xi,t)$ as the solution of $\dot{x}=v(t,x)$ with the initial condition $(t_0,x_0)$, then $\Phi:\RR\x M\x\RR\to M$ ($M$ is the phase space) is defined, continuous and smooth (having the same smoothness of $v$) in a neighborhood of each point $(t_0,x_0,t_0)$.
+\item[Corollary 5.](Transformation over the time interval) The transformation over the time interval from $t_0$ to $t$ for an equation with smooth right-hand side
+    \itm{
+        \item[(a)]are defined in a neighborhood of each phase point $x_0$ for $t$ sufficiently close to $t_0$;
+        \item[(b)]are local diffeomorphisms (of the same smoothness as the right-hand side of the equation) and depend smoothly on $t$ and $t_0$;
+        \item[(c)]satisfy the identity $g_{t_0}^tx=g_s^tg_{t_0}^s$ for $s,t$ sufficiently close to $t_0$ and all $x$ in a sufficiently small neighborhood of the point $x_0$.
+        \item[(d)]are such that for fixed $\xi$ the function $\vphi(t)=g_{t_0}^t\xi$ is a solution of the equation $\dot{x}=v(t,x)$ satisfying the initial condition $\vphi(t_0)=\xi$.
+    }
+    The transformation over the time interval from $t_0$ to $t$ for an autonomous equation depends only on the length $t-t_0$ of the time interval and not on the initial instant $t_0$.
+\item[Corollary 6.](Dependence on a parameter) Suppose in the equation $\dot{x}=v(t,x,\alpha)$ the right-hand side $v$ depends smoothly on a parameter $\alpha\in A\subset\RR^a$. If we denote the solution with the initial condition $(\tau,\xi)$ for a fixed value of the parameter $\alpha$ by $\Phi(\tau,\xi,\alpha,t)$, then $\Phi:\RR\x M\x\RR^a\x\RR\to M$ is defined, continuous and smooth (having the same smoothness as $v$) in a neighborhood of each point $(t_0,x_0,\alpha,t)$.
+    \ntg{The parameter can be think of as components of the process in a larger phase space, with a fixed evolution rate $\dot{\alpha}=1$.}
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Extension Theorems}
+\begin{description}
+\item[Corollary 7.]A solution with initial condition in a compact set in the extended phase space can be extended forward and backward to the boundary of the compact set. In other words through any interior point of a compact set there passes an integral curve that intersects the boundary of the compact set in both directions from the initial point. The extension is unique in the sense that any two solution with the same initial condition coincide wherever they are both defined.
+\item[Corollary 8.]Assume that the domain of definition of the right-hand side of the equation $\dot x=v(t,x)$ contains the cylinder $\RR\x K$, where $K$ is a compact set. S solution with initial condition in a given compact set $K$ in the phase space can be extended forward (resp. backward) either indefinitely or to the boundary of the boundary of the compact set $K$.
+\item[Corollary 9.]A solution of the equation of the autonomous equation $\dot x=v(x)$ with initial value in any compact set of the phase space can be continued forward (resp. backward) either indefinitely or to the boundary of the compact set.
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Rectification of a Vector Field}
+\begin{description}
+\item[Corollary 10.]Every smooth vector field is locally rectifiable in a neighborhood of each nonsingular point (a point where the vector field is nonzero).
+\item[Corollary 11.]Any two smooth vector fields in domains of the same dimension can be transformed into each other by diffeomorphisms in sufficiently small neighborhoods of any nonsingular points.
+\item[Corollary 12.]Every differential equation $\dot x=v(x)$ can be written in the normal form $\dot x_1=1,\,\dot x_2=\cdots=\dot x_n=0$ for a suitable choice of coordinates in a sufficiently small neighborhood of any nonsingular point of the field. In other words, every equation $\dot x=v(x)$ is locally equivalent to the simplest equation $\dot x=v$ ($v\neq0$ independent of $x$) in a neighborhood of any nonsingular point.
+\end{description}
+\end{subsection}
+\end{section}
+
+\begin{section}{Proofs of the Main Theorems}
+\begin{subsection}{Existence and Uniqueness Theorems and Continuous Dependence}
+\begin{description}
+\item[Differential and integral equations]The two following conditions are equivalent.
+    \enu{
+        \item $\vphi:I\to\RR^n$ is a solution of the system
+            \mth{\left\{\arr{{l}\dot x=v(t,x)\\ x(t_0)=x_0}\right.}
+            where $v:\RR^{n+1}\supset U\to\RR^n$ is smooth.
+        \item $\vphi$ satisfies the integral equation
+            \mth{\vphi(t)=x_0+\int_{t_0}^tv(\tau,\vphi(\tau))\ud\tau}
+        }
+\item[Picard mapping]The \udl{picard mapping $A$} is a mapping on the set of mappings from $I\subset\RR$ to the phase space, that is, on the integral curves in the phase space. It is defined as
+    \mth{(A\vphi)(t)=x_0+\int_{t_0}^tv(\tau,\vphi(\tau))\ud\tau}
+\item[Differentiability and the Lipschitz condition]A continuously differentiable\\ mapping $f:\RR^m\supset U\to\RR^n$ satisfies a Lipschitz condition on every convex compact subset $V$ of the domain $U$ with constant $L$ which can be chosen as
+    \mth{L=\sup_{x\in V}\abs{\ud f(x)}}
+\item[The metric space]Let $M$ be defined as the set
+    \mth{M=\{h\in C(\wt{\flr{C}};\RR^n):\abs{h(t,x)}\leqs C\abs{t-t_0}\}}
+    where
+    \mth{\flr{C}=\{(t,x)\in\RR^{n+1}:\abs{t-t_0}\leqs a',\,\abs{x-x_0}\leqs b'\}}
+    And let $M$ be endowed with a metric $\rho$
+    \mth{\rho(h_1,h_2)=\norm{h_1-h_2}=\max_{(t,x)\in\wt{\flr{C}}}\abs{h_1(t,x)-h_2(t,x)}}
+    Then $M$ is a complete metric space, which depends on $a',\,b'$, and $C$.
+\item[The contraction mapping]If $a'$ is sufficiently small, then the mapping $A:M\to M$ defined as
+    \mth{(Ah)(t,x)=\int_{t_0}^tv(\tau,x+h(\tau,x))\ud\tau}
+    is a contraction mapping on $M$.
+\item[Corollary]Suppose the right-hand side $v$ of the system
+    \mth{\dot x=v(t,x)}
+    is continuously differentiable in a neighborhood of the point $(t_0,x_0)$ of the extended phase space. Then there is a neighborhood of the point $t_0$ such that a solution is defined in this neighborhood with the initial condition $\vphi(t_0)=x$, where $x$ is any point sufficiently close to $x_0$; moreover this solution depends continuously on the initial point $x$.
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Differentiability}
+\begin{description}
+\item[System of equations of variations]With a differential equation
+    \mth{\dot x=v(t,x),\quad x\in U\subset\RR^n}
+    there is associated a system of differential equations
+    \mth{\left\{\arr{{lll}\dot x=v(t,x)&,&x\in U\subset\RR^n\\
+                    \dot y=v_*(t,x)y&,&y\in T_xU}\right.}
+    called the \udl{system of equations of variations} for $\dot x=v(t,x)$ and \udl{linear} with respect to the tangent vector $y$. If we put $n$ vectors alongside to form a matrix then a new equation is obtained:
+    \mth{\left\{\arr{{lll}\dot x=v(t,x)&,&x\in U\subset\RR^n\\
+                    \dot z=v_*(t,x)z&,&z:\RR^n\to\RR^n}\right.}
+\item[The differentiability theorem]Suppose the right-hand side $v$ of $\dot x=v(t,x)$ is twice continuously differentiable in some neighborhood of the point $(t_0,x_0)$. Then the solution $g(t,x)$ of the equation with initial condition $g(t_0,x)=x$ depends on the initial condition $x$ in continuously differentiable manner as $x$ and $t$ vary in some (perhaps smaller) neighborhood of the point $(t_0,x_0)$:
+    \mth{v\in C^2\implies g\in C_x^1}
+    (it is of class $C^1$ in x).
+    \sprf{Use Picard approximation on the equation of variations. Notice that in each step one is the derivative of the other.}
+\item[Theorem]The derivative $g_*$ of a solution of $\dot x=v(t,x)$ with respect to the initial condition $x$ satisfies the equation of variations with initial condition $z(t_0)=E$:
+    \mth{\parf{}{t}g(t,x)=v(t,g(t,x))}
+    \mth{\parf{}{t}g_*(t,x)=v_*(t,g(t,x))g_*(t,x)}
+    \mth{g(t_0,x)=x}
+    \mth{g_*(t_0,x)=E}
+\item[Theorem ($T_r$)]Let $r\geqs2$ be an integer. Suppose the right-hand side $v$ of $\dot x=v(t,x)$ is $r$ times continuously differentiable in some neighborhood of the point $(t_0,x_0)$. Then the solution $g(t,x)$ of $\dot x=v(t,x)$ with initial condition $g(t_0,x)=x$ is $r-1$ times continuously differentiable as a function of the initial condition $x$ when $x$ and $t$ vary in some (possibly smaller) neighborhood of the point $(t_0,x_0)$:
+    \mth{v\in C^r\implies g\in C_x^{r-1}}
+    \sprf{Proof is by induction.
+        \mth{v\in C^r\implies v_*\in C^{r-1}\stackrel{T_{r-1}}{\implies}g_*\in C_x^{r-2}\implies g\in C_x^{r-1}}}
+\item[Lemma] Let $f$ be a function (with values in $\RR^n$) defined on the direct product of the domain $G$ of the Euclidean space $\RR^n$ and the interval $I$ of the $t$-axis:
+    \mth{f:G\x I\to\RR^n}
+    From the integral
+    \mth{F(x,t)=\int_{t_0}^tf(x,\tau)\ud\tau,\quad x\in G,\quad[t_0,t]\subset I}
+    If $f\in C_x^r$ and $f\in C^{r-1}$, then $F\in C^r$.
+\item[Theorem ($T_r'$)]Under the hypotheses of $T_r$ the solution $g(t,x)$ is a differentiable function of class $C^{r-1}$ in the variables $x$ and $t$ jointly:
+    \mth{v\in C^r\implies g\in C^{r-1}}
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Rectification Theorem}
+\begin{description}
+\item[Proposition 1.]For each $k$-dimensional subspace $\RR^k\subset\RR^n$ there is a subspace of dimension $n-k$ transversal to it (and in fact there is one among the $C_n^k$ coordinate planes of the space $\RR^n$).
+\item[Proposition 2.]If a linear transformation $A:L\to M$ maps some pair of transversal subspaces into transversal subspaces, then its range is all of $M$.
+\item[Proof of the rectification theorem: the nonautonomous case]Consider the mapping $G$ of a domain of the direct product $\RR\x\RR^n$ into the extended phase space of the equation
+    \mth{\dot x=v(t,x)}
+    given by the formula $G(t,x)=(t,g(t,x))$, there $g(t,x)$ is a solution with the initial condition $g(t_0,x)=x$. We shall show that $G$ is a rectifying diffeomorphism in a neighborhood of the point $(t_0,x_0)$.
+    \enu{
+        \item The mapping $G$ is differentiable (of class $C^{r-1}$ if $v\in C^r$) by $T_r'$.
+        \item The mapping $G$ leaves $t$ fixed: $G(t,x)=(t,g(t,x))$.
+        \item The mapping $G_*$ takes the standard vector field $e\,(\dot x=0,\,\dot t=1)$ into the given field: $G_*e=(1,v)$ (since $g(t,x)$ is a solution).
+        \item The mapping $G$ is a diffeomorphism in a neighborhood of the point $(t_0,x_0)$.
+    }
+\item[Proof of the rectification theorem: the autonomous case]Consider the autonomous equation
+    \mth{\dot x=v(x),\quad x\in U\subset\RR^n}
+    Suppose the phase velocity vector $v_0$ is nonzero at the point $x_0$. Then there exists an $(n-1)$-dimensional hyperplane $\RR^{n-1}\subset\RR^n$ passing through $x_0$ and transversal to $v_0$ (more precisely, the corresponding plane in the tangent space $T_{x_0}U$ is transversal to the line $\RR^1$ with direction $v_0$). We define a mapping $G$ of the domain $\RR\x\RR^{n-1}$, where $\RR^{n-1}=\{\xi\},\,\RR=\{t\}$, into the domain $\RR^n$ by the formula $G(t,\xi)=g(t,\xi)$, where $\xi$ lies in $\RR^{n-1}$ near $x_0$ and $g(t,\xi)$ is the value of the solution with the initial condition $\vphi(0)=\xi$ at the instant $t$. We shall show that in a sufficiently small neighborhood of the point $(\xi=x_0,\,t=0)$ the mapping $G^{-1}$ is a rectifying diffeomorphism.
+    \enu{
+        \item The mapping $G$ is differentiable ($G\in C^{r-1}$ if $v\in C^r$) by $T_r'$.
+        \item The mapping $G^{-1}$ is rectifying since $G_*$ maps the standard vector field $e\,(\dot\xi=0,\,\dot t=1)$ to $G_*e=v$, because $g(t,\xi)$ satisfies $\dot x=v(x)$.
+        \item The mapping $G$ is a local diffeomorphism.
+    }
+\end{description}
+\end{subsection}
+
+\begin{subsection}{The Last Derivative}
+\begin{description}
+\item[Theorem] If the right-hand side $v(t,x)$ of the differential equation $\dot x=v(t,x)$ is continuously differentiable, then the solution $g(t,x)$ with initial condition $g(t_0,x)=x$ is a continuously differentiable function of the initial conditions:
+    \mth{v\in C^1\implies g\in C_x^1}
+\item[Corollary 1.]$v\in C^r\implies g\in C^r$ for $r\geqs1$.
+\item[Corollary 2.]The rectifying diffeomorphisms constructed in the last subsection are $r$ times continuously differentiable if $v\in C^r$.
+\item[Lemma 1.]The solution of a linear equation $\dot y=A(t)y$ whose right-hand side depends continuously on $t$ exists, is unique, is determined uniquely by the initial conditions $\vphi(t_0)=y_0$, and is a continuous function of $y_0$ and $t$.
+\item[Lemma 2.]If the linear transformation $A$ in Lemma 1 also depends on a parameter $\alpha$ in such a way that the function $A(t,\alpha)$ is continuous, then the solution will be a continuous function of $y_0,\,t$, and $\alpha$.
+\item[Lemma 3.]The system of equations of variations
+    \mth{\dot x=v(t,x),\quad\dot y=v_*(t,x)y}
+    has a solution that is uniquely determined by its initial data and depends continuously on them provided the field
+    $v$ is of class $C^1$.
+\item[Lemma 4.]If the vector field $v(t,x)$ of class $C^1$, together with its derivative $v_*$, vanishes at the point $x=0$ for all $t$, then the solution of the equation $\dot x=v(t,x)$ is differentiable with respect to the initial conditions at the point $x=0$.
+\item[Lemma 5.]Suppose $x=\vphi(t)$ is a solution of the equation of $\dot x=v(t,x)$ with right-hand side of class $C^1$ defined in a domain of the extended phase space $\RR\x\RR^n$. Then there exists a $C^1$-diffeomorphism of the extended phase space that preserves time ($(t,x)\to(t,x_1(t,x))$) and maps the solution $\vphi$ to $x_1\equiv0$.
+\item[Lemma 6.]Under the hypotheses of Lemma 5 the coordinates $(t,x_1)$ can be chosen so that the equation $\dot x=v(t,x)$ is equivalent to the equation $\dot x_1=v_1(t,x_1)$, where the field $v_1$ equals $0$ at the point $x_1=0$ along with its derivative $\parf{v_1}{x_1}$. Moreover the function $x_1(t,x)$ can be chosen to be linear (but not necessarily homogeneous) with respect to $x$.
+\item[Lemma 7.]The assertion of Lemma 6 is true for a linear equation $\dot x=A(t)x$.
+\item[Lemma 8.]The solution of the differential equation $\dot x=v(t,x)$ with right-hand side of class $C^1$ depends differentiably on the initial condition. The derivative $z$ of the solution with respect to the initial condition satisfies the system of equations of variations
+    \mth{\dot x=v(t,x)}
+    \mth{\dot z=v_*(t,x)z}
+    \mth{z(t_0)=E:\RR^n\to\RR^n}
+\end{description}
+\end{subsection}
+\end{section}
+\end{document}

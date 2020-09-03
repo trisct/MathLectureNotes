@@ -1,0 +1,350 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{geometry,xcolor,layout,amssymb,amsthm,amsmath,mathrsfs,graphicx,centernot,textcomp,galois,extarrows}
+\usepackage[all]{xy}
+
+\newtheorem{prop}{Prop}[section]
+\newtheorem{theom}{Theorem}[section]
+\newtheorem{eg}{Example}[section]
+\newtheorem{nt}{Note}[section]
+\newtheorem{coro}{Corollary}[section]
+
+\theoremstyle{definition}
+\newtheorem{pf}{Proof}[section]
+\newtheorem{dfn}{Def}[section]
+
+\newcommand{\bs}{\backslash}
+\newcommand{\udots}{\mathinner{\mskip 1mu\raise 1pt\vbox{\kern 7pt\hbox{.}}
+\mskip 2mu\raise 4pt\hbox{.}\mskip 2mu\raise 7pt\hbox{.}\mskip 1mu}}
+\newcommand{\geqs}{\geqslant}
+\newcommand{\leqs}{\leqslant}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\rsa}{\sigma(f;\pi,\xi)}
+\newcommand{\wlg}{{\rm w.l.o.g.}}
+\newcommand{\spn}{{\rm span}}
+\newcommand{\rank}{{\rm rank}}
+\newcommand{\nul}{{\rm null}}
+\newcommand{\img}{{\rm im}}
+\newcommand{\ud}{{\rm d}}
+\newcommand{\dx}{\ud x}
+\newcommand{\dy}{\ud y}
+\newcommand{\dz}{\ud z}
+\newcommand{\x}{\times}                     %乘号
+\newcommand{\ox}{\otimes}
+\newcommand{\op}{\oplus}
+\newcommand{\unito}{\rightrightarrows}
+\newcommand{\lbint}{\int\!\!\!\int}      %二重积分号
+\newcommand{\bint}{\int\!\!\!\!\int}      %二重积分号
+\newcommand{\tint}{\int\!\!\!\!\int\!\!\!\!\int}      %三重积分号
+\newcommand{\apr}{\approx}
+\newcommand{\operp}{\stackrel{\perp}{\oplus}}
+\newcommand{\const}{{\rm const}}
+\newcommand{\codim}{{\rm codim}}
+\newcommand{\ann}{{\rm ann}}
+\newcommand{\sgn}{{\rm sgn}}
+\newcommand{\tr}{{\rm tr}}
+\newcommand{\sym}{{\rm Sym}}
+\newcommand{\Sp}{{\rm Sp}}              %symplectic
+\newcommand{\id}{{\rm id}}
+\newcommand{\mor}{{\rm Mor}}
+\newcommand{\Hom}{{\rm Hom}}
+\newcommand{\Aut}{{\rm Aut}}
+\newcommand{\End}{{\rm End}}
+\newcommand{\re}{{\rm Re}}
+\newcommand{\diag}{{\rm diag}}
+\newcommand{\grad}{{\rm grad\,}}
+\newcommand{\dive}{{\rm div\,}}
+\newcommand{\rot}{{\rm rot\,}}
+\newcommand{\rad}{{\rm rad}}
+\newcommand{\ord}{{\rm ord}}
+\newcommand{\varn}{\varnothing}
+\newcommand{\vare}{\varepsilon}
+\newcommand{\vphi}{\varphi}
+\newcommand{\diam}{{\rm diam}}
+\newcommand{\vect}{{\rm Vect}}
+\newcommand{\isom}{\stackrel{\apr}{\longrightarrow}}
+\newcommand{\st}{{\rm\quad s.t.\quad}}
+\newcommand{\lapla}{\Delta}
+\newcommand{\divd}{\big|}
+\makeatletter
+\newcommand{\lambdabar}{{\mathchoice
+  {\smash@bar\textfont\displaystyle{0.25}{1.2}\lambda}
+  {\smash@bar\textfont\textstyle{0.25}{1.2}\lambda}
+  {\smash@bar\scriptfont\scriptstyle{0.25}{1.2}\lambda}
+  {\smash@bar\scriptscriptfont\scriptscriptstyle{0.25}{1.2}\lambda}}}
+\newcommand{\smash@bar}[4]{%
+  \smash{\rlap{\raisebox{-#3\fontdimen5#10}{$\m@th#2\mkern#4mu\mathchar'26$}}}}
+\makeatother
+
+
+\newcommand{\rsb}[3]{\sigma(#1;#2,#3)}      %Riemann sum with arguments
+\newcommand{\derv}[2]{\frac{\ud#1}{\ud#2}}
+\newcommand{\parf}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\secpf}[3]{\frac{\partial^2 #1}{\partial #2\partial #3}}
+\newcommand{\comb}[2]{\binom{#1}{#2}}       %组合数
+\newcommand{\norm}[1]{\lVert #1\rVert}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\brk}[1]{\big(#1\big)}
+\newcommand{\Brk}[1]{\left(#1\right)}
+\newcommand{\bkt}[1]{\langle#1\rangle}
+\newcommand{\dbk}[1]{\langle\!\langle#1\rangle\!\rangle}
+\newcommand{\inprod}[1]{\langle#1\rangle}
+\newcommand{\itr}[1]{#1^\circ}           %内部,interior
+\newcommand{\cmp}[1]{#1^c}               %补集,complement
+\newcommand{\cnts}[3]{#1#3\cdots#3#2}
+\newcommand{\inds}[3]{#1_{1}#3\cdots#3#1_{#2}}
+\newcommand{\dindx}[4]{#1{#2}#4\cdots#4#1{#3}}
+\newcommand{\dinds}[4]{#1_{#2}#4\cdots#4#1_{#3}}
+\newcommand{\vct}[1]{\overrightarrow{#1}}
+\newcommand{\simlr}[2]{#2^{-1}#1#2}     %相似
+\newcommand{\congt}[2]{\ts{#2}#1#2}     %相合
+\newcommand{\ccong}[2]{\cts{#2}#1#2}    %共轭相合
+\newcommand{\rcong}[2]{\ts{#2}#1\orl{#2}}    %右共轭相合
+\newcommand{\ts}[1]{#1^{\rm T}}
+\newcommand{\cts}[1]{\orl{#1}^{\rm T}}   %共轭转置
+\newcommand{\wt}[1]{\widetilde{#1}}
+\newcommand{\bss}[2]{\inds{#1}{#2}{,}}
+\newcommand{\boun}[1]{\partial{#1}}
+\newcommand{\unitob}[1]{\mathop{\rightrightarrows}\limits_{#1}}
+
+\newcommand{\mth}[1]{\begin{displaymath}#1\end{displaymath}}
+\newcommand{\mtha}[1]{\begin{eqnarray*}#1\end{eqnarray*}}
+\newcommand{\arr}[1]{\begin{array}#1\end{array}}
+\newcommand{\prf}[1]{\begin{pf}#1\end{pf}}
+\newcommand{\sprf}[1]{\begin{pf}\cb{#1}\end{pf}}
+\newcommand{\df}[1]{\begin{dfn}#1\end{dfn}}
+\newcommand{\ntg}[1]{\begin{nt}\cg{#1}\end{nt}}
+\newcommand{\mat}[1]{\left(\arr{#1}\right)}
+\newcommand{\itm}[1]{\begin{itemize}#1\end{itemize}}
+\newcommand{\enu}[1]{\begin{enumerate}#1\end{enumerate}}
+\newcommand{\desc}[1]{\begin{description}#1\end{description}}
+\newcommand{\tmth}[1]{\begin{displaymath}\ttt{#1}\end{displaymath}}
+\newcommand{\thm}[1]{\begin{theom}#1\end{theom}}
+\newcommand{\cor}[1]{\begin{coro}#1\end{coro}}
+\newcommand{\eqn}[1]{\begin{equation}#1\end{equation}}
+\newcommand{\eqna}[1]{\begin{eqnarray}#1\end{eqnarray}}
+
+
+\newcommand{\clr}[1]{\textcolor{red}{#1}}   %红色
+\newcommand{\cb}[1]{\textcolor{blue}{#1}}   %蓝色
+\newcommand{\cg}[1]{\textcolor{magenta}{#1}}%紫色
+\newcommand{\hlg}[1]{\cg{\udl{#1}}}
+\newcommand{\hlb}[1]{\cb{\udl{#1}}}
+\newcommand{\hlr}[1]{\clr{\udl{#1}}}
+
+\newcommand{\nm}[1]{{\rm#1}}                %竖体
+\newcommand{\ttt}{\textrm}
+\newcommand{\ns}[1]{\mathbb{#1}}
+\newcommand{\mcl}[1]{\mathcal{#1}}
+\newcommand{\flr}[1]{\mathscr{#1}}
+\newcommand{\got}[1]{\mathfrak{#1}}
+\newcommand{\orl}[1]{\overline{#1}}
+\newcommand{\udl}[1]{\underline{#1}}
+
+%%%%%%%%%%%%%PHYSICS CONSTANTS
+\newcommand{\cstk}{\frac{1}{4\pi\vare_0}}
+\newcommand{\cstm}{\frac{\mu_0}{4\pi}}
+
+\title{Theorems in Ordinary Differential Equations\\\Large Version 2}
+\author{TRISCT}
+\date{}
+
+\begin{document}
+\maketitle\tableofcontents
+\begin{section}{Basic Concepts}
+\begin{subsection}{Description of Evolutionary Processes}
+\begin{description}
+\item[Solution of a differential equation]A necessary and sufficient condition for the graph of a function $\vphi:\RR\supset I\to\RR^n$ to be an integral curve of $(1,v(t,x))$ is that the following relation holds for all $t$ in $I$:
+    \mth{\dot{\vphi}(t)=v(t,\vphi(t))}
+    that is,
+    \mth{\ttt{The graph of }\vphi:\RR\supset I\to\RR^n\ttt{ is an integral curve of }(1,v(t,x))}
+    \mth{\iff\vphi\ttt{ satisfies the differential equation }\dot{\vphi}(t)=v(t,\vphi(t)),\,\forall t\in I}
+    \ntg{The theorem states that the problem of solving a differential equation is exactly the problem of finding the integral curves of the corresponding direction field, and is also exactly the problem of finding the phase curves (motions) the velocity at a point of which matches the corresponding preassigned velocity vector.}
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Simple Differential Equations}
+\begin{description}
+\item[Vector field on the line]Let $v:U\to\RR$ be a differentiable function defined on an interval $U=\{x\in\RR:\alpha<x<\beta\},\quad-\infty\leqs\alpha<\beta\leqs+\infty$ of the real-axis. Then
+    \enu{
+        \item For every $t_0\in\RR,\,x_0\in U$ there exists a solution $\vphi$ of the equation $\dot{x}=v(x)$ satisfying the initial condition $\vphi(t_0)=x_0$;
+        \item Any two solutions $\vphi_1,\,\vphi_2$ of the equation satisfying the initial condition coincide in some neighborhood of the point $t=t_0$;
+        \item The solution $\vphi$ of the equation satisfying the initial condition is such that
+            \mtha{t-t_0\int_{x_0}^{\vphi(t)}\frac{\ud\xi}{v(\xi)},\quad v(x_0)\neq0\\\\
+                \vphi(t)\equiv x_0,\quad v(x_0)=0}
+    }
+\item[Comparison theorem]Let $v_1,\,v_2$ be real functions continuous on an interval $U$ of $\RR$ such that $v_1<v_2$ and let $\vphi_1,\,\vphi_2$ be solutions of the differential equations
+    \mth{\dot{x}=v_1(x),\quad\dot{x}=v_2(x)}
+    respectively, satisfying the same initial condition $\vphi_1(t_0)=\vphi_2(t_0)=x_0$, where $\vphi_1,\,\vphi_2$ are both defined on the interval $a<t<b,\,(-\infty\leqs a<b\leqs+\infty)$. Then the inequality
+    \mth{\vphi_1(t)\leqs\vphi_2(t)}
+    holds for all $t\geqs t_0$.
+\item[Barrow's formula]The solution of $\dot{x}=v(t)$ with initial condition $(t_0,x_0)$ is given by:
+    \mth{\vphi(t)=x_0+\int_{t_0}^tv(\tau)\ud\tau}
+\item[Barrow's formula]Let $v$ be a smooth function defined on an interval $U\subset\RR$. The solution $\vphi$ of the equation $\dot{x}=v(x)$ with initial condition $(t_0,x_0)$ exists for all possible initial conditions $t_0\in\RR,\,x_0\in U$ and is given by:
+    \mtha{t-t_0\int_{x_0}^{\vphi(t)}\frac{\ud\xi}{v(\xi)},\quad v(x_0)\neq0\\\\
+        \vphi(t)\equiv x_0,\quad v(x_0)=0}
+    The solution is unique in the sense that any two solutions with the same initial condition coincide in some neighborhood of the point $t_0$.
+\item[Equation with separable variables]Let $f,g$ be smooth functions that do not vanish in the domain under consideration. The phase curves of the system
+    \mth{\dot{x}=g(x),\quad \dot{y}=f(y)}
+    are integral curves of the equation
+    \mth{\derv{y}{x}=\frac{f(y)}{g(x)}}
+    The converse is also true.
+    \ntg{Notice that for the equation we talk about \udl{integral curves} while for the system we talk about \udl{phase curves}. This is because the system of equations implies that $x,y$ are both functions of another parameter while we only care about how $y$ evolves with $x$ when we try to solve the equation.}
+\item[Solution of an equation with separable variables]The solution of
+    \mth{\derv{y}{x}=\frac{f(y)}{g(x)}}
+    is given by:
+    \mth{\int_{x_0}^x\frac{\ud\xi}{g(\xi)}=\int_{y_0}^y\frac{\ud\eta}{f(\eta)}}
+\item[First-order homogenous linear equation]Every solution of the first-order homogenous linear equation
+    \mth{\derv{y}{x}=f(x)y}
+    can be extended to the entire interval on which $f$ is defined. The solution with initial condition $(x_0,y_0)$ is given by:
+    \mth{y=y_0e^{\int_{x_0}^xf(\xi)\ud\xi}}
+    The solutions form a vector space (closed under addition and scalar multiplication).
+\item[First-order inhomogeneous linear equation]If the first-order inhomogeneous equation
+    \mth{\derv{y}{x}=f(x)y+g(x)}
+    has a known particular solution $\vphi(x)$, then all other solutions have the form $\vphi(x)+\vphi_0(x)$ where $\vphi_0(x)$ is a solution of
+    \mth{\derv{y}{x}=f(x)y}
+    The solution with initial condition $(x_0,0)$ exists and is unique, and is given by:
+    \mth{y(x)=\int_{x_0}^xe^{\int_\xi^xf(\zeta)\ud\zeta}g(\xi)\ud\xi}
+    \ntg{$\Brk{\derv{}{x}-f(x)}$ is a linear operator on the vector space of differentiable functions.}
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Action of diffeomorphisms}
+\begin{description}
+\item[General description of the action of a diffeomorphism]\quad
+    \enu{
+        \item Tangent vectors \udl{move forward} under the mapping $g:M\to N$, that is, $v(x)\in T_xM$ is mapped to a vector $w(y)=w(g(x))=g_{*x}v(x)=\ud g(x)v(x)\in T_{f(x)}N$.
+        \item Functions \udl{move backward} under the mapping $g:M\to N$, that is, a function $f$ of $N$ generates a function $g^*f=gf$ of $M$.
+    }
+\item[Action of a diffeomorphism on a vector field]The diffeomorphism $g:M\to N$ maps a vector field $v(x)$ on $M$ to a vector field on $N$ by assigning to each point $y\in N$ the tangent vector
+    \mth{w(y)=\ud g(g^{-1}(y))v(g^{-1}(y))=\ud g(x)v(x),\quad y=g(x)}
+\item[Action of a diffeomorphism on an equation (change of variables)]Let $g:M\to N$ be a diffeomorphism and $v$ a vector field on $M$, and let there be defined a smooth vector field $v$ on $M$. Denote the image of $v$ under $g$ by $w=\ud g\cdot v$. Then the differential equations
+    \mth{\dot{x}=v(x),\quad x\in M}
+    \mth{\dot{y}=w(y),\quad y\in N}
+    are equivalent. In other words, if $\vphi:I\to M$ is a solution of $\dot{x}=v(x)$, then $g\comp\vphi:I\to N$ is a solution of $\dot{y}=w(y)$ and conversely.
+\item[Action of a diffeomorphism on a direction field]A diffeomorphism $g:M\to N$ transforms the direction field in $M$ to a direction field in $N$ as follows:
+    \mtha{&&\ttt{a line (direction) in $M$ at $x$}\\
+        &\mapsto&\ttt{a parallel nonzero vector $v(x)$ in $T_xM$}\\
+        &\mapsto&\ttt{a tangent vector $w(y)=\ud g(x)\cdot v(x)$ in $T_yN$}\\
+        &\mapsto&\ttt{a line (direction) in $N$}}
+    Under the action of a diffeomorphism the integral curves of the original direction field on $M$ maps into integral curves of the direction field on $N$ obtain by the action of $g$ on the original field.
+\item[Action of a diffeomorphism on a phase flow]Let $\{g^t\in\Aut(M)\}$ be a one-parameter diffeomorphism group, and let $f:M\to N$ also be a diffeomorphism. Then the \udl{image of the flow $\{g^t\}$ under the action of $f$} is the flow $\{h^t\in\Aut(N)\}$, where $h^t=fg^tf^{-1}$. In other words, the diagram commutes:
+    \mth{\xymatrix{
+        M\ar[r]^{g^t}\ar[d]_{f}&	M\ar[d]^{f}\\
+        N\ar[r]^{h^t}&	N}}
+\item[Theorem]Let $v$ be the phase velocity vector field of the one-parameter group $\{g^t\}$ and $w$ that of the group $\{h^t\}$, then
+    \enu{
+        \item if a diffeomorphism $f$ maps $\{g^t\}$ to $\{h^t\}$, then $f$ maps $v$ to $w$;
+        \item if a diffeomorphism $f$ maps $v$ to $w$, then $f$ maps $\{g^t\}$ to $\{h^t\}$.
+    }
+    In other words, the relation between a phase flow and its phase velocity vector field is invariant under the action of a diffeomorphism.
+\end{description}
+\end{subsection}
+\end{section}
+
+\begin{section}{Basic Theorems}
+\begin{subsection}{Rectification Theorem and its Corollaries}
+\begin{description}
+\item[Rectification of a direction field]\quad
+    \enu{
+        \item (Fundamental) Every smooth direction field is rectifiable in a neighborhood of each point.
+        \item All smooth direction fields in domains of the same dimensions are locally diffeomorphic.
+        \item \[\dot{x}=v(t,x)\xLeftrightarrow{locally}\dy/\ud\tau=0\].
+    }
+\item[Corollary 1.]Integral curves of a smooth direction field exist locally.
+\item[Corollary 2.]Intersecting integral curves coincide locally.
+\item[Corollary 3.]A solution of the differential equation exists locally and is locally unique.
+\item[Corollary 4.]The solution of an equation with smooth right-hand side depends smoothly on the initial conditions.
+\item[Corollary 5.]The transformation over the time interval from $t_0$ to $t$ for an equation with smooth right-hand side
+    \itm{
+        \item[(a)]are defined in a neighborhood of each phase point $x_0$ for $t$ sufficiently close to $t_0$;
+        \item[(b)]are local diffeomorphisms (of the same smoothness as the right-hand side of the equation) and depend smoothly on $t$ and $t_0$;
+        \item[(c)]satisfy the identity $g_{t_0}^tx=g_s^tg_{t_0}^s$ for $s,t$ sufficiently close to $t_0$ and all $x$ in a sufficiently small neighborhood of the point $x_0$.
+        \item[(d)]are such that for fixed $\xi$ the function $\vphi(t)=g_{t_0}^t\xi$ is a solution of the equation $\dot{x}=v(t,x)$ satisfying the initial condition $\vphi(t_0)=\xi$.
+    }
+    The transformation over the time interval from $t_0$ to $t$ for an autonomous equation depends only on the length $t-t_0$ of the time interval and not on the initial instant $t_0$.
+\item[Corollary 6.]The solution of an equation with a parameter side depends smoothly on the parameter.
+\item[Corollary 7.]A solution can be uniquely extended to the boundary of a compact set in the extended phase space.
+\item[Corollary 8.]Assume that the domain of definition of the right-hand side of the equation $\dot x=v(t,x)$ contains the cylinder $\RR\x K$, where $K$ is a compact set. S solution with initial condition in a given compact set $K$ in the phase space can be extended forward (resp. backward) either indefinitely or to the boundary of the boundary of the compact set $K$.
+\item[Corollary 9.]A solution of the equation of the autonomous equation $\dot x=v(x)$ with initial value in any compact set of the phase space can be continued forward (resp. backward) either indefinitely or to the boundary of the compact set.
+\item[Corollary 10.]Every smooth vector field is locally rectifiable near a nonsingular point.
+\item[Corollary 11.]Two smooth vector fields in domains of the same dimension are locally diffeomorphic near any nonsingular points.
+\item[Corollary 12.]\[\dot x=v(x)\xLeftrightarrow{locally}\dot x_1=1,\,\dot x_2=\cdots=\dot x_n=0\]
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Systems of Higher Order}
+\begin{description}
+\item[Equivalence of higher order and higher dimension]
+    \[\derv{^nx}{t^n}=F(t,x,\dot{x},\cdots,\derv{^{n-1}x}{t^{n-1}})\iff\left\{\arr{{l}\dot x_1=x_2\\\cdots\\\dot x_{n-1}=x_n\\\dot x_n=F(t,x_1,\cdots,x_{n-1})}\right.\]
+\item[Existence and Uniqueness]The solution of $\derv{^nx}{t^n}=F(t,x,\dot{x},\cdots,\derv{^{n-1}x}{t^{n-1}})$ exists and is unique.
+\item[Differentiability]The solution depends smoothly on the initial conditions and parameters.
+\item[Extension]A solution can be uniquely extended to the boundary of a compact set in the extended phase space.
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Directional Derivative and First Integrals}
+\begin{description}
+\item[Directional derivative]\quad
+    \enu{
+        \item $L_v(f+g)=L_vf+L_vg$
+        \item $L_v(fg)=fL_vg+gL_vf$
+        \item $L_{u+v}=L_u+L_v$
+        \item $L_{fu}=fL_u$
+    }
+\item[First integral]The following are equivalent.
+    \enu{
+        \item $f$ is a first integral of $\dot x=v(x)$.
+        \item $L_vf\equiv0$
+        \item $\dot\vphi=v(\vphi)\implies f\comp\vphi$ is constant.
+        \item Each phase curve is in a level set of $f$.
+    }
+\item[Time-dependent first integral]The following are equivalent.
+    \enu{
+        \item $f$ is a time-dependent first integral of $\dot x=v(t,x)$.
+        \item $f$ is a first integral of $\dot X=V(X)$, where $X=(t,x),V(X)=V(t,x).$
+        \item $L_Vf\equiv0$
+        \item Each integral curve is in a level set of $f$.
+    }
+    \ntg{$V$ has no singular point.}
+\item[Local first integrals (autonomous)]$\dot x=v(x),\,x\in U\subset\RR^n$ has $n-1$ functionally independent first integrals near a nonsingular point, such that any other first integral is a function of the $n-1$ first integrals.
+\item[Local first integrals (time-dependent, nonautonomous)]$\dot x=v(t,x),\,x\in U\subset\RR^n$ has $n$ functionally independent and time-dependent first integrals in a neighborhood of each point, such that any other first integral is a function of the $n$ first integrals.
+\item[Local first integrals (time-dependent, autonomous)]$\dot x=v(x),\,x\in U\subset\RR^n$ has $n$ functionally independent and time-dependent first integrals in a neighborhood of each point, such that any other first integral is a function of the $n$ first integrals.
+\item[Global first integrals]Each solution of $\dot x=v(t,x),\,x\in\RR^n$ can be extended indefinitely $\implies$ The equation has $n$ functionally independent and time-dependent first integrals on the entire extended phase space.
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Phase curves of autonomous systems}
+The following are true for an autonomous system.
+\begin{description}
+\item[Invariance under time translation]\[\vphi:I\to U\ttt{ is a solution}\iff\vphi\comp h^s:(I-s)\to U\ttt{ is a solution}\]
+\item[Phase curves do not intersect]Intersecting maximal phase curves coincide.
+\item[Lemma 1.]$\vphi(a)=\vphi(b)\implies\vphi$ is defined on $\RR$ and has period $b-a$.
+\item[Lemma 2.]The set of all periods is a subgroup of $\RR$.
+\item[Lemma 3.]The set of all periods of a continuous mapping is closed.
+\item[Lemma 4.]Every closed subgroups of $\RR$ is either $\RR$,\,$b\ZZ$, or $\{0\}$.
+\item[Types of phase curves]A maximal phase curve either does not self-intersect, or is a closed curve diffeomorphic to a circle, or reduces to a point.
+\end{description}
+\end{subsection}
+\end{section}
+\begin{section}{Systems}
+\begin{subsection}{Hamiltonian System}
+\begin{description}
+\item[Law of Conservation of Energy]The Hamiltonian is a first integral of the system of canonical Hamilton equations.
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Conservative System with one Degree of Freedom}
+\begin{description}
+\item[Total energy as first integral]$E=T+U$ is a first integral of $\ddot x=F(x)$.
+\item[Level sets of energy]The level sets of $E$ are locally smooth curves except for equilibrium positions.
+\item[Hadamard's lemma]$f\in C^r,\,f(0)=0\implies f(x)=xg(x),\,g\in C^{r-1}$
+\item[Morse's lemma]\[f'(0)=0,\,f''(0)\neq0\xLongrightarrow{locally}\exists\ttt{ dfm }\vphi,\,f\comp\vphi(y)=f(0)+\sgn f''(0)y^2\]
+\item[Quadratic potential]$U=\frac{kx^2}{2}\implies 2E=x_2^2+kx_1^2$
+\item[Extendability]$U$ is bounded below $\implies$ every solution of $\ddot x=-\derv{U}{x}$ can be extended indefinitely.
+\end{description}
+\end{subsection}
+\end{section}
+\end{document}
