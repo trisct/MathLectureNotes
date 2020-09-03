@@ -1,0 +1,526 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{geometry,xcolor,layout,amssymb,amsthm,amsmath,mathrsfs,graphicx,centernot,textcomp,galois,extarrows}
+\usepackage[all]{xy}
+
+\newtheorem{prop}{Prop}[section]
+\newtheorem{theom}{Theorem}[section]
+\newtheorem{eg}{Example}[section]
+\newtheorem{nt}{Note}[section]
+\newtheorem{coro}{Corollary}[section]
+
+\theoremstyle{definition}
+\newtheorem{pf}{Proof}[section]
+\newtheorem{dfn}{Def}[section]
+
+\newcommand{\bs}{\backslash}
+\newcommand{\udots}{\mathinner{\mskip 1mu\raise 1pt\vbox{\kern 7pt\hbox{.}}
+\mskip 2mu\raise 4pt\hbox{.}\mskip 2mu\raise 7pt\hbox{.}\mskip 1mu}}
+\newcommand{\geqs}{\geqslant}
+\newcommand{\leqs}{\leqslant}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\rsa}{\sigma(f;\pi,\xi)}
+\newcommand{\wlg}{{\rm w.l.o.g.}}
+\newcommand{\spn}{{\rm span}}
+\newcommand{\rank}{{\rm rank}}
+\newcommand{\nul}{{\rm null}}
+\newcommand{\img}{{\rm im}}
+\newcommand{\ud}{{\rm d}}
+\newcommand{\dx}{\ud x}
+\newcommand{\dy}{\ud y}
+\newcommand{\dz}{\ud z}
+\newcommand{\x}{\times}                     %乘号
+\newcommand{\ox}{\otimes}
+\newcommand{\op}{\oplus}
+\newcommand{\unito}{\rightrightarrows}
+\newcommand{\lbint}{\int\!\!\!\int}      %二重积分号
+\newcommand{\bint}{\int\!\!\!\!\int}      %二重积分号
+\newcommand{\tint}{\int\!\!\!\!\int\!\!\!\!\int}      %三重积分号
+\newcommand{\apr}{\approx}
+\newcommand{\prdn}{\prod\limits_{n=1}^\infty}
+\newcommand{\sumn}{\sum\limits_{n=1}^\infty}
+\newcommand{\sump}{\sum\limits_{n=0}^\infty}
+\newcommand{\limn}{\lim\limits_{n\to\infty}}
+\newcommand{\limx}{\lim\limits_{x\to+\infty}}
+\newcommand{\operp}{\stackrel{\perp}{\oplus}}
+\newcommand{\const}{{\rm const}}
+\newcommand{\codim}{{\rm codim}}
+\newcommand{\ann}{{\rm ann}}
+\newcommand{\tr}{{\rm tr}}
+\newcommand{\sym}{{\rm Sym}}
+\newcommand{\Sp}{{\rm Sp}}              %symplectic
+\newcommand{\id}{{\rm id}}
+\newcommand{\mor}{{\rm Mor}}
+\newcommand{\Hom}{{\rm Hom}}
+\newcommand{\Aut}{{\rm Aut}}
+\newcommand{\End}{{\rm End}}
+\newcommand{\re}{{\rm Re}}
+\newcommand{\diag}{{\rm diag}}
+\newcommand{\grad}{{\rm grad\,}}
+\newcommand{\dive}{{\rm div\,}}
+\newcommand{\rot}{{\rm rot\,}}
+\newcommand{\rad}{{\rm rad}}
+\newcommand{\ord}{{\rm ord}}
+\newcommand{\varn}{\varnothing}
+\newcommand{\vare}{\varepsilon}
+\newcommand{\vphi}{\varphi}
+\newcommand{\diam}{{\rm diam}}
+\newcommand{\vect}{{\rm Vect}}
+\newcommand{\isom}{\stackrel{\apr}{\longrightarrow}}
+\newcommand{\st}{{\rm\quad s.t.\quad}}
+\newcommand{\lapla}{\Delta}
+\newcommand{\divd}{\big|}
+\makeatletter
+\newcommand{\lambdabar}{{\mathchoice
+  {\smash@bar\textfont\displaystyle{0.25}{1.2}\lambda}
+  {\smash@bar\textfont\textstyle{0.25}{1.2}\lambda}
+  {\smash@bar\scriptfont\scriptstyle{0.25}{1.2}\lambda}
+  {\smash@bar\scriptscriptfont\scriptscriptstyle{0.25}{1.2}\lambda}}}
+\newcommand{\smash@bar}[4]{%
+  \smash{\rlap{\raisebox{-#3\fontdimen5#10}{$\m@th#2\mkern#4mu\mathchar'26$}}}}
+\makeatother
+
+
+\newcommand{\res}[2]{\left.#1\right|_{#2}}
+\newcommand{\rsb}[3]{\sigma(#1;#2,#3)}      %Riemann sum with arguments
+\newcommand{\derv}[2]{\frac{\ud#1}{\ud#2}}
+\newcommand{\parf}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\secpf}[3]{\frac{\partial^2 #1}{\partial #2\partial #3}}
+\newcommand{\comb}[2]{\binom{#1}{#2}}       %组合数
+\newcommand{\norm}[1]{\lVert #1\rVert}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\brk}[1]{\big(#1\big)}
+\newcommand{\Brk}[1]{\left(#1\right)}
+\newcommand{\bkt}[1]{\langle#1\rangle}
+\newcommand{\dbk}[1]{\langle\!\langle#1\rangle\!\rangle}
+\newcommand{\inprod}[1]{\langle#1\rangle}
+\newcommand{\itr}[1]{#1^\circ}           %内部,interior
+\newcommand{\cmp}[1]{#1^c}               %补集,complement
+\newcommand{\cnts}[3]{#1#3\cdots#3#2}
+\newcommand{\inds}[3]{#1_{1}#3\cdots#3#1_{#2}}
+\newcommand{\dindx}[4]{#1{#2}#4\cdots#4#1{#3}}
+\newcommand{\dinds}[4]{#1_{#2}#4\cdots#4#1_{#3}}
+\newcommand{\vct}[1]{\overrightarrow{#1}}
+\newcommand{\simlr}[2]{#2^{-1}#1#2}     %相似
+\newcommand{\congt}[2]{\ts{#2}#1#2}     %相合
+\newcommand{\ccong}[2]{\cts{#2}#1#2}    %共轭相合
+\newcommand{\rcong}[2]{\ts{#2}#1\orl{#2}}    %右共轭相合
+\newcommand{\ts}[1]{#1^{\rm T}}
+\newcommand{\cts}[1]{\orl{#1}^{\rm T}}   %共轭转置
+\newcommand{\wt}[1]{\widetilde{#1}}
+\newcommand{\bss}[2]{\inds{#1}{#2}{,}}
+\newcommand{\boun}[1]{\partial{#1}}
+\newcommand{\unitob}[1]{\mathop{\rightrightarrows}\limits_{#1}}
+\newcommand{\limb}[1]{\lim\limits_{#1}}
+\newcommand{\limp}[2]{\lim\limits_{#1\to#2}}
+
+\newcommand{\mth}[1]{\begin{displaymath}#1\end{displaymath}}
+\newcommand{\mtha}[1]{\begin{eqnarray*}#1\end{eqnarray*}}
+\newcommand{\arr}[1]{\begin{array}#1\end{array}}
+\newcommand{\prf}[1]{\begin{pf}#1\end{pf}}
+\newcommand{\sprf}[1]{\begin{pf}\cb{#1}\end{pf}}
+\newcommand{\df}[1]{\begin{dfn}#1\end{dfn}}
+\newcommand{\ntg}[1]{\begin{nt}\cg{#1}\end{nt}}
+\newcommand{\mat}[1]{\left(\arr{#1}\right)}
+\newcommand{\itm}[1]{\begin{itemize}#1\end{itemize}}
+\newcommand{\enu}[1]{\begin{enumerate}#1\end{enumerate}}
+\newcommand{\desc}[1]{\begin{description}#1\end{description}}
+\newcommand{\tmth}[1]{\begin{displaymath}\ttt{#1}\end{displaymath}}
+\newcommand{\thm}[1]{\begin{theom}#1\end{theom}}
+\newcommand{\cor}[1]{\begin{coro}#1\end{coro}}
+\newcommand{\eqn}[1]{\begin{equation}#1\end{equation}}
+\newcommand{\eqna}[1]{\begin{eqnarray}#1\end{eqnarray}}
+
+
+\newcommand{\clr}[1]{\textcolor{red}{#1}}   %红色
+\newcommand{\cb}[1]{\textcolor{blue}{#1}}   %蓝色
+\newcommand{\cg}[1]{\textcolor{magenta}{#1}}%紫色
+\newcommand{\hlg}[1]{\cg{\udl{#1}}}
+\newcommand{\hlb}[1]{\cb{\udl{#1}}}
+\newcommand{\hlr}[1]{\clr{\udl{#1}}}
+
+\newcommand{\nm}[1]{{\rm#1}}                %竖体
+\newcommand{\ttt}{\textrm}
+\newcommand{\ns}[1]{\mathbb{#1}}
+\newcommand{\mcl}[1]{\mathcal{#1}}
+\newcommand{\flr}[1]{\mathscr{#1}}
+\newcommand{\got}[1]{\mathfrak{#1}}
+\newcommand{\orl}[1]{\overline{#1}}
+\newcommand{\udl}[1]{\underline{#1}}
+
+\title{Examples and Problems in Analysis}
+\author{TRISCT}
+\date{}
+
+%%%%%%%%%%%%%PHYSICS CONSTANTS
+\newcommand{\cstk}{\frac{1}{4\pi\vare_0}}
+\newcommand{\cstm}{\frac{\mu_0}{4\pi}}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\begin{section}{Equalities}
+\begin{subsection}{Common Taylor Series}
+\enu{
+    \item $e^x=1+x+\frac{x^2}{2}+\cdots+\frac{x^n}{n!}+\cdots\quad(-\infty<x<+\infty)$
+    \item $\sin x=x-\frac{x^3}{3!}+\frac{x^5}{5!}+\cdots+(-1)^{n-1}\frac{x^{2n-1}}{(2n-1)!}+\cdots\quad(-\infty<x<+\infty)$
+    \item $\cos x=1-\frac{x^2}{2!}+\frac{x^4}{4!}+\cdots+(-1)^n\frac{x^{2n}}{(2n)!}+\cdots\quad(-\infty<x<+\infty)$
+    \item $(1+x)^\alpha=1+\alpha x+\frac{\alpha(\alpha-1)}{2!}x^2+\cdots+\frac{\alpha(\alpha-1)\cdots(\alpha-n+1)}{n!}x^n+\cdots\quad(-1<x<1)$
+    \item $\ln(1+x)=x-\frac{x^2}{2}+\frac{x^3}{3}+\cdots+(-1)^{n-1}\frac{x^n}{n}+\cdots\quad(-1<x\leqs x)$
+    \item $\arctan x=x-\frac{x^3}{3}+\frac{x^5}{5}+\cdots+(-1)^{n-1}\frac{x^{2n-1}}{2n-1}+\cdots(-1\leqs x\leqs1)$
+    \item $\arcsin x=x+\frac{x^3}{6}+\frac{3x^5}{40}+\cdots+\frac{(2n-1)!!x^{2n+1}}{(2n)!!(2n+1)}+\cdots(-1\leqs x\leqs1)$
+    \item $\frac{1}{1+x}=(1+x)^{-1}=1-x+x^2-\cdots+(-1)^nx^n+\cdots\quad(-1<x<1)$
+    \item $\frac{1}{(1+x)^2}=(1+x)^{-2}=1-2x+3x^2-\cdots+(-1)^n(n+1)x^n+\cdots\quad(-1<x<1)$
+    \item $\sqrt{1+x}=(1+x)^\frac{1}{2}=1+\frac{1}{2}x-\frac{1}{8}x^2+\cdots+(-1)^{n-1}\frac{(2n-3)!!}{(2n)!!}x^n+\cdots\quad(-1\leqs x\leqs1)$
+    \item $\frac{1}{\sqrt{1+x}}=(1+x)^{-\frac{1}{2}}=1-\frac{1}{2}x+\frac{3}{8}x^2-\cdots+(-1)^n\frac{(2n-1)!!}{(2n)!!}x^n+\cdots(-1<x\leqs1)$
+    }
+\end{subsection}
+\begin{subsection}{Common Infinite Products}
+\enu{
+    \item $\sin x=x\prdn\Brk{1-\frac{x^2}{n^2\pi^2}}\quad(-\infty<x<+\infty)$
+    \item $\cos x=\prdn\Brk{1-\frac{4x^2}{(2n-1)^2\pi^2}}\quad(-\infty<x<+\infty)$
+    \item $\frac{\sin x}{x}=\prdn\cos\frac{x}{2^n}\quad(x\neq0)$
+    \item $\prod\limits_{n=0}^\infty(1+x^{2^n})=\frac{1}{1-x}\quad(-1<x<1)$
+    }
+\end{subsection}
+\begin{subsection}{Telescoping (1): $\sum_{n=1}^N\cos nx$ and $\sum_{n=1}^N\sin nx$}
+    \mth{\sum_{n=1}^N\cos nx=\frac{\sin\Brk{N+\frac{1}{2}}x-\sin\frac{x}{2}}{2\sin\frac{x}{2}}\quad(x\neq 2k\pi)}
+    \mth{\sum_{n=1}^N\sin nx=\frac{\cos\Brk{N+\frac{1}{2}}x-\cos\frac{x}{2}}{-2\sin\frac{x}{2}}\quad(x\neq 2k\pi)}
+    \ntg{These are obtained from
+        \mtha{\sin\Brk{n+\frac{1}{2}}x-\sin\Brk{n-\frac{1}{2}}x&=&2\sin\frac{x}{2}\cos nx\\
+            \cos\Brk{n+\frac{1}{2}}x-\cos\Brk{n-\frac{1}{2}}x&=&-2\sin\frac{x}{2}\sin nx}
+    }
+\end{subsection}
+\begin{subsection}{Telescoping (2): $\prod_{n=1}^N\cos\frac{x}{2^n}$}
+\mth{\prod_{n=1}^N\cos\frac{x}{2^n}=\frac{1}{2^n}\cdot\frac{\sin x}{\sin\frac{x}{2^n}}\quad(x\neq0)}
+\mth{\prdn\cos\frac{x}{2^n}=\frac{\sin x}{x}\quad(x\neq0)}
+\end{subsection}
+\begin{subsection}{Telescoping (3): $\sum_{n=1}^N\frac{nx}{(1+x)(1+2x)\cdots(1+nx)}$}
+\mtha{&&\sum_{n=1}^N\frac{nx}{(1+x)(1+2x)\cdots(1+nx)}\\
+    &=&\sum_{n=1}^N\Brk{\frac{1}{(1+x)(1+2x)\cdots(1+(n-1)x)}-\frac{1}{(1+x)(1+2x)\cdots(1+nx)}}\\
+    &=&1-\frac{1}{(1+x)(1+2x)\cdots(1+Nx)}}
+\end{subsection}
+\begin{subsection}{Formula (1): $\sqrt{2+\sqrt{2+\cdots+\sqrt{2}}}=2\cos\frac{\pi}{2^{n+1}}$}
+Use \mth{\cos\frac{x}{2}=\sqrt{\frac{1}{2}+\frac{1}{2}\cos x}}
+\end{subsection}
+\begin{subsection}{Order Estimate (1): $\frac{p(p+1)\cdots(p+n-1)}{n!}$}
+    $p\neq0$ is not a negative integer, then
+    \mth{\frac{p(p+1)\cdots(p+n-1)}{n!}=O^*\Brk{\frac{1}{n^{1-p}}}\quad(n\to\infty)}
+\end{subsection}
+\begin{subsection}{Order Estimate (2): $\binom{m}{n}$}
+    The binomial coefficient $\binom{m}{n}\quad(m\notin\ns{N})$
+    \mth{\binom{m}{n}=\frac{m(m-1)\cdots(m-n+1)}{n!}=O^*\Brk{\frac{1}{n^{m+1}}}}
+\end{subsection}
+\begin{subsection}{Order Estimate (3): $\frac{(2n)!!}{(2n-1)!!}$ (Wallis' product)}
+    Wallis's product formula has the following forms
+    \mth{\frac{(2n)!!}{(2n-1)!!}\sim\sqrt{\pi n}\quad(n\to\infty)}
+    \mth{\prdn\Brk{\frac{2n}{2n-1}\cdot\frac{2n}{2n+1}}=\frac{\pi}{2}}
+    \mth{\limn\frac{1}{2n+1}\Brk{\frac{(2n)!!}{(2n-1)!!}}^2=\frac{\pi}{2}}
+\end{subsection}
+\begin{subsection}{Order Estimate (4): $n!$ (Stirling's formula)}
+    The factorial $n!$ grows at
+    \mth{n!\sim\sqrt{2\pi n}\Brk{\frac{n}{e}}^n\quad(n\to\infty)}
+\end{subsection}
+\begin{subsection}{Definite Integral (1): $\int_0^{\pi/2}\sin^n x\dx$}
+\mth{\int_0^\frac{\pi}{2}\sin^{2n+1}x\dx=\frac{(2n)!!}{(2n+1)!!}}
+\mth{\int_0^\frac{\pi}{2}\sin^{2n}x\dx=\frac{\pi}{2}\cdot\frac{(2n-1)!!}{(2n)!!}}
+\end{subsection}
+\begin{subsection}{Abel's transformation}
+    The sum $\sum\limits_{i=1}^m\alpha_i\beta_i$ can be written as
+    \mth{\sum\limits_{i=1}^m\alpha_i\beta_i=\alpha_mB_m-\sum_{i=1}^{m-1}(\alpha_{i+1}-\alpha_i)B_i}
+    where
+    \mth{B_i=\sum_{k=1}^i\beta_k}
+    If the original summation does not start with $i=1$, one can write
+    \mth{\sum_{i=n}^ma_ib_i=A_mb_m-A_{n-1}b_n+\sum_{i=n}^{m-1}A_i(b_i-b_{i+1})}
+\end{subsection}
+\end{section}
+
+\begin{section}{Inequalities}
+\begin{subsection}{Bernoulli's Inequality}
+\begin{description}
+\item[Bernoulli's Inequality]For $x>-1,\;n\in\NN^*$,
+    \mth{(1+x)^n\geqs1+nx}
+    and
+    \mth{(1+x)^n=1+nx\iff n=1\ttt{ or }x=0}
+\item[Extensions of Bernoulli's Inequality]
+    \mtha{x^\alpha-\alpha x+\alpha-1\leqs0&\ttt{when}&0<\alpha<1\\
+    x^\alpha-\alpha x+\alpha-1\geqs0&\ttt{when}&\alpha<0\ttt{ or }1<\alpha}
+\end{description}
+\end{subsection}
+\begin{subsection}{H\"older's Inequality}
+\begin{description}
+\item[H\"older's Inequality (for Sums)]Let $x_i,y_i\geqs0,\;i=1,\cdots,n,\;\frac{1}{p}+\frac{1}{q}=1$. Then
+    \mtha{\sum_{i=1}^nx_iy_i\leqs\Brk{\sum_{i=1}^nx_i^p}^{1/p}\Brk{\sum_{i=1}^ny_i^q}^{1/q}&,&p>1\\
+    \sum_{i=1}^nx_iy_i\geqs\Brk{\sum_{i=1}^nx_i^p}^{1/p}\Brk{\sum_{i=1}^ny_i^q}^{1/q}&,&p<1,\;p\neq0}
+\item[H\"older's Inequality (for Integrals)]Let $f,g\in\mcl{R}[a,b],\;\frac{1}{p}+\frac{1}{q}=1$. Then
+    \mtha{\abs{\int_a^b(f\cdot g)(x)\dx}\leqs\Brk{\int_a^b\abs{f}^p(x)\dx}^{1/p}\cdot\Brk{\int_a^b\abs{g}^q(x)\dx}^{1/q}&,&p>1}
+\end{description}
+\end{subsection}
+\begin{subsection}{Jensen's Inequality}
+\begin{description}
+\item[Jensen's Inequality]If $f:(a,b)\to\RR$ is a convex function, $\inds{x}{n}{,}\in(a,b)$, and $\inds{\alpha}{n}{,}$ are positive numbers such that $\inds{\alpha}{n}{+}=1$, then
+    \mth{f(\cnts{\alpha_1x_1}{\alpha_nx_n}{+})\leqs\cnts{\alpha_1f(x_1)}{\alpha_nf(x_n)}{+}}
+\item[Jensen's Inequality (for Integrals)]If $f$ is a continuous convex function on $\RR$ and $\vphi$ an arbitrary continuous function on $\RR$, then
+    \mth{f\Brk{\frac{1}{c}\int_0^c\vphi(t)\ud t}\leqs\frac{1}{c}\int_0^cf(\vphi(t))\ud t}
+\end{description}
+\end{subsection}
+\begin{subsection}{Minkowski's Inequality}
+\begin{description}
+\item[Minkowski's Inequality (for Sums)]Let $x_i,y_i\geqs0,\;i=1,\cdots,n$. Then
+    \mtha{\Brk{\sum_{i=1}^n(x_i+y_i)^p}^{1/p}\leqs\Brk{\sum_{i=1}^nx_i^p}^{1/p}+\Brk{\sum_{i=1}^ny_i^p}^{1/p}&,&p>1\\
+    \Brk{\sum_{i=1}^n(x_i+y_i)^p}^{1/p}\geqs\Brk{\sum_{i=1}^nx_i^p}^{1/p}+\Brk{\sum_{i=1}^ny_i^p}^{1/p}&,&p<1,\;p\neq0}
+\item[Minkowski's Inequality (for Integrals)]Let $f,g\in\mcl{R}[a,b]$. Then
+    \mtha{\Brk{\int_a^b\abs{f+g}^p(x)\dx}^{1/p}\leqs\Brk{\int_a^b\abs{f}^p(x)\dx}^{1/p}+\Brk{\int_a^b\abs{g}^p(x)\dx}^{1/p}&,&p\geqs1\\
+    \Brk{\int_a^b\abs{f+g}^p(x)\dx}^{1/p}\geqs\Brk{\int_a^b\abs{f}^p(x)\dx}^{1/p}+\Brk{\int_a^b\abs{g}^p(x)\dx}^{1/p}&,&0<p<1}
+\end{description}
+\end{subsection}
+\begin{subsection}{Young's Inequality}
+\begin{description}
+\item[Young's Inequality]If $a>0,\;b>0$, then
+    \mtha{a^{1/p}b^{1/q}\leqs\frac{1}{p}a+\frac{1}{q}b&,&p>1\\
+    a^{1/p}b^{1/q}\geqs\frac{1}{p}a+\frac{1}{q}b&,&p<1\ttt{ and }p\neq0}
+    and
+    \mth{a^{1/p}b^{1/q}=\frac{1}{p}a+\frac{1}{q}b\iff a=b}
+    Or it could be written as
+    \mth{xy\leqs\frac{1}{p}x^p+\frac{1}{q}y^q}
+    for $x,y\geqs0,\;p,q>0,\;\frac{1}{p}+\frac{1}{q}=1$
+\end{description}
+\end{subsection}
+\end{section}
+
+\begin{section}{Numerical Series}
+\begin{subsection}{Problems}
+\begin{subsubsection}{$\sum a_n$ and $\lim na_n$}
+\enu{
+    \item $\lim\limits_{n\to\infty}na_n=a\neq0\implies\sum\limits_{n=1}^\infty a_n$ diverges.
+    \item If $a_1\geqs a_2\geqs\cdots\geqs a_n\geqs\cdots\geqs0$ and $\sum\limits_{n=1}^\infty a_n$ converges, then $\limn na_n=0$.
+    \ntg{An analog in integral is
+        \mth{\int_a^{+\infty}f(x)\dx\ttt{ converges and }f(x)\ttt{ is monotonic}\implies f(x)=o\Brk{\frac{1}{x}}}}
+    \item $\limn na_n$ may not exists for a convergent $\sumn a_n$. For example,
+        \mth{a_n=\left\{\arr{{lll}\frac{1}{n}&,&n=m^2\\\frac{1}{n^2}&,&n\neq m^2}\right.}
+    \item $\limn na_n=0$ does not imply the convergence of $\sumn a_n$. For example,
+        \mth{a_n=\frac{1}{n\ln n}}
+    }
+\end{subsubsection}
+\begin{subsubsection}{$\sum a_n,\,\sum a_n^2$ and $\sum a_n^3$}
+\enu{
+    \item If $a_n\geqs0$ and $\sum\limits_{n=1}^\infty a_n$ converges, then $\sum\limits_{n=1}^\infty a_n^2$ converges too.
+        \ntg{The converse is untrue. An example is $a_n=\frac{1}{n}$.}
+    \item The convergence of $\sumn a_n$ does not imply that of $\sumn a_n^3$, for example,
+        \mth{a_n=\frac{1}{\sqrt[3]{n}}\cos\frac{2\pi}{3}n}
+    }
+\end{subsubsection}
+\begin{subsubsection}{$\sum a_n$ and $\sum(a_n+a_{n+1})$}
+    The convergence of $\sumn a_n$ implies that of $\sumn(a_n+a_{n+1})$. The converse is not true, for example
+    \mth{a_n=(-1)^n}
+    However, the converse is true if $a_n>0$.
+\end{subsubsection}
+\begin{subsubsection}{$\sum a_n,\,\{na_n\}$ and $\sum(a_n-a_{n+1})$}
+    If $\{na_n\},\,\sumn n(a_n-a_{n+1})$ converge, then $\sumn a_n$ converges.
+\end{subsubsection}
+\begin{subsubsection}{$\sum a_n$ and $\sum\sqrt{a_na_{n+1}}$}
+    If $a_n\geqs0$ and $\sumn a_n$ converges, then $\sumn\sqrt{a_na_{n+1}}$ converges too. The converse is not true, for example
+    \mth{a_n=\left\{\arr{{lll}\frac{1}{n}&,&n=2k\\\frac{1}{n^2}&,&n=2k-1}\right.}
+    But the converse is true if $\{a_n\}$ is monotonically decreasing.
+\end{subsubsection}
+\begin{subsubsection}{$\sum a_n$ and $\sum\frac{a_n^\alpha}{n^\beta}$}
+    \enu{
+        \item If $a_n>0$ and $\sumn a_n$ converges, and $\alpha,\,\beta>0$ are such that $\alpha+\beta>1$. Then the series
+            \mth{\sumn\frac{a_n^\alpha}{n^\beta}}
+            converges.
+            \sprf{H\"older's inequality.}
+        \item A special case is that
+            \mth{a_n>0,\,\sumn a_n<+\infty\implies\forall\delta>0,\,\sumn\sqrt{\frac{a_n}{n^{1+\delta}}}<+\infty}
+            \ntg{The proposition may not be true for $\delta$, for example,
+                \mtha{a_n&=&\frac{1}{n(\ln n)^{1+\vare}}\quad(0<\vare<1)\\\implies\sqrt{\frac{a_n}{n}}&=&\frac{1}{n(\ln n)^{\frac{1+\vare}{2}}}\quad(0<\vare<1)}}
+    }
+    \ntg{[E14.2-12]}
+\end{subsubsection}
+\begin{subsubsection}{$\sum a_n$ and $\sum\frac{a_n}{1+a_n},\,\sum\frac{a_n}{1+n^2a_n},\,\sum\frac{a_n}{1+a_n^2},\,\sum\frac{a_n}{1+na_n}$}
+Let $\sumn a_n$ be a divergent series with positive terms. Then
+    \enu{
+        \item The series
+            \mth{\sumn\frac{a_n}{1+a_n}}
+            diverges.
+            \sprf{Consider whether $\limsup\limits_{n\to\infty}a_n=0$. If so, then $a_n$ is bounded and we can change the denominator to compare with $\sumn a_n$; if not, then $\{a_n\}$ does not tend to $0$.}
+        \item The series
+            \mth{\sumn\frac{a_n}{1+n^2a_n}}
+            converges.
+            \sprf{Compare with $\sumn\frac{1}{n^2}$}
+        \item The series
+            \mth{\sumn\frac{a_n}{1+a_n^2}}
+            diverges when $\{a_n\}$ is bounded. When $a_n\to+\infty$, the series has the same convergence of $\sumn\frac{1}{a_n}$. Its behavior is uncertain in other situations.
+            \ntg{Unlike $\sum\frac{a_n}{1+a_n}$ where $\frac{a_n}{1+a_n}\to0\iff a_n\to0$, it may happen that $\frac{a_n}{1+a_n^2}\to0$ but $a_n\not\to0$.}
+        \item The series
+            \mth{\sumn\frac{a_n}{1+na_n}}
+            diverges when $\{na_n\}$ is bounded or tends to $+\infty$. Its behavior is uncertain in other situations.
+    }
+    \ntg{[E14.2-11], [P14.2-2]}
+\end{subsubsection}
+\begin{subsubsection}{$\sum a_n$ and $\sum \frac{a_n}{S_n^\alpha}$}
+    Let $a_n>0$ and $S_n=\sum\limits_{k=1}^na_k$.
+    \enu{
+        \item $\alpha>1\implies\sumn\frac{a_n}{S_n^\alpha}$ converges.
+        \item $\alpha\leqs1$ and $S_n\to+\infty\implies\sumn\frac{a_n}{S_n^\alpha}$ diverges.
+    }
+    \ntg{[P14.2-3]}
+\end{subsubsection}
+\begin{subsubsection}{$\sum a_n\cos nx$ and $\sum a_n\sin nx$}
+    \enu{
+        \item If $a_n\geqs0$ and tends to $0$ monotonically, then
+            \mth{\sumn a_n\cos nx\ttt{ converges where }x\neq2k\pi}
+            \mth{\sumn a_n\cos nx\ttt{ has the same convergence as }\sumn a_n\ttt{ when }x=2k\pi}
+        \item If $a_n\geqs0$, then
+            \mth{\sumn a_n\cos nx\ttt{ converges uniformly on }\RR\iff\sumn a_n\ttt{ converges}}
+        \item If $a_n\geqs0$ and tends to $0$ monotonically, then
+            \mth{\sumn a_n\sin nx\ttt{ converges on }\RR}
+        \item If $a_n\geqs0$ and decreases monotonically, then
+            \mth{\sumn a_n\sin nx\ttt{ converges uniformly on }\RR\iff\limn na_n=0}
+    }
+    \ntg{[E14.4-6], [E15.2-8], [P15.2-7]}
+\end{subsubsection}
+\begin{subsubsection}{$\sum a_n$ and $\sum\Brk{\frac{a_{n+1}}{a_n}-1}$}
+    If $a_n>0$ and is monotonically increasing, then
+    \mth{\sumn\Brk{\frac{a_{n+1}}{a_n}-1}\ttt{ converges}\iff\{a_n\}\ttt{ is bounded}}
+    \ntg{[P14.4-3]}
+\end{subsubsection}
+\begin{subsubsection}{$\sum a_n$ and $\lim\frac{a_1+2a_2+\cdots+na_n}{n}$}
+    If $\sumn a_n$ converges, then
+    \mth{\limn\frac{a_1+2a_2+\cdots+na_n}{n}=0}
+    \ntg{[E14.4-8]}
+\end{subsubsection}
+\begin{subsubsection}{$\sum a_nb_n$ and $\lim(\inds{a}{n}{+})b_n$}
+    If $\{b_n\}\,(b_n\geqs0)$ tends to $0$ monotonically and $\sumn a_nb_n$ converges, then
+    \mth{\limn(\inds{a}{n}{+})b_n=0}
+    \ntg{[P14.4-6]}
+\end{subsubsection}
+\begin{subsubsection}{$\sum a_n$ and $\lim\frac{a_1b_1+a_2b_2+\cdots+a_nb_n}{b_n}$}
+    If $\{b_n\}\,(b_n>0)$ and tends to $+\infty$ monotonically and $\sumn a_n$ converges, then
+    \mth{\limn\frac{a_1b_1+a_2b_2+\cdots+a_nb_n}{b_n}=0}
+    \ntg{[P14.4-7]}
+    \ntg{Go back two problems you will find a special case of this.}
+\end{subsubsection}
+\begin{subsubsection}{$\sum a_n$ and $\sum\frac{a_1+2a_2+\cdots+na_n}{n(n+1)}$}
+    If $\sumn a_n$ converges, then by setting
+    \mth{b_n=\frac{a_1+2a_2+\cdots+na_n}{n(n+1)}}
+    one can obtain a new series such that
+    \mth{\sumn b_n=\sumn a_n}
+    \ntg{[P14.4-8]}
+\end{subsubsection}
+\begin{subsubsection}{$\sum a_n$ and $\lim(a_1b_n+a_2b_{n-1}+a_nb_1)=0$}
+    If $\sumn a_n$ converges absolutely and $\limn b_n\to0$, then
+    \mth{\limn(a_1b_n+a_2b_{n-1}+a_nb_1)=0}
+    \ntg{[P14.5-4]}
+\end{subsubsection}
+\begin{subsubsection}{Other Problems From Chang \& Shi}
+\begin{description}
+\item[P14.1-4]If $a_n>0$ and $\{a_n-a_{n+1}\}$ is a strictly decreasing sequence, then
+    \mth{\sumn a_n<+\infty\implies\limn\Brk{\frac{1}{a_{n+1}}-\frac{1}{a_n}}=+\infty}
+\item[P14.1-5]There exists a constant $K$ such that
+    \mth{\sumn\frac{n}{a_1+a_2+\cdots+a_n}\leqs K\sumn\frac{1}{a_n}}
+    holds for all sequences $\{a_n\}$ with positive terms.
+\item[E14.2-4]The following series can be tested by comparison using the Cauchy-H\"older inequality.
+\item[E14.2-6]The series
+    \mth{\sum_{n=2}^\infty\frac{1}{\ln n!}}
+    diverges.
+    \sprf{Stirling's formula}
+\item[E14.2-6]The series
+    \mth{\sum_{n=3}^\infty\frac{1}{n\ln n\ln\ln n}}
+    diverges.
+    \sprf{Integral test. Notice that
+        \mth{\int\frac{1}{x\ln x\ln\ln x}\dx=\ln\ln\ln x+C}}
+\item[P14.2-1]The series
+    \mth{\sumn x^{1+\frac{1}{2}+\cdots+\frac{1}{n}}}
+    converges for $0<x<e^{-1}$ and diverges for $x\geqs e^{-1}$.
+\item[P14.4-1]Let $a_n>0$. If for $0<\alpha<1$,
+    \mth{\limn n^\alpha\Brk{\frac{a_n}{a_{n+1}}-1}=\lambda>0}
+    ($\lambda=+\infty$ included), then $\forall k\in\NN,\,\sumn n^ka_n$ converges.
+    \ntg{The testing condition resembles that of [E14.4-12], but I don't see much connection here.}
+\item[P14.6-1]The Cauchy product of
+    \mth{\sumn(-1)^{n-1}\frac{1}{n^\alpha},\quad\sumn(-1)^{n-1}\frac{1}{n^\beta}\quad(\alpha,\,\beta>0)}
+    converges for $\alpha+\beta>1$ and diverges for $\alpha+\beta\leqs1$.
+    \sprf{Use Pringsheim's theorem.}
+\end{description}
+\end{subsubsection}
+\end{subsection}
+\end{section}
+
+\begin{section}{Series of Functions}
+\begin{subsection}{Problems}
+\begin{subsubsection}{Uniform Convergence}
+\begin{description}
+\item[E15.2-4]Let $u_n(x)$ be monotonic functions on $[a,b]$. If $\sumn u_n(a),\,\sumn u_n(b)$ converge absolutely, then $\sumn u_n(x)$ converges absolutely and uniformly on $[a,b]$.
+\item[E15.2-7]Let $u_n(x)$ be continuous functions on $[a,b]$. If $\sumn u_n(x)$ converges at every point of $[a,b)$, but diverges at $b$, then the convergence of $\sumn u_n(x)$ on $[a,b)$ is not uniform.
+    \ntg{An example is $\sum\limits_{n=2}^\infty\frac{\cos nx}{n\ln n}$.}
+\item[E15.2-10]Let $[a,b]$ be a finite closed interval and $\{f_n\}$ a sequence of functions, then
+    \mth{\forall x\in[a,b],\,\exists\ttt{ open interval }I_x\owns x,\,\res{f_n}{I_x}\unito\res{f}{I_x}\implies f_n\unito f}
+\item[P15.2-2 (Uniform convergence of product)]Let $f_n\unito f,\,g_n\unito g$ on an interval $I$. If for each $n$, $f_n,\,g_n$ are bounded on $I$, then $f_ng_n\unito fg$.
+\ntg{In fact, even if they are not required to be uniformly bounded by hypothesis, it can be proved.}
+\ntg{A counterexample if they are not required to be bounded is \[f_n(x)=x(1+\frac{1}{n}),\quad g_n(x)=\left\{\arr{{lll}\frac{1}{n}&,&x=0,\,x\in\RR\bs\ns{Q}\\ q+\frac{1}{n}&,&x=\frac{p}{q}(q>0)}\right.\]}
+\item[P15.2-4 (Bounded derivative series)]Let $\sumn u_n(x)$ be converge on $[a,b]$. If there exists $M$, such that for all $x\in[a,b]$ and $n\in\NN$, $\abs{\sum\limits_{k=1}^nu_k'(x)}\leqs M$, then $\sumn u_n(x)$ converges uniformly on $[a,b]$.
+\item[E15.3-6 (Extension to limit point by uniform convergence)]Let $E\subset\RR$ be a set and $x_0$ a limit point of $E$ (it may assume the values $\pm\infty$). If $\sumn u_n(x)$ converges uniformly on $E$ and $\limb{\substack{x\to x_0\\x\in E}}u_n(x)=a_n$, then $\sumn a_n$ converges and $\limb{\substack{x\to x_0\\x\in E}}\sumn u_n(x)=\sumn a_n$
+\item[P15.3-2 (Application of \lbrack E15.3-6\rbrack)]Let the series $\sumn u_n(x)$ satisfy
+    \enu{
+        \item $\int_a^{+\infty}u_n(x)\dx$ converges for all $n\in\NN$.
+        \item $\sumn u_n(x)$ converges on $[a,b]$ for all $b>a$.
+        \item $\sumn\int_a^xu_n(t)\ud t$ converges uniformly on $[a,+\infty)$
+    }
+    then $\int_a^{+\infty}\sumn u_n(x)\dx$ and $\sumn\int_a^{+\infty}u_n(x)\dx$ both converges and are equal to each other
+    \[\int_a^{+\infty}\sumn u_n(x)\dx=\sumn\int_a^{+\infty}u_n(x)\dx\]
+\item[P15.3-3 (Application of \lbrack E15.3-6\rbrack)]Let the series $\sumn u_n(x)$ satisfy
+    \enu{
+        \item $\sumn u_n(x)$ converges to $f(x)$ on $(x_0-\delta,x_0+\delta)$.
+        \item $u_n(x)$ is differentiable at $x=x_0$ for all $n\in\NN$.
+        \item $\sumn\frac{u_n(x)-u_n(x_0)}{x-x_0}$ converges uniformly on $(x_0-\delta,x_0+\delta)\bs x_0$.
+    }
+    then $f$ is differentiable at $x_0$ and\[f'(x_0)=\sumn u_n'(x_0)\]
+\item[P15.3-1 (Bounded convergence and integrability)]Let $\sumn u_n(x)$ converge on $[a,b]$. If
+    \[\abs{S_n(x)}=\abs{\sum_{k=1}^n u_k(x)}\leqs M\quad(a\leqs x\leqs b,\,n\in\NN)\]
+    then $\sumn u_n(x)$ \emph{converges boundedly}. Let $\sumn u_n(x)$ converge boundedly on $[a,b]$, and converge uniformly on $[a,c-\delta]$ and $[c+\delta,b]$ for all $\delta>0$ and some fixed $c$, then $u_n(x)$ is integrable on $[a,b]\implies\sumn u_n(x)$ is integrable on $[a,b]$ and\[\int_a^b\sumn u_n(x)\dx=\sumn\int_a^bu_n(x)\dx\]
+\end{description}
+\end{subsubsection}
+\begin{subsubsection}{Convergence Radius}
+\begin{description}
+\item[E15.4-3 (Sum/product of coefficients)]Let $\sump a_nx^n$ and $\sump b_nx^n$ have convergence radii $R_1$ and $R_2$, then
+    \enu{
+        \item $\sump(a_n+b_n)x^n$ has convergence radius $R\geqs\min(R_1,R_2)$.
+        \item $\sump(a_nb_n)x^n$ has convergence radius $R\geqs R_1R_2$.
+        \item It may happen that the last two inequalities are strict.
+    }
+\item[E15.4-6]The convergence radius $R$ of $\sump a_nx^n$ satisfies
+    \[\liminf_{n\to\infty}\abs{\frac{a_n}{a_{n+1}}}=l\leqs R\leqs L=\limsup_{n\to\infty}\abs{\frac{a_n}{a_{n+1}}}\]
+\item[P15.4-5 (Limit to the edge)]Let $\sump a_nx^n$ have convergence radius $R$ and $a_n\geqs0$, then
+    \[\lim\limits_{x\to R^-}\sump a_nx^n=\sump a_nR^n\]
+\end{description}
+\end{subsubsection}
+\begin{subsubsection}{Other Problems from Chang \& Shi}
+\begin{description}
+\item[E15.2-3]$\sumn a_n$ converges $\implies\sumn a_ne^{-nx}$ converges uniformly on $[0,+\infty)$.
+\item[E15.2-10]$\alpha<1\iff f_n(x)=xn^{-x}(\ln n)^\alpha$ converges uniformly on $[0,+\infty)$.
+\item[E15.2-12]Let $f_1$ be Riemann integrable on $[a,b]$ and define\[f_{n+1}(x)=\int_a^xf_n(t)\ud t\], then $f_n\unito0$ on $[a,b]$.
+\ntg{Should I try successive approximation of Picard on this?}
+\item[E15.2-13]$\alpha>2\implies\sumn x^\alpha e^{-nx^2}$ converges uniformly on $[0,+\infty)$.
+\item[P15.2-1]$\sumn\frac{nx}{(1+x)(1+2x)\cdots(1+nx)}$ converges nonuniformly on $[0,\delta]$ and uniformly on $[\delta,+\infty)$ for all $\delta>0$.
+\item[P15.2-5]Let $f\in C^2$ in some neighborhood of $x=0$ and $f(0)=0,\,0<f'(0)<1$. Denote $\underbrace{f\comp f\comp\cdots\comp f}_n$ by $f_n$. The series $\sumn f_n(x)$ converges uniformly in a neighborhood of $0$.
+\item[P15.2-6]$\sumn\frac{x^n}{1+x+x^2+\cdots+x^{2n-1}}\cos nx$ converges uniformly on $[0,1]$
+\item[P15.3-4]Let $\{a_n\}$ be a sequence in $(0,1)$ and $a_i\neq a_j$ for all $i\neq j$, then \[f(x)=\sumn\frac{\abs{x-a_n}}{2^n}\] is continuous on $(0,1)$, and is nondifferentiable at each $x=a_n$ and differentiable everywhere else.
+\item[P15.3-5]Let $f(x)=\sump\frac{1}{x+2^n}\quad(0\leqs x<+\infty)$, then
+    \enu{
+        \item $f$ is continuous on $[0,+\infty)$.
+        \item $\limx f(x)=0$
+        \item For all $x\in(0,+\infty)$,\[0<f(x)-\frac{\ln(1+x)}{x\ln 2}<\frac{1}{1+x}\]
+    }
+\item[P15.3-6]\[\sump\frac{(n!)^22^{n+1}}{(2n+1)!}=\pi\]
+\item[P15.3-7]Define a function $\vphi$ as follows:
+    \mtha{\vphi(x)&=&x(1-x)\quad(0\leqs x\leqs1)\\
+            \vphi(-x)&=&-\vphi(x)\\
+            \vphi(x+2)&=&\vphi(x)}
+    then \[f(x)=\sump\frac{\vphi(n!x)}{(n!)^2}\]
+    assumes rational values at rational points and irrational values at irrational points.
+
+\end{description}
+\end{subsubsection}
+\end{subsection}
+\end{section}
+\end{document}

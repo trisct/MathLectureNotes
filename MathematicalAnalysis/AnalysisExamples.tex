@@ -1,0 +1,257 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{geometry,xcolor,layout,amssymb,amsthm,amsmath,mathrsfs,graphicx,centernot,textcomp,galois,extarrows}
+\usepackage[all]{xy}
+
+\newtheorem{prop}{Prop}[section]
+\newtheorem{theom}{Theorem}[section]
+\newtheorem{eg}{Example}[section]
+\newtheorem{nt}{Note}[section]
+\newtheorem{coro}{Corollary}[section]
+
+\theoremstyle{definition}
+\newtheorem{pf}{Proof}[section]
+\newtheorem{dfn}{Def}[section]
+
+\newcommand{\bs}{\backslash}
+\newcommand{\udots}{\mathinner{\mskip 1mu\raise 1pt\vbox{\kern 7pt\hbox{.}}
+\mskip 2mu\raise 4pt\hbox{.}\mskip 2mu\raise 7pt\hbox{.}\mskip 1mu}}
+\newcommand{\geqs}{\geqslant}
+\newcommand{\leqs}{\leqslant}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\rsa}{\sigma(f;\pi,\xi)}
+\newcommand{\wlg}{{\rm w.l.o.g.}}
+\newcommand{\spn}{{\rm span}}
+\newcommand{\rank}{{\rm rank}}
+\newcommand{\nul}{{\rm null}}
+\newcommand{\img}{{\rm im}}
+\newcommand{\ud}{{\rm d}}
+\newcommand{\dx}{\ud x}
+\newcommand{\dy}{\ud y}
+\newcommand{\dz}{\ud z}
+\newcommand{\x}{\times}                     %乘号
+\newcommand{\ox}{\otimes}
+\newcommand{\op}{\oplus}
+\newcommand{\unito}{\rightrightarrows}
+\newcommand{\lbint}{\int\!\!\!\int}      %二重积分号
+\newcommand{\bint}{\int\!\!\!\!\int}      %二重积分号
+\newcommand{\tint}{\int\!\!\!\!\int\!\!\!\!\int}      %三重积分号
+\newcommand{\apr}{\approx}
+\newcommand{\prdn}{\prod\limits_{n=1}^\infty}
+\newcommand{\sumn}{\sum\limits_{n=1}^\infty}
+\newcommand{\sump}{\sum\limits_{n=0}^\infty}
+\newcommand{\limn}{\lim\limits_{n\to\infty}}
+\newcommand{\limx}{\lim\limits_{x\to+\infty}}
+\newcommand{\operp}{\stackrel{\perp}{\oplus}}
+\newcommand{\const}{{\rm const}}
+\newcommand{\codim}{{\rm codim}}
+\newcommand{\ann}{{\rm ann}}
+\newcommand{\tr}{{\rm tr}}
+\newcommand{\sym}{{\rm Sym}}
+\newcommand{\Sp}{{\rm Sp}}              %symplectic
+\newcommand{\id}{{\rm id}}
+\newcommand{\mor}{{\rm Mor}}
+\newcommand{\Hom}{{\rm Hom}}
+\newcommand{\Aut}{{\rm Aut}}
+\newcommand{\End}{{\rm End}}
+\newcommand{\re}{{\rm Re}}
+\newcommand{\diag}{{\rm diag}}
+\newcommand{\grad}{{\rm grad\,}}
+\newcommand{\dive}{{\rm div\,}}
+\newcommand{\rot}{{\rm rot\,}}
+\newcommand{\rad}{{\rm rad}}
+\newcommand{\ord}{{\rm ord}}
+\newcommand{\varn}{\varnothing}
+\newcommand{\vare}{\varepsilon}
+\newcommand{\vphi}{\varphi}
+\newcommand{\diam}{{\rm diam}}
+\newcommand{\vect}{{\rm Vect}}
+\newcommand{\isom}{\stackrel{\apr}{\longrightarrow}}
+\newcommand{\st}{{\rm\quad s.t.\quad}}
+\newcommand{\lapla}{\Delta}
+\newcommand{\divd}{\big|}
+\makeatletter
+\newcommand{\lambdabar}{{\mathchoice
+  {\smash@bar\textfont\displaystyle{0.25}{1.2}\lambda}
+  {\smash@bar\textfont\textstyle{0.25}{1.2}\lambda}
+  {\smash@bar\scriptfont\scriptstyle{0.25}{1.2}\lambda}
+  {\smash@bar\scriptscriptfont\scriptscriptstyle{0.25}{1.2}\lambda}}}
+\newcommand{\smash@bar}[4]{%
+  \smash{\rlap{\raisebox{-#3\fontdimen5#10}{$\m@th#2\mkern#4mu\mathchar'26$}}}}
+\makeatother
+
+
+\newcommand{\rsb}[3]{\sigma(#1;#2,#3)}      %Riemann sum with arguments
+\newcommand{\derv}[2]{\frac{\ud#1}{\ud#2}}
+\newcommand{\parf}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\secpf}[3]{\frac{\partial^2 #1}{\partial #2\partial #3}}
+\newcommand{\comb}[2]{\binom{#1}{#2}}       %组合数
+\newcommand{\norm}[1]{\lVert #1\rVert}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\brk}[1]{\big(#1\big)}
+\newcommand{\Brk}[1]{\left(#1\right)}
+\newcommand{\bkt}[1]{\langle#1\rangle}
+\newcommand{\dbk}[1]{\langle\!\langle#1\rangle\!\rangle}
+\newcommand{\inprod}[1]{\langle#1\rangle}
+\newcommand{\itr}[1]{#1^\circ}           %内部,interior
+\newcommand{\cmp}[1]{#1^c}               %补集,complement
+\newcommand{\cnts}[3]{#1#3\cdots#3#2}
+\newcommand{\inds}[3]{#1_{1}#3\cdots#3#1_{#2}}
+\newcommand{\dindx}[4]{#1{#2}#4\cdots#4#1{#3}}
+\newcommand{\dinds}[4]{#1_{#2}#4\cdots#4#1_{#3}}
+\newcommand{\vct}[1]{\overrightarrow{#1}}
+\newcommand{\simlr}[2]{#2^{-1}#1#2}     %相似
+\newcommand{\congt}[2]{\ts{#2}#1#2}     %相合
+\newcommand{\ccong}[2]{\cts{#2}#1#2}    %共轭相合
+\newcommand{\rcong}[2]{\ts{#2}#1\orl{#2}}    %右共轭相合
+\newcommand{\ts}[1]{#1^{\rm T}}
+\newcommand{\cts}[1]{\orl{#1}^{\rm T}}   %共轭转置
+\newcommand{\wt}[1]{\widetilde{#1}}
+\newcommand{\bss}[2]{\inds{#1}{#2}{,}}
+\newcommand{\boun}[1]{\partial{#1}}
+\newcommand{\unitob}[1]{\mathop{\rightrightarrows}\limits_{#1}}
+\newcommand{\limb}[1]{\lim\limits_{#1}}
+\newcommand{\limp}[2]{\lim\limits_{#1\to#2}}
+
+\newcommand{\mth}[1]{\begin{displaymath}#1\end{displaymath}}
+\newcommand{\mtha}[1]{\begin{eqnarray*}#1\end{eqnarray*}}
+\newcommand{\arr}[1]{\begin{array}#1\end{array}}
+\newcommand{\prf}[1]{\begin{pf}#1\end{pf}}
+\newcommand{\sprf}[1]{\begin{pf}\cb{#1}\end{pf}}
+\newcommand{\df}[1]{\begin{dfn}#1\end{dfn}}
+\newcommand{\ntg}[1]{\begin{nt}\cg{#1}\end{nt}}
+\newcommand{\mat}[1]{\left(\arr{#1}\right)}
+\newcommand{\itm}[1]{\begin{itemize}#1\end{itemize}}
+\newcommand{\enu}[1]{\begin{enumerate}#1\end{enumerate}}
+\newcommand{\desc}[1]{\begin{description}#1\end{description}}
+\newcommand{\tmth}[1]{\begin{displaymath}\ttt{#1}\end{displaymath}}
+\newcommand{\thm}[1]{\begin{theom}#1\end{theom}}
+\newcommand{\cor}[1]{\begin{coro}#1\end{coro}}
+\newcommand{\eqn}[1]{\begin{equation}#1\end{equation}}
+\newcommand{\eqna}[1]{\begin{eqnarray}#1\end{eqnarray}}
+
+
+\newcommand{\clr}[1]{\textcolor{red}{#1}}   %红色
+\newcommand{\cb}[1]{\textcolor{blue}{#1}}   %蓝色
+\newcommand{\cg}[1]{\textcolor{magenta}{#1}}%紫色
+\newcommand{\hlg}[1]{\cg{\udl{#1}}}
+\newcommand{\hlb}[1]{\cb{\udl{#1}}}
+\newcommand{\hlr}[1]{\clr{\udl{#1}}}
+
+\newcommand{\nm}[1]{{\rm#1}}                %竖体
+\newcommand{\ttt}{\textrm}
+\newcommand{\ns}[1]{\mathbb{#1}}
+\newcommand{\mcl}[1]{\mathcal{#1}}
+\newcommand{\flr}[1]{\mathscr{#1}}
+\newcommand{\got}[1]{\mathfrak{#1}}
+\newcommand{\orl}[1]{\overline{#1}}
+\newcommand{\udl}[1]{\underline{#1}}
+
+%%%%%%%%%%%%%PHYSICS CONSTANTS
+\newcommand{\cstk}{\frac{1}{4\pi\vare_0}}
+\newcommand{\cstm}{\frac{\mu_0}{4\pi}}
+
+\title{Examples in Analysis}
+\author{TRISCT}
+\date{}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\begin{section}{Examples in Analysis}
+\begin{subsection}{Common Sense---I Guess}
+\begin{enumerate}
+\item $x\neq k\pi,\,k\in\ns{Z}\implies\lim\limits_{n\to\infty}\sin nx\neq0$.
+\end{enumerate}
+\end{subsection}
+
+\begin{subsection}{Common Series Used to Compare With}
+\begin{enumerate}
+\item $\sumn\frac{1}{n^\alpha}$ converges for $\alpha>1$ and diverges for $\alpha\leqs1$.
+    \sprf{Integral test.}
+\item $\sum\limits_{n=2}^\infty\frac{1}{n(\ln n)^\alpha}$ converges for $\alpha>1$ and diverges for $\alpha\leqs1$.
+    \sprf{Integral test. Notice that
+        \mth{\int\frac{1}{x(\ln x)^\alpha}\dx=\int\frac{\ud(\ln x)}{(\ln x)^\alpha}=
+            \left\{\arr{{lll}\frac{(\ln x)^{1-\alpha}}{1-\alpha}+C&,&\alpha\neq1\\\ln\ln x+C&,&\alpha=1}\right.}}
+    \ntg{Ermakov's test is an easier way to avoid the integral.}
+\item The convergence of $\sum\limits_{n=3}^\infty\frac{1}{n(\ln n)^p(\ln\ln n)^q}$ is as follows
+    \itm{
+        \item $p>1\implies$ it converges for all $q$.
+        \item $p=1\implies$ it converges for $q>1$.
+    }
+\end{enumerate}
+\end{subsection}
+\begin{subsection}{So Classic That They Have Names}
+\begin{description}
+\item[Hypergeometric series]The \udl{hypergeometric series} is defined as
+    \mth{F(\alpha,\beta,\gamma,x)=1+\sum\limits_{n=1}^\infty\frac{\alpha(\alpha+1)\cdots(\alpha+n-1)\beta(\beta+1)\cdots(\beta+n-1)}{\gamma(\gamma+1)\cdots(\gamma+n-1)}\frac{x^n}{n!}}
+    It is well-defined for $\abs{x}<1$ and satisfies the \udl{hypergeometric equation}
+    \mth{x(x-1)y''-[\gamma-(\alpha+\beta-1)x]y'+\alpha\beta y=0}
+\end{description}
+\end{subsection}
+\begin{subsection}{What Convergence Test Should I Apply}
+\begin{description}
+\item[Cauchy's test]\quad
+\enu{
+    \item $\sum\limits_{n=2}^\infty\frac{1}{(\ln n)^n}$
+    \item $\sum\limits_{n=1}^\infty\Brk{\frac{x}{n}}^n\quad(x>0)$
+    \item $\sum\limits_{n=1}^\infty\Brk{\frac{x}{a_n}}^n\quad(x>0,\,a_n>0,\,\lim\limits_{n\to\infty}a_n=a)$
+    \item $\sum\limits_{n=1}^\infty\tau(n)x^n\quad(\tau(n)\ttt{ is the number of factors of }n)$
+    \item $1+a+ab+a^2b+a^2b^2+\cdots+a^nb^{n-1}+a^nb^n+\cdots\quad(a,b>0,\,a\neq b)$
+    }
+\item[d'Alembert's test]\quad
+\enu{
+    \item $1+\sum\limits_{n=1}^\infty\frac{x^n}{n!}\quad(x>0)$
+    \item $\sum\limits_{n=1}^\infty nx^{n-1}\quad(x>0)$
+    \item $\sum\limits_{n=1}^\infty\frac{x^n}{n^s}\quad(x>0,s>0)$
+    \item $\sum\limits_{n=1}^\infty n!\Brk{\frac{x}{n}}^n\quad(x>0)$
+    \ntg{You have to use the nonlimit form of d'Alembert's test on this one}
+    \item $1+a+ab+a^2b+a^2b^2+\cdots+a^nb^{n-1}+a^nb^n+\cdots\quad(a,b>0,\,a\neq b)$
+    \ntg{Not a good choice}
+    }
+\item[Raabe's test]\quad
+\enu{
+    \item $1+\sum\limits_{n=1}^\infty\frac{(2n-1)!!}{(2n)!!}\frac{1}{2n+1}$
+    \item $\sum\limits_{n=1}^\infty\frac{n!}{(x+1)\cdots(x+n)}\quad(x>0)$
+    \item $\sum\limits_{n=1}^\infty\frac{n!x^n}{(x+a_1)(2x+a_2)\cdots(nx+a_n)}\quad(x>0,\,a_n>0,\,\lim\limits_{n\to\infty}a_n=a)$
+    \item $\sum\limits_{n=1}^\infty\frac{1}{n!}\Brk{\frac{n}{e}}^n$
+    \ntg{The limit of Raabe sequence of this series should be obtained by applying L'Hospital's rule to a corresponding function}
+    }
+\item[Gauss's test]\quad
+\enu{
+    \item The hypergeometric series.
+    \item $1+\Brk{\frac{1}{2}}^p+\Brk{\frac{1\cdot3}{2\cdot4}}^p+\cdots+\Brk{\frac{(2n-1)!!}{(2n)!!}}^p+\cdots\quad(p>0)$
+    }
+\item[Cauchy's integral test]\quad
+\enu{
+    \item $\sum\limits_{n=2}^\infty\frac{1}{n\cdot\ln^{1+\sigma}n}\quad(\sigma>0)$
+    \item $\sum\limits_{n=3}^\infty\frac{1}{n\cdot\ln n\cdot\ln\ln n}$
+    \item $\sum\limits_{n=3}^\infty\frac{1}{n\cdot\ln n\cdot(\ln\ln n)^{1+\sigma}}\quad(\sigma>0)$
+    }
+\end{description}
+\end{subsection}
+\end{section}
+
+\begin{section}{Counterexamples in Analysis}
+\begin{subsection}{Nondecreasing alternating series that do not converge}
+The following alternating series do not converge
+\enu{
+    \item $\frac{1}{\sqrt{2}-1}-\frac{1}{\sqrt{2}+1}+\frac{1}{\sqrt{3}-1}-\frac{1}{\sqrt{3}+1}+\cdots+\frac{1}{\sqrt{n}-1}-\frac{1}{\sqrt{n}+1}+\cdots$
+    \item $\sum\limits_{n=1}^\infty\left[\frac{(-1)^{n-1}}{\sqrt{n}}+\frac{1}{n}\right]$
+    \item $\sumn(-1)^n\cdot\frac{2+(-1)^n}{n}$
+    }
+\end{subsection}
+\begin{subsection}{$\sum a_n^2$ converges but $\sum a_n$ does not}
+    $\sum\limits_{n=1}^\infty\frac{1}{n^2}$ converges but $\sum\limits_{n=1}^\infty\frac{1}{n}$ does not.
+\end{subsection}
+\begin{subsection}{Case where comparison in the limit form fails}
+    The series
+    \mth{\sumn a_n=\sumn\frac{(-1)^{n-1}}{\sqrt{n}}}
+    \mth{\sumn b_n=\sumn\Brk{\frac{(-1)^{n-1}}{\sqrt{n}}+\frac{1}{n}}}
+    are such that
+    \mth{\limn\frac{b_n}{a_n}=1}
+    but the latter does not converge.
+\end{subsection}
+\end{section}
+\end{document}

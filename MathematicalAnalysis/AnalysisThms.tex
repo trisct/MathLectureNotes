@@ -1,0 +1,1088 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{xcolor,geometry,layout,amssymb,amsthm,amsmath,mathrsfs,graphicx,centernot,textcomp,galois,extarrows}
+\usepackage[normalem]{ulem}
+\usepackage[all]{xy}
+
+\newtheorem{prp}{Proposition}[section]
+\newtheorem{theom}{Theorem}[section]
+\newtheorem{eg}{Example}[section]
+\newtheorem{nt}{Note}[section]
+\newtheorem{coro}{Corollary}[section]
+
+\theoremstyle{definition}
+\newtheorem{pf}{Proof}[section]
+\newtheorem{dfn}{Definition}[section]
+\newtheorem{probl}{Problem}[section]
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}[section]
+
+\newcommand{\tick}{\textcolor{red}{\checkmark}}
+\newcommand{\bs}{\backslash}
+\newcommand{\udots}{\mathinner{\mskip 1mu\raise 1pt\vbox{\kern 7pt\hbox{.}}
+\mskip 2mu\raise 4pt\hbox{.}\mskip 2mu\raise 7pt\hbox{.}\mskip 1mu}}
+\newcommand{\geqs}{\geqslant}
+\newcommand{\leqs}{\leqslant}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\rsa}{\sigma(f;\pi,\xi)}
+\newcommand{\wlg}{{\rm w.l.o.g.}}
+\newcommand{\spn}{{\rm span}}
+\newcommand{\rank}{{\rm rank}}
+\newcommand{\nul}{{\rm null}}
+\newcommand{\img}{{\rm im}}
+\newcommand{\ud}{{\rm d}}
+\newcommand{\dx}{\ud x}
+\newcommand{\dy}{\ud y}
+\newcommand{\dz}{\ud z}
+\newcommand{\x}{\times}                     %乘号
+\newcommand{\ox}{\otimes}
+\newcommand{\op}{\oplus}
+\newcommand{\p}{\prime}
+\newcommand{\unito}{\rightrightarrows}
+\newcommand{\lbint}{\int\!\!\!\int}      %二重积分号
+\newcommand{\bint}{\int\!\!\!\!\int}      %二重积分号
+\newcommand{\tint}{\int\!\!\!\!\int\!\!\!\!\int}      %三重积分号
+\newcommand{\apr}{\approx}
+\newcommand{\prdn}{\prod\limits_{n=1}^\infty}
+\newcommand{\sumn}{\sum\limits_{n=1}^\infty}
+\newcommand{\sump}{\sum\limits_{n=0}^\infty}
+\newcommand{\limn}{\lim\limits_{n\to\infty}}
+\newcommand{\limx}{\lim\limits_{x\to+\infty}}
+\newcommand{\operp}{\stackrel{\perp}{\oplus}}
+\newcommand{\const}{{\rm const}}
+\newcommand{\codim}{{\rm codim}}
+\newcommand{\sgn}{{\rm sgn}}
+\newcommand{\ann}{{\rm ann}}
+\newcommand{\chr}{{\rm \,char\,}}
+\newcommand{\tr}{{\rm tr}}
+\newcommand{\sym}{{\rm Sym}}
+\newcommand{\centr}{{\rm Centr}}
+\newcommand{\Sp}{{\rm Sp}}              %symplectic
+\newcommand{\id}{{\rm id}}
+\newcommand{\mor}{{\rm Mor}}
+\newcommand{\Perm}{{\rm Perm}}
+\newcommand{\Hom}{{\rm Hom}}
+\newcommand{\Aut}{{\rm Aut}}
+\newcommand{\Inn}{{\rm Inn}}
+\newcommand{\End}{{\rm End}}
+\newcommand{\re}{{\rm Re}}
+\newcommand{\diag}{{\rm diag}}
+\newcommand{\grad}{{\rm grad\,}}
+\newcommand{\dive}{{\rm div\,}}
+\newcommand{\rot}{{\rm rot\,}}
+\newcommand{\curl}{{\rm curl\,}}
+\newcommand{\rad}{{\rm rad}}
+\newcommand{\ord}{{\rm ord}}
+\newcommand{\irr}{{\rm Irr}}
+\newcommand{\cl}{{\rm cl}}
+\newcommand{\Cl}{{\rm Cl}}
+\newcommand{\fix}{{\rm fix}}
+\newcommand{\into}{\hookrightarrow}
+\newcommand{\varn}{\varnothing}
+\newcommand{\vare}{\varepsilon}
+\newcommand{\vphi}{\varphi}
+\newcommand{\diam}{{\rm diam}}
+\newcommand{\vect}{{\rm Vect}}
+\newcommand{\isom}{\stackrel{\cong}{\longrightarrow}}
+\newcommand{\dfas}{\triangleq}
+\newcommand{\st}{{\rm\quad s.t.\quad}}
+\newcommand{\lapla}{\Delta}
+\newcommand{\divd}{\big|}
+\makeatletter
+\newcommand{\lambdabar}{{\mathchoice
+  {\smash@bar\textfont\displaystyle{0.25}{1.2}\lambda}
+  {\smash@bar\textfont\textstyle{0.25}{1.2}\lambda}
+  {\smash@bar\scriptfont\scriptstyle{0.25}{1.2}\lambda}
+  {\smash@bar\scriptscriptfont\scriptscriptstyle{0.25}{1.2}\lambda}}}
+\newcommand{\smash@bar}[4]{%
+  \smash{\rlap{\raisebox{-#3\fontdimen5#10}{$\m@th#2\mkern#4mu\mathchar'26$}}}}
+\makeatother
+
+
+\newcommand{\res}[2]{\left.#1\right|_{#2}}
+\newcommand{\rsb}[3]{\sigma(#1;#2,#3)}      %Riemann sum with arguments
+\newcommand{\derv}[2]{\frac{\ud#1}{\ud#2}}
+\newcommand{\parf}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\secpf}[3]{\frac{\partial^2 #1}{\partial #2\partial #3}}
+\newcommand{\comb}[2]{\binom{#1}{#2}}       %组合数
+\newcommand{\norm}[1]{\left\lVert #1\right\rVert}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\brk}[1]{\big(#1\big)}
+\newcommand{\Brk}[1]{\left(#1\right)}
+\newcommand{\bkt}[1]{\langle#1\rangle}
+\newcommand{\dbk}[1]{\langle\!\langle#1\rangle\!\rangle}
+\newcommand{\inprod}[1]{\langle#1\rangle}
+\newcommand{\itr}[1]{#1^\circ}           %内部,interior
+\newcommand{\cmp}[1]{#1^c}               %补集,complement
+\newcommand{\cnts}[3]{#1#3\cdots#3#2}
+\newcommand{\inds}[3]{#1_{1}#3\cdots#3#1_{#2}}
+\newcommand{\dindx}[4]{#1{#2}#4\cdots#4#1{#3}}
+\newcommand{\dinds}[4]{#1_{#2}#4\cdots#4#1_{#3}}
+\newcommand{\vct}[1]{\overrightarrow{#1}}
+\newcommand{\simlr}[2]{#2^{-1}#1#2}     %相似
+\newcommand{\congt}[2]{\ts{#2}#1#2}     %相合
+\newcommand{\ccong}[2]{\cts{#2}#1#2}    %共轭相合
+\newcommand{\rcong}[2]{\ts{#2}#1\orl{#2}}    %右共轭相合
+\newcommand{\ts}[1]{#1^{\rm T}}
+\newcommand{\cts}[1]{\orl{#1}^{\rm T}}   %共轭转置
+\newcommand{\wt}[1]{\widetilde{#1}}
+\newcommand{\bss}[2]{\inds{#1}{#2}{,}}
+\newcommand{\boun}[1]{\partial{#1}}
+\newcommand{\unitob}[1]{\mathop{\rightrightarrows}\limits_{#1}}
+\newcommand{\limb}[1]{\lim\limits_{#1}}
+\newcommand{\limp}[2]{\lim\limits_{#1\to#2}}
+
+\newcommand{\mth}[1]{\begin{displaymath}#1\end{displaymath}}
+\newcommand{\mtha}[1]{\begin{eqnarray*}#1\end{eqnarray*}}
+\newcommand{\arr}[1]{\begin{array}#1\end{array}}
+\newcommand{\prf}[1]{\begin{pf}#1\end{pf}}
+\newcommand{\sprf}[1]{\begin{pf}\cb{#1}\end{pf}}
+\newcommand{\df}[1]{\begin{dfn}#1\end{dfn}}
+\newcommand{\ntg}[1]{\begin{nt}\cg{#1}\end{nt}}
+\newcommand{\mat}[1]{\left(\arr{#1}\right)}
+\newcommand{\itm}[1]{\begin{itemize}#1\end{itemize}}
+\newcommand{\enu}[1]{\begin{enumerate}#1\end{enumerate}}
+\newcommand{\desc}[1]{\begin{description}#1\end{description}}
+\newcommand{\tmth}[1]{\begin{displaymath}\ttt{#1}\end{displaymath}}
+\newcommand{\thm}[1]{\begin{theom}#1\end{theom}}
+\newcommand{\rmk}[1]{\begin{remark}#1\end{remark}}
+\newcommand{\pbl}[1]{\begin{probl}#1\end{probl}}
+\newcommand{\prop}[1]{\begin{prp}#1\end{prp}}
+\newcommand{\cor}[1]{\begin{coro}#1\end{coro}}
+\newcommand{\eqn}[1]{\begin{equation}#1\end{equation}}
+\newcommand{\eqna}[1]{\begin{eqnarray}#1\end{eqnarray}}
+
+
+\newcommand{\clr}[1]{\textcolor{red}{#1}}   %红色
+\newcommand{\cb}[1]{\textcolor{blue}{#1}}   %蓝色
+\newcommand{\cg}[1]{\textcolor{magenta}{#1}}%紫色
+\newcommand{\hlg}[1]{\cg{\udl{#1}}}
+\newcommand{\hlb}[1]{\cb{\udl{#1}}}
+\newcommand{\hlr}[1]{\clr{\udl{#1}}}
+
+\newcommand{\tf}{\textbf}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+
+\newcommand{\nm}[1]{{\rm#1}}                %竖体
+\newcommand{\ttt}{\textrm}
+\newcommand{\ns}[1]{\mathbb{#1}}
+\newcommand{\mcl}[1]{\mathcal{#1}}
+\newcommand{\flr}[1]{\mathscr{#1}}
+\newcommand{\got}[1]{\mathfrak{#1}}
+\newcommand{\orl}[1]{\overline{#1}}
+\newcommand{\udl}[1]{\underline{#1}}
+\newcommand{\uudl}[1]{\uuline{#1}}
+\newcommand{\wudl}[1]{\uwave{#1}}
+
+%%%%%%%%%%%%%PHYSICS CONSTANTS
+\newcommand{\cstk}{\frac{1}{4\pi\vare_0}}
+\newcommand{\cstm}{\frac{\mu_0}{4\pi}}
+
+\title{Theorems in Mathematical Analysis}
+\author{TRISCT}
+\date{}
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+\begin{part}{Preliminaries}
+\begin{section}{Lemmas}
+\begin{subsection}{Techniques}
+\begin{description}
+\item[Abel's transformation]The sum $\sum\limits_{i=1}^m\alpha_i\beta_i$ can be written as
+    \mth{\sum\limits_{i=1}^m\alpha_i\beta_i=\alpha_mB_m-\sum_{i=1}^{m-1}(\alpha_{i+1}-\alpha_i)B_i}
+    where
+    \mth{B_i=\sum_{k=1}^i\beta_k}
+    If the original summation does not start with $i=1$, one can write
+    \mth{\sum_{i=n}^ma_ib_i=A_mb_m-A_{n-1}b_n+\sum_{i=n}^{m-1}A_i(b_i-b_{i+1})}
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Order Estimate}
+\enu{
+    \item If $p\neq0$ is not a negative integer, then
+        \mth{\frac{p(p+1)\cdots(p+n-1)}{n!}=O^*\Brk{\frac{1}{n^{1-p}}}\quad(n\to\infty)}
+    \item The binomial coefficient
+        \mth{\binom{m}{n}=O^*\Brk{\frac{1}{n^{m+1}}}}
+}
+\end{subsection}
+
+\begin{subsection}{Lemmas With Names}
+\begin{description}
+\item[Abel's Lemma]If the finite sequence $\{\alpha_i\}_{i=1}^m$ is nonincreasing or nondecreasing and $B_i=\sum\limits_{k=1}^i\beta_k$ is such that $\abs{B_i}\leqs L$ for $i=1,2,\cdots,m$, then
+    \mth{\abs{\sum_{i=1}^m\alpha_i\beta_i}\leqs L\cdot(\abs{\alpha_1}+2\abs{\alpha_m})}
+\item[Hadamard's Lemma]Let $f:U\to\RR$ be a function of class $C^{(p)}(U;\RR),\; p\geqs1$, defined in a convex neighborhood $U$ of the point $0=(0,\cdots,0)\in\RR^m$ and such that $f(0)=0$. Then there exist function $g_i\in C^{(p-1)}(U;\RR),\;(i=1,\cdots,m)$ such that the equality
+    \mth{f(\inds{x}{m}{,})=\sum_{i=1}^mx_ig_i(\inds{x}{m}{,})}
+    holds in $U$, and $g_i(0)=\parf{f}{x_i}(0)$.
+\item[Morse's Lemma]If $f:G\to\RR$ is a function of class $C^{(3)}(G;\RR)$ defined on an open set $G\subset\RR^m$ and $x_0\in G$ is a nondegenerate critical point of that function, then there exists a diffeomorphism $g:V\to U$ of some neighborhood of the origin $0$ in $\RR^m$ onto a neighborhood $U$ of $x_0$ such that
+    \mth{(f\comp g)(y)=f(x_0)-[(y_1)^2+\cdots+(y_k)^2]+[(y_{k+1})^2+\cdots+(y_m)^2]}
+    for all $y\in V$.
+\item[Riemann-Lebesgue Lemma]Let $f(x)$ be integrable and absolutely integrable on $[a,b]$\footnote{$a$ or $b$ may be infinity}. It holds that
+    \mth{\lim_{p\to\infty}\int_a^bf(x)\sin px\dx=0,\quad\lim_{p\to\infty}\int_a^bf(x)\cos px\dx=0}
+\item[Generalized Riemann-Lebesgue Lemma]Let $f\in\mcl{R}[a,b],\,\vphi\in\mcl{R}[0,T],\,\vphi(x+T)=x$, then
+    \[\lim_{n\to\infty}\int_a^bf(x)\vphi(nx)\dx=\frac{1}{T}\int_0^T\vphi(x)\dx\int_a^bf(x)\dx\]
+\end{description}
+\end{subsection}
+\end{section}
+
+\begin{section}{Equalities and Inequalities}
+\begin{subsection}{Common Taylor Series}
+\enu{
+    \item $e^x=1+x+\frac{x^2}{2}+\cdots+\frac{x^n}{n!}+\cdots\quad(-\infty<x<+\infty)$
+    \item $\sin x=x-\frac{x^3}{3!}+\frac{x^5}{5!}+\cdots+(-1)^{n-1}\frac{x^{2n-1}}{(2n-1)!}+\cdots\quad(-\infty<x<+\infty)$
+    \item $\cos x=1-\frac{x^2}{2!}+\frac{x^4}{4!}+\cdots+(-1)^n\frac{x^{2n}}{(2n)!}+\cdots\quad(-\infty<x<+\infty)$
+    \item $(1+x)^\alpha=1+\alpha x+\frac{\alpha(\alpha-1)}{2!}x^2+\cdots+\frac{\alpha(\alpha-1)\cdots(\alpha-n+1)}{n!}x^n+\cdots\quad(-1<x<1)$
+    \item $\ln(1+x)=x-\frac{x^2}{2}+\frac{x^3}{3}+\cdots+(-1)^{n-1}\frac{x^n}{n}+\cdots\quad(-1<x\leqs x)$
+    \item $\arctan x=x-\frac{x^3}{3}+\frac{x^5}{5}+\cdots+(-1)^{n-1}\frac{x^{2n-1}}{2n-1}+\cdots(-1\leqs x\leqs1)$
+    \item $\arcsin x=x+\frac{x^3}{6}+\frac{3x^5}{40}+\cdots+\frac{(2n-1)!!x^{2n+1}}{(2n)!!(2n+1)}+\cdots(-1\leqs x\leqs1)$
+    \item $\frac{1}{1+x}=(1+x)^{-1}=1-x+x^2-\cdots+(-1)^nx^n+\cdots\quad(-1<x<1)$
+    \item $\frac{1}{(1+x)^2}=(1+x)^{-2}=1-2x+3x^2-\cdots+(-1)^n(n+1)x^n+\cdots\quad(-1<x<1)$
+    \item $\sqrt{1+x}=(1+x)^\frac{1}{2}=1+\frac{1}{2}x-\frac{1}{8}x^2+\cdots+(-1)^{n-1}\frac{(2n-3)!!}{(2n)!!}x^n+\cdots\quad(-1\leqs x\leqs1)$
+    \item $\frac{1}{\sqrt{1+x}}=(1+x)^{-\frac{1}{2}}=1-\frac{1}{2}x+\frac{3}{8}x^2-\cdots+(-1)^n\frac{(2n-1)!!}{(2n)!!}x^n+\cdots(-1<x\leqs1)$
+    }
+\end{subsection}
+\begin{subsection}{Common Infinite Products}
+\enu{
+    \item $\sin x=x\prdn\Brk{1-\frac{x^2}{n^2\pi^2}}\quad(-\infty<x<+\infty)$
+    \item $\cos x=\prdn\Brk{1-\frac{4x^2}{(2n-1)^2\pi^2}}\quad(-\infty<x<+\infty)$
+    \item $\frac{\sin x}{x}=\prdn\cos\frac{x}{2^n}\quad(x\neq0)$
+    \item $\prod\limits_{n=0}^\infty(1+x^{2^n})=\frac{1}{1-x}\quad(-1<x<1)$
+    }
+\end{subsection}
+\begin{subsection}{Pythagoras's theorem}
+Let $X$ be a real inner product space, the following are true.
+\begin{enumerate}
+\item If $\{l_i\}$ is an orthogonal system, then \[\norm{\sum_il_i}^2=\sum_i\norm{l_i}^2\]
+\item If $\{e_i\}$ is an orthonormal system, then \[\norm{\sum_ix_ie_i}^2=\sum_i\norm{x_ie_i}^2=\sum_i\abs{x_i}^2\]
+\end{enumerate}
+\end{subsection}
+\begin{subsection}{Bernoulli's Inequality}
+\begin{description}
+\item[Bernoulli's Inequality]For $x>-1,\;n\in\NN^*$,
+    \mth{(1+x)^n\geqs1+nx}
+    and
+    \mth{(1+x)^n=1+nx\iff n=1\ttt{ or }x=0}
+\item[Extensions of Bernoulli's Inequality]
+    \mtha{x^\alpha-\alpha x+\alpha-1\leqs0&\ttt{when}&0<\alpha<1\\
+    x^\alpha-\alpha x+\alpha-1\geqs0&\ttt{when}&\alpha<0\ttt{ or }1<\alpha}
+\end{description}
+\end{subsection}
+\begin{subsection}{H\"older's Inequality}
+\begin{description}
+\item[H\"older's Inequality (for Sums)]Let $x_i,y_i\geqs0,\;i=1,\cdots,n,\;\frac{1}{p}+\frac{1}{q}=1$. Then
+    \mtha{\sum_{i=1}^nx_iy_i\leqs\Brk{\sum_{i=1}^nx_i^p}^{1/p}\Brk{\sum_{i=1}^ny_i^q}^{1/q}&,&p>1\\
+    \sum_{i=1}^nx_iy_i\geqs\Brk{\sum_{i=1}^nx_i^p}^{1/p}\Brk{\sum_{i=1}^ny_i^q}^{1/q}&,&p<1,\;p\neq0}
+\item[H\"older's Inequality (for Integrals)]Let $f,g\in\mcl{R}[a,b],\;\frac{1}{p}+\frac{1}{q}=1$. Then
+    \mtha{\abs{\int_a^b(f\cdot g)(x)\dx}\leqs\Brk{\int_a^b\abs{f}^p(x)\dx}^{1/p}\cdot\Brk{\int_a^b\abs{g}^q(x)\dx}^{1/q}&,&p>1}
+\end{description}
+\end{subsection}
+\begin{subsection}{Jensen's Inequality}
+\begin{description}
+\item[Jensen's Inequality]If $f:(a,b)\to\RR$ is a convex function, $\inds{x}{n}{,}\in(a,b)$, and $\inds{\alpha}{n}{,}$ are positive numbers such that $\inds{\alpha}{n}{+}=1$, then
+    \mth{f(\cnts{\alpha_1x_1}{\alpha_nx_n}{+})\leqs\cnts{\alpha_1f(x_1)}{\alpha_nf(x_n)}{+}}
+\item[Jensen's Inequality (for Integrals)]If $f$ is a continuous convex function on $\RR$ and $\vphi$ an arbitrary continuous function on $\RR$, then
+    \mth{f\Brk{\frac{1}{c}\int_0^c\vphi(t)\ud t}\leqs\frac{1}{c}\int_0^cf(\vphi(t))\ud t}
+\end{description}
+\end{subsection}
+\begin{subsection}{Minkowski's Inequality}
+\begin{description}
+\item[Minkowski's Inequality (for Sums)]Let $x_i,y_i\geqs0,\;i=1,\cdots,n$. Then
+    \mtha{\Brk{\sum_{i=1}^n(x_i+y_i)^p}^{1/p}\leqs\Brk{\sum_{i=1}^nx_i^p}^{1/p}+\Brk{\sum_{i=1}^ny_i^p}^{1/p}&,&p>1\\
+    \Brk{\sum_{i=1}^n(x_i+y_i)^p}^{1/p}\geqs\Brk{\sum_{i=1}^nx_i^p}^{1/p}+\Brk{\sum_{i=1}^ny_i^p}^{1/p}&,&p<1,\;p\neq0}
+\item[Minkowski's Inequality (for Integrals)]Let $f,g\in\mcl{R}[a,b]$. Then
+    \mtha{\Brk{\int_a^b\abs{f+g}^p(x)\dx}^{1/p}\leqs\Brk{\int_a^b\abs{f}^p(x)\dx}^{1/p}+\Brk{\int_a^b\abs{g}^p(x)\dx}^{1/p}&,&p\geqs1\\
+    \Brk{\int_a^b\abs{f+g}^p(x)\dx}^{1/p}\geqs\Brk{\int_a^b\abs{f}^p(x)\dx}^{1/p}+\Brk{\int_a^b\abs{g}^p(x)\dx}^{1/p}&,&0<p<1}
+\end{description}
+\end{subsection}
+\begin{subsection}{Young's Inequality}
+\begin{description}
+\item[Young's Inequality]If $a>0,\;b>0$, then
+    \mtha{a^{1/p}b^{1/q}\leqs\frac{1}{p}a+\frac{1}{q}b&,&p>1\\
+    a^{1/p}b^{1/q}\geqs\frac{1}{p}a+\frac{1}{q}b&,&p<1\ttt{ and }p\neq0}
+    and
+    \mth{a^{1/p}b^{1/q}=\frac{1}{p}a+\frac{1}{q}b\iff a=b}
+    Or it could be written as
+    \mth{xy\leqs\frac{1}{p}x^p+\frac{1}{q}y^q}
+    for $x,y\geqs0,\;p,q>0,\;\frac{1}{p}+\frac{1}{q}=1$
+\end{description}
+\end{subsection}
+\end{section}
+\end{part}
+
+\begin{part}{Basic Theorems}
+\begin{section}{Theorems in Analysis}
+\begin{subsection}{Contraction Mapping Principle}
+\begin{description}
+\item[Picard-Banach Fixed-point Principle]A contraction mapping $f:X\to X$ of a complete metric space $(X,d)$ into itself has a unique fixed point $a$. Moreover, for any point $x_0\in X$ the recursively defined sequence $x_0,\;x_1=f(x_0),\cdots,\;x_{n+1}=f(x_n),\cdots$ converges to $a$. The rate of convergence is given by the estimate
+    \mth{d(a,x_n)\leqs\frac{q^n}{1-q}d(x_1,x_0)}
+\item[Stability of the Fixed Point]Let $(X,d)$ be a complete metric space and $(\Omega,\tau)$ a topological space that will play the role of a parameter space in what follows. Suppose to each value of the parameter $t\in\Omega$ there corresponds a contraction mapping $f_t:X\to X$ and that the following conditions hold.
+    \itm{
+        \item[(a)]The family $\{f_t:t\in\Omega\}$ is uniformly contracting, that is, there exists $q,\;0<q<1$, such that each mapping $f_t$ is a $q$-contraction
+        \item[(b)]For each $x\in X$ the mapping $f_t(x):\Omega\to X$ is continuous as a function of t at some point $t_0\in\Omega$, that is $\lim\limits_{t\to t_0}f_t(x)=f_{t_0}(x)$
+    }
+    Then the solution $a(t)\in X$ of the equation $x=f_t(x)$ depends continuously on $t$ at $t_0$, that is, $\lim\limits_{t\to t_0}a(t)=a(t_0)$
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Differential Calculus}
+\begin{description}
+\item[Mean-value Theorem]Let $f:G\to\RR$ be a real-valued function defined in a region $G\subset\RR^m$, and let the closed line segment $[x,x+h]$ be contained in $G$. If the function $f$ is continuous on $[x,x+h]$ and differentiable on $(x,x+h)$, then there exists a point $\xi\in(x,x+h)$ such that
+    \mth{f(x+h)-f(x)=f'(\xi)h}
+
+\item[Finite-increment Theorem]Let $f:U\to Y$ be a continuous mapping of an open set $U$ of a normed space $X$ into a normed space $Y$. If the closed interval $[x,x+h]=\{\xi\in X:\xi=x+\theta h,\;0\leqs\theta\leqs1\}$ is contained in $U$ and the mapping $f$ is differentiable at all points of the open interval $(x,x+h)=\{\xi\in X:\xi=x+\theta h,\;0<\theta<1\}$, then the following estimate holds:
+    \mth{\norm{f(x+h)-f(x)}\leqs\sup_{\xi\in(x,x+h)}\norm{f'(\xi)}\cdot\norm{h}}
+
+\item[Taylor's Formula]If $f:U(x)\to\RR$ is defined and belongs to class $C^{(n)}(U(x);\RR)$ in a neighborhood $U(x)\subset\RR^m$ of $x\in\RR^m$, and the closed interval $[x,x+h]$ is completely contained in $U(x)$, then the following equality holds
+    \mth{f(x+h)-f(x)=\sum_{k=1}^{n-1}\frac{1}{k!}(h_1\partial_1+\cdots+h_m\partial_m)^kf(x)+r_{n-1}(x;h)}
+    where
+    \mtha{r_{n-1}(x;h)&=&\int_0^1\frac{(1-t)^{n-1}}{(n-1)!}(h_1\partial_1+\cdots+h_m\partial_m)^nf(x+th)\ud t\\
+    &=&\frac{1}{n!}(h_1\partial_1+\cdots+h_m\partial_m)^nf(x+\theta h)\\
+    &=&\frac{1}{n!}(h_1\partial_1+\cdots+h_m\partial_m)^nf(x)+o(\norm{h}^n)}
+
+\item[Taylor's Formula for Mappings]If a mapping $f:U\to Y$ from a neighborhood $U=U(x)$ of $x$ in a normed space $X$ into a normed space $Y$ has derivatives up to order $n-1$ inclusive in $U$ and has an $n$-th order derivative $f^{(n)}(x)$ at $x$, then
+    \mth{f(x+h)=f(x)+f'(x)h+\cdots+\frac{1}{n!}f^{(n)}(x)h^n+o(\norm{h}^n),\quad h\to0}
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Implicit Function Theorem}
+\begin{description}
+\item[Implicit function theorem]If $F:U\to\RR^n$ defined in a neighborhood $U$ of $(x_0,y_0)\in\RR^{m+n}$ is such that
+\itm{\item$F\in C^{(p)}(U;\RR^n)$
+     \item$F(x_0,y_0)=0$
+     \item$F_y'(x_0,y_0)$ is an invertible matrix}
+then there exists an $(m+n)$-dimensional interval $I=I_x^m\x I_y^n\subset U$, where
+\mth{I_x^m=\{x\in\RR^m:\abs{x-x_0}<\alpha\},\quad I_y^n=\{y\in\RR^n:\abs{y-y_0}<\beta}
+and a mapping $f\in C^{(p)}(I_x^m;I_y^n)$ such that
+\mth{F(x,y)=0\iff y=f(x)}
+for any point $(x,y)\in(I_x^m\x I_y^n)$ and
+\mth{f'(x)=-[F_y'(x,f(x))]^{-1}[F_x'(x,f(x))]}
+
+\item[General Implicit Function Theorem]Let $X,Y,Z$ be normed spaces, $Y$ being a complete space. Let $W=\{(x,y)\in X\x Y:\abs{x-x_0}<\alpha,\;\abs{y-y_0}<\beta\}$ be a neighborhood of $(x_0,y_0)$. Suppose that the mapping $F:W\to Z$ satisfies the following conditions
+    \itm{\item$F(x_0,y_0)=0$
+    \item$F(x,y)$ is continuous at $(x_0,y_0)$
+    \item$F'(x,y)$ is defined in $W$ and continuous at $(x_0,y_0)$
+    \item$F_y'(x_0,y_0)$ is an invertible transformation}
+    Then there exists a neighborhood $U$ of $x_0\in X$, a neighborhood $V$ of $y_0\in Y$, and a mapping $f:U\to V$ such that
+    \itm{\item$U\x V\subset W$
+    \item If $(x,y)\in U\x V$, then $F(x,y)=0\iff y=f(x)$
+    \item$y_0=f(x_0)$
+    \item$f$ is continuous at $x_0$}
+
+\item[Inverse Function Theorem]If $f:G\to\RR^m$ of a domain $G\subset\RR^m$ is such that
+\itm{\item$f\in C^{(p)}(G;\RR^m)$
+     \item$y_0=f(x_0)$
+     \item$f'(x_0)$ is invertible}
+     then there exists a neighborhood $U(x_0)\subset G$ and a neighborhood $V(y_0)$ such that $f:U(x_0)\to V(y_0)$ is a $C^{(p)}$-diffeomorphism. Moreover, if $x\in U(x_0),\;y=f(x)$, then
+     \mth{(f^{-1})'(y)=(f'(x))^{-1}}
+
+\item[Rank Theorem]Let $f:U\to\RR^n$ be a mapping defined in a neighborhood $U\subset\RR^m$ of $x_0\in\RR^m$. If $f\in C^{(p)}(U;\RR^n)$ and $f$ has the same rank $k$ everywhere in $U$, then there exists neighborhoods $O(x_0),\;O(y_0),\;y_0=f(x_0)$ and $C^{(p)}$-diffeomorphisms $u=\varphi(x),v=\psi(y)$ of $O(x_0),\;O(y_0)$, such that $v=\psi\comp f\comp\varphi^{-1}(u)$ has the coordinate representation
+    \mtha{v&=&(v_1,\cdots,v_n)\\
+    &=&\psi\comp f\comp\varphi^{-1}(u)\\
+    &=&\psi\comp f\comp\varphi^{-1}(u_1,\cdots,u_k,\cdots,u_m)\\
+    &=&(u_1,\cdots,u_k,0,\cdots,0)}
+    in $O(u_0)=\psi(O(x_0)),\;u_0=\psi(x_0)$
+\end{description}
+\end{subsection}
+\end{section}
+
+\begin{section}{Integral Calculus}
+\begin{subsection}{Basic theorems}
+\begin{description}
+\item[First mean-value theorem]
+\item[Second mean-value theorem]Let $f$ be integrable on $[a,b]$. Then
+    \enu{
+        \item If $g$ is nonnegative and monotonically increasing on $[a,b]$, then there exists $\xi\in[a,b]$,
+            \[\int_a^bf(x)g(x)\dx=g(b)\int_\xi^b f(x)\dx\]
+        \item If $g$ is nonnegative and monotonically decreasing on $[a,b]$, then there exists $\xi\in[a,b]$,
+            \[\int_a^bf(x)g(x)\dx=g(a)\int_a^\xi f(x)\dx\]
+        \item If $g$ is monotonic $[a,b]$, then there exists $\xi\in[a,b]$,
+            \[\int_a^bf(x)g(x)\dx=g(a)\int_a^\xi f(x)\dx+g(b)\int_\xi^bf(x)\dx\]
+    }
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Improper integrals}
+\begin{description}
+\item[Comparison test (inequality)]
+\item[Comparison test (limit form)]
+\item[Dirichlet's test (IBFZ)]Let $f,g$ be such that
+    \enu{
+        \item $\int_a^Af(x)\dx$ is bounded.
+        \item $g$ monotonically tends to $0$.
+    }
+    Then
+    \[\int_a^{+\infty}f(x)\dx\]
+    converges.
+\item[Abel's test (ICFB)]Let $f,g$ be such that
+    \enu{
+        \item $\int_a^{+\infty}f(x)\dx$ converges.
+        \item $g$ is monotonic and bounded.
+    }
+    Then
+    \[\int_a^{+\infty}f(x)\dx\]
+    converges.
+\item[Absolute convergence implies convergence (unbounded domain)]
+    \[\int_a^{+\infty}\abs{f(x)}\dx\ttt{ converges}\implies\int_a^{+\infty}f(x)\dx\ttt{ converges}\]
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Improper Multiple Integral}
+\begin{description}
+\item[Absolutely convergence and convergence imply each other (unbounded domain)]Let $D\subset\RR^2$ be unbounded, then
+    \[\iint_Df(x,y)\dx\dy\ttt{ converges}\iff\iint_D\abs{f(x,y)}\dx\dy\ttt{ converges}\]
+\end{description}
+\end{subsection}
+\end{section}
+\newpage
+\begin{section}{Integrabilities}
+\begin{description}
+\item[Bounded domain, bounded function]Integrable $\implies$ absolutely integrable
+\item[Bounded domain, unbounded function]Absolutely integrable $\implies$ integrable
+\item[Unbounded domain, bounded function]Absolutely integrable $\implies$ integrable
+\item[Bounded domain, bounded function]Integrable $\implies$ square-integrable
+\item[Bounded domain, unbounded function]Square-integrable $\implies$ absolutely integrable $\implies$ integrable
+\end{description}
+\end{section}
+\end{part}
+
+\begin{part}{Family of Functions}
+\begin{section}{Family of Functions Depending on a Parameter}
+\begin{subsection}{Convergence of a Family of Functions Depending on a Parameter}
+\begin{description}
+\item[Cauchy Criterion for Uniform Convergence]Let $\{f_t:t\in T\}$ be a family of functions depending on a parameter, and $\mcl{B}$ a base in $T$. A necessary and sufficient condition for $\{f_t:t\in T\}$ to converge uniformly on $E\subset X$ over $\mcl{B}$ is that for every $\vare>0$ there exists $B\in\mcl{B}$ such that $\abs{f_{t_1}(x)-f_{t_2}(x)}<\vare$ for every $t_1,t_2\in B$ and every $x\in E$.
+    In formal language one can state it as follows:
+    \mth{\exists f,\,f_t\unitob{\mcl{B}}f\iff\forall\vare>0,\,\exists B\in\mcl{B},\,\forall t_1,t_2\in V,\,\forall x\in E,\,\abs{f_{t_1}(x)-f_{t_2}(x)}<\vare}
+\end{description}
+\end{subsection}
+
+
+\begin{subsection}{Functional Properties of a Limit Function}
+\begin{description}
+\item[A sufficient condition for two limiting passages to commute]Let $\{F_t:t\in T\}$ be a family of functions $F_t:X\to\CC$ depending on a parameter $t\in T$; let $\mcl{B}_X$ be a base in $X$ and $\mcl{B}_T$ a base in $T$. If the family converges uniformly on $X$ over $\mcl{B}_T$ to a function $F:X\to\CC$ and $\lim\limits_{\mcl{B}_X}F_t(x)=A_t$ exists for each $t\in T$, then both repeated limits $\lim\limits_{\mcl{B}_X}\Brk{\lim\limits_{\mcl{B}_T}F_t(x)}$ and $\lim\limits_{\mcl{B}_T}\Brk{\lim\limits_{\mcl{B}_X}F_t(x)}$ exist and the equality
+    \mth{\lim_{\mcl{B}_X}\Brk{\lim_{\mcl{B}_T}F_t(x)}=\lim_{\mcl{B}_T}\Brk{\lim_{\mcl{B}_X}F_t(x)}}
+    holds. The diagram for this theorem is as follows:
+    \mth{\xymatrix{
+	   F_t(x)\ar@<0.3ex>[rr]^{\mcl{B}_T}\ar@<-0.3ex>[rr]\ar[dd]_{\mcl{B}_X}&	&	F(x)\ar[dd]_{\exists\mcl{B}_X}\\
+	   &	&	\\
+	   A_t\ar[rr]_{\exists\mcl{B}_T}\ar@{--}[rruu]&	&	A
+    }}
+    in which the hypotheses are written above the diagonal and the consequences below it.
+\item[Continuity and passages to the limit]Let $\{F_t:t\in T\}$ be a family of functions $F_t:X\to\CC$ depending on a parameter $t\in T$; let $\mcl{B}_T$ be a base in $T$. If $f_t\unitob{\mcl{B}} f$ on $X$ and the functions $f_t$ are continuous at $x_0\in X$, then the function $f:X\to\CC$ is also continuous at that point.
+    \mth{\xymatrix{
+	   f_t(x)\ar@<0.3ex>[rr]^{\mcl{B}_T}\ar@<-0.3ex>[rr]\ar[dd]_{x\to x_0}&	&f(x)\ar[dd]^{x\to x_0}\\
+	   &	&	\\
+	   f_t(x_0)\ar[rr]_{\mcl{B}_T}\ar@{--}[rruu]&	&f(x_0)
+    }}
+    in which the hypotheses are written above the diagonal and the consequences below it.
+\item[Corollary 1.]If a sequence of functions that are continuous on a set converges uniformly on that set, then the limit function is continuous on the set.
+\item[Corollary 2.]If a series of functions that are continuous on a set converges uniformly on that set, then the sum of the series is continuous on the set.
+\item[Dini's theorem]If a sequence of continuous functions on a compact set converges monotonically to a continuous function, then the convergence is uniform.
+    \sprf{Extracting a finite covering should do the job.}
+\item[Corollary 3.]If the terms of the series $\sum\limits_{n=1}^\infty a_n(x)$ are nonnegative functions $a_n:K\to\RR$ that are continuous on a compact set $K$ and the series converges to a continuous function on $K$, then it converges uniformly on $K$.
+\item[Integration and passage to limit]Let $\{f_t:t\in T\}$ be a family of functions $f_t:[a,b]\to\CC$ depending on the parameter $t\in T$, and let $\mcl{B}$ be a base in $T$. If the functions of the family are integrable on $[a,b]$ and $f_t\unito f$ on $[a,b]$ over $\mcl{B}$, then the limit function $f:[a,b]\to\CC$ is also integrable on $[a,b]$ and
+    \mth{\int_a^bf(x)\dx=\lim_{\mcl{B}}\int_a^bf_t(x)\dx}
+    The diagram for this theorem is as follows:
+    \mth{\xymatrix{
+	   F_t(p)\ar@<0.3ex>[rr]\ar@<-0.3ex>[rr]\ar[dd]_{\lambda(P)\to0}&&F(p)\ar[dd]^{\exists\lambda(P)\to0}\\
+	   &	&	\\
+	   A_t\ar[rr]\ar@{--}[rruu]&&A
+    }}
+    The notations are defined as:
+    \mtha{
+        p&=&(P,\xi)\ttt{ is a partition with distinguished points.}\\
+        F_t(p)&=&\sum_{i=1}^nf_t(\xi_i)\Delta x_i\\
+        F(p)&=&\sum_{i=1}^nf(\xi_i)\Delta i\\
+        A_t&=&\int_a^bf_t(x)\dx\\
+        A&=&\int_a^bf(x)\dx}
+    \sprf{We can use the fact that $\abs{f(x)-f_t(x)}$ can be arbitrarily small to estimate the difference between $\abs{F(p)-F_t(p)}$. The latter can be considered a function defined on the topological space $\mcl{P}=\{(P,\xi)\}$ of all partitions, by applying the theorem for the commutativity of limiting passages we obtain the desired result.}
+\item[Corollary 4.]If the series $\sum\limits_{n=1}^\infty f_n(x)$ consisting of integrable functions on a closed interval $[a,b]\subset\RR$ converges uniformly on that closed interval, then its sum is also integrable on $[a,b]$ and
+    \mth{\int_a^b\Brk{\sum_{n=1}^\infty f_n(x)}\dx=\sum_{n=1}^\infty\int_a^b f_n(x)\dx}
+\item[Differentiation and passage to the limit]Let $\{f_t:t\in T\}$ be a family of functions $f_t:[a,b]\to\CC$ defined on a convex bounded set $X$ (in a normed space, \cg{one-dimensional I think}) and depending on the parameter $t\in T$, and let $\mcl{B}$ be a base in $T$. If the functions of the family are differentiable on $X$, the family of derivatives $\{f_t':t\in T\}$ converges uniformly on $X$ to a function $\vphi:X\to\CC$, and the original family $\{f_t:t\in T\}$ converges at even one point $x_0\in X$, then it converges uniformly on the entire set $X$ to a differentiable function $f:X\to\CC$, and $f'=\vphi$.
+\item[Corollary 5.]If the series $\sum\limits_{n=1}^\infty f_n(x)$ of functions $f_n:X\to\CC$ that are differentiable on a bounded convex subset $X\subset\RR,\CC$ (or other normed space) converges at even one point $x\in X$ and the series $\sum_{n=1}^\infty f_n'(x)$ converges uniformly on $X$, then $\sum\limits_{n=1}^\infty f_n(x)$ also converges uniformly on $X$, its sum is differentiable on $X$, and
+    \mth{\Brk{\sum_{n=1}^\infty f_n(x)}'(x)=\sum_{n=1}^\infty f_n'(x)}
+\end{description}
+\end{subsection}
+\end{section}
+
+\begin{section}{Integrals Depending on a Parameter}
+\begin{subsection}{Proper Integrals}
+\begin{description}
+\item[Continuous dependence on the parameter]If $f(x,u)$ is continuous on $[a,b]\x[\alpha,\beta]$, then the integral
+    \[\int_a^bf(x,u)\dx\]
+    depends continuously on $u$.
+\item[Smooth dependence on the parameter]If $f(x,u)$ and $\parf{f}{u}(x,u)$ are continuous on $[a,b]\x[\alpha,\beta]$, then the integral
+    \[\int_a^bf(x,u)\dx\]
+    depends smoothly ($C^1$) on $u$, and
+    \[\derv{}{u}\int_a^bf(x,u)\dx=\int_a^b\parf{f}{u}(x,u)\dx\]
+\item[Interchangeable double integral]If $f$ is continuous on $[a,b]\x[\alpha,\beta]$, then
+    \[\int_\alpha^\beta\int_a^bf(x,u)\dx\ud u=\int_a^b\int_\alpha^\beta f(x,u)\ud u\dx\]
+\item[Continuous dependence on the domain and the parameter]If $f(x,u)$ is continuous on $[a,b]\x[\alpha,\beta]$, and $p(u),q(u)$ are continuous on $[\alpha,\beta]$ and are bounded on $[\alpha,\beta]$ such that $a\leqs p(u),q(u)\leqs b$, then
+    \[\psi(u)=\int_{p(u)}^{q(u)}f(x,u)\dx\]
+    depends continuously on $u$.
+\item[Smooth dependence on the domain and the parameter]If $f(x,u)$ and $\parf{f}{u}(x,u)$ are continuous on $[a,b]\x[\alpha,\beta]$, and $p(u),q(u)$ are differentiable on $[\alpha,\beta]$ and are bounded on $[\alpha,\beta]$ such that $a\leqs p(u),q(u)\leqs b$, then
+    \[\psi(u)=\int_{p(u)}^{q(u)}f(x,u)\dx\]
+    depends smoothly ($C^1$) on $u$, and
+    \[\psi'(u)=\int_{p(u)}^{q(u)}\parf{f}{u}(x,u)\dx+f(q(u),u)q'(u)-f(p(u),u)p'(u)\]
+\end{description}
+\end{subsection}
+\begin{subsection}{Improper Integrals}
+\begin{description}
+\item[Equivalent conditions for uniform convergence]The following are equivalent.
+    \enu{
+        \item $\int_a^{+\infty}f(x,u)\dx$ converges uniformly.
+        \item The remainder $\abs{\int_A^{+\infty}f(x,u)\dx}$ tends to $0$ as $A\to+\infty$, irrespective of the choice of $u$.
+        \item The oscillation $\abs{\int_{A'}^{A''}f(x,u)\dx}$ tends to $0$ ($A',A''>A$) as $A\to+\infty$, irrespective of the choice of $u$.
+        \item For any monotonically increasing sequence $\{A_n\}\to+\infty\ (A_1=a)$, the series
+            \[\sum_{n=1}^\infty\int_{A_n}^{A_{n+1}}f(x,u)\dx\]
+            converges uniformly on $[\alpha,\beta]$.
+    }
+\item[Weierstrass's test]Let $f(x,u)$ be continuous on $[a,+\infty)$. If there exists a continuous function $F(x)$ on $[a,+\infty)$ such that
+    \enu{
+        \item $\int_a^{+\infty}F(x)\dx$ converges.
+        \item For all sufficiently large $x$ and every $u$, $\abs{f(x,u)}\leqs F(x)$.
+    }
+    then $\int_a^{+\infty}f(x,u)\dx$ converges uniformly.
+    \sprf{Cauchy criterion.}
+\item[Dirichlet's test (IBFZ)]Let $f(x,u),g(x,u)$ be such that
+    \enu{
+        \item $\int_a^Af(x,u)\dx$ is uniformly bounded.
+        \item $g(x,u)$ monotonically and uniformly tends to $0$.
+    }
+    Then
+    \[\int_a^{+\infty}f(x,u)g(x,u)\dx\]
+    converges uniformly.
+\item[Abel's test (ICFB)]Let $f(x,u),g(x,u)$ be such that
+    \enu{
+        \item $\int_a^{+\infty}f(x,u)\dx$ converges uniformly.
+        \item $g(x,u)$ is monotonic and uniformly bounded.
+    }
+    Then
+    \[\int_a^{+\infty}f(x,u)g(x,u)\dx\]
+    converges uniformly.
+\ntg{IBFZ stands for ``integral bounded, function tends to $0$''. ICFB stands for ``integral convergent, function bounded''. In both cases the function needs to be monotonic.}
+\item[Dini's theorem]Let $f(x,u)$ be continuous and nonnegative on $[a,+\infty)\x[\alpha,\beta]$. If $\vphi(u)=\int_a^{+\infty}f(x,u)\dx$ is continuous on $[\alpha,\beta]$, then
+    \[\int_a^{+\infty}f(x,u)\dx\]
+    converges uniformly on $[\alpha,\beta]$.
+\item[Interchangeable limits]Let $f(x,u)$ be such that
+    \enu{
+        \item $f(x,u)\unitob{u\to u_0}g(x)$
+        \item $\int_a^{+\infty}f(x,u)\dx$ converges uniformly.
+    }
+    Then
+    \[\lim_{u\to u_0}\int_a^{+\infty}f(x,u)\dx=\int_a^{+\infty}\lim_{u\to u_0}f(x,u)\dx\]
+\item[Continuous dependence on the parameter]Let $f(x,u)$ be continuous on $[a,+\infty)\x[\alpha,\beta]$ and let the integral $\int_a^{+\infty}f(x,u)\dx$ be uniformly convergent on $[\alpha,\beta]$, then
+    \[\vphi(u)=\int_a^{+\infty}f(x,u)\dx\]
+    is continuous on $\alpha,\beta$.
+\item[Smooth dependence on the parameter]Let $f(x,u)$ and $\parf{f}{u}(x,u)$ both be continuous on $[a,+\infty)\x[\alpha,\beta]$ and let the integral $\int_a^{+\infty}\parf{f}{u}(x,u)\dx$ be uniformly convergent on $[\alpha,\beta]$, then
+    \[\int_a^{+\infty}f(x,u)\dx\]
+    is differentiable on $[\alpha,\beta]$ and
+    \[\derv{}{u}\int_a^{+\infty}f(x,u)\dx=\int_a^{+\infty}\parf{f}{u}(x,u)\dx\]
+\item[Interchangeable integrals (finite$\x$infinite)]Let $f(x,u)$ be continuous on $[a,+\infty)\x[\alpha,\beta]$ and let the integral $\int_a^{+\infty}f(x,u)\dx$ be uniformly convergent on $[\alpha,\beta]$, then $\vphi(u)=\int_a^{+\infty}f(x,u)\dx$ is integrable and
+    \[\int_\alpha^\beta\vphi(u)\ud u=\int_\alpha^\beta\int_a^{+\infty}f(x,u)\dx\ud u=\int_a^{+\infty}\int_\alpha^\beta f(x,u)\ud u\dx\]
+\item[Interchangeable integrals (infinite$\x$infinite)]Let $f(x,u)$ be such that
+    \enu{
+        \item $f$ is continuous on $[a,+\infty)\x[\alpha+\infty)$.
+        \item $\int_a^{+\infty}f(x,u)\dx$ converges uniformly with respect to $u\in[\alpha,\beta]$ for all $[\alpha,\beta]\subset[\alpha,+\infty)$.
+        \item $\int_\alpha^{+\infty}f(x,u)\ud u$ converges uniformly with respect to $x\in[a,b]$ for all $[a,b]\subset[a,+\infty)$.
+    }
+    Then the convergence of either of the integrals
+    \[\int_a^{+\infty}\int_\alpha^{+\infty}\abs{f(x,u)}\ud u\dx\ttt{\quad and\quad}\int_\alpha^{+\infty}\int_a^{+\infty}\abs{f(x,u)}\dx\ud u\]
+    implies the convergence of the other and the equality between them.
+\item[Interchangeable integrals (infinite$\x$infinite, nonnegative)]Let $f(x,u)$ be such that
+    \enu{
+        \item $f$ is continuous and nonnegative on $[a,+\infty)\x[\alpha+\infty)$.
+        \item $\int_a^{+\infty}f(x,u)\dx$ is continuous on $[\alpha,+\infty)$.
+        \item $\int_\alpha^{+\infty}f(x,u)\ud u$ is continuous on $[a,+\infty)$.
+    }
+    Then the convergence of either of the integrals
+    \[\int_a^{+\infty}\int_\alpha^{+\infty}f(x,u)\ud u\dx\ttt{\quad and\quad}\int_\alpha^{+\infty}\int_a^{+\infty}f(x,u)\dx\ud u\]
+    implies the convergence of the other and the equality between them.
+\end{description}
+\end{subsection}
+\end{section}
+\end{part}
+
+\begin{part}{Series}
+\begin{section}{Numerical Series}
+\begin{subsection}{Convergence of Numerical Series with Nonnegative Terms}
+\begin{description}
+\item[Comparison theorem]Let $\sum\limits_{n=1}^\infty a_n, \sum\limits_{n=1}^\infty b_n$ be series with nonnegative terms. If there exists $N\in\ns{N}$ such that $a_n\leqs b_n$ for all $n>N$, then
+    \mtha{
+        \sum_{n=1}^\infty b_n<+\infty&\implies&\sum_{n=1}^\infty a_n<+\infty\\
+        \sum_{n=1}^\infty a_n=+\infty&\implies&\sum_{n=1}^\infty b_n=+\infty\\
+    }
+\item[Comparison by inequalities]Please refer to the Cauchy-H\"older inequality. For examples, see Sect. \textit{E14.2-4, Other Problems From Chang \& Shi, Numerical Series}.
+\item[Comparison by squeeze]If $\sum\limits_{n=1}^\infty a_n,\,\sum\limits_{n=1}^\infty b_n$ are convergent and $a_n\leqs c_n\leqs b_n$, then $\sum\limits_{n=1}^\infty c_n$ converges.
+\item[Comparison theorem in limit form]Let $\sum\limits_{n=1}^\infty a_n, \sum\limits_{n=1}^\infty b_n$ be series with nonnegative terms and
+    \mth{l=\lim_{n\to\infty}\frac{a_n}{b_n}}
+    \itm{
+        \item[(a)]If $l<+\infty$, then $\sum\limits_{n=1}^\infty b_n<+\infty\implies\sum\limits_{n=1}^\infty a_n<+\infty$
+        \item[(b)]If $l>0$, then $\sum\limits_{n=1}^\infty a_n<+\infty\implies\sum\limits_{n=1}^\infty b_n<+\infty$
+    }
+    \ntg{This may fail if the series contain negative terms. See counterexamples.}
+\item[Comparison theorem in quotient form]Let $\sum\limits_{n=1}^\infty a_n, \sum\limits_{n=1}^\infty b_n$ be series with nonnegative terms. If there exists $N\in\ns{N}$ such that for all $n>N$
+    \mth{\frac{a_{n+1}}{a_n}\leqs\frac{b_{n+1}}{b_n}}
+    then $\sum\limits_{n=1}^\infty b_n<+\infty\implies\sum\limits_{n=1}^\infty a_n<+\infty$
+\item[Cauchy's test]Let $\sum\limits_{n=1}^\infty a_n$ be a series and
+    \mth{\alpha=\limsup\limits_{n\to\infty}\sqrt[n]{a_n}}
+    Then the following are true:
+    \itm{
+        \item[(a)]if $\alpha<1$, $\sum\limits_{n=1}^\infty a_n$ converges;
+        \item[(b)]if $\alpha>1$, $\sum\limits_{n=1}^\infty a_n$ diverges;
+        \item[(c)]there exist both convergent and divergent series for which $\alpha=1$.
+    }
+\item[Cauchy's proposition]If $\{a_n\}$ is a decreasing sequence with nonnegative terms, that is, $a_1\geqs a_2\geqs\cdots\geqs0$, then the series $\sum\limits_{n=1}^\infty a_n$ converges if and only if
+    \mth{\sum\limits_{k=0}^\infty 2^ka_{2^k}=a_1+2a_2+4a_4+8a_8+\cdots}
+    converges.
+\item[Kummer's test]Let $\sum\limits_{n=1}^\infty a_n$ be a series with positive terms and $\{c_n\}$ be any sequence of positive numbers. Suppose the following limit exists.
+    \mth{\alpha=\lim_{n\to\infty}\Brk{c_n\frac{a_n}{a_{n+1}}-c_{n+1}}}
+    Then
+    \itm{
+        \item[(a)]if $\alpha>0$, the series $\sum\limits_{n=1}^\infty a_n$ converges;
+        \item[(b)]if $\alpha<0$, and $\sum\limits_{n=1}^\infty\frac{1}{c_n}$ diverges, the series $\sum\limits_{n=1}^\infty a_n$ diverges;
+        \item[(c)]there exist both convergent and divergent series for which $\alpha=1$.
+    }
+\item[d'Alembert's test]Suppose the following limit exists for $\sum\limits_{n=1}^\infty a_n$
+    \mth{\alpha=\lim\limits_{n\to\infty}\frac{a_{n+1}}{a_n}}
+    Then
+    \itm{
+        \item[(a)]if $\alpha<1$, $\sum\limits_{n=1}^\infty a_n$ converges;
+        \item[(b)]if $\alpha>1$, $\sum\limits_{n=1}^\infty a_n$ diverges;
+        \item[(c)]there exist both convergent and divergent series for which $\alpha=1$.
+    }
+    \ntg{This is obtained by setting $c_n=1$ in Kummer's test.}
+\item[Raabe's test]Let $\sum\limits_{n=1}^\infty a_n$ be a series with positive terms and
+    \mth{\alpha=\lim_{n\to\infty}n\Brk{\frac{a_n}{a_{n+1}}-1}}
+    or equivalently
+    \mth{\frac{a_n}{a_{n+1}}=1+\frac{\alpha}{n}+o\Brk{\frac{1}{n}}\quad(n\to\infty)}
+    Then
+    \itm{
+        \item[(a)]if $\alpha>1$, $\sum\limits_{n=1}^\infty a_n$ converges;
+        \item[(b)]if $\alpha<1$, $\sum\limits_{n=1}^\infty a_n$ diverges;
+        \item[(c)]there exist both convergent and divergent series for which $\alpha=1$.
+    }
+    \ntg{This is obtained by setting $c_n=n$ in Kummer's test.}
+\item[Bertrand's test]Let $\sum\limits_{n=1}^\infty a_n$ be a series with positive terms and suppose the following limit exists.
+    \mth{\alpha=\lim_{n\to\infty}\ln n\left[n\Brk{\frac{a_n}{a_{n+1}}-1}-1\right]}
+    Then
+    \itm{
+        \item[(a)]if $\alpha>1$, the series $\sum\limits_{n=1}^\infty a_n$ converges;
+        \item[(b)]if $\alpha<1$, the series $\sum\limits_{n=1}^\infty a_n$ diverges;
+        \item[(c)]there exist both convergent and divergent series for which $\alpha=1$.
+    }
+    \ntg{This is obtained by setting $c_n=n\ln n$ in Kummer's test.}
+\item[Gauss's test]Let $\sum\limits_{n=1}^\infty a_n$ be a series with positive terms and
+    \mth{\frac{a_n}{a_{n+1}}=1+\frac{1}{n}+\frac{\alpha}{n\ln n}+o\Brk{\frac{1}{n\ln n}}\quad(n\to\infty)}
+    Then
+    \itm{
+        \item[(a)]if $\alpha>1$, $\sum\limits_{n=1}^\infty a_n$ converges;
+        \item[(b)]if $\alpha<1$, $\sum\limits_{n=1}^\infty a_n$ diverges;
+        \item[(c)]there exist both convergent and divergent series for which $\alpha=1$.
+    }
+\item[Unknown name's test]Let $\sum\limits_{n=1}^\infty a_n$ be a series with positive terms. If for all $n>n_0$,
+    \mth{(1-\sqrt[n]{a_n})\frac{n}{\ln n}\geqs p>1}
+    then it converges. If for all $n>n_0$,
+    \mth{(1-\sqrt[n]{a_n})\frac{n}{\ln n}\leqs1}
+    then it diverges.
+\item[Lobachevsky's test]Let $\sum\limits_{n=1}^\infty a_n$ be a series with positive terms. If $\{a_n\}$ tends to $0$ monotonically, then
+    \mth{\sum_{n=1}^\infty a_n\ttt{ converges}\iff\sum_{n=1}^\infty p_m\cdot2^{-m}\ttt{ converges}}
+    where $p_m$ is the maximum number that satisfies
+    \mth{a_n\geqs2^{-m}}
+\item[Logarithm test]Let $\sum\limits_{n=1}^\infty a_n$ be a series with positive terms. If for all $n>n_0$
+    \mth{\frac{\ln(1/a_n)}{\ln n}\geqs p>1}
+    then it converges. If for all $n>n_0$
+    \mth{\frac{\ln(1/a_n)}{\ln n}\leqs1}
+    then it diverges.
+\item[Maclaurin-Cauchy integral test]Suppose $f:[1,+\infty)\to\ns{R}$ is a decreasing function assuming only nonnegative values. If the sequence $\{a_n\}$ is such that
+    \mth{a_n=f(n)}
+    then the series $\sum\limits_{n=1}^\infty a_n$ converges if and only if $\int_{1}^{+\infty}f(x)\dx$ converges.
+\item[Ermakov's test]Suppose $f:[1,+\infty)\to\ns{R}$ is a positive and decreasing function. If there exists $x_0\geqs1$, such that for all $x\geqs x_0$
+    \itm{
+        \item[(a)]$\frac{f(e^x)\cdot e^x}{f(x)}\leqs q<1$, then $\sum\limits_{n=1}^\infty f(n)$ converges;
+        \item[(b)]$\frac{f(e^x)\cdot e^x}{f(x)}\geqs 1$, then $\sum\limits_{n=1}^\infty f(n)$ diverges.
+    }
+\item[Abel-Dini theorem]Let $\sum\limits_{n=1}^\infty d_n$ be a series with positive terms and $D_n$ the partial sum of it. If $\sum\limits_{n=1}^\infty d_n$ diverges, then so does $\sum\limits_{n=1}^\infty\frac{d_n}{D_n}$. However, $\sum\limits_{n=1}^\infty\frac{d_n}{D_n^{1+\sigma}}$ converges for all $\sigma>0$.
+    \sprf{Use the Cauchy criterion for the divergence of $\sum\limits_{n=1}^\infty d_n$ and the finite increment theorem on $\int\frac{\dx}{x^{1+\sigma}}=-\frac{1}{\sigma}\frac{1}{x^\sigma}$ for the convergence of $\sum\limits_{n=1}^\infty\frac{d_n}{D_n^{1+\sigma}}$}
+\item[Dini's theorem]Let $\sum\limits_{n=1}^\infty c_n$ be a series with positive terms and $\gamma_n$ the $n$th remainder of it. If $\sum\limits_{n=1}^\infty c_n$ is convergent, then $\sum\limits_{n=1}^\infty\frac{c_n}{\gamma_{n-1}}$ diverges. However, $\sum\limits_{n=1}^\infty\frac{c_n}{\gamma_{n-1}^{1-\sigma}}$ converges for $0<\sigma<1$.
+\item[Existence of a slower convergent series]For every convergent series $\sum\limits_{n=1}^\infty c_n$, there exists a slower convergent series
+    \mth{\sum\limits_{n=1}^\infty(\sqrt{\gamma_{n-1}}-\sqrt{\gamma_n})}
+    where $\gamma_n$ is the remainder.
+\item[Existence of a slower divergent series]For every divergent series $\sum\limits_{n=1}^\infty d_n$, there exists a slower divergent series
+    \mth{\sum\limits_{n=1}^\infty(\sqrt{D_n}-\sqrt{D_{n-1}})}
+    where $D_n$ is the partial sum and $D_0=0$.
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Convergence of Numerical Series with Arbitrary Terms}
+\begin{description}
+\item[The Cauchy criterion]The series $\sum\limits_{n=1}^\infty$ converges if and only if for every $\vare>0$, there exists $N\in\ns{N}$, such that for all $m\geqs n>N$,
+    \mth{\abs{a_n+\cdots+a_m}<\vare}
+\item[Comparison theorem (for nonnegative series)]Let $\sum\limits_{n=1}^\infty a_n, \sum\limits_{n=1}^\infty b_n$ be series with nonnegative terms. If there exists $N\in\ns{N}$ such that $a_n\leqs b_n$ for all $n>N$, then
+    \mtha{
+        \sum_{n=1}^\infty b_n<+\infty&\implies&\sum_{n=1}^\infty a_n<+\infty\\
+        \sum_{n=1}^\infty a_n=+\infty&\implies&\sum_{n=1}^\infty b_n=+\infty\\
+    }
+\item[Cauchy's test]Let $\sum\limits_{n=1}^\infty a_n$ be a series and
+    \mth{\alpha=\limsup\limits_{n\to\infty}\sqrt[n]{\abs{a_n}}}
+    Then the following are true:
+    \itm{
+        \item[(a)]if $\alpha<1$, $\sum\limits_{n=1}^\infty a_n$ converges absolutely;
+        \item[(b)]if $\alpha>1$, $\sum\limits_{n=1}^\infty a_n$ diverges;
+        \item[(c)]there exist both absolutely convergent and divergent series for which $\alpha=1$.
+    }
+\item[d'Alembert's test]Suppose the following limit exists for $\sum\limits_{n=1}^\infty a_n$
+    \mth{\alpha=\lim\limits_{n\to\infty}\abs{\frac{a_{n+1}}{a_n}}}
+    Then
+    \itm{
+        \item[(a)]if $\alpha<1$, $\sum\limits_{n=1}^\infty a_n$ converges absolutely;
+        \item[(b)]if $\alpha>1$, $\sum\limits_{n=1}^\infty a_n$ diverges;
+        \item[(c)]there exist both absolutely convergent and divergent series for which $\alpha=1$.
+    }
+\item[Alternating series test (1): Leibniz series]If the series $\sum\limits_{n=1}^\infty(-1)^{n+1}a_n$ is such that for some $N\in\ns{N}$,
+    \mth{0\leqs a_{n+1}<a_n,\quad\forall n>N}
+    and
+    \mth{a_n\to0\quad(n\to\infty)}
+    then $\sum\limits_{n=1}^\infty(-1)^{n+1}a_n$ converges.
+\item[Alternating series test (2)]Let $a_n>0$. If
+    \mth{\limn n\Brk{\frac{a_n}{a_{n+1}}-1}=\lambda>0}
+    then the alternating series $\sumn(-1)^{n-1}a_n$ converges.
+\item[Property of Leibniz series]If $\sum\limits_{n=1}^\infty(-1)^{n-1}a_n$ is a Leibniz series, then
+    \mth{\abs{\sum_{n=N}^{N+p}(-1)^{n-1}a_n}\leqs a_N}
+\item[Abel's test]Let $\{a_n\}$ and $\{b_n\}$ be two sequences of real numbers. If $\sum\limits_{n=1}^\infty b_n$ is convergent and $\{\abs{a_n}\}$ is monotonic and bounded, then
+    \mth{\sum_{n=1}^\infty a_nb_n}
+    converges.
+\item[Dirichlet's test]Let $\{a_n\}$ and $\{b_n\}$ be two sequences of real numbers. If $\sum\limits_{n=1}^m b_n$ is bounded and $\{a_n\}$ monotonically tends to $0$, then
+    \mth{\sum_{n=1}^\infty a_nb_n}
+    converges.
+\end{description}
+\end{subsection}
+
+
+\begin{subsection}{Operations on Numerical Series}
+\begin{description}
+\item[Absolute convergence]Absolute convergence implies convergence.
+\item[Equivalent condition for absolute convergence]
+    \mth{\sumn\abs{a_n}<+\infty\iff\sumn a_n^+,\,\sumn a_n^-<+\infty}
+\item[Sufficient condition for absolute convergence]If for all sequences $\{x_n\}$ that tends to $0$, the series $\sumn a_nx_n$ converges, then $\sumn a_n$ converges absolutely. The condition ``tends to'' cannot be weakened to ``monotonically tends to'', for example, $\sumn(-1)^{n-1}x_n$.
+\item[Change of order in absolutely convergent series]Any change of order of the terms in an absolutely convergent series does not affect its convergence and the value it converges to.
+\item[Necessary condition for conditional convergence]
+    \mth{\sumn a_n\ttt{ converges conditionally}\implies\sumn a_n^=\sumn a_n^-=+\infty}
+    The converse is not true, for example, $a_n=(-1)^{n-1}$.
+    \ntg{Conditional convergence also implies that
+        \mth{\limn\frac{S_n^+}{S_n^-}=1}}
+\item[Riemann's theorem for conditionally convergent series]If a series is conditionally convergent, then by reordering the terms one can obtain a new series converging to any preassigned number, including $\pm\infty$.
+\item[Cauchy's theorem for the product of series]If the series $\sum\limits_{n=1}^\infty a_n,\,\sum\limits_{n=1}^\infty b_n$ converge absolutely to $A,B$ respectively, then the sum
+    \mth{\sum_{i=1}^\infty\sum_{j=1}^\infty a_ib_j}
+    where the summation can happen in any order of the terms, converges absolutely to $AB$.
+\item[Mertens' theorem for Cauchy product]If the series $\sum\limits_{n=1}^\infty a_n,\,\sum\limits_{n=1}^\infty b_n$ converge to $A,B$ respectively, and at least one of them converges absolutely, then the Cauchy product of the two series converges to $AB$.
+    \mth{\sum_{n=1}^\infty\Brk{\sum_{k=1}^n a_kb_{n+1-k}}=AB}
+\item[Abel's theorem for Cauchy product]If the series $\sum\limits_{n=1}^\infty a_n,\,\sum\limits_{n=1}^\infty b_n$ converge to $A,B$ respectively, and the Cauchy product of them converges, it converges to $AB$.
+\item[Pringsheim's theorem for Cauchy product]Let $\{a_n\}$ and $\{b_n\}$ be sequences that tends to $0$ monotonically and denote the Cauchy product of the series $\sum\limits_{n=1}^\infty(-1)^{n-1}a_n=A$ and $\sum\limits_{n=1}^\infty(-1)^{n-1}b_n=B$ by $\sum\limits_{n=1}^\infty(-1)^{n-1}c_n$, where $c_n=\sum\limits_{k=1}^n(-1)^{n-1}a_kb_{n+1-k}$. The following conditions are equivalent:
+    \enu{
+        \item $\sum\limits_{n=1}^\infty(-1)^{n-1}c_n$ is convergent.
+        \item $\lim\limits_{n\to\infty}c_n=0$
+        \item $\lim\limits_{n\to\infty}a_n(\inds{b}{n}{+})=0$ and $\lim\limits_{n\to\infty}b_n(\inds{a}{n}{+})=0$.
+    }
+\end{description}
+\end{subsection}
+\end{section}
+
+\begin{section}{Infinite Products}
+\begin{subsection}{Convergence of Infinite products}
+\begin{description}
+\item[A sufficient condition for convergence]A sufficient condition for the convergence of $\prod\limits_{n=1}^\infty(1+a_n)$ is that $\sum\limits_{n=1}^\infty\ln(1+a_n)$ converges.
+\item[Theorem]If $a_n>0$ (resp. $a_n<0$) for every sufficiently large $n$, then $\prod\limits_{n=1}^\infty(1+a_n)$ and $\sum\limits_{n=1}^\infty a_n$ converges and diverges simultaneously.
+\item[Theorem]If $\sum\limits_{n=1}^\infty a_n^2$ converges, then $\prod\limits_{n=1}^\infty(1+a_n)$ and $\sum\limits_{n=1}^\infty a_n$ converges and diverges simultaneously.
+\item[Theorem]If $-1<a_n<0$, then the divergence of $\sum\limits_{n=1}^\infty a_n$ implies the divergence of $\prod\limits_{n=1}^\infty(1+a_n)$ to $0$.
+\item[Theorem]If $\sum\limits_{n=1}^\infty a_n$ converges but $\sum\limits_{n=1}^\infty a_n^2$ diverges, then $\prod\limits_{n=1}^\infty\ln(1+a_n)$ diverges to $0$.
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Operations on Infinite Products}
+\begin{description}
+\item[Absolute convergence]Absolute convergence implies convergence.
+\item[Change of order in absolutely convergent series]Any change of order of the terms in an absolutely convergent infinite product does not affect its convergence and the value it converges to.
+\item[Riemann's theorem for conditionally convergent infinite products]If an infinite product is conditionally convergent, then by reordering the terms one can obtain a new infinite product converging to any preassigned positive number, or diverging to $+\infty$ or $0$.
+\end{description}
+\end{subsection}
+\end{section}
+
+\begin{section}{Series of Functions}
+\begin{subsection}{Convergence of Series of Functions}
+\begin{description}
+\item[Cauchy Criterion for Uniform Convergence]The series $\sum\limits_{n=1}^\infty a_n(x)$ converges uniformly on $E$ if and only if for every $\vare>0$ there exists $N\in\ns{N}$ such that
+    \mth{\abs{a_n(x)+\cdots+a_m(x)}<\vare}
+    for all natural numbers $m,n$ satisfying $m\geqs n>N$ and every $x\in E$.
+\item[Comparison theorem]If the series $\sum\limits_{n=1}^\infty a_n(x)$ and $\sum\limits_{n=1}^\infty b_n(x)$ are such that $\abs{a_n(x)}\leqs b_n(x)$ for every $x\in E$ and for all sufficiently large indices $n\in\ns{N}$, then the uniform convergence of the series $\sum\limits_{n=1}^\infty b_n(x)$ on $E$ implies the absolute and uniform convergence of $\sum\limits_{n=1}^\infty a_n(x)$ on $E$.
+\item[Weierstrass $M$-test for uniform convergence]If for $\sum\limits_{n=1}^\infty a_n(x)$ one can exhibit a convergent numerical series $\sum\limits_{n=1}^\infty M_n$ such that $\sup\limits_{x\in E}\abs{a_n(x)}\leqs M_n$ for all sufficiently large $n\in\ns{N}$, then $\sum\limits_{n=1}^\infty a_n(x)$ converges absolutely and uniformly on $E$.
+\item[The Abel-Dirichlet test for uniform convergence]A sufficient condition for uniform convergence on $E$ of $\sum\limits_{n=1}^\infty a_n(x)b_n(x)$ where $a_n:X\to\ns{C}$ are complex-valued functions and $b_n:X\to\RR$ are real-valued functions is that either pair of the following be satisfied:
+    \enu{
+        \item(Dirichlet)
+            \itm{
+                \item[($\alpha_1$)]the partial sums $s_k(x)=\sum\limits_{n=1}^k a_n(x)$ are uniformly bounded on $E$;
+                \item[($\beta_1$)]$b_n(x)$ tends monotonically and uniformly to $0$ on $E$;
+            }
+        \item(Abel)
+            \itm{
+                \item[($\alpha_1$)]$\sum\limits_{n=1}^\infty a_n(x)$ converges uniformly on $E$;
+                \item[($\beta_1$)]$b_n(x)$ is monotonic and uniformly bounded on $E$.
+            }
+    }
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Convergence of Power Series}
+\begin{description}
+\item[Uniqueness of power series]If $\sum\limits_{n=0}^\infty a_nx^n=\sum\limits_{n=0}^\infty b_nx^n$ in a neighborhood of $x=0$, then $a_n=b_n$.
+\item[Proposition 1.]If a power series $\sum\limits_{n=0}^\infty c_n(z-z_0)^n$ converges at a point $\zeta\neq z_0$, then it converges absolutely and uniformly in any disk $K_q=\{z\in\CC:\abs{z-z_0}<q\abs{\zeta-z_0}\}$, where $0<q<1$.
+\item[Nature of convergence of a power series (Cauchy-Hadamard)]A power series $\sum\limits_{n=0}^\infty c_n(z-z_0)^n$ converges in the disk $K=\{z\in\CC:\abs{z-z_0}<R\}$ whose radius of convergence is determined by the Cauchy-Hadamard formula $R=\Brk{\limsup\limits_{n\to\infty}\sqrt[n]{\abs{c_n}}}^{-1}$. Outside the disk the series diverges. On any closed disk contained in the interior of the disk $K$ of convergence of the series, a power series converges absolutely and uniformly.
+    \sprf{Use Weierstrass $M$-test.}
+\item[Convergence at the endpoint (1)]If $\sum\limits_{n=0}^\infty a_nx^n$ diverges at the endpoint $x=R$ of its disk of convergence, then the series does not converge uniformly on $[0,R]$.
+\item[Convergence at the endpoint (2)]If $\sum\limits_{n=0}^\infty a_nx^n$ converges at the endpoint $x=R$ of its disk of convergence, then the series converges uniformly on $[0,R]$.
+\item[So-called second Abel theorem on power series]If a power series $\sum\limits_{n=0}^\infty c_n(z-z_0)^n$ converges at $\zeta\in\CC$, then it converges uniformly on the closed interval with endpoints $[z_0,\zeta]$.
+\item[Proposition 2.]If a power series $\sum\limits_{n=0}^\infty c_n(z-z_0)^n$ converges at $\zeta$, it converges uniformly on the closed interval $[z_0,\zeta]$ from $z_0$ to $\zeta$, and the sum of the series is continuous on that interval.
+\item[Abel summation]Abel's method of summing $\sum\limits_{n=0}^\infty c_n$ is to define the sum as
+    \mth{\sum_{n=0}^\infty c_n=\lim_{x\to1^-}\sum_{n=0}^\infty c_nx^n}
+    If the left-hand side exists, then it is consistent with the conventional case; if not, it may happen that the right-hand side exists while the left-hand side does not, and thus assign to the divergent series a new meaning.
+\item[Proposition 3.]Let $K\subset\CC$ be the convergence disk for $\sum\limits_{n=0}^\infty c_n(z-z_0)^n$. If $K$ contains more than just the point $z_0$, then the sum of the series $f(z)$ is differentiable inside $K$ and
+    \mth{f'(z)=\sum_{n=1}^\infty nc_n(z-z_0)^{n-1}}
+    Moreover, the function $f(z):K\to\CC$ can be integrated over any path $\gamma:[0,1]\to K$, and if $[0,1]\ni t\stackrel{\gamma}{\to}z(t)\in K,\,z(0)=z_0$, and $z(1)=z$, then
+    \mth{\int_\gamma f(z)\dz=\sum_{n=0}^\infty\frac{c_n}{n+1}(z-z_0)^{n+1}}
+\item[Tauber's theorem (1)]If $\sum\limits_{n=1}^\infty a_n=A(c,1)$ and $a_n=\Brk{\frac{1}{n}}$, then the series $\sum\limits_{n=1}^\infty a_n$ converges in the ordinary sense to the same sum.
+\item[Tauber's theorem (1$'$)]If the radius of convergence of $\sum\limits_{n=0}^\infty a_nx^n$ is $R=1$ and $\lim\limits_{x\to1^-}\sum\limits_{n=1}^\infty a_nx^n=A$, then
+    \mth{a_n=o\Brk{\frac{1}{n}}\implies\sum_{n=0}^\infty a_n=A}
+\item[Tauber's theorem (2)]If the radius of convergence of $\sum\limits_{n=0}^\infty a_nx^n$ is $R=1$ and $\lim\limits_{x\to1^-}\sum\limits_{n=1}^\infty a_nx^n=A$, then
+    \mth{a_n\geqs0\,(\forall n\in\ns{N})\implies\sum_{n=0}^\infty a_n=A}
+\item[Tauber's theorem (3)]Suppose $\sum\limits_{n=0}^\infty a_nx^n$ converges for $\abs{x}<1$ and $\lim\limits_{x\to1^-}\sum\limits_{n=0}^\infty a_nx^n=A$. If $\lim\limits_{n\to\infty}\frac{a_1+2a_2+\cdots+na_n}{n}=0$, then the series $\sum\limits_{n=0}^\infty a_n$ converges to $A$ in the ordinary sense.
+\item[Expansion into Taylor series]A sufficient condition for a $C^\infty(x_0-R,x_0+R)$ function $f$ to be Taylor expandable at $x_0$ is that its derivative of every order is uniformly bounded on $(x_0-R,x_0+R)$.
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Operations on Power Series}
+\begin{description}
+\item[Integral of a power series]A power series $f(x)=\sum\limits_{n=1}^\infty a_nx^n$ can be integrated over the interval from $0$ to $x$, where $0<\abs x<R$, and the integral is
+    \mth{\int_0^xf(x)\dx=a_0x+\frac{a_1}{2}x^2+\frac{a_2}{3}{x^3}+\cdots+\frac{a_{n-1}}{n}x^n+\cdots}
+\item[Derivative of a power series]A power series $f(x)=\sum\limits_{n=1}^\infty a_nx^n$ is differentiable inside its convergence disk, and the derivative is
+    \mth{f'(x)=\sum_{n=0}^\infty na_nx^{n-1}}
+\item[Product of power series]If $\sum\limits_{n=1}^\infty a_nx^n,\,\sum\limits_{n=1}^\infty b_nx^n$ both have convergence radius $R$, then for all $x\in(-R,R)$,
+    \mth{\Brk{\sum_{n=0}^\infty a_nx^n}\Brk{\sum_{n=0}^\infty b_nx^n}=\Brk{\sum_{n=0}^\infty c_nx^n}}
+    where $c_n=\sum\limits_{k=0}^na_kb_{n-k}$.
+\item[Substituting a power series into another one]If $\vphi(y)$ can be expanded into the power series on $(-\rho,\rho)$
+    \mth{\vphi(y)=\sump h_my^m}
+    while $y=f(x)$ can be expanded on $(-R,R)$ as follows
+    \mth{y=f(x)=\sump a_nx^n}
+    in such a way that $\abs{a_0}=\abs{f(0)}<\rho$, then for sufficiently small $x,\,\abs{f(x)}<\rho$, therefore the composite $\vphi(f(x))$ exists and can be expanded into a power series.
+    \sprf{See [Fichtenholz, pp.408, term 446].}
+\item[Inverse of a power series]If $f(x)$ can be expanded into a power series $\sumn a_nx^n$ in a neighborhood of $x=0$ and $a_0\neq0$, then $\frac{1}{f(x)}$ can also be expanded into a power series near $x=0$.
+\end{description}
+\end{subsection}
+
+\begin{subsection}{Taylor/Maclaurin Series}
+\begin{description}
+\item[Sufficient condition for a function to be Taylor expandable]If all derivatives of $f$ are uniformly bounded on $(x_0-\delta,x_0+\delta)$, that is,
+    \mth{\exists M\in\RR,\,\forall n\in\ns{N},\,\forall x\in(x_0-\delta,x_0+\delta),\,\abs{f^{(n)}(x)}\leqs M}
+    then $f$ can be expanded into its Taylor series on $(x_0-\delta,x_0+\delta)$.
+\end{description}
+\end{subsection}
+\end{section}
+
+\begin{section}{Sum of Divergent Series}
+\begin{subsection}{Abel}
+\end{subsection}
+\end{section}
+
+\begin{section}{Fourier Series}
+\begin{subsection}{Fourier Series in General}
+\begin{description}
+\item[Orthogonal complement]Let $\{l_k\}$ be a finite or countable orthogonal system in $X$, and suppose the Fourier series $x_l$ of $x$ converges to $x_l\in X$. Then $h=x-x_l$ is orthogonal to $x_l$, to the entire space generated by $\{l_k\}$, and to the closure of that.
+\item[Length of orthogonal complement]Since $x=h+x_l$ is a decomposition into orthogonal vectors, their lengths satisfy:
+    \mtha{\norm{x}^2&=&\norm{h}^2+\norm{x_l}^2\\
+        &=&\norm{h}^2+\sum_k\frac{\abs{\bkt{x,l_k}}^2}{\bkt{l_k,l_k}}}
+    Also,
+    \mtha{\norm{x-x_l}^2&=&\norm{x}^2-\norm{x_l}^2\\
+        &=&\norm{x}^2-\sum_k\frac{\abs{\bkt{x,l_k}}^2}{\bkt{l_k,l_k}}\\
+        &\geqs&0}
+\item[Bessel's inequality]$\norm{x}^2\geqs\norm{x_l}^2$ is the \emph{Bessel's equality}. It can be written in terms of the Fourier coefficients.
+    \mtha{\norm{x}^2&\geqs&\sum_k\frac{\abs{\bkt{x,l_k}}^2}{\bkt{l_k,l_k}}\quad\ttt{(Orthogonal system)}\\
+        \norm{x}^2&\geqs&\sum_k\abs{\bkt{x,e_k}}^2\quad\ttt{(Orthonormal system)}}
+
+\item[Extremal property]The Fourier series $x_l$ (if convergent) of a vector $x$ in an orthonormal system $\{e_k\}$ give the best approximation in $L=\dbk{\{e_k\}}$.
+    \[\forall y\in L,\,\norm{x-x_l}\leqs\norm{x-y}\]
+    and
+    \[\norm{x-x_l}=\norm{x-y}\iff y=x_l\]
+\item[Parseval's equality]For $x\in X$ and an orthogonal system $\{l_k\}$ in $X$, the equality
+    \[\norm{x}^2=\sum_k\frac{\abs{\bkt{x,l_k}}^2}{\bkt{l_k,l_k}}\]
+    is called \tf{Parseval's equality}. It holds if the Fourier expansion of $x$ equals itself.
+\item[Convergence conditions]In a complete normed vector space $X$, given an orthogonal system $\{l_k\}$, the following are equivalent:
+    \enu{
+        \item $x$ can be approximated with arbitrary accuracy by vectors in $\{l_k\}$.
+        \item Fourier expansion holds for $x$ with respect ro $\{l_k\}$.
+        \item Parseval's equality holds for $x$ and $\{l_k\}$.
+    }
+\ntg{In other words, the approximating sequence converges to its Fourier expansion.}
+\item[Convergence in a complete space]The Fourier series of any vector is convergent if the space is complete.
+\item[Completeness conditions]Let there be an inner product space $X$ and $\{l_k\}$ a finite or countable orthogonal system in $X$. The following are equivalent.
+    \enu{
+        \item $\{l_k\}$ is complete with respect to $E\subset X$.
+        \item Every $x\in E\subset X$ can be approximated with arbitrary accuracy by finite linear combinations of $\{l_k\}$.
+        \item Fourier expansion holds for all $x\in E\subset X$.
+            \[x=\sum_k\frac{\bkt{x,l_k}}{\bkt{l_k,l_k}}l_k\]
+        \item Parseval's equality holds for all $x\in E\subset X$.
+            \[\norm{x}^2=\sum_k\frac{\abs{\bkt{x,l_k}}^2}{\bkt{l_k,l_k}}\]
+    }
+\item[Properties of a complete system]The following are true.
+    \enu{
+        \item A vector that is orthogonal to a complete system has norm $0$.
+        \item Expansion into a complete system is unique, that is, if $x,y$ has the same Fourier series with respect to a complete system, then $\norm{x-y}=0$.
+    }
+\item[Trigonometric system is complete]The trigonometric system
+    \[\left\{\frac{1}{\sqrt{2\pi}},\frac{\cos x}{\sqrt{\pi}},\frac{\sin x}{\sqrt{\pi}},\cdots,\frac{\cos kx}{\sqrt{\pi}},\frac{\sin kx}{\sqrt{\pi}},\cdots\right\}\]
+    is complete in the space of all ISI\footnote{Integrable and square-integrable, which will be denoted by $\mcl{R}_2$} functions on $[-\pi,\pi]$. That is, every ISI function on $[-\pi,\pi]$ can be approximated with arbitrary accuracy in the sense of the norm
+    \[\norm{f}=\sqrt{\int_{-\pi}^\pi f^2(x)\dx}\]
+    Moreover, by the extremal property of the Fourier coefficients, the approximating sequence can be chosen exactly as the partial sums of its Fourier series.
+\end{description}
+\end{subsection}
+\begin{subsection}{Trigonometric Series}
+In this part of the subsection, $f$ is assumed to be IAI\footnote{Integrable and absolutely integrable} on $[-\pi,\pi]$ and has period $2\pi$ unless otherwise specified, and $T(f)$ denotes the trigonometric series of $f$ (the partial sum is denoted $T_n(f)$).
+\begin{description}
+\item[Properties of coefficients]The following are true.
+    \enu{
+        \item $\lim\limits_{n\to\infty}a_n(f)=\lim\limits_{n\to\infty}b_n(f)=0$
+        \item If $f'$ is IAI on $[-\pi,\pi],\,f(-\pi)=f(\pi)$, then
+            \[a_n=o\Brk{\frac{1}{n}},\,b_n=o\Brk{\frac{1}{n}}\]
+        \item If $f$ is monotonic on $(-\pi,\pi)$, then
+            \[a_n=O\Brk{\frac{1}{n}},\,b_n=O\Brk{\frac{1}{n}}\]
+        \item $f(x+\pi)=f(x)\implies a_{2n-1}=b_{2n-1}=0\\f(x+\pi)=-f(x)\implies a_{2n}=b_{2n}=0$
+        \item $f$ is monotonically increasing on $(0,2\pi)\implies b_n\geqs0$
+        \item $f$ is monotonically decreasing on $(0,2\pi)\implies b_n\leqs0$
+        \item $f$ is bounded, has period $2\pi$, and satisfies the Lipschitz condition of order $\alpha$, that is,
+            \[\abs{f(x)-f(y)}\leqs L\abs{x-y}^\alpha\]
+            then
+            \[a_n=O\Brk{\frac{1}{n^\alpha}},\quad b_n=O\Brk{\frac{1}{n^\alpha}}\]
+    }
+\item[Localization]The convergence of the Fourier series of $f$ at $x$ is only determined by the behavior of $f$ near $x$.
+\item[Dini's test]\[\exists\,s\in\RR,\,\exists\,\delta>0,\,\frac{f(x+t)+f(x-t)-2s}{t}\ttt{ is IAI on }[0,\delta]\implies T(f)(x)=s\]
+\item[Test of convergence by Lipschitz]\[\exists\,\alpha\in(0,1],\,f\in{\rm Lip}^\alpha(x)\implies T(f)(x)=\frac{f(x^+)+f(x^-)}{2}\]
+\ntg{$f\in{\rm Lip}^\alpha(x)$ means $f$ satisfies the Lipschitz condition of order $\alpha$ near $x$.}
+\item[Test of convergence by derivative]\[\exists\,\lim_{t\to0^+}\frac{f(x+t)-f(x^+)}{t},\,\exists\,\lim_{t\to0^+}\frac{f(x-t)-f(x^-)}{-t}\]
+    \[\implies T(f)(x)=\frac{f(x^+)+f(x^-)}{2}\]
+\item[Test of convergence by piecewise differentiability]\[f \ttt{ is piecewise differentiable on }[-\pi,\pi]\implies T(f)(x)=\frac{f(x^+)+f(x^-)}{2}\]
+\item[Fej\'er's theorem]\[\exists\,f(x^-),\,\exists\,f(x^+)\implies T(f)(x)\xlongequal{\ttt{Ces\`aro}}\frac{f(x^+)+f(x^-)}{2}\]
+\item[Corollary]\[\exists\,f(x^-),\,\exists\,f(x^+),\,\exists\,T(f)(x)\implies T(f)(x)=\frac{f(x^+)+f(x^-)}{2}\]
+\item[Fej\'er's theorem]\[f\in C(\RR),\ f\ttt{ has period }2\pi\implies\forall x\in\RR,\,T_n(f)(x)\mathop{\rightrightarrows}\limits^{\ttt{Ces\`aro}}f(x)\]
+\item[Weierstrass's theorem]$f\in C[-\pi,\pi],\,f(-\pi,\pi)\implies f$ can be uniformly approximated by trigonometric polynomials.
+\end{description}
+\ \\\\
+In the following part of this subsection $f$ is assumed to be ISI on $[-\pi,\pi]$.
+\begin{description}
+\item[Trigonometric system is complete]The trigonometric system
+    \[\left\{\frac{1}{\sqrt{2\pi}},\frac{\cos x}{\sqrt{\pi}},\frac{\sin x}{\sqrt{\pi}},\cdots,\frac{\cos kx}{\sqrt{\pi}},\frac{\sin kx}{\sqrt{\pi}},\cdots\right\}\]
+    is complete in the space of all ISI functions on $[-\pi,\pi]$. That is, every ISI function on $[-\pi,\pi]$ can be approximated with arbitrary accuracy in the sense of the norm
+    \[\norm{f}=\sqrt{\int_{-\pi}^\pi f^2(x)\dx}\]
+    Moreover, by the extremal property of the Fourier coefficients, the approximating sequence can be chosen exactly as the partial sums of its Fourier series.
+\item[Coefficients]If $f$ has the Fourier series
+    \[T(f)(x)=\frac{a_0}{2}+\sum_{k=1}^\infty(a_k\cos kx+b_k\sin kx)\]
+    then the Fourier coefficients with respect to the system
+    \[\left\{\frac{1}{\sqrt{2\pi}},\frac{\cos x}{\sqrt{\pi}},\frac{\sin x}{\sqrt{\pi}},\cdots,\frac{\cos kx}{\sqrt{\pi}},\frac{\sin kx}{\sqrt{\pi}},\cdots\right\}\]
+    is
+    \mtha{c_0&=&\frac{\sqrt{\pi}a_0}{\sqrt{2}}\\
+        c_{2k-1}&=&\sqrt{\pi}a_k\\
+        c_{2k}&=&\sqrt{\pi}b_k}
+\item[Convergence of Fourier series]If $f\in\mcl R_2[-\pi,\pi]$,then the Fourier series of $f$ converges to $f$ in the sense of the norm $\inprod{\cdot,\cdot}=\int_{-\pi}^\pi(\cdot,\cdot)\dx$.
+\item[Bessel's inequality]If $f\in\mcl R_2[-\pi,\pi]$ has the Fourier series $T(f)(x)=\frac{a_0}{2}+\sum_{k=1}^\infty(a_k\cos kx+b_k\sin kx)$, then Bessel's inequality gives
+    \[\int_{-\pi}^\pi f^2(x)\dx\geqs\sum_{k=0}^{2n} c_k^2=\pi\Brk{\frac{a_0}{2}+\sum_{k=1}^n(a_k^2+b_k^2)}\]
+\item[Parseval's equality]If $f\in\mcl R_2[-\pi,\pi]$ has the Fourier series $T(f)(x)=\frac{a_0}{2}+\sum_{k=1}^\infty(a_k\cos kx+b_k\sin kx)$, then Parseval's equality gives
+    \[\int_{-\pi}^\pi f^2(x)\dx=\sum_{k=0}^\infty c_k^2=\pi\Brk{\frac{a_0}{2}+\sum_{k=1}^\infty(a_k^2+b_k^2)}\]
+\item[Parseval's equality of an inner product]If $f,g\in\mcl R_2[-\pi,\pi]$ have the Fourier series $T(f)(x)=\frac{a_0}{2}+\sum_{k=1}^\infty(a_k\cos kx+b_k\sin kx),\ T(g)(x)=\frac{\alpha_0}{2}+\sum_{k=1}^\infty(\alpha_k\cos kx+\beta_k\sin kx)$ respectively, then the Parseval's equality for their inner product is:
+    \[\int_{-\pi}^\pi f(x)g(x)\dx=\pi\Brk{\frac{a_0\alpha_0}{2}+\sum_{k=1}^\infty((a_k+\alpha_k)^2+(b_k+\beta_k)^2)}\]
+\item[Termwise integration]If $f\in\mcl R_2[-\pi,\pi]$ has the Fourier series
+    \[f(x)\sim\frac{a_0}{2}+\sum_{k=1}^\infty(a_k\cos kx+b_k\sin kx)\]
+    then the integral of $f$ over $[a,b]\subset[-\pi,\pi]$ is
+    \[\int_a^bf(x)\dx=\int_a^b\frac{a_0}{2}\dx+\sum_{k=1}^\infty\int_a^b(a_k\cos kx+b_k\sin kx)\dx\]
+\end{description}
+\end{subsection}
+
+\begin{subsection}{The Fourier Transform}
+In this subsection, $f$ is assumed to be IAI on $\RR$.
+\begin{description}
+\item[Coefficients]If $f$ is IAI on $\RR$, then the coefficients
+    \[a(u)=\frac{1}{\pi}\int_{-\infty}^{+\infty}f(t)\cos ut\ud t,\quad b(u)=\frac{1}{\pi}\int_{-\infty}^{+\infty}f(t)\sin ut\ud t\]
+    that appear in the Fourier integral are uniformly continuous on $(-\infty,+\infty)$.
+\item[The partial Fourier integral (1)]The partial Fourier integral of $f$ is
+    \mtha{S(\lambda,x)&=&\int_0^\lambda(a(u)\cos ux+b(u)\sin ux)\ud u\\
+        &=&\frac{1}{\pi}\int_0^\lambda\ud u\Brk{\cos ux\int_{-\infty}^{+\infty}f(t)\cos ut\ud t+\sin ux\int_{-\infty}^{+\infty}f(t)\sin ut\ud t}\\
+        &=&\frac{1}{\pi}\int_0^\lambda\ud u\int_{-\infty}^{+\infty}f(t)(\cos ux\cos ut+\sin ux\sin ut)\ud t\\
+        &=&\frac{1}{\pi}\int_0^\lambda\ud u\int_{-\infty}^{+\infty}f(t)\cos(u(x-t))\ud t}
+\item[The partial Fourier integral (2)]Let $f$ be IAI on $\RR$, then the partial Fourier integral above may be integrated in a different order, which then gives:
+    \mtha{S(\lambda,x)&=&\frac{1}{\pi}\int_0^\lambda\ud u\int_{-\infty}^{+\infty}f(t)\cos(u(x-t))\ud t\\
+        &=&\frac{1}{\pi}\int_{-\infty}^{+\infty}f(t)\ud t\int_0^\lambda\cos(u(x-t))\ud u\\
+        &=&\frac{1}{\pi}\int_0^{+\infty}(f(x+t)+f(x-t))\frac{\sin\lambda t}{t}\ud t}
+\item[Localization theorem]The convergence of the Fourier integral $S(+\infty,x)$ of $f$ is determined only by the local behavior of $f$ near $x$.
+\item[Dini's theorem]Let $f$ be IAI over $\RR$. If there exists $s$ for a fixed $x$, such that $\frac{f(x+t)+f(x-t)-2s}{t}$ is IAI on some interval $[0,\delta]$, then the Fourier integral of $f$ converges to $s$ at $x$.
+\item[Sufficient condition for convergence]Let $f$ be IAI on $\RR$ and have generalized left and right derivatives at $x$. Then the Fourier integral of $f$ at $x$ converges to $\frac{f(x^+)+f(x^-)}{2}$
+\item[Fourier cosine integral]Suppose the Fourier integral of $f$ converges to $f$ and let $f$ be even. Then the Fourier integral gives:
+    \[f(x)=\frac{2}{\pi}\int_0^{+\infty}\cos ux\ud u\int_0^{+\infty}f(t)\cos ut\ud t\]
+\item[Fourier cosine transform]If we write the formula above as
+    \[f(x)=\sqrt{\frac{2}{\pi}}\int_0^{+\infty}\cos ux\ud u\Brk{\sqrt{\frac{2}{\pi}}\int_0^{+\infty}f(t)\cos ut\ud t}\]
+    then by setting $g(u)=\sqrt{\frac{2}{\pi}}\int_0^{+\infty}f(t)\cos ut\ud t$ it is obtained that
+    \mtha{f(x)&=&\sqrt{\frac{2}{\pi}}\int_0^{+\infty}g(u)\cos ux\ud u\\
+        g(u)&=&\sqrt{\frac{2}{\pi}}\int_0^{+\infty}f(t)\cos ut\ud t}
+    We say $f,g$ are the \tf{Fourier cosine transforms} of each other.
+\item[Fourier sine integral]
+    \[f(x)=\frac{2}{\pi}\int_0^{+\infty}\sin ux\ud u\int_0^{+\infty}f(t)\sin ut\ud t\]
+\item[Fourier sine transform]
+    \[f(x)=\sqrt{\frac{2}{\pi}}\int_0^{+\infty}\sin ux\ud u\Brk{\sqrt{\frac{2}{\pi}}\int_0^{+\infty}f(t)\sin ut\ud t}\]
+    \mtha{f(x)&=&\sqrt{\frac{2}{\pi}}\int_0^{+\infty}g(u)\sin ux\ud u\\
+        g(u)&=&\sqrt{\frac{2}{\pi}}\int_0^{+\infty}f(t)\sin ut\ud t}
+    We say $f,g$ are the \tf{Fourier sine transforms} of each other.
+\end{description}
+\end{subsection}
+\end{section}
+\end{part}
+
+\begin{part}{Spaces}
+\begin{section}{Continuous Multilinear Transformations $\mcl{L}$}
+Throughout this section, $X_1,\cdots,X_n,Y$ will be normed vector spaces and $\mcl{L}(X_1,\cdots,X_n;Y)$ will denote the space of all \emph{continuous multilinear transformations} from $X_1\x\cdots\x X_n$ to $Y$.
+\begin{subsection}{Multilinear Transformations}
+\begin{description}
+\item[Continuity]The following are equivalent for a multilinear mapping $A:\inds{X}{n}{\x}\to Y$.
+    \enu{
+        \item $A\in\mcl{L}(X_1,\cdots,X_n;Y)$
+        \item $\norm{A}<+\infty$
+        \item $A$ is bounded.
+        \item $A$ is continuous at $(0,\cdots,0)\in\inds{X}{n}{\x}$.
+    }
+\item[$\mcl{L}$ as a normed space]The space $\mcl{L}(X_1,\cdots,X_n;Y)$ is a normed vector space.
+\item[Norm of a composite]Let $X,\,Y,\,Z$ be normed spaces and $A\in\mcl L(X;Y),\,B\in\mcl L(X;Z)$, then \[\norm{AB}\leqs\norm{A}\cdot\norm{B}\]
+\item[Completeness]$Y$ is complete $\implies\mcl L(X;Y)$ is complete.
+\end{description}
+\end{subsection}
+\begin{subsection}{Linear Transformations on $\RR^n$}
+In this subsection let $\mcl L=\mcl L(\RR^n;\RR^n)$.
+\begin{description}
+\item[Continuity]The following are true for a linear transformation $A:\RR^n\to\RR^n$.
+    \enu{
+        \item $A\in\mcl L$
+        \item $\norm{A}<+\infty$
+        \item $A$ is bounded.
+    }
+\item[Dimension]$\dim\mcl L=n^2$
+\item[Completeness]The space $\mcl{L}$ is a complete normed vector space.
+\item[Properties of the norm]The following are true for $A,\,B\in\mcl L$.
+    \enu{
+        \item $\norm{\lambda A}=\abs{\lambda}\norm{A}$
+        \item $\norm{A+B}\leqs\norm{A}+\norm{B}$
+        \item $\norm{AB}\leqs\norm{A}\norm{B}$
+        \item $\max\limits_{1\leqs j\leqs n}\sum\limits_{j=1}^na_{ij}^2\leqs\norm{A}^2\leqs\sum\limits_{1\leqs i,j\leqs n}a_{ij}^2$
+    }
+\item[Norm of a composite]Let $X,\,Y,\,Z$ be normed spaces and $A\in\mcl L(X;Y),\,B\in\mcl L(X;Z)$, then \[\norm{AB}\leqs\norm{A}\cdot\norm{B}\]
+\end{description}
+\end{subsection}
+\end{section}
+\end{part}
+\end{document}
