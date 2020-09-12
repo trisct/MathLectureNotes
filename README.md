@@ -15,6 +15,8 @@ This repository contains the tex version of notes taken for various math courses
 		- AbstractAlgebraII.pdf
 		- AlgebraDefsAndThms.pdf
 		- AlgebraExamples.pdf
+	- LinearAlgebra
+		- LinearAlgebra.pdf
 - Alphabet
 	- Alphabet.pdf
 - Analysis
