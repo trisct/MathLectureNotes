@@ -1,0 +1,427 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{geometry,layout,amssymb,amsthm,amsmath,mathrsfs,graphicx,centernot,textcomp,galois,extarrows,bbm,dsfont,makeidx,empheq,xcolor,tikz-cd,tikz,stmaryrd}
+\usepackage[all]{xy}
+
+\newcounter{ctone}
+
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{prp}{Proposition}[section]
+\newtheorem{theom}{Theorem}[section]
+\newtheorem*{theom*}{Theorem}
+\newtheorem{coro}{Corollary}[section]
+
+\newenvironment{hints}{\textbf{Hint}: }{}
+
+\theoremstyle{definition}
+\newtheorem{eg}{Example}[section]
+\newtheorem{ct}{\textcolor{cyan}{Counterexample}}[section]
+\newtheorem*{pf}{\blue{Proof}}
+\newtheorem{question}{Q}[section]
+\newtheorem{dfn}{Definition}[section]
+\newtheorem{probl}{Problem}[section]
+\newtheorem{nt}{\cg{Note}}[section]
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}[section]
+
+\newcommand*\widefbox[1]{\fbox{\vspace{2em}\hspace{2em}#1\hspace{2em}}}
+\setlength\fboxsep{0.2cm}
+
+\newcommand{\tim}{$\implies$}
+\newcommand{\rtl}{\udl{``$\Leftarrow$''}}
+\newcommand{\ltr}{\udl{``$\Rightarrow$''}}
+\newcommand{\ril}{\udl{``$\supset$''}}
+\newcommand{\lir}{\udl{``$\subset$''}}
+\newcommand{\tick}{\textcolor{red}{\checkmark}}
+\newcommand{\bs}{\backslash}
+\newcommand{\udots}{\mathinner{\mskip 1mu\raise 1pt\vbox{\kern 7pt\hbox{.}}
+\mskip 2mu\raise 4pt\hbox{.}\mskip 2mu\raise 7pt\hbox{.}\mskip 1mu}}
+\newcommand{\wot}{\backslash}
+\newcommand{\geqs}{\geqslant}
+\newcommand{\leqs}{\leqslant}
+\newcommand{\Var}{{\rm Var}}
+\newcommand{\sdd}{\sigma}
+\newcommand{\esssup}{{\rm esssup}}
+\newcommand{\gD}{\got D}
+\newcommand{\ga}{\got a}
+\newcommand{\gb}{\got b}
+\newcommand{\gc}{\got c}
+\newcommand{\gp}{\got p}
+\newcommand{\gq}{\got q}
+\newcommand{\gm}{\got m}
+\newcommand{\lst}{L^{s,t}}
+\newcommand{\DD}{\mathbb{D}}
+\newcommand{\EE}{\mathbb{E}}
+\newcommand{\FF}{\mathbb{F}}
+\newcommand{\HH}{\mathbb{H}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\rsa}{\sigma(f;\pi,\xi)}
+\newcommand{\wlg}{{\rm w.l.o.g.}}
+\newcommand{\alg}{{\rm alg}}
+\newcommand{\sep}{{\rm sep}}
+\newcommand{\spn}{{\rm span}}
+\newcommand{\lcm}{{\rm lcm}}
+\newcommand{\rank}{{\rm rank}}
+\newcommand{\nul}{{\rm null}}
+\newcommand{\disc}{{\rm disc}}
+\newcommand{\im}{{\rm Im}}
+\newcommand{\coker}{{\rm Coker}}
+\newcommand{\coim}{{\rm Coim}}
+\newcommand{\ud}{{\rm d}}
+\newcommand{\Log}{{\rm Log}}
+\newcommand{\lub}{{\rm lub}}
+\newcommand{\glb}{{\rm glb}}
+\newcommand{\loc}{{\rm loc}}
+\newcommand{\supp}{{\rm supp}}
+\newcommand{\dx}{\ud x}
+\newcommand{\dy}{\ud y}
+\newcommand{\dz}{\ud z}
+\newcommand{\dbz}{\ud\orl z}
+\newcommand{\bz}{\bar z}
+\newcommand{\bfbz}{\bar f_{\bar z}}
+\newcommand{\fbz}{f_{\bar z}}
+\newcommand{\bfz}{\bar f_z}
+\newcommand{\du}{\ud u}
+\newcommand{\dbu}{\ud\bar u}
+\newcommand{\bu}{\bar u}
+\newcommand{\bubz}{\bar u_{\bar z}}
+\newcommand{\ubz}{u_{\bar z}}
+\newcommand{\buz}{\bar u_z}
+\newcommand{\dw}{\ud w}
+\newcommand{\dbw}{\ud\bar w}
+\newcommand{\bwbz}{\bar w_{\bar z}}
+\newcommand{\wbz}{w_{\bar z}}
+\newcommand{\bwz}{\bar w_z}
+\newcommand{\dv}{\ud v}
+\newcommand{\dbv}{\ud\bar v}
+\newcommand{\bvbz}{\bar v_{\bar z}}
+\newcommand{\vbz}{v_{\bar z}}
+\newcommand{\bvz}{\bar v_z}
+\newcommand{\dmu}{\ud\mu}
+\newcommand{\x}{\times}                     %乘号
+\newcommand{\ox}{\otimes}
+\newcommand{\op}{\oplus}
+\newcommand{\p}{$\prime$}
+\newcommand{\fctr}{\Rightarrow}
+\newcommand{\unito}{\rightrightarrows}
+\newcommand{\bwto}{\rightharpoonup}
+\newcommand{\wto}{\rightharpoondown}
+\newcommand{\lbint}{\int\!\!\!\int}      %二重积分号
+\newcommand{\bint}{\int\!\!\!\!\int}      %二重积分号
+\newcommand{\tint}{\int\!\!\!\!\int\!\!\!\!\int}      %三重积分号
+\newcommand{\apr}{\approx}
+\newcommand{\prdn}{\prod\limits_{n=1}^\infty}
+\newcommand{\sumn}{\sum\limits_{n=1}^\infty}
+\newcommand{\sump}{\sum\limits_{n=0}^\infty}
+\newcommand{\limn}{\lim\limits_{n\to\infty}}
+\newcommand{\limx}{\lim\limits_{x\to+\infty}}
+\newcommand{\operp}{\stackrel{\perp}{\oplus}}
+\newcommand{\const}{{\rm const}}
+\newcommand{\codim}{{\rm codim}}
+\newcommand{\sgn}{{\rm sgn}}
+\newcommand{\ann}{{\rm Ann}}
+\newcommand{\chr}{{\rm \,char\,}}
+\newcommand{\tr}{{\rm tr}}
+\newcommand{\sym}{{\rm Sym}}
+\newcommand{\Alt}{{\rm Alt}}
+\newcommand{\drh}[1]{H^{#1}_{\rm dR}}
+\newcommand{\centr}{{\rm Centr}}
+\newcommand{\conv}{{\rm conv}}
+\newcommand{\Sp}{{\rm Sp}}              %symplectic
+\newcommand{\id}{{\rm id}}
+\newcommand{\Obj}{\mf{Obj}}
+\newcommand{\Mor}{\mf{Mor}}
+\newcommand{\Fr}{{\rm Fr}}
+\newcommand{\Perm}{{\rm Perm}}
+\newcommand{\Hom}{{\rm Hom}}
+\newcommand{\Emb}[2]{{\rm Hom}_{#2}(#1,\bar{#2})}
+\newcommand{\Aut}{{\rm Aut}}
+\newcommand{\Gal}{{\rm Gal}}
+\newcommand{\Inn}{{\rm Inn}}
+\newcommand{\End}{{\rm End}}
+\newcommand{\PSL}{{\rm PSL}}
+\newcommand{\Area}{{\rm Area}}
+\newcommand{\Lip}{{\rm Lip}}
+\newcommand{\Vol}{{\rm Vol}}
+\newcommand{\re}{{\rm Re}}
+\newcommand{\diag}{{\rm diag}}
+\newcommand{\grad}{{\rm grad\,}}
+\newcommand{\dive}{{\rm div\,}}
+\newcommand{\rot}{{\rm rot\,}}
+\newcommand{\curl}{{\rm curl\,}}
+\newcommand{\free}{{\rm free}}
+\newcommand{\tor}{{\rm tor}}
+\newcommand{\rad}{{\rm rad}}
+\newcommand{\nilrad}{{\rm nilrad}}
+\newcommand{\ord}{{\rm ord}}
+\newcommand{\irr}{{\rm Irr}}
+\newcommand{\cl}{{\rm cl}}
+\newcommand{\Cl}{{\rm Cl}}
+\newcommand{\fix}{{\rm fix}}
+\newcommand{\boun}{\partial}
+\newcommand{\into}{\hookrightarrow}
+\newcommand{\varn}{\varnothing}
+\newcommand{\vare}{\varepsilon}
+\newcommand{\vphi}{\varphi}
+\newcommand{\vrho}{\varrho}
+\newcommand{\diam}{{\rm diam}}
+\newcommand{\vect}{{\rm Vect}}
+\newcommand{\isom}{\stackrel{\cong}{\longrightarrow}}
+\newcommand{\dfas}{\triangleq}
+\newcommand{\st}{{\rm\quad s.t.\quad}}
+\newcommand{\lapla}{\Delta}
+\newcommand{\strinc}{\subset\subset}
+
+\makeatletter
+\newcommand{\lambdabar}{{\mathchoice
+  {\smash@bar\textfont\displaystyle{0.25}{1.2}\lambda}
+  {\smash@bar\textfont\textstyle{0.25}{1.2}\lambda}
+  {\smash@bar\scriptfont\scriptstyle{0.25}{1.2}\lambda}
+  {\smash@bar\scriptscriptfont\scriptscriptstyle{0.25}{1.2}\lambda}}}
+\newcommand{\smash@bar}[4]{%
+  \smash{\rlap{\raisebox{-#3\fontdimen5#10}{$\m@th#2\mkern#4mu\mathchar'26$}}}}
+\makeatother
+
+
+\newcommand{\res}[2]{\left.#1\right|_{#2}}
+\newcommand{\rsb}[3]{\sigma(#1;#2,#3)}      %Riemann sum with arguments
+\newcommand{\derv}[2]{\frac{\ud#1}{\ud#2}}
+\newcommand{\parf}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\secpf}[3]{\frac{\partial^2 #1}{\partial #2\partial #3}}
+\newcommand{\comb}[2]{\binom{#1}{#2}}       %组合数
+\newcommand{\norm}[1]{\left\lVert #1\right\rVert}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\brc}[1]{\left\{#1\right\}}
+\newcommand{\udbrc}[2]{\underbrace{#1}_{#2}}
+\newcommand{\brk}[1]{\left\langle#1\right\rangle}
+\newcommand{\prn}[1]{\left(#1\right)}
+\newcommand{\sqb}[1]{\left\lbrack#1\right\rbrack}
+\newcommand{\dbk}[1]{\langle\!\langle#1\rangle\!\rangle}
+\newcommand{\inprod}[1]{\langle#1\rangle}
+\newcommand{\itr}[1]{#1^\circ}           %内部,interior
+\newcommand{\cosp}[1]{\prescript}
+\newcommand{\coo}[1]{\prescript{\circ}{}{#1}}
+\newcommand{\cmp}[1]{#1^c}               %补集,complement
+\newcommand{\cnts}[3]{#1#3\cdots#3#2}
+\newcommand{\inds}[3]{#1_{1}#3\cdots#3#1_{#2}}
+\newcommand{\dindx}[4]{#1{#2}#4\cdots#4#1{#3}}
+\newcommand{\dinds}[4]{#1_{#2}#4\cdots#4#1_{#3}}
+\newcommand{\vct}[1]{\overrightarrow{#1}}
+\newcommand{\simlr}[2]{#2^{-1}#1#2}     %相似
+\newcommand{\congt}[2]{\ts{#2}#1#2}     %相合
+\newcommand{\ccong}[2]{\cts{#2}#1#2}    %共轭相合
+\newcommand{\rcong}[2]{\ts{#2}#1\orl{#2}}    %右共轭相合
+\newcommand{\ts}[1]{#1^{\rm T}}
+\newcommand{\cts}[1]{\orl{#1}^{\rm T}}   %共轭转置
+\newcommand{\bss}[2]{\inds{#1}{#2}{,}}
+\newcommand{\unitob}[1]{\mathop{\rightrightarrows}\limits_{#1}}
+\newcommand{\limb}[1]{\lim\limits_{#1}}
+\newcommand{\limp}[2]{\lim\limits_{#1\to#2}}
+%\newcommand{\mapn}[5]{\arr{{ccrcl}#1&:&#2&\to&#3\\&&#4&\mapsto&#5}}
+\newcommand{\mapn}[5]{\mtha{#1:#2&\to&#3\\#4&\mapsto&#5}}
+\newcommand{\map}[4]{\mtha{#1&\to&#2\\#3&\mapsto&#4}}
+\newcommand{\mapgal}[6]{\arr{{rcl}#1&\leftrightarrow&#2\\#3&\mapsto&#4\\#6&\mapsfrom&#5}}
+\newcommand{\mapgalm}[6]{\mtha{#1&\leftrightarrow&#2\\#3&\mapsto&#4\\#6&\mapsfrom&#5}}
+\newcommand{\mapisom}[4]{\mtha{#1&\isom&#2\\#3&\mapsto&#4}}
+
+\newcommand{\mth}[1]{\begin{displaymath}#1\end{displaymath}}
+\newcommand{\mtha}[1]{\begin{eqnarray*}#1\end{eqnarray*}}
+\newcommand{\arr}[1]{\begin{array}#1\end{array}}
+\newcommand{\lem}[1]{\begin{lemma}#1\end{lemma}}
+\newcommand{\lemn}[1]{\begin{lemma*}#1\end{lemma*}}
+\newcommand{\prf}[1]{\begin{proof}[Proof]#1\end{proof}}
+\newcommand{\prfn}[1]{\begin{proof}#1\end{proof}}
+\newcommand{\hnt}[1]{\begin{hints}#1\end{hints}}
+\newcommand{\sol}[1]{\begin{proof}[Solution]#1\end{proof}}
+\newcommand{\ans}[1]{\begin{proof}[Answer]#1\end{proof}}
+\newcommand{\ques}[1]{\begin{question}#1\end{question}}
+\newcommand{\sprf}[1]{\begin{pf}\cb{#1}\end{pf}}
+\newcommand{\df}[1]{\begin{dfn}#1\end{dfn}}
+\newcommand{\ntg}[1]{\begin{nt}\cg{#1}\end{nt}}
+\newcommand{\mat}[1]{\begin{matrix}#1\end{matrix}}
+\newcommand{\matp}[1]{\prn{\begin{matrix}#1\end{matrix}}}
+\newcommand{\cd}[1]{\begin{tikzcd}[ampersand replacement=\&]#1\end{tikzcd}}
+\newcommand{\tkpic}[1]{\begin{center}\begin{tikzpicture}#1\end{tikzpicture}\end{center}}
+\newcommand{\itm}[1]{\begin{itemize}#1\end{itemize}}
+\newcommand{\enu}[1]{\begin{enumerate}#1\end{enumerate}}
+\newcommand{\desc}[1]{\begin{description}#1\end{description}}
+\newcommand{\tmth}[1]{\begin{displaymath}\ttt{#1}\end{displaymath}}
+\newcommand{\thm}[1]{\begin{theom}#1\end{theom}}
+\newcommand{\thmn}[1]{\begin{theom*}#1\end{theom*}}
+\newcommand{\emp}[1]{\begin{eg}#1\end{eg}}
+\newcommand{\rmk}[1]{\begin{remark}#1\end{remark}}
+\newcommand{\pbl}[1]{\begin{probl}#1\end{probl}}
+\newcommand{\prop}[1]{\begin{prp}#1\end{prp}}
+\newcommand{\cor}[1]{\begin{coro}#1\end{coro}}
+\newcommand{\eqn}[1]{\begin{equation}#1\end{equation}}
+\newcommand{\eqna}[1]{\begin{eqnarray}#1\end{eqnarray}}
+
+\newcommand{\clr}[1]{\textcolor{red}{#1}}   %红色
+\newcommand{\cb}[1]{\textcolor{blue}{#1}}   %蓝色
+\newcommand{\cg}[1]{\textcolor{magenta}{#1}}%紫色
+\newcommand{\cy}[1]{\textcolor{cyan}{#1}}
+\newcommand{\hlg}[1]{\cg{\udl{#1}}}
+\newcommand{\hlb}[1]{\cb{\udl{#1}}}
+\newcommand{\hlr}[1]{\clr{\udl{#1}}}
+
+\newcommand{\mf}{\mathbf}
+\newcommand{\tf}{\textbf}
+\newcommand{\tit}{\textit}
+\newcommand{\hlt}[1]{\textbf{\red{#1}}}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+
+\newcommand{\nm}[1]{{\rm#1}}                %竖体
+\newcommand{\ttt}{\textrm}
+\newcommand{\mhb}{\mathbb}
+\newcommand{\mcl}{\mathcal}
+\newcommand{\flr}{\mathscr}
+\newcommand{\got}{\mathfrak}
+\newcommand{\orl}{\overline}
+\newcommand{\udl}{\underline}
+\newcommand{\uudl}{\uuline}
+\newcommand{\wudl}{\uwave}
+\newcommand{\wt}{\widetilde}
+\newcommand{\bv}{\breve}
+
+%%%%%%%%%%%%%PHYSICS CONSTANTS
+\newcommand{\cstk}{\frac{1}{4\pi\vare_0}}
+\newcommand{\cstm}{\frac{\mu_0}{4\pi}}
+
+\renewcommand{\ker}{{\rm Ker}}
+\renewcommand{\Re}{{\rm Re}}
+\renewcommand{\Im}{{\rm Im}}
+\renewcommand{\S}{S^{-1}}
+\renewcommand{\bar}{\orl}
+\renewcommand{\subset}{\subseteq}
+\renewcommand{\supset}{\supseteq}
+\renewcommand{\subsetneq}{\subsetneqq}
+\renewcommand{\supsetneq}{\supsetneqq}
+
+
+\title{Linear Algebra}
+\author{TRISCT}
+\date{}
+\makeindex
+\date{}
+
+
+\begin{document}
+\maketitle
+\tableofcontents
+\section{Determinants}
+The \tf{determinant} of $A=(a_{ij})$ is defined as $A=\sum_{j_1\cdots j_n}(-1)^{r(j_1\cdots j_n)}a_{1j_1}\cdots a_{nj_n}$, where $r(j_1\cdots j_n)$ is the number of inverse pairs in the arrangement.
+
+\thm{[Laplace]For chosen $p$ rows $i_1,\cdots,i_p$,
+	\[\det A=\sum_{1\leqs j_1<\cdots<j_p}\det A\matp{i_1\cdots i_p\\j_1\cdots j_p}\det A\matp{i_{p+1}\cdots i_n\\j_{p+1}\cdots j_n}(-1)^{i_1+\cdots+i_p+j_1+\cdots+j_p}\]
+}
+
+\thm{[Cramer]Suppose $\det A\neq0$. Then the solution of $Ax=b$ is $x_j=\abs{D_j}/\abs{A}$, where
+	\[D_j=\matp{a_{11}&\cdots&b_1&\cdots&a_{1n}\\
+				\vdots&&\vdots&&\vdots\\
+				a_{n1}&\cdots&b_n&\cdots&a_{nn}}\]
+	and $b$ appears on the $j$-th column.
+}
+
+The \tf{algebraic complementary minor} of the submatrix $A\matp{i_1\cdots i_p\\j_1\cdots j_p}$ is
+\[(-1)^{i_1+\cdots+i_p+j_1+\cdots+j_p}A\matp{i_{p+1}\cdots i_n\\j_{p+1}\cdots j_n}\]
+The \tf{adjugate matrix} of $A$ is
+\[A^*=(A_{ji})\]
+where $A_{ji}$ is the algebraic complementary minor of $a_{ji}$.
+
+\thm{$AA^*=\abs{A}I$.}
+
+\thm{[Cauchy-Binet]Let $A=(a_{ij})_{n\x s},\ B=(b_{ij})_{s\x n}$.
+	\[\det(AB)=\left\{\arr{{lll}0&,&n>s\\
+								\det A\cdot\det B&,&n=s\\
+								\sum_{1\leqs k_1<\cdots<k_n\leqs s}\det A\matp{1\ 2\cdots n\\k_1\ k_2\cdots k_n}\det B\matp{k_1\ k_2\cdots k_n\\1\ 2\cdots n}&,&n<s}\right.\]
+}
+
+\section{Equations of Matrices}
+\thm{[Existence of solution]$Ax=b$ has a solution $\iff r(A)=r(A,b)$.}
+
+\section{Matrix Operations}
+Two matrices are \tf{equivalent} if they can be transformed to each other by elementary multiplcations.
+\thm{$A$ is equivalent to $\matp{I_r&0\\0&0}$ where $r=r(A)$.}
+
+\thm{[Sylvester]$r(A)+r(C)\leqs r(AC)+n$.}
+
+\thm{[Frobenius]$r(AB)+r(BC)\leqs r(ABC)+r(B)$.}
+
+\thm{$\dim(\ker(A))+\dim(\Im(A))=n$, where $A=(a_{ij})_{m\x n}$.}
+
+\tf{Moore-Penrose inverse}: \red{TBA}.
+
+\section{Linear Spaces}
+
+\thm{For linear $\psi:V\to W$, $\im\psi\isom V/\ker\psi$.}
+
+\thm{$\frac{V+W}{W}\isom\frac{V}{V\cap W}$.}
+
+\thm{$\frac{V}{W}\isom\frac{V/S}{W/S}$.}
+
+All else are omitted.
+
+\section{Decompositions}
+
+\thm{[Cayley-Hamilton]The characteristic polynomial of a matrix is also its annihilating polynomial.}
+
+\thm{[LU]$A$ has an $LU$-decomposition $\iff$ all principle minors are nonzero. The decomposition can be obtained by Gaussian elimination and is unique if we require that the diagonal of $L$ be all ones.}
+
+\thm{[Cholesky]If $A$ is symmetric and positive-definite, then there is a lower triangular matrix $L$, such that $A=LL^T$. This decomposition is unique if we require that the diagonal of $L$ be all positive.}
+
+\thm{[Gram-Schmidt orthogonalization and QR decomposition]For nonsingular $A$, we can find orthogonal $Q$ and upper triangular $R$ such that $A=QR$.}
+
+\cor{[Diagonalization of symmetric matrix]If $G$ is symmetric and positive-definite, then we can find $T$ such that $T^TGT=I$.}
+
+\thm{[Maximal rank]Let $A=(a_{ij})_{m\x n}$. If $A$ has rank $r$, then $A=BC$ for $B=(b_{ij})_{m\x r}$ and $C=(c_{ij})_{r\x n}$ for some full-rank $B$ and $C$.}
+
+\thm{[Spectral decomposition]If $A$ is normal ($A^TA=AA^T$), then there is an orthogonal $O$ such that $O^TAO$ is pseodu-diagonal, which means on its diagonal there is either a $2\x2$ block representing a dilated rotation, or a real eigenvalue representing a dilation.}
+
+\thm{[Spectral decomposition]If $A$ is symmetric, then there is an orthogonal $O$ such that $O^TAO$ is diagonal with the eigenvalues of $A$.}
+
+For any $A$, its \tf{singular values} are defined as the square roots of the nonzero eigenvalues of $A^TA$.
+
+\thm{[SVD]For any $A$, we can find orthogonal $U,\ V$ and diagonal $\Sigma$ such that $A=U\Sigma V$.}
+\prf{By the spectral decomposition theorem we can find an orthogonal $O$ such that $O^TAO=\Sigma'$ is diagonal with the eigenvalues of $A$. By setting $AO=B$ we have $B^TB=\Sigma'$ is diagonal. Hence the columns of $B$ are orthogonal. We then have $A=O^T\Sigma'B$ where $B$ has orthogonal columns, and the last few columns must be $0$. Then we can further rewrite $B$ as $B=U\Sigma$. Then $AO=U\Sigma$ as desired.}
+
+\lem{[Square root of positive-semidefinite matrix]Let $S$ be symmetric and positive-semidefinite. Then there exists a unique symmetric positive-semidefinite $S'$ such that $(S')^2=S$.}
+
+\thm{[Polar]Any $A$ can be written as $A=S\Omega=\Omega'S'$ where $\Omega,\Omega'$ are orthogonal and $S,S'$ are positive-semidefinite. Furthermore, $S$ and $S'$ are unique.}
+
+\section{Positve-definite Symmetirc Matrices}
+\thm{[Positive-definite symmetric matrices]Let $A$ be symmetric. TFAE.
+	\itm{
+		\item[(i)]$S>0$.
+		\item[(ii)]All eigenvalues $>0$.
+		\item[(iii)]$S=(S')^2$ for some symmetric positive-definite $S'$.
+		\item[(iv)]$S$ has the SVD $S=\Omega^T\diag(\lambda_1,\cdots,\lambda_n)\Omega$, where $\Omega$ is orthogonal.
+		\item[(v)]$S=P^TP$ for some invertible $P$.
+		\item[(vi)]All principle minors are positive.
+		\item[(vii)]The first $n$ principle minors are all positive.
+		\item[(viii)]The sums of the principle minors of the same order are positive.
+	}
+}
+
+\thm{[Positive-semidefinite symmetric matrices]Let $A$ be symmetric. TFAE.
+	\itm{
+		\item[(i)]$S\geqs0$.
+		\item[(ii)]All eigenvalues $\geqs0$.
+		\item[(iii)]$S=(S')^2$ for some symmetric positive-semidefinite $S'$.
+		\item[(iv)]$S$ has the SVD $S=\Omega^T\diag(\lambda_1,\cdots,\lambda_r,0,\cdots,0)\Omega$, where $\Omega$ is orthogonal.
+		\item[(v)]$S=P^TP$ for some real $P$.
+		\item[(vi)]All principle minors are positive.
+		\item[(vii)]The first $n$ principle minors are all nonnegative.
+		\item[(viii)]The sums of the principle minors of the same order are nonnegative.
+	}
+}
+
+\rmk{Note the counterexample $\matp{0&0\\0&-1}$.}
+\end{document}
+
