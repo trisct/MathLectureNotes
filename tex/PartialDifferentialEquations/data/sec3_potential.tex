@@ -1,0 +1,14 @@
+\section{Potential Equation}
+
+\thm{Let $\Phi$ be the elementary solution to the Laplace equation. Let $f\in C_0^2(\RR^d)$. Then the solution to the Poisson equation
+\[-\Delta u=f\]
+is
+\[u(x)=\int_{\RR^d}\Phi(x-y)f(y)\dy.\]}
+
+\subsection{Green Formulas}
+
+\thm{[Gauss divergence theorem]Let $\Omega\subset\RR^d$ be open and bounded with piecewise smooth boundary $\partial\Omega$. Let $w:\bar\Omega\to\RR^d$ be such that all components of $w$ are in $C(\bar\Omega)\cap C^1(\Omega)$. Then
+\[\int_{\Omega}\nabla w(x)\dx=\int_{\partial\Omega}w\cdot\vec n\ud S.\]}
+
+\thm{[Green's first formula]Let $\Omega$ be as in above. Let $u,v\in C^1(\bar\Omega)\cap C^2(\Omega)$. Then
+\[\int_\Omega u\Delta v\dx=-\int_\Omega\nabla u\cdot\nabla v\dx+\int_{\partial\Omega}u\parf{v}{\vec n}\ud S\]}

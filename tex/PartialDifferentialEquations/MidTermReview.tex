@@ -1,0 +1,841 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{geometry,layout,amssymb,amsthm,amsmath,mathrsfs,graphicx,centernot,textcomp,galois,extarrows,bbm,dsfont,makeidx,empheq,xcolor,tikz-cd,tikz,stmaryrd}
+\usepackage[all]{xy}
+
+\newcounter{ctone}
+
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{prp}{Proposition}[section]
+\newtheorem{theom}{Theorem}[section]
+\newtheorem*{theom*}{Theorem}
+\newtheorem{coro}{Corollary}[section]
+
+\newenvironment{hints}{\textbf{Hint}: }{}
+
+\theoremstyle{definition}
+\newtheorem{eg}{Example}[section]
+\newtheorem{ct}{\textcolor{cyan}{Counterexample}}[section]
+\newtheorem*{pf}{\blue{Proof}}
+\newtheorem{question}{Q}[section]
+\newtheorem{dfn}{Definition}[section]
+\newtheorem{probl}{Problem}[section]
+\newtheorem{nt}{\cg{Note}}[section]
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}[section]
+
+\newcommand*\widefbox[1]{\fbox{\vspace{2em}\hspace{2em}#1\hspace{2em}}}
+\setlength\fboxsep{0.2cm}
+
+\newcommand{\tim}{$\implies$}
+\newcommand{\rtl}{\udl{``$\Leftarrow$''}}
+\newcommand{\ltr}{\udl{``$\Rightarrow$''}}
+\newcommand{\ril}{\udl{``$\supset$''}}
+\newcommand{\lir}{\udl{``$\subset$''}}
+\newcommand{\tick}{\textcolor{red}{\checkmark}}
+\newcommand{\bs}{\backslash}
+\newcommand{\udots}{\mathinner{\mskip 1mu\raise 1pt\vbox{\kern 7pt\hbox{.}}
+\mskip 2mu\raise 4pt\hbox{.}\mskip 2mu\raise 7pt\hbox{.}\mskip 1mu}}
+\newcommand{\wot}{\backslash}
+\newcommand{\geqs}{\geqslant}
+\newcommand{\leqs}{\leqslant}
+\newcommand{\Var}{{\rm Var}}
+\newcommand{\sdd}{\sigma}
+\newcommand{\esssup}{{\rm esssup}}
+\newcommand{\gD}{\got D}
+\newcommand{\ga}{\got a}
+\newcommand{\gb}{\got b}
+\newcommand{\gc}{\got c}
+\newcommand{\gp}{\got p}
+\newcommand{\gq}{\got q}
+\newcommand{\gm}{\got m}
+\newcommand{\lst}{L^{s,t}}
+\newcommand{\DD}{\mathbb{D}}
+\newcommand{\EE}{\mathbb{E}}
+\newcommand{\FF}{\mathbb{F}}
+\newcommand{\HH}{\mathbb{H}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\ZZ}{\mathbb{Z}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\rsa}{\sigma(f;\pi,\xi)}
+\newcommand{\wlg}{{\rm w.l.o.g.}}
+\newcommand{\alg}{{\rm alg}}
+\newcommand{\sep}{{\rm sep}}
+\newcommand{\spn}{{\rm span}}
+\newcommand{\lcm}{{\rm lcm}}
+\newcommand{\rank}{{\rm rank}}
+\newcommand{\nul}{{\rm null}}
+\newcommand{\disc}{{\rm disc}}
+\newcommand{\im}{{\rm Im}}
+\newcommand{\coker}{{\rm Coker}}
+\newcommand{\coim}{{\rm Coim}}
+\newcommand{\ud}{{\rm d}}
+\newcommand{\Log}{{\rm Log}}
+\newcommand{\lub}{{\rm lub}}
+\newcommand{\glb}{{\rm glb}}
+\newcommand{\loc}{{\rm loc}}
+\newcommand{\supp}{{\rm supp}}
+\newcommand{\dx}{\ud x}
+\newcommand{\dy}{\ud y}
+\newcommand{\dz}{\ud z}
+\newcommand{\dbz}{\ud\orl z}
+\newcommand{\bz}{\bar z}
+\newcommand{\bfbz}{\bar f_{\bar z}}
+\newcommand{\fbz}{f_{\bar z}}
+\newcommand{\bfz}{\bar f_z}
+\newcommand{\du}{\ud u}
+\newcommand{\dbu}{\ud\bar u}
+\newcommand{\bu}{\bar u}
+\newcommand{\bubz}{\bar u_{\bar z}}
+\newcommand{\ubz}{u_{\bar z}}
+\newcommand{\buz}{\bar u_z}
+\newcommand{\dw}{\ud w}
+\newcommand{\dbw}{\ud\bar w}
+\newcommand{\bwbz}{\bar w_{\bar z}}
+\newcommand{\wbz}{w_{\bar z}}
+\newcommand{\bwz}{\bar w_z}
+\newcommand{\dv}{\ud v}
+\newcommand{\dbv}{\ud\bar v}
+\newcommand{\bvbz}{\bar v_{\bar z}}
+\newcommand{\vbz}{v_{\bar z}}
+\newcommand{\bvz}{\bar v_z}
+\newcommand{\dmu}{\ud\mu}
+\newcommand{\x}{\times}                     %乘号
+\newcommand{\ox}{\otimes}
+\newcommand{\op}{\oplus}
+\newcommand{\p}{$\prime$}
+\newcommand{\fctr}{\Rightarrow}
+\newcommand{\unito}{\rightrightarrows}
+\newcommand{\bwto}{\rightharpoonup}
+\newcommand{\wto}{\rightharpoondown}
+\newcommand{\lbint}{\int\!\!\!\int}      %二重积分号
+\newcommand{\bint}{\int\!\!\!\!\int}      %二重积分号
+\newcommand{\tint}{\int\!\!\!\!\int\!\!\!\!\int}      %三重积分号
+\newcommand{\apr}{\approx}
+\newcommand{\prdn}{\prod\limits_{n=1}^\infty}
+\newcommand{\sumn}{\sum\limits_{n=1}^\infty}
+\newcommand{\sump}{\sum\limits_{n=0}^\infty}
+\newcommand{\limn}{\lim\limits_{n\to\infty}}
+\newcommand{\limx}{\lim\limits_{x\to+\infty}}
+\newcommand{\operp}{\stackrel{\perp}{\oplus}}
+\newcommand{\const}{{\rm const}}
+\newcommand{\codim}{{\rm codim}}
+\newcommand{\sgn}{{\rm sgn}}
+\newcommand{\ann}{{\rm Ann}}
+\newcommand{\chr}{{\rm \,char\,}}
+\newcommand{\tr}{{\rm tr}}
+\newcommand{\sym}{{\rm Sym}}
+\newcommand{\Alt}{{\rm Alt}}
+\newcommand{\drh}[1]{H^{#1}_{\rm dR}}
+\newcommand{\centr}{{\rm Centr}}
+\newcommand{\conv}{{\rm conv}}
+\newcommand{\Sp}{{\rm Sp}}              %symplectic
+\newcommand{\id}{{\rm id}}
+\newcommand{\Obj}{\mf{Obj}}
+\newcommand{\Mor}{\mf{Mor}}
+\newcommand{\Fr}{{\rm Fr}}
+\newcommand{\Perm}{{\rm Perm}}
+\newcommand{\Hom}{{\rm Hom}}
+\newcommand{\Emb}[2]{{\rm Hom}_{#2}(#1,\bar{#2})}
+\newcommand{\Aut}{{\rm Aut}}
+\newcommand{\Gal}{{\rm Gal}}
+\newcommand{\Inn}{{\rm Inn}}
+\newcommand{\End}{{\rm End}}
+\newcommand{\PSL}{{\rm PSL}}
+\newcommand{\Area}{{\rm Area}}
+\newcommand{\Lip}{{\rm Lip}}
+\newcommand{\Vol}{{\rm Vol}}
+\newcommand{\re}{{\rm Re}}
+\newcommand{\diag}{{\rm diag}}
+\newcommand{\grad}{{\rm grad\,}}
+\newcommand{\dive}{{\rm div\,}}
+\newcommand{\rot}{{\rm rot\,}}
+\newcommand{\curl}{{\rm curl\,}}
+\newcommand{\free}{{\rm free}}
+\newcommand{\tor}{{\rm tor}}
+\newcommand{\rad}{{\rm rad}}
+\newcommand{\nilrad}{{\rm nilrad}}
+\newcommand{\ord}{{\rm ord}}
+\newcommand{\irr}{{\rm Irr}}
+\newcommand{\cl}{{\rm cl}}
+\newcommand{\Cl}{{\rm Cl}}
+\newcommand{\fix}{{\rm fix}}
+\newcommand{\boun}{\partial}
+\newcommand{\into}{\hookrightarrow}
+\newcommand{\varn}{\varnothing}
+\newcommand{\vare}{\varepsilon}
+\newcommand{\vphi}{\varphi}
+\newcommand{\vrho}{\varrho}
+\newcommand{\diam}{{\rm diam}}
+\newcommand{\vect}{{\rm Vect}}
+\newcommand{\isom}{\stackrel{\cong}{\longrightarrow}}
+\newcommand{\dfas}{\triangleq}
+\newcommand{\st}{{\rm\quad s.t.\quad}}
+\newcommand{\lapla}{\Delta}
+\newcommand{\strinc}{\subset\subset}
+
+\makeatletter
+\newcommand{\lambdabar}{{\mathchoice
+  {\smash@bar\textfont\displaystyle{0.25}{1.2}\lambda}
+  {\smash@bar\textfont\textstyle{0.25}{1.2}\lambda}
+  {\smash@bar\scriptfont\scriptstyle{0.25}{1.2}\lambda}
+  {\smash@bar\scriptscriptfont\scriptscriptstyle{0.25}{1.2}\lambda}}}
+\newcommand{\smash@bar}[4]{%
+  \smash{\rlap{\raisebox{-#3\fontdimen5#10}{$\m@th#2\mkern#4mu\mathchar'26$}}}}
+\makeatother
+
+
+\newcommand{\res}[2]{\left.#1\right|_{#2}}
+\newcommand{\rsb}[3]{\sigma(#1;#2,#3)}      %Riemann sum with arguments
+\newcommand{\derv}[2]{\frac{\ud#1}{\ud#2}}
+\newcommand{\parf}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\secpf}[3]{\frac{\partial^2 #1}{\partial #2\partial #3}}
+\newcommand{\comb}[2]{\binom{#1}{#2}}       %组合数
+\newcommand{\norm}[1]{\left\lVert #1\right\rVert}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\brc}[1]{\left\{#1\right\}}
+\newcommand{\udbrc}[2]{\underbrace{#1}_{#2}}
+\newcommand{\brk}[1]{\left\langle#1\right\rangle}
+\newcommand{\prn}[1]{\left(#1\right)}
+\newcommand{\sqb}[1]{\left\lbrack#1\right\rbrack}
+\newcommand{\dbk}[1]{\langle\!\langle#1\rangle\!\rangle}
+\newcommand{\inprod}[1]{\langle#1\rangle}
+\newcommand{\itr}[1]{#1^\circ}           %内部,interior
+\newcommand{\cosp}[1]{\prescript}
+\newcommand{\coo}[1]{\prescript{\circ}{}{#1}}
+\newcommand{\cmp}[1]{#1^c}               %补集,complement
+\newcommand{\cnts}[3]{#1#3\cdots#3#2}
+\newcommand{\inds}[3]{#1_{1}#3\cdots#3#1_{#2}}
+\newcommand{\dindx}[4]{#1{#2}#4\cdots#4#1{#3}}
+\newcommand{\dinds}[4]{#1_{#2}#4\cdots#4#1_{#3}}
+\newcommand{\vct}[1]{\overrightarrow{#1}}
+\newcommand{\simlr}[2]{#2^{-1}#1#2}     %相似
+\newcommand{\congt}[2]{\ts{#2}#1#2}     %相合
+\newcommand{\ccong}[2]{\cts{#2}#1#2}    %共轭相合
+\newcommand{\rcong}[2]{\ts{#2}#1\orl{#2}}    %右共轭相合
+\newcommand{\ts}[1]{#1^{\rm T}}
+\newcommand{\cts}[1]{\orl{#1}^{\rm T}}   %共轭转置
+\newcommand{\bss}[2]{\inds{#1}{#2}{,}}
+\newcommand{\unitob}[1]{\mathop{\rightrightarrows}\limits_{#1}}
+\newcommand{\limb}[1]{\lim\limits_{#1}}
+\newcommand{\limp}[2]{\lim\limits_{#1\to#2}}
+%\newcommand{\mapn}[5]{\arr{{ccrcl}#1&:&#2&\to&#3\\&&#4&\mapsto&#5}}
+\newcommand{\mapn}[5]{\mtha{#1:#2&\to&#3\\#4&\mapsto&#5}}
+\newcommand{\map}[4]{\mtha{#1&\to&#2\\#3&\mapsto&#4}}
+\newcommand{\mapgal}[6]{\arr{{rcl}#1&\leftrightarrow&#2\\#3&\mapsto&#4\\#6&\mapsfrom&#5}}
+\newcommand{\mapgalm}[6]{\mtha{#1&\leftrightarrow&#2\\#3&\mapsto&#4\\#6&\mapsfrom&#5}}
+\newcommand{\mapisom}[4]{\mtha{#1&\isom&#2\\#3&\mapsto&#4}}
+
+\newcommand{\mth}[1]{\begin{displaymath}#1\end{displaymath}}
+\newcommand{\mtha}[1]{\begin{eqnarray*}#1\end{eqnarray*}}
+\newcommand{\arr}[1]{\begin{array}#1\end{array}}
+\newcommand{\lem}[1]{\begin{lemma}#1\end{lemma}}
+\newcommand{\lemn}[1]{\begin{lemma*}#1\end{lemma*}}
+\newcommand{\prf}[1]{\begin{proof}[Proof]#1\end{proof}}
+\newcommand{\prfn}[1]{\begin{proof}#1\end{proof}}
+\newcommand{\hnt}[1]{\begin{hints}#1\end{hints}}
+\newcommand{\sol}[1]{\begin{proof}[Solution]#1\end{proof}}
+\newcommand{\ans}[1]{\begin{proof}[Answer]#1\end{proof}}
+\newcommand{\ques}[1]{\begin{question}#1\end{question}}
+\newcommand{\sprf}[1]{\begin{pf}\cb{#1}\end{pf}}
+\newcommand{\df}[1]{\begin{dfn}#1\end{dfn}}
+\newcommand{\ntg}[1]{\begin{nt}\cg{#1}\end{nt}}
+\newcommand{\mat}[1]{\begin{matrix}#1\end{matrix}}
+\newcommand{\matp}[1]{\prn{\begin{matrix}#1\end{matrix}}}
+\newcommand{\cd}[1]{\begin{tikzcd}[ampersand replacement=\&]#1\end{tikzcd}}
+\newcommand{\tkpic}[1]{\begin{center}\begin{tikzpicture}#1\end{tikzpicture}\end{center}}
+\newcommand{\itm}[1]{\begin{itemize}#1\end{itemize}}
+\newcommand{\enu}[1]{\begin{enumerate}#1\end{enumerate}}
+\newcommand{\desc}[1]{\begin{description}#1\end{description}}
+\newcommand{\tmth}[1]{\begin{displaymath}\ttt{#1}\end{displaymath}}
+\newcommand{\thm}[1]{\begin{theom}#1\end{theom}}
+\newcommand{\thmn}[1]{\begin{theom*}#1\end{theom*}}
+\newcommand{\emp}[1]{\begin{eg}#1\end{eg}}
+\newcommand{\rmk}[1]{\begin{remark}#1\end{remark}}
+\newcommand{\pbl}[1]{\begin{probl}#1\end{probl}}
+\newcommand{\prop}[1]{\begin{prp}#1\end{prp}}
+\newcommand{\cor}[1]{\begin{coro}#1\end{coro}}
+\newcommand{\eqn}[1]{\begin{equation}#1\end{equation}}
+\newcommand{\eqna}[1]{\begin{eqnarray}#1\end{eqnarray}}
+
+\newcommand{\clr}[1]{\textcolor{red}{#1}}   %红色
+\newcommand{\cb}[1]{\textcolor{blue}{#1}}   %蓝色
+\newcommand{\cg}[1]{\textcolor{magenta}{#1}}%紫色
+\newcommand{\cy}[1]{\textcolor{cyan}{#1}}
+\newcommand{\hlg}[1]{\cg{\udl{#1}}}
+\newcommand{\hlb}[1]{\cb{\udl{#1}}}
+\newcommand{\hlr}[1]{\clr{\udl{#1}}}
+
+\newcommand{\mf}{\mathbf}
+\newcommand{\tf}{\textbf}
+\newcommand{\tit}{\textit}
+\newcommand{\hlt}[1]{\textbf{\red{#1}}}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+
+\newcommand{\nm}[1]{{\rm#1}}                %竖体
+\newcommand{\ttt}{\textrm}
+\newcommand{\mhb}{\mathbb}
+\newcommand{\mcl}{\mathcal}
+\newcommand{\flr}{\mathscr}
+\newcommand{\got}{\mathfrak}
+\newcommand{\orl}{\overline}
+\newcommand{\udl}{\underline}
+\newcommand{\uudl}{\uuline}
+\newcommand{\wudl}{\uwave}
+\newcommand{\wt}{\widetilde}
+\newcommand{\bv}{\breve}
+
+%%%%%%%%%%%%%PHYSICS CONSTANTS
+\newcommand{\cstk}{\frac{1}{4\pi\vare_0}}
+\newcommand{\cstm}{\frac{\mu_0}{4\pi}}
+
+\renewcommand{\ker}{{\rm Ker}}
+\renewcommand{\Re}{{\rm Re}}
+\renewcommand{\Im}{{\rm Im}}
+\renewcommand{\S}{S^{-1}}
+\renewcommand{\bar}{\orl}
+\renewcommand{\subset}{\subseteq}
+\renewcommand{\supset}{\supseteq}
+\renewcommand{\subsetneq}{\subsetneqq}
+\renewcommand{\supsetneq}{\supsetneqq}
+
+
+\title{Partial Differential Equations\\
+\small 2021 Spring}
+\author{trisst}
+\makeindex
+\date{}
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\maketitle
+
+\tableofcontents
+
+\section{Method of Characteristics}
+
+\subsection{Method of Characteristics for First-Order Equations}
+The \tf{method of characteristics} can deal with the following equations. Each equation corresponds to its characteristic curve.
+\eqna{
+	u_t+au_x=0 & \leftrightarrow & \derv{x}{t}=a\label{charlex1}\\
+	u_t+a(x,t)u_x=0 & \leftrightarrow & \derv{x}{t}=a(x,t)\label{charlex2}\\
+	u_t+a(x,t)u_x=f(x,t,u) & \leftrightarrow & \derv{x}{t}=a(x,t)\label{charlex3}\\
+	u_t+a(x)u_x+a'(x)u=0 & \leftrightarrow & \derv{x}{t}=a(x(t))\label{charlex4}
+}
+Let $x=x_c(t)$ be the characteristic curve that passes through $(x,t)=(c,0)$. Then we consider the value of $u$ along a characteristic curve:
+\[u(x_c(t),t)\]
+We have:
+\mtha{
+	\derv{}{t}u(x_c(t),t) &=& u_x(x_c(t),t)\derv{x_c(t)}{t}+u_t(x_c(t),t)\\
+		&=& \left.\prn{u_xa(x,t)+u_t}\right|_{(x,t)=(x_c(t),t)}
+}
+For (\ref{charlex1}) and (\ref{charlex2}),
+\[\derv{}{t}u(x_c(t),t)=0\]
+while for (\ref{charlex3}) and (\ref{charlex4}),
+\[\derv{}{t}u(x_c(t),t)=-a'(x_c(t))u(x_c(t),t)\]
+\[\derv{}{t}u(x_c(t),t)=f(x_c(t),t,u(x_c(t),t))\]
+Steps in using the method of characteristics:
+\enu{
+	\item Solve for $x=x_c(t)$.
+	\item Solve for $U_c(t)=u(x_c(t),t)$.
+	\item For each $(x,t)$, solve for $c$ in $x=x_c(t)$.
+	\item $u(x,t)=u(x_c(t),t)=U_c(t)$.
+}
+
+\subsection{Examples for Self-Test}
+\enu{
+	\item \tf{Book-P33} Solve
+		\mtha{
+			u_t+v(x)u_x+v'(x)u &=& 0\\
+			u(x,0) &=& \rho_0(x)}
+	\item \tf{Book-P34} Solve
+		\mtha{
+			u_t+(x+t)u_x+u &=& x\\
+			u(x,0) &=& x}
+	\item \tf{Book-P100-Q3} Omitted.
+	\item \tf{Slides-1-P26} Solve this \tf{trivariate problem}:
+		\[u_t+(x+2y)u_x+(3x+4y)u_y=0\]
+	\item \tf{Book-P106-Q30} Use the characteristic curve theory to determine whether a problem is well-posed.
+	\item \tf{Book-P107-31} Solve this Cauchy problem with the method of characteristic curves.
+		\[\left\{\arr{{rcl}
+			u_t=\frac{1}{1-x-u}(1+u_x) &,& (x,t)\in\RR\x(0,\infty)\\
+			u(0,x)=0 &,& x\in\RR
+		}\right.\]
+	\item 
+}
+
+
+\section{Solving Wave Equations}
+
+In this section we consider
+\[\left\{\arr{{rcl}
+	u_{tt}-a^2u_{xx}=f(x,t) &,& (x,t)\in\RR\x(0,\infty)\\
+	u(x,0)=\vphi(x) &,& x\in\RR\\
+	u_t(x,0)=\psi(x) &,& x\in\RR
+}\right.\]
+We will explain later that actually it suffices to consider the case $f\equiv\vphi\equiv0$:
+\[\left\{\arr{{rcl}
+	u_{tt}-a^2u_{xx}=0 &,& (x,t)\in\RR\x(0,\infty)\\
+	u(x,0)=0 &,& x\in\RR\\
+	u_t(x,0)=\psi(x) &,& x\in\RR
+}\right.\]
+
+\subsection{Method of Marching Waves for One-Dimensional Problem}
+Do substitution $\xi=x-at,\ \eta=x+at,\ v(\xi,\eta)=u(x,t)$. Then $v$ satisfies
+\[v_{\xi\eta}=0\implies v=g(\xi)+h(\eta)\]
+
+\subsection{Method of Characteristics with Factoring for One-Dimensional Problem}
+Note that
+\[u_{tt}-a^2u_{xx}=\prn{\parf{}{t}+a\parf{}{x}}\prn{\parf{}{t}-a\parf{}{x}}u\]
+Hence,
+\mtha{
+	\prn{\parf{}{t}-a\parf{}{x}}u=v &,& u|_{t=0}=0\\
+	\prn{\parf{}{t}+a\parf{}{x}}v=0 &,& v|_{t=0}=(u_t-au_x)|_{t=0}=\psi(x)
+}
+
+Either way, the solution can be solved as
+\eqn{u(x,t)=\frac{1}{2a}\int_{x-at}^{x+at}\psi(\xi)\ud\xi\label{eq:sol2homoeq}}
+
+\subsection{Spherical Means for Three-Dimensional Problems}
+Below, $x=(x_1,x_2,x_3)\in\RR^3$. We try to solve the three-dimensional problem.
+\[\left\{\arr{{rcl}
+	u_{tt}-a^2\Delta u=f(x,t) &,& (x,t)\in\RR^3\x(0,\infty)\\
+	u(x,0)=\vphi(x) &,& x\in\RR^3\\
+	u_t(x,0)=\psi(x) &,& x\in\RR^3
+}\right.\]
+We consider only the case $f\equiv\vphi\equiv0$. Consider the spherical mean of $h$ over $S(x,r)$ (a sphere centered at $x$ with radius $r$):
+\[I(x,r;h)=\frac{1}{4\pi}\int_{x}h(x)\ud S(x)\]
+Suppose $u$ is the solution to the equation for $f\equiv\vphi\equiv0$. Define
+\[M(x,r,t)=rI(x,r;u)\]
+Then $M(x,r,t)$ (fixing $x$ and assuming $r$ and $t$ are variables) is the solution to
+\[\left\{\arr{{rcl}
+	M_{tt}-a^2M_{rr}=0 &,& (r,t)\in\RR_+\x(0,\infty)\\
+	M|_{r=0}=0 &&\\
+	M|_{t=0}=0 &&\\
+	M_t|_{t=0}=rI(x,r;\psi) &&\\
+}\right.\]
+To solve this equation with the method of odd extension, we have for $0\leq r\leq at$,
+\[M(x,r,t)=\frac{1}{2a}\int_{at-r}^{at+r}\rho I(x,\rho;\psi)\ud\rho\]
+Then
+\[u(x,t)=\lim_{r\to0}\frac{1}{r}M(x,r,t)\]
+
+\subsection{Diemnsion Reduction for Two-Dimensional Problems}
+Below, $x=(x_1,x_2)\in\RR^3$. We try to solve the two-dimensional problem.
+\[\left\{\arr{{rcl}
+	u_{tt}-a^2\Delta u=f(x,t) &,& (x,t)\in\RR^2\x(0,\infty)\\
+	u(x,0)=\vphi(x) &,& x\in\RR^2\\
+	u_t(x,0)=\psi(x) &,& x\in\RR^2
+}\right.\]
+Knowing the solution to the three-dimensional case, we may use it to solve the two-dimensional equation. Steps are as follows.
+\enu{
+	\item Assume the problem is three-dimensional by add a variable $x_3$. Let the solution be denoted by $\tilde u$.
+	\item Solve $\tilde u$ using Kirchhoff's formula.
+	\item Turn the spherical integrals involved in Kirchhoff's formula to integrals over disks to get an expression for $\tilde u$.
+	\item Verify that $\tilde u$ is indeed independent of $x_3$ and that it is indeed a solution of the original equation.
+}
+
+\subsection{Duhamel's Principle and the Formula of Solution}
+The general equation can be reduced to solving only the homogeneous equation by the Duhamel principle.
+
+\thm{[Duhamel's principle]Consider the problem
+\eqn{\left\{\arr{{rcl}
+	u_{tt}-a^2\Delta u=f(x,t) &,& (x,t)\in\RR^n\x(0,\infty)\\
+	u(x,0)=\vphi(x) &,& x\in\RR^n\\
+	u_t(x,0)=\psi(x) &,& x\in\RR^n
+}\right.\label{eq:generalwaveeq}}
+Let $M(x,t;\psi)$ be the solution to (\ref{eq:generalwaveeq}) where $f\equiv\vphi\equiv0$. Then
+\[u_1=\parf{}{t}M(x,t;\vphi)\]
+is the solution to (\ref{eq:generalwaveeq}) where $f\equiv\psi\equiv0$, and
+\[u_3=\int_0^tM(x,t-\tau;f(x,\tau))\ud\tau\]
+}
+
+By combining the solution to the case where $f\equiv\vphi\equiv0$ and the Duhamel's principle we obtain d'Alembert formula.
+
+\thm{[Regularity]In the case $n=1$, if $\vphi\in C^2(-\infty,\infty)$, $\psi\in C^1(-\infty,\infty)$ and $f\in C^1(\bar Q)$, then d'Alembert's formula gives a $C^2(\bar Q)$ solution to (\ref{eq:generalwaveeq}).}
+
+\subsection{Regions of Dependency}
+The formulas above help to analysis how waves propagate.
+
+\subsection{Examples for Self-Test}
+\enu{
+	\item \tf{Book-P100-Q4, marching waves} Prove the solution to ($h>0$ and $a>0$ are constants)
+		\[\prn{1-\frac{x}{h}}\parf{^2u}{t^2}=a^2\parf{}{x}\sqb{\prn{1-\frac{x}{h}}^2\parf{u}{x}}\]
+		can be written as
+		\[u(x,t)=\frac{F(x-at)+G(x+at)}{h-x}\]
+	\item \tf{Book-P100-Q5, marching waves} What conditions do the initial values $\vphi(x)$ and $\psi(x)$ need to satisfy for the solution to consists of only the right-marching wave (i.e. $F(x-at)$)?
+	\item \tf{Book-P100-Q6, region of determination}
+	\item \tf{Book-P100-Q7}
+	\item \tf{Book-P101-Q8, Kirchhoff formula} Solve
+		\[\left\{\arr{{l}
+			u_{tt}-a^2(u_{xx}+u_{yy}+u_{zz})=0\\
+			u(x,y,z,0)=f(x)+g(y)\\
+			u_t(x,y,z,0)=\vphi(y)+\psi(z)\\
+		}\right.\]
+	\item \tf{Book-P102-Q14, region of dependency} Let $u$ solve
+		\[\left\{\arr{{l}
+			u_{tt}-4(u_{xx}+u_{yy})=0\\
+			u(x,y,0)=\vphi(x,y)\\
+			u_t(x,y,0)=\psi(x,y)
+		}\right.\]
+		where
+		\[\vphi(x,y),\psi(x,y)=\left\{\arr{{rcl}
+			0 &,& (x,y)\in\Omega\\
+			>0 &,& (x,y)\in\Omega^2}\right.\]
+		Here, $\Omega\subset\RR^2$ is a square. Determine the region where $u=0$.
+	\item \tf{Book-P102-Q15, region of dependency} Let $u$ solve
+		\[\left\{\arr{{rcl}
+			u_{tt}-a^2u_{xx}=0 &,& (x,t)\in(0,\infty)\x(0\infty)\\
+			u(x,0)=\vphi(x) &,& x\in[0,\infty)\\
+			u_t(x,0)=\psi(x) &,& x\in[0,\infty)\\
+			u(0,t)=g(t) &,& t\in[0,\infty)
+		}\right.\]
+		where
+		\[\vphi(x),\psi(x)=\left\{\arr{{rcl}
+			0 &,& 0\leqs x\leqs1\\
+			>0 &,& 1<x<\infty}\right.\]
+		\[g(t)=\left\{\arr{{rcl}
+			0 &,& 0\leqs t\leqs1\\
+			>0 &,& 1<t<\infty}\right.\]
+		Determine the region in the $(x,t)$-plane where $u=0$.
+	\item \tf{Book-P103-Q17, region of determination} Solve the \tf{Goursat problem}
+		\[\left\{\arr{{rcl}
+			u_{tt}-u_{xx}=0 &,& t>\abs{x}\\
+			u(x,-x)=\vphi(x) &,& x\in(-\infty,0]\\
+			u_t(x,x)=\psi(x) &,& x\in[0,\infty)
+		}\right.\]
+		where $\vphi(0)=\psi(0)=0$. If $\vphi(x)$ is given in $(-a,0]$ and $\psi(x)$ is given in $[0,b]$, find the region determined by these conditions.
+	\item \tf{Book-P103-Q18, region of determination} Solve the \tf{Darboux problem}
+		\[\left\{\arr{{rcl}
+			u_{tt}-u_{xx}=0 &,& 0<x<t\\
+			u(0,t)=\vphi(t) &,& t\geqs0\\
+			u_t(t,t)=\psi(t) &,& t\geqs0
+		}\right.\]
+		where $\vphi(0)=\psi(0)=0$. If both $\vphi(t)$ and $\psi(t)$ are given in $[0,a]$, find the region determined by these conditions.
+	\item \tf{Book-P103-Q19, solve Cauchy problem} Solve the Cauchy problem
+		\[\left\{\arr{{l}
+			u_{tt}-a^2(u_{xx}+u_{yy}+u_{zz})=0\\
+			u(x,0)=0\\
+			u_t(x,0)=0
+		}\right.\]
+	\item \tf{Book-P103-Q20, dimension reduction} Solve the one-dimensional Cauchy problem with dimension reduction.
+	\item \tf{Book-P104-Q21, solve Cauchy problem} Solve thte two-dimensional Cauchy problem
+		\[\left\{\arr{{l}
+			u_{tt}-a^2(u_{xx}+u_{yy})=0\\
+			u(x,0)=x^2(x+y)\\
+			u_t(x,0)=0
+		}\right.\]
+}
+
+
+
+\section{Energy Inequalities, Uniqueness and Maximum Modulus}
+
+\subsection{Energy Inequalities}
+\thm{[Energy inequality and $L^2$-modulus estimate for Cauchy problem, 1D case]Let $u\in C^1(\bar Q)\cap C^2(Q)$ solve
+\[\left\{\arr{{rcl}
+	u_{tt}-a^2u_{xx}=f(x,t) &,& (x,t)\in\RR\x(0,\infty)\\
+	u(x,0)=\vphi(x) &,& x\in\RR\\
+	u_t(x,0)=\psi(x) &,& x\in\RR
+}\right.\]
+Consider the characteristic cone $K_{(x_0,t_0)}$ with vertex $(x_0,t_0)$. Let $\Omega_\tau$ be the sectional plane of the cone $K_{(x_0,t_0)}$ at $t=\tau$, and $K_\tau$ be the body of the cone between $\Omega_\tau$ and $\Omega_0$. Then
+\[\int_{\Omega_\tau}\prn{u_t^2+a^2u_x^2}\dx \leqs e^{t_0}\prn{\int_{\Omega_0}\prn{\psi^2+a^2\vphi_x^2}\dx+\int_{K_\tau}f^2\dx\ud t}\]
+\[\int_{K_\tau}\prn{u_t^2+a^2u_x^2}\dx\ud t \leqs e^{t_0}\prn{\int_{\Omega_0}\prn{\psi^2+a^2\vphi_x^2}\dx+\int_{K_\tau}f^2\dx\ud t}\]
+\[\int_{\Omega_\tau}u^2\dx \leqs e^{t_0}(e^{t_0}+1)\prn{\int_{\Omega_0}\prn{\vphi^2+\psi^2+a^2\vphi_x^2}\dx+\int_{K_\tau}f^2\dx\ud t}\]
+\[\int_{K_\tau}u^2\dx\ud t \leqs e^{t_0}(e^{t_0}+1)\prn{\int_{\Omega_0}\prn{\vphi^2+\psi^2+a^2\vphi_x^2}\dx+\int_{K_\tau}f^2\dx\ud t}\]
+}
+
+\thm{[Energy inequality and $L^2$-modulus estimate for Cauchy problem, 2D case]Let $u$ solve
+\[\left\{\arr{{rcl}
+	u_{tt}-a^2\Delta u=f(x,t) &,& (x,t)\in\RR^2\x(0,\infty)\\
+	u(x,0)=\vphi(x) &,& x\in\RR^2\\
+	u_t(x,0)=\psi(x) &,& x\in\RR^2
+}\right.\]
+Consider the characteristic cone $K_{(x_0,t_0)}$ with vertex $(x_0,t_0)$. Let $\Omega_\tau$ be the sectional plane of the cone $K_{(x_0,t_0)}$ at $t=\tau$, and $K_\tau$ be the body of the cone between $\Omega_\tau$ and $\Omega_0$. Then
+\[\int_{\Omega_\tau}\prn{u_t^2+a^2\abs{\nabla u}^2}\dx_1\dx_2 \leqs e^{t_0}\prn{\int_{\Omega_0}\prn{\psi^2+a^2\abs{\nabla\vphi}^2}\dx_1\dx_2+\int_{K_\tau}f^2\dx_1\dx_2\ud t}\]
+\[\int_{K_\tau}\prn{u_t^2+a^2\abs{\nabla u}^2}\dx_1\dx_2\ud t \leqs e^{t_0}\prn{\int_{\Omega_0}\prn{\psi^2+a^2\abs{\nabla\vphi}^2}\dx_1\dx_2+\int_{K_\tau}f^2\dx_1\dx_2\ud t}\]
+\[\int_{\Omega_\tau}u^2\dx_1\dx_2 \leqs e^{t_0}(e^{t_0}+1)\prn{\int_{\Omega_0}\prn{\vphi^2+\psi^2+a^2\abs{\nabla\vphi}^2}\dx_1\dx_2+\int_{K_\tau}f^2\dx_1\dx_2\ud t}\]
+\[\int_{K_\tau}u^2\dx_1\dx_2\ud t \leqs e^{t_0}(e^{t_0}+1)\prn{\int_{\Omega_0}\prn{\vphi^2+\psi^2+a^2\abs{\nabla\vphi}^2}\dx_1\dx_2+\int_{K_\tau}f^2\dx_1\dx_2\ud t}\]
+}
+
+\ques{Does this hold for $n\geqs3$?}
+
+\thm{[Energy inequality for hybrid problem, 1D case]Let $u\in C^1(\bar Q_T)\cap C^2(Q_T)$ solve
+\[\left\{\arr{{rcl}
+	u_{tt}-a^2u_{xx}=0 &,& (x,t)\in\RR\x(0,\infty)\\
+	u(0,t)=u(l,t)=0 &,& x\in\RR\\
+	u(x,0)=\vphi(x) &,& x\in\RR\\
+	u_t(x,0)=\psi(x) &,& x\in\RR
+}\right.\]
+Then
+\[\int_0^l\prn{u_t^2+a^2u_x^2}\dx\leqs M\prn{\int_0^l(\psi^2+a^2\vphi_x^2)\dx+\int_{Q_\tau}f^2\dx\ud t}\]
+\[\int_{Q_\tau}\prn{u_t^2+a^2u_x^2}\dx\leqs M\prn{\int_0^l(\psi^2+a^2\vphi_x^2)\dx+\int_{Q_\tau}f^2\dx\ud t}\]
+\[\int_{Q_\tau}\prn{u^2+u_t^2+a^2u_x^2}\dx\leqs M\prn{\int_0^l(\vphi^2+\psi^2+a^2\vphi_x^2)\dx+\int_{Q_\tau}f^2\dx\ud t}\]
+where $M$ is a constant depending only on $T$. Moreover, $f=0\implies M=1$ and equality is achieved.
+}
+
+\subsection{Uniqueness and Continuous Dependency}
+As long as there is the energy inequality, we can deduce the uniqueness of the solution and the continuous dependency on $f,\vphi$ and $\psi$ (in terms of the energy modulus).
+
+\ques{What does this mean?}
+
+\subsection{Decay Estimation}
+\thm{Consider the 2D Cauchy problem for the wave equation. If $\vphi(x)$ and $\psi(x)$ are both compactly supported and sufficiently smooth, then
+\[\sup_{x\in\RR^2}\abs{u(x,t)}\leqs Ct^{-1/2}\]
+as $t\to\infty$.}
+
+\prf{Seems to have used the Poisson equation.}
+
+\thm{Consider the 3D Cauchy problem for the wave equation. If $\vphi(x)$ and $\psi(x)$ are both compactly supported and sufficiently smooth, then
+\[\sup_{x\in\RR^2}\abs{u(x,t)}\leqs Ct^{-1}\]
+as $t\to\infty$.}
+
+\subsection{Appendix: Gronwall's inequality and Stokes' Theorem}
+Some math tricks are required for the proof of the energy estimates.
+
+\thm{[Gronwall's inequality]Let $G(\tau)\in C^1([0,T])$ and $G(\tau)\geqs0,\ G(0)=0$. If for $\tau\in[0,T]$, we have
+\[\derv{G}{\tau}\leqs CG(\tau)+F(\tau)\]
+for some constant $C>0$ and a nondecreasing nonnegative function $F(\tau)$ integrable over $[0,T]$, then
+\[\derv{G}{\tau}\leqs e^{C\tau}F(\tau)\]
+\[G(\tau)\leqs C^{-1}(e^{C\tau}-1)F(\tau)\]}
+
+\thm{[Stokes' Theorem]Let $M$ be an oriented $n$-dimensional manifold with boundary, and let $\omega$ be a compactly supported $(n-1)$-form on $M$. Then
+\[\int_M\ud\omega=\int_{\partial M}\omega\]}
+
+The most common application of Stokes' theorem is to convert between volume integrals and surface integrals (or line integrals and area integrals).
+
+\thm{[Gauss's theorem]Let $M\subset\RR^3$ and
+\[\omega=P\dy\wedge\dz+Q\dz\wedge\dx+R\dx\wedge\dy\]
+Note that, if $\nu(r)\ud S(r)$ is the oriented surface element where $\nu(y)$ is the outward unit surface normal vector, then we have
+\[\nu(r)\ud S(r)=\prn{\dy\wedge\dz,\dz\wedge\dx,\dx\wedge\dy}\]
+Stokes's theorem becomes
+\mtha{
+	\int_{\partial M}\omega &=& \int_{\partial M}P\dy\wedge\dz+Q\dz\wedge\dx+R\dx\wedge\dy\\
+	&=& \int_{\partial M}(P,Q,R)\cdot\nu(r)\ud S(r)\\
+	&=& \int_M\ud\omega\\
+	&=& \int_M\prn{\parf{P}{x}+\parf{Q}{y}+\parf{R}{z}}\dx\wedge\dy\wedge\dz\\
+}
+If we write $F=(P,Q,R)$ (a vector field) , then
+\[\int_{\partial M}F(r)\cdot\nu(r)\ud S(r)=\int_M\dive F(r)\ud V(r)\]
+}
+
+\thm{[Green's theorem]Let $M\subset\RR^2$. Note that the oriented line element
+\[\nu(r)\ud l(r)=(\dy,-\dx)\]
+Hence, the $1$-form corresponding to a vector field over an oriented line is
+\[\omega=(P,Q)\cdot(\dy,-\dx)=P\dy-Q\dx\]
+Stokes's theorem becomes
+\mtha{
+	\int_{\partial M}\omega &=& \int_{\partial M}P\dy-Q\dx\\
+	&=& \int_{\partial M}(P,Q)\cdot\nu(r)\ud l(r)\\
+	&=& \int_M\ud\omega\\
+	&=& \int_M\prn{\parf{P}{x}+\parf{Q}{y}}\dx\wedge\dy\\
+}
+If we write $F=(P,Q)$ (a vector field) , then
+\[\int_{\partial M}F(r)\cdot\nu(r)\ud l(r)=\int_M\dive F(r)\ud S(r)\]
+}
+
+\subsection{Examples for Self-Test}
+\enu{
+	\item \tf{Book-P101-Q9, uniqueness} Solve the IVP
+		\[\left\{\arr{{rcl}
+			u_{tt}-a^2u_{xx}+cu=f(x,t) &,& (x,t)\in\RR\x(0,\infty)\\
+			u(x,0)=\vphi(x) &,& x\in\RR\\
+			u_t(x,0)=\psi(x) &,& x\in\RR\\
+		}\right.\]
+		and prove the uniqueness of the solution.
+	\item \tf{Book-P102-Q12} Prove the uniquness of the solution to
+		\[\left\{\arr{{rcl}
+			u_{tt}-a^2u_{xx}=f(x,t) &,& (x,t)\in(0,\infty)\x(0,\infty)\\
+			u(x,0)=\vphi(x) &,& x\in[0,\infty)\\
+			u_t(x,0)=\psi(x) &,& x\in[0,\infty)\\
+			u(0,t)=\mu(t) &,& t\in[0,\infty)
+		}\right.\]
+	\item \tf{Book-P102-Q13} Prove the uniquness of the solution to
+		\[\left\{\arr{{rcl}
+			u_{tt}-a^2u_{xx}+b(x,t)u_x+c(x,t)u_t=f(x,t) &,& (x,t)\in\RR\x(0,\infty)\\
+			u(x,0)=\vphi(x) &,& x\in\RR\\
+			u_t(x,0)=\psi(x) &,& x\in\RR\\
+		}\right.\]
+		where $b(x,t)$ and $c(x,t)$ are bounded and continuous.
+	\item \tf{Book-P105-Q28} Prove the uniqueness of the solution to the 1D wave equation with \red{the third-type boundary conditions}.
+}
+
+
+\section{Semi-open Problems and Symmetric Extension}
+\subsection{Examples for Self-Test}
+\enu{
+	\item \tf{Book-P103-Q10} Solve by symmetric extension.
+	\item \tf{Book-P103-Q11} Solve by symmetric extension.
+	\item \tf{Book-P103-Q16} Determine whether a problem can be solved with symmetric extension. Try solving it with the method of characteristic lines.
+}
+
+
+
+
+\section{Hybrid Problems and Separation of Variables}
+Hybrid problems are usually in the form
+\[\left\{\arr{{rcl}
+	u_{tt}-a^2u_{xx}=0 &,& (x,t)\in Q:=(0,l)\x(0,\infty)\\
+	u(0,t)=u(l,t)=0 &,& t>0\\
+	u(x,0)=\vphi(x) &,& x\in[0,l]\\
+	u_t(x,0)=\psi(x) &,& x\in[0,l]
+}\right.\]
+The method of separation of variables $u(x,t)=X(x)T(t)$ decouples the problem into an equation of $X$ (Sturm-Liouville problem and an equation of $T(t)$.
+
+\subsection{Sturm-Liouville Problem}
+The general form of the Sturm-Liouville problem is
+\[\left\{\arr{{rcl}
+	X''+\lambda X=0 &,& x\in(0,l)\\
+	-\alpha_1X'(0)+\beta_1X(0)=0 &&\\
+	\alpha_2X'(l)+\beta_2X(l)=0 &&\\
+}\right.\]
+Its solution (corresponding to the $n$-th eigenvalue) is of the form
+\[X_n(x)=C_n\sin(\sqrt{\lambda_n}x)+D_n\cos(\sqrt{\lambda_n}x)\]
+Note that $X_n$ is only determined up to a constant.
+
+\subsection{Time Evolution}
+$T(t)$ satisfies $T''+a^2\lambda_n T=0$, where $\lambda_n$ has been determined by $X_n(x)$. Then $T(t)$ is
+\[T_n(t)=A_n\sin(a\sqrt{\lambda_n}t)+B_n\cos(a\sqrt{\lambda_n}t)\]
+
+Combining the spatial part and the time part, the formal expression of the original solution is
+\[u(x,t)=\sum_{n\geqs1}\prn{A_n\sin(a\sqrt{\lambda_n}t)+B_n\cos(a\sqrt{\lambda_n}t)}\prn{C_n\sin(\sqrt{\lambda_n}x)+D_n\cos(\sqrt{\lambda_n}x)}\]
+Here $C_n$ and $D_n$ are already determined in solving the Sturm-Liouville problem. To determine $A_n$ and $B_n$, we solve them as the Fourier coefficients of the initial values.
+
+\subsection{Nonhomogenous Equations}
+Consider the nonhomogenous equation
+\[\left\{\arr{{rcl}
+	u_{tt}-a^2u_{xx}=f(x,t) &,& (x,t)\in Q:=(0,l)\x(0,\infty)\\
+	u(0,t)=u(l,t)=0 &,& t>0\\
+	u(x,0)=\vphi(x) &,& x\in[0,l]\\
+	u_t(x,0)=\psi(x) &,& x\in[0,l]
+}\right.\]
+Steps to solve it:
+\itm{
+	\item Solve the Sturm-Liouville problem to obtain eigenvalues $\lambda_n$ and eigenfunctions $X_n(x)$.
+	\item Expand $u,\ f,\ \vphi,\ \psi$ w.r.t. the eigenfunctions.
+	\item Solve the equations each $T_n$ satisfies.
+}
+
+\subsection{Resonance}
+Resonance happens in some cases with extraneous force, for example,
+\[\left\{\arr{{l}
+	u_{tt}-a^2u_{xx}=A(x)\sin\omega t\\
+	u(0,t)=u(l,t)=0\\
+	u(x,0)=u_t(x,0)=0
+}\right.\]
+Just solve it with the nonhomogenous version of separation of variables. Then consider the cases $\omega\neq\omega_k$ and $\omega\to\omega_k$.
+
+\subsection{Examples for Self-Test}
+\enu{
+	\item \tf{Book-P67-Thm4.1, Sturm-Liouville problems} For the general Sturm-Liouville problem, prove the following.
+		\itm{
+			\item[(i)]Suppose $X_\lambda(x)$ is a solution of the eigenvalue $\lambda$. Try to represent $\lambda$ with $X_\lambda,\ X_\lambda'$ and their integrals.
+			\item[(ii)]Use (i) to prove that all eigenvalues are nonnegative. Moreover, if $\beta_1+\beta_2>0$, them all eigenvalues are positive.
+			\item[(iii)]Prove that eigenfunctions for different eigenvalues are orthognal.
+		}
+	\item \tf{Book-P73, convergence} What conditions for the formal expression of $u,\ Du,\ D^2u$ are needed for $u$ to be a classic solution?
+	\item \tf{Book-P73-Thm4.2, regularity} Prove that if $\vphi(x)\in C^3[0,l],\ \psi(x)\in C^2[0,l]$ and
+		\[\vphi(0)=\vphi(l)=\vphi''(0)=\vphi''(l)=\psi(0)=\psi(l)=0\]
+	\item \tf{Book-P104-Q22} Solve the following Sturm-Liouville problems. (Omitted)
+	\item \tf{Book-P104-Q23} Solve the following hybrid problems with separation of variables. (Omitted).
+	\item \tf{Book-P105-Q24, homogenization} Omitted.
+	\item \tf{Book-P105-Q25, homogenization} Omitted.
+	\item \tf{Book-P105-Q26} Solve the following hybrid problems with separation of variables. (Omitted).
+	\item \tf{Book-P106-Q27, regularity} What conditions for $f,\ \vphi,\ \psi$ need to be imposed for the Fourier solution to the nonhomogenous hybrid problem to become a classic solution?
+}
+
+
+
+\section{Generalized Solutions}
+
+\subsection{Weak Solutions for Some Equations}
+\paragraph{1D conservation law}
+\mtha{
+	u_t+f(u)_x=0 &\implies& \int_\RR\int_{t\geqs0}(u_t+f(u)_x)\phi\dx\ud t=0,\ \forall\phi\in C_0^\infty(\RR^2)\\
+	&\implies& \int_\RR\int_{t\geqs0}\prn{u\phi_t+f(u)\phi_x}\dx\ud t+\int_\RR u_0\phi(x,0)\dx=0,\ \forall\phi\in C_0^\infty(\RR^2)
+}
+
+\paragraph{Hybrid problem}
+\mtha{
+	&& u_{tt}-a^2u_{xx}=0\\
+	&\implies& \int_{Q_T}(u_{tt}-a^2u_{xx})\phi\dx\ud t=0,\ \forall\phi\in C_0^2(\bar Q_T),\ \phi|_{t=T}=\phi_t|_{t=T}=\phi|_{x=0,l}=0
+}
+
+\red{Q: How are the test functions chosen?}
+
+\subsection{The Rankine-Hugoniot Jump Condition}
+The \tf{Rankine-Hugoniot} jump condition is a sufficient and necessary condition for piecewise smooth solutions to be weak solutions.
+
+\thm{[The R-H jump condition]Let there be a piecewise smooth solution $u$ to the 1D conservation law. Suppose the discontinuities form a smooth curve $\Gamma:x=x(t)$, and suppose $u$ has left and right limits near $\Gamma$. Then $u$ is a weak solution $\iff u$ satisfies the R-H condition on $\Gamma$:
+\[(u_+-u_-)\derv{x}{t}=f(u_+)-f(u_-)\]}
+
+\cor{A continuous piecewise smooth solution is a weak solution.}
+
+\thm{[The Lax entropy condition]Along the two sides of the line of discontinuity, we should be able to draw two characteristic lines that do not cross the line of discontinuity, i.e.
+\[f'(u_+)<\derv{x}{t}<f'(u_-)\]
+where $x=x(t)$ is the line of discontinuity, and $f'(u)$ is the slope ($x$ w.r.t. $t$) of the characteristic lines.}
+
+\subsection{Uniqueness of Generalized Solutions to Hybrid Problems}
+\thm{As suggested by title.}
+
+\thm{The generalized solution to the hybird problems depend continuously on $\vphi$ and $\psi$.}
+
+\thm{[Regularity]}
+
+\subsection{Examples for Self-Test}
+\enu{
+	\item \tf{Book-P96} Solve
+		\[\left\{\arr{{l}
+			u_t+uu_x=0\\
+			u(x,0)=\left\{\arr{{rcl}
+				1 &,& x<0\\
+				1-x &,& 0\leqs x\leqs1\\
+				0 &,& x>1}\right.}
+		\right.\]
+	\item \tf{Book-P106-Q29} Regularity of Fourier solutions.
+}
+
+
+
+
+\section{Mid-term from Nextdoor}
+\enu{
+	\item Find $u\in M=\{y(x)\in C^1[0,1]: y(1)=0\}$ s.t.
+		\[J(u)=\min_{v\in M}J(v)\]
+		where
+		\[J(v)=\frac{1}{2}\int_0^1{y'}^2(x)\dx+\int_0^1y(x)\dx-2y(0)\]
+	\item Solve the following Cauchy problem ($h\in C^1(\RR)$).
+		\mtha{
+			u_t+\sum_{k=1}^nx_ku_{x_k}=u(x,t) &,& x\in\RR^n,\ t>0\\
+			u(x,0)=h(x) &,& x(x_1,\cdots,x_n)\in\RR^n
+		}
+	\item Use d'Alembert formula to find a solution $u(x,y,z,t)$ to
+		\mtha{
+			u_{tt}-\Delta u=f(y) &,& (x,y,z)\in\RR^3,\ t>0\\
+			u(x,y,z,0)=\vphi(x) &,& (x,y,z)\in\RR^3\\
+			u_t(x,y,z,0)=\psi(x) &,& (x,y,z)\in\RR^3\\
+		}
+		where $\psi,\vphi,f\in C^2(\RR)$.
+	\item Let $F\in C^2(\RR^2)$ and for $x\in\RR^2,\ r>0$, define
+		\[u(x,r)=\frac{1}{2\pi r}\int_{\partial B_r(x)F(y)\ud S_y}\]
+		Prove
+		\[u_r=r(\Delta_x u-u_{rr}),\ \forall x\in\RR^2,\ \forall r>0\]
+	\item Let $\Omega\subset\RR^n$ be a bounded region with a $C^1$ boundary. Prove that
+		\[\left\{\arr{{rcl}
+			u_{tt}-\Delta u=\sin u_t &,& x\in\Omega,\ T>t>0\\
+			u(x,t)=g &,& x\in\partial\Omega,\ T>t>0\\
+			u(x,0)=\phi &,& u_t(x,0)=\psi(x),\ x\in\bar\Omega
+		}\right.\]
+		has at most one solution in $C^2(\Omega\x(0,T))\cap C^1(\bar\Omega\x[0,T))$.
+	\item Use the method of separation of variables to solve
+		\[\left\{\arr{{rcl}
+			u_{tt}-u_{xx}=-x\sin t &,& 0<x<1,\ t>0\\
+			u(x,0)=0,\ u_t(x,0)=0 &,& 0\leqs x\leqs1\\
+			u(0,t)=\sin t,\ u_x(1,t)=\cos t &,& t\geqs0
+		}\right.\]
+}
+\end{document}
+
